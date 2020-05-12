@@ -67,6 +67,7 @@ public class DatosPersonalesFragment extends BaseFragment implements View.OnClic
     int band_refe = 0;
 
     public DatosPersonalesFragment() {
+
     }
 
     @Override
