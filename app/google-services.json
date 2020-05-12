@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1036678624807",
+    "firebase_url": "https://dupree-app-peru.firebaseio.com",
+    "project_id": "dupree-app-peru",
+    "storage_bucket": "dupree-app-peru.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036678624807:android:2990d0ef958f931f",
+        "android_client_info": {
+          "package_name": "com.dupreincaperu.dupree"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036678624807-tecu5fsoicf8ibs5vhquei90qbg0vbhu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbMePwMCtfLUN9Bh21jFTUOTLc56maqJ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036678624807-tecu5fsoicf8ibs5vhquei90qbg0vbhu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

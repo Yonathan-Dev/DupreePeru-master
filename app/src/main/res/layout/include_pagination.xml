@@ -1,0 +1,62 @@
+<layout>
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:background="@drawable/boton_azul"
+            android:layout_width="match_parent"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="start"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvButtonLeft"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical"
+                    android:drawableStart="@drawable/ic_keyboard_arrow_left_black_24dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:text="@string/anterior"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutDots"
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal"/>
+
+            <LinearLayout
+                android:gravity="end"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvButtonRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:text="@string/continuar"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>

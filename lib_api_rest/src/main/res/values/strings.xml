@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">lib_api_rest</string>
+    <string name="http_datos_no_disponibles">Datos moviles no disponibles</string>
+    <string name="http_error_desconocido">Por favor intente nuevamente</string>
+    <string name="espere">Espere...</string>
+
+    <!-- String for progress dialogs -->
+    <string name="progress_fetch_title">Processing</string>
+    <string name="progress_manual_download_title">Please wait...</string>
+    <string name="progress_manual_download_message">Downloading to \'My Manuals\'</string>
+</resources>

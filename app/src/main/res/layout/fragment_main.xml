@@ -1,0 +1,232 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    tools:context="com.dupreincaperu.dupree.mh_fragments_main.MainFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/AppBarL_FragMain"
+            layout="@layout/mh_toolbar_activity" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/pageMainBack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:background="@color/background"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.40"
+                android:orientation="horizontal">
+
+                <com.daimajia.slider.library.SliderLayout
+                    android:id="@+id/mh_slider"
+                    android:layout_width="1dp"
+                    android:visibility="gone"
+                    android:layout_height="1dp" />
+
+                <com.daimajia.slider.library.Indicators.PagerIndicator
+                    android:id="@+id/custom_indicator"
+                    android:layout_width="1dp"
+                    android:visibility="gone"
+                    android:layout_height="1dp"
+                    android:gravity="center" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent">
+                </android.support.v4.view.ViewPager>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.60"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.50"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="0.50"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        card_view:cardCornerRadius="10dp"
+                        card_view:cardElevation="5dp">
+
+                        <ImageView
+                            android:id="@+id/imgVuelveteAsesora"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/img_main_vuelvete_asesora" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:background="@color/transp_azulDupree"
+                            android:padding="5dp"
+                            android:text="@string/vuelvete_asesora"
+                            android:textAlignment="center"
+                            android:textColor="@color/negro"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="0.50"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        card_view:cardCornerRadius="10dp"
+                        card_view:cardElevation="5dp">
+
+                        <ImageView
+                            android:id="@+id/imgAtencionCliente"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/img_main_solicita_asesora" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:background="@color/transp_azulDupree"
+                            android:padding="5dp"
+                            android:text="@string/servicio_al_cliente"
+                            android:textAlignment="center"
+                            android:textColor="@color/negro"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.50"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                    <!--LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.50"
+                        android:layout_height="match_parent"
+                        android:orientation = "vertical"
+                        android:weightSum="1"
+                        android:padding="5dp"
+                        >
+                        <ImageView
+                            android:id="@+id/imgCatalogos"
+                            style="@style/imgView_Main"
+                            tools:ignore="ContentDescription"
+                            android:background="@drawable/img_main_catalogos"/>
+                        <TextView
+                            style="@style/textView_Main"
+                            android:text="@string/catalogos"/-->
+                    <android.support.v7.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="0.50"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        card_view:cardCornerRadius="10dp"
+                        card_view:cardElevation="5dp">
+
+                        <ImageView
+                            android:id="@+id/imgCatalogos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/img_main_catalogos" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:background="@color/transp_azulDupree"
+                            android:padding="5dp"
+                            android:text="@string/catalogos"
+                            android:textAlignment="center"
+                            android:textColor="@color/negro"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="0.50"
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        card_view:cardCornerRadius="10dp"
+                        card_view:cardElevation="5dp">
+
+                        <ImageView
+                            android:id="@+id/imgLogin"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/img_main_login" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:background="@color/transp_azulDupree"
+                            android:padding="5dp"
+                            android:text="@string/iniciar_sesion"
+                            android:textAlignment="center"
+                            android:textColor="@color/negro"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </android.support.v7.widget.CardView>
+                    <!--LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.50"
+                        android:layout_height="match_parent"
+                        android:orientation = "vertical"
+                        android:weightSum="1"
+                        android:padding="5dp"
+                        >
+                        <ImageView
+                            android:id="@+id/imgLogin"
+                            style="@style/imgView_Main"
+                            tools:ignore="ContentDescription"
+                            android:background="@drawable/img_main_login"/>
+                        <TextView
+                            style="@style/textView_Main"
+                            android:text="@string/iniciar_sesion"/-->
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

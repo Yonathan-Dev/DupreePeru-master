@@ -1,0 +1,136 @@
+<layout>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.dupreincaperu.dupree.mh_fragments_menu.pedidos.HacerPrePedidoFragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ctxNameAsesora"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardViewBackGround"
+                    card_view:cardBackgroundColor="@color/gray_2"
+                    android:layout_margin="2.5dp"
+                    card_view:cardCornerRadius="6dp"
+                    card_view:cardElevation="5dp"
+                    card_view:cardUseCompatPadding="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvNombreAsesora"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="@color/transparent"
+                        android:padding="5dp"
+                        tools:text="ENORELIS C. PEREZ H."
+                        android:textAllCaps="true"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray_6"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/ctxNameAsesora"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/gray_2">
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <android.support.design.widget.AppBarLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TabLayout
+                            android:id="@+id/tabs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:tabSelectedTextColor="@color/gray_6"
+                            android:background="@color/gray_3"
+                            app:tabMode="fixed"
+                            app:tabGravity="fill" />
+
+                    </android.support.design.widget.AppBarLayout>
+
+                    <android.support.v4.widget.SwipeRefreshLayout
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:id="@+id/swipePedidos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <com.dupreincaperu.dupree.mh_utilities.CustomViewPager_DisableSwipe
+                                android:id="@+id/pagerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingTop="0dp"
+                                android:paddingLeft="0dp"
+                                android:paddingRight="0dp"
+                                android:paddingBottom="0dp"
+                                android:background="@android:color/white"/>
+
+                            <LinearLayout
+                                android:id="@+id/layoutDotPedidos"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:layout_alignParentBottom="true"
+                                android:gravity="bottom|center_horizontal"
+                                android:orientation="horizontal"/>
+                        </RelativeLayout>
+                    </android.support.v4.widget.SwipeRefreshLayout>
+
+                    <ru.dimorinny.floatingtextbutton.FloatingTextButton
+                        android:id="@+id/fabSendPedido"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_margin="@dimen/fab_margin"
+                        app:floating_background_color="@color/colorAccent"
+                        app:floating_left_icon="@drawable/ic_save_white_24dp"
+                        app:floating_title=""
+                        app:floating_title_color="@android:color/white"/>
+
+
+                </android.support.design.widget.CoordinatorLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ctcRcvFilter"
+                android:visibility="gone"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:background="@color/transparent_black_45"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:background="@color/white"
+                    android:id="@+id/rcvFilterPedido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+</layout>

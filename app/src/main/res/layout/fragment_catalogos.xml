@@ -1,0 +1,177 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout android:orientation="vertical"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+        <include android:id="@+id/appBar" layout="@layout/mh_toolbar_activity"/>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:weightSum="1">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/ctnImage1"
+                        app:layout_constraintDimensionRatio="H,3:4"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        card_view:cardCornerRadius="6dp"
+                        card_view:cardElevation="10dp"
+                        card_view:cardUseCompatPadding="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.7">
+
+                        <ImageView
+                            android:id="@+id/imgCamp_A"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/portada_c12"
+                            android:scaleType="fitXY"/>
+
+                        <TextView
+                            android:id="@+id/txtNameCamp_A"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            tools:text="Campaña 12"
+                            android:textAlignment="center"
+                            android:layout_gravity="bottom"
+                            android:background="@color/transp_PrimaryDark"
+                            android:textColor="@color/gray_2"
+                            android:textSize="20sp"
+                            android:textStyle="bold"/>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        app:layout_constraintTop_toBottomOf="@+id/ctnImage1"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        card_view:cardCornerRadius="6dp"
+                        card_view:cardElevation="10dp"
+                        card_view:cardUseCompatPadding="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.3">
+                        <TextView
+                            android:id="@+id/txtNumCamp_A"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:text="12"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:textColor="@color/gray_2"
+                            android:textSize="50sp"
+                            android:textStyle="bold|italic"/>
+                    </android.support.v7.widget.CardView>
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent"
+                android:weightSum="1">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/ctnTxt2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+
+                        card_view:cardBackgroundColor="@color/colorAccent"
+                        card_view:cardCornerRadius="6dp"
+                        card_view:cardElevation="10dp"
+                        card_view:cardUseCompatPadding="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.3">
+                        <TextView
+                            android:id="@+id/txtNumCamp_B"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:text="13"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:textColor="@color/gray_2"
+                            android:textSize="50sp"
+                            android:textStyle="bold|italic"/>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/ctnImage2"
+                        app:layout_constraintDimensionRatio="H,3:4"
+                        app:layout_constraintTop_toBottomOf="@+id/ctnTxt2"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+
+                        card_view:cardBackgroundColor="@color/colorPrimaryDark"
+                        card_view:cardCornerRadius="6dp"
+                        card_view:cardElevation="10dp"
+                        card_view:cardUseCompatPadding="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.7">
+
+                        <ImageView
+                            android:id="@+id/imgCamp_B"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/portada_c13"
+                            android:scaleType="fitXY"/>
+
+                        <TextView
+                            android:id="@+id/txtNameCamp_B"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            tools:text="Campaña 13"
+                            android:textAlignment="center"
+                            android:layout_gravity="bottom"
+                            android:background="@color/transp_PrimaryDark"
+                            android:textColor="@color/gray_2"
+                            android:textSize="20sp"
+                            android:textStyle="bold"/>
+                    </android.support.v7.widget.CardView>
+                </android.support.constraint.ConstraintLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

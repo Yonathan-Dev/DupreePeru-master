@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ButtonTheme.Border.Gray" parent="Base.Widget.AppCompat.Button">
+        <item name="android:background">@drawable/border_gray</item>
+        <item name="android:textColor">@color/base_gray</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="ButtonTheme.Border.Accent" parent="Base.Widget.AppCompat.Button">
+        <item name="android:background">@drawable/border_accent</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="AppTheme.FullScreenDialogStyle" parent="AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+</resources>

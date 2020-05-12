@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginEnd="16dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:layout_width="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="match_parent"
+                android:background="@color/gray_4"/>
+
+            <ImageView
+                android:id="@+id/imgIconCircle"
+                android:layout_marginTop="6dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/circle_green"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvTitleRcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/green_check"
+                tools:text="Recibido"/>
+
+            <TextView
+                android:id="@+id/tvDateRcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                tools:text="Julio 15th, 2017 12:23:45"/>
+
+            <TextView
+                android:id="@+id/tvDetailRcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp"
+                tools:text="Tu pedido de C-201712, esta pendiente por cerrar"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

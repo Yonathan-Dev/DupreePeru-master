@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="0dp"
+            android:paddingBottom="0dp">
+            <LinearLayout
+                android:layout_alignParentTop="true"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_alignParentStart="true"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:id="@+id/ctxTop"
+
+                    android:layout_marginStart="30dp"
+
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_background_chat_receive_top_blue">
+                    <TextView
+                        android:id="@+id/txtvDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="14/04/2017 20:31"
+                        android:textSize="12sp"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:textColor="@color/azulDupree"/>
+                </LinearLayout>
+                <LinearLayout
+
+                    android:orientation="vertical"
+                    android:id="@+id/ctxBottom"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="35dp"
+                    android:paddingEnd="10dp"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_background_chat_receive_bottom_blue">
+
+                    <me.biubiubiu.justifytext.library.JustifyTextView
+                        android:id="@+id/textBody"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="-16dp"
+                        android:textSize="16sp"
+                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus, mi nec blandit pharetra, diam felis aliquet.\n"
+                        />
+                    <ImageView
+                        android:paddingEnd="25dp"
+                        android:id="@+id/imgUrl"
+                        android:src="@drawable/user_empty"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="128dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"
+                    android:src="@drawable/ic_flor_pick_180x180_no_transp"
+
+                    app:civ_border_width="5dp"
+                    app:civ_border_color="@color/white"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

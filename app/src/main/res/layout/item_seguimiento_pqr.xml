@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewBackGround"
+            card_view:cardBackgroundColor="@color/transp_azulDupree"
+            android:layout_margin="0dp"
+            card_view:cardCornerRadius="6dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_margin="3dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_margin="0.5dp"
+                        card_view:cardCornerRadius="6dp"
+                        card_view:cardUseCompatPadding="false"
+                        android:layout_weight="0.4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_margin="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textColor="@color/azulDupree"
+                                android:textAllCaps="true"
+                                android:text="@string/caso_two_points"/>
+
+                            <TextView
+                                android:id="@+id/tvCaso"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textColor="@color/gray_6"
+                                tools:text="16201732"/>
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_margin="0.5dp"
+                        card_view:cardCornerRadius="6dp"
+                        card_view:cardUseCompatPadding="false"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_margin="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textAllCaps="true"
+                                android:textColor="@color/azulDupree"
+                                android:text="@string/fecha_two_point"/>
+                            <TextView
+                                android:id="@+id/tvfecha"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textColor="@color/gray_6"
+                                tools:text="12/10/2016"/>
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_margin="0.5dp"
+                        card_view:cardCornerRadius="6dp"
+                        card_view:cardUseCompatPadding="false"
+                        android:layout_weight="0.5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_margin="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textAllCaps="true"
+                                android:textColor="@color/azulDupree"
+                                android:text="@string/gestion_two_points"/>
+
+                            <TextView
+                                android:id="@+id/tvGestion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textColor="@color/gray_6"
+                                tools:text="GESTION ADICIONAL"/>
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_margin="0.5dp"
+                        card_view:cardCornerRadius="6dp"
+                        card_view:cardUseCompatPadding="false"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_margin="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textAllCaps="true"
+                                android:textColor="@color/azulDupree"
+                                android:text="@string/razon_two_points"/>
+                            <TextView
+                                android:id="@+id/tvRazon"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textColor="@color/gray_6"
+                                tools:text="GESTION ADICIONAL"/>
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_margin="0.5dp"
+                        card_view:cardCornerRadius="6dp"
+                        card_view:cardUseCompatPadding="false"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_margin="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textAllCaps="true"
+                                android:textColor="@color/azulDupree"
+                                android:text="@string/usuario_two_points"/>
+
+                            <TextView
+                                android:id="@+id/tvUsuario"
+                                android:paddingStart="4dp"
+                                android:paddingEnd="4dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="fill_horizontal"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textColor="@color/gray_6"
+                                android:textAllCaps="true"
+                                tools:text="Jacqueline Dominguez"/>
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_margin="0.5dp"
+                        card_view:cardCornerRadius="6dp"
+                        card_view:cardUseCompatPadding="false"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_margin="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textAllCaps="true"
+                                android:textColor="@color/azulDupree"
+                                android:text="@string/descripcion_two_points"/>
+
+                            <TextView
+                                android:id="@+id/tvDescripcion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="fill_horizontal"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:textColor="@color/gray_6"
+                                android:textAllCaps="true"
+                                tools:text="hola como estas esto paso por tal y cual motivo y para resolverlo se decidio hacer estoy y lo otro a fin de garantizar un buen trabajo."/>
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</layout>

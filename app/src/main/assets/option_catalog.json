@@ -1,0 +1,12 @@
+{
+  "option_catalog": [
+    {
+      "id": 0,
+      "name": "Compartir"
+    },
+    {
+      "id": 1,
+      "name": "Descargar"
+    }
+  ]
+}

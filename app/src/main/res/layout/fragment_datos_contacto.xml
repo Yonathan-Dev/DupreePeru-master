@@ -1,0 +1,343 @@
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="callback"
+            type="android.view.View.OnClickListener"/>
+        <variable
+            name="model"
+            type="com.dupreeinca.lib_api_rest.model.dto.request.InscriptionDTO"/>
+    </data>
+    <android.support.v4.widget.NestedScrollView
+        android:fillViewport="true"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="@string/contacto"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:text="@={model.telefono}"
+                        android:digits="@string/only_number_basic"
+                        android:id="@+id/txtPhone"
+                        android:maxLength="9"
+                        android:inputType="phone"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/telefono_fijo"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:text="@={model.celular}"
+                        android:digits="@string/only_number_basic"
+                        android:id="@+id/txtCellphone"
+                        android:maxLength="9"
+                        android:inputType="phone"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/telefono_movil"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:text="@={model.correo}"
+                        android:id="@+id/txtEmail"
+                        android:inputType="textEmailAddress"
+                        android:layout_marginTop="8dp"
+                        android:digits="@string/date_electronico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/correo_electronico"/>
+                </android.support.design.widget.TextInputLayout>
+                <!--DOCUMENTOS ADJUNTOS-->
+                <TextView
+                    android:layout_marginTop="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="@string/documentos_adjuntos"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:weightSum="2.0">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:padding="5dp"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:text="@string/cedula_frontal"/>
+
+                            <ImageView
+                                android:onClick="@{(v) -> callback.onClick(v)}"
+                                bind:picassoUrlFull="@{model.cedula_frontal}"
+                                android:id="@+id/imgCedFrontal"
+                                android:src="@drawable/ph_add_image2"
+                                android:scaleType="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="128dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:padding="5dp"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:text="@string/cedula_adverso"/>
+
+                            <ImageView
+                                android:onClick="@{(v) -> callback.onClick(v)}"
+                                bind:picassoUrlFull="@{model.cedula_adverso}"
+                                android:id="@+id/imgCedAdverso"
+                                android:src="@drawable/ph_add_image2"
+                                android:scaleType="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="128dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:weightSum="1">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:padding="5dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/pagare_frontal"/>
+
+                        <ImageView
+                            android:onClick="@{(v) -> callback.onClick(v)}"
+                            bind:picassoUrlFull="@{model.pagare_frontal}"
+                            android:id="@+id/imgPagFrontal"
+                            android:src="@drawable/ph_add_image2"
+                            android:scaleType="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="128dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:padding="5dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/pagare_adverso"/>
+
+                        <ImageView
+                            android:onClick="@{(v) -> callback.onClick(v)}"
+                            bind:picassoUrlFull="@{model.pagare_adverso}"
+                            android:id="@+id/imgPagAdverso"
+                            android:src="@drawable/ph_add_image2"
+                            android:scaleType="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="128dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                    <LinearLayout
+                    android:id="@+id/linearImgServicios"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:weightSum="1.0">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:padding="5dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/servicios_publicos"/>
+
+                        <ImageView
+                            android:onClick="@{(v) -> callback.onClick(v)}"
+                            bind:picassoUrlFull="@{model.img_terminos}"
+                            android:id="@+id/imgServicios"
+                            android:src="@drawable/ph_add_image2"
+                            android:scaleType="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="128dp"
+                            android:clickable="false"
+                            android:enabled="false"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:padding="5dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/central_riesgo"/>
+
+                        <ImageView
+                            android:onClick="@{(v) -> callback.onClick(v)}"
+                            bind:picassoUrlFull="@{model.img_central}"
+                            android:id="@+id/imgCentralRiesgo"
+                            android:src="@drawable/ph_add_image2"
+                            android:scaleType="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="128dp"
+                            android:clickable="false"
+                            android:enabled="false"/>
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearImgCentralRiesgo"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:weightSum="1.0">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.0"
+                            android:padding="0dp"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:text="@string/casa"/>
+
+                            <ImageView
+                                android:onClick="@{(v) -> callback.onClick(v)}"
+                                bind:picassoUrlFull="@{model.img_ruc}"
+                                android:id="@+id/imgRuc"
+                                android:src="@drawable/ph_add_image2"
+                                android:scaleType="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="128dp"
+                                android:clickable="false"
+                                android:enabled="false"/>
+
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:onClick="@{(v) -> callback.onClick(v)}"
+                    android:id="@+id/btnContinuar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="32dp"
+                    android:background="@drawable/boton_azul"
+                    android:textColor="@color/black"
+                    android:text="@string/continuar"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>

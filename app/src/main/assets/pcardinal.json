@@ -1,0 +1,28 @@
+{
+  "pcardinal": [
+    {
+      "id": -1,
+      "name": "-Limpiar-"
+    },
+    {
+      "id": 0,
+      "name": "Este"
+    },
+    {
+      "id": 1,
+      "name": "Norte"
+    },
+    {
+      "id": 2,
+      "name": "Occidente"
+    },
+    {
+      "id": 3,
+      "name": "Oeste"
+    },
+    {
+      "id": 4,
+      "name": "Sur"
+    }
+  ]
+}

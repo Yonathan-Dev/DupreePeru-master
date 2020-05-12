@@ -1,0 +1,69 @@
+{
+  "tipo_via": [
+    {
+      "id": 0,
+      "name": "Asentamiento humano"
+    },
+    {
+      "id": 1,
+      "name": "Asociacion"
+    },
+    {
+      "id": 2,
+      "name": "Avenida"
+    },
+    {
+      "id": 3,
+      "name": "Calle"
+    },
+    {
+      "id": 4,
+      "name": "Carretera"
+    },
+    {
+      "id": 5,
+      "name": "Caserio"
+    },
+    {
+      "id": 6,
+      "name": "Jiron"
+    },
+    {
+      "id": 7,
+      "name": "Kilometro"
+    },
+    {
+      "id": 8,
+      "name": "Lote"
+    },
+    {
+      "id": 9,
+      "name": "Manzana"
+    },
+    {
+      "id": 10,
+      "name": "Pasaje"
+    },
+    {
+      "id": 11,
+      "name": "Prolongacion"
+    },
+    {
+      "id": 12,
+      "name": "Pueblo joven"
+    },
+    {
+      "id": 13,
+      "name": "Sector"
+    },
+    {
+      "id": 14,
+      "name": "Urbanizacion"
+    },
+    {
+      "id": 15,
+      "name": "Otro"
+    }
+
+  ]
+}

@@ -1,0 +1,67 @@
+<layout>
+    <data>
+        <variable
+            name="callback"
+            type="android.view.View.OnClickListener"/>
+    </data>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:orientation="vertical">
+
+        <com.isseiaoki.simplecropview.CropImageView
+            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cropImageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:paddingBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            custom:scv_background_color="@android:color/black"
+            custom:scv_crop_mode="fit_image"
+            custom:scv_frame_color="@color/colorPrimary"
+            custom:scv_frame_stroke_weight="1dp"
+            custom:scv_guide_color="@color/colorPrimary"
+            custom:scv_guide_show_mode="show_always"
+            custom:scv_guide_stroke_weight="1dp"
+            custom:scv_handle_color="@color/colorPrimary"
+            custom:scv_handle_show_mode="show_always"
+            custom:scv_handle_size="8dp"
+            custom:scv_min_frame_size="50dp"
+            custom:scv_overlay_color="@color/alphaGray"
+            custom:scv_touch_padding="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <Button
+                android:layout_margin="4dp"
+                android:id="@+id/btn_cancel"
+                style="@style/ButtonTheme.Border.Gray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="@{(v) -> callback.onClick(v)}"
+                android:text="Cancel" />
+
+            <Button
+                android:layout_margin="4dp"
+                android:id="@+id/btn_crop"
+                style="@style/ButtonTheme.Border.Accent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="@{(v) -> callback.onClick(v)}"
+                android:text="Crop" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FBE256</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#000000</color>
+
+    <color name="colorSecundario">#000000</color>
+
+    <color name="azulDupree">#a7000000</color>
+    <color name="yellowDupree4">#FFFF00</color>
+    <color name="yellowDupree3">#fbe256</color>
+
+
+    <!--<color name="azulDupree">#008bfc</color>
+    <color name="azulDupree4">#64B5F6</color>
+    <color name="azulDupree3">#BBDEFB</color>-->
+    <color name="transp_azulDupree">#c7fbf200</color>
+   <!-- <color name="transp_azulDupree">#8c008bfc</color>-->
+    <color name="transp_dupree_1">#c7fbf200</color>
+
+    <color name="transp_azulDupree_chat">#1c008bfc</color>
+
+
+    <color name="azulDupree2">#396BA2</color>
+    <color name="transp_PrimaryDark">#8c3F51B5</color>
+
+    <color name="transp_Accent">#8c616161</color>
+    <color name="transp_Accent_chat">#1cFF4081</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="background">#D8D8D8</color>
+
+    <color name="gray_1">#000000</color>
+    <color name="gray_2">#F5F5F5</color>
+    <color name="gray_3">#EEEEEE</color>
+    <color name="gray_4">#E0E0E0</color>
+    <color name="gray_5">#9E9E9E</color>
+    <color name="gray_6">#616161</color>
+    <color name="gray_7">#4D4D4D</color>
+    <color name="alphaGray">#aa1c1c1c</color>
+
+
+    <color name="negro">#000000</color>
+
+    <color name="black">#000000</color>
+    <color name="transparent_black">#AF000000</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="green_check">#00C853</color>
+    <color name="green_check2">#FF00C853</color>
+
+    <color name="red_1">#E53935</color>
+    <color name="orange_600">#FB8C00</color>
+
+
+    <color name="black_overlay">#66000000</color>
+
+    <array name="array_dot_active">
+        <item>@color/transp_azulDupree</item>
+        <item>@color/white</item>
+        <item>@color/white</item>
+        <item>@color/white</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/gray_4</item>
+        <item>@color/gray_6</item>
+        <item>@color/gray_6</item>
+        <item>@color/gray_6</item>
+    </array>
+
+
+    <color name="transparent_black_5">#0D000000</color>
+    <color name="transparent_black_10">#1A000000</color>
+    <color name="transparent_black_15">#26000000</color>
+    <color name="transparent_black_20">#33000000</color>
+    <color name="transparent_black_25">#40000000</color>
+    <color name="transparent_black_30">#4D000000</color>
+    <color name="transparent_black_35">#59000000</color>
+    <color name="transparent_black_40">#66000000</color>
+    <color name="transparent_black_45">#73000000</color>
+    <color name="transparent_black_50">#80000000</color>
+    <color name="transparent_black_55">#8C000000</color>
+    <color name="transparent_black_60">#99000000</color>
+    <color name="transparent_black_65">#A6000000</color>
+    <color name="transparent_black_70">#B3000000</color>
+    <color name="transparent_black_75">#BF000000</color>
+    <color name="transparent_black_80">#CC000000</color>
+    <color name="transparent_black_85">#D9000000</color>
+    <color name="transparent_black_90">#E6000000</color>
+    <color name="transparent_black_95">#F2000000</color>
+
+
+</resources>

@@ -1,0 +1,48 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.registradas.IncorpListaRegistFragment">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.SearchView
+                android:id="@+id/search_view"
+                android:digits="@string/only_letter_and_numer_basic"
+                app:queryHint="@string/buscar_por_cedula"
+                android:iconifiedByDefault="false"
+                app:defaultQueryHint="@string/buscar_por_cedula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.SearchView>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <include android:id="@+id/swipe" layout="@layout/include_swipe_recycler"/>
+
+            </LinearLayout>
+
+            <!--<LinearLayout-->
+                <!--android:layout_weight="0"-->
+                <!--android:background="@color/gray_3"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:weightSum="1"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<include android:id="@+id/pagination" layout="@layout/include_pagination"/>-->
+
+            <!--</LinearLayout>-->
+
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>

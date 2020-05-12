@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menu_lat_toolbar_search"
+        android:title="Buscar"
+        android:icon="@drawable/ic_search_white_24dp"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+
+    <item android:id="@+id/menu_lat_toolbar_asesora"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_record_voice_over_white_24dp"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+
+</menu>

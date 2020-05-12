@@ -1,0 +1,175 @@
+<layout>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        tools:context="com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.Incorp_Todos_Fragment">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+
+            android:background="@color/gray_2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                >
+
+                <android.support.v7.widget.CardView
+
+                    android:id="@+id/cardViewBackGround"
+                    card_view:cardBackgroundColor="@color/gray_2"
+                    android:layout_margin="2.5dp"
+                    card_view:cardCornerRadius="6dp"
+                    card_view:cardElevation="5dp"
+                    card_view:cardUseCompatPadding="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvCamp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:padding="10dp"
+                        tools:text="CAMPAÑA 201712"
+                        android:textAllCaps="true"
+                        android:textAlignment="center"
+                        android:background="@color/white"
+                        android:textColor="@color/gray_6"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:padding="5dp">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:src="@drawable/img_main_solicita_asesora"
+                        app:civ_border_width="5dp"
+                        app:civ_border_color="@color/azulDupree"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:background="@color/white"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tvNameAsesora"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/azulDupree"
+                        tools:text="Enorelis Perez"/>
+
+                    <TextView
+                        android:id="@+id/tvSaldoAsesora"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Saldo: S/.250"/>
+
+                    <TextView
+                        android:id="@+id/tvCupoAsesora"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Cupo crédito: S/.0"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabSelectedTextColor="@color/azulDupree"
+                    android:background="@color/white"
+                    app:tabMode="fixed"
+                    app:tabGravity="fill" />
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.design.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v4.widget.SwipeRefreshLayout
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:id="@+id/swipePanelAsesora"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/view_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="0dp"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:background="@android:color/white"/>
+
+                        <LinearLayout
+                            android:id="@+id/layoutDotPanelAsesoras"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="bottom|center_horizontal"
+                            android:orientation="horizontal"/>
+                    </RelativeLayout>
+                </android.support.v4.widget.SwipeRefreshLayout>
+
+                <ru.dimorinny.floatingtextbutton.FloatingTextButton
+                    android:id="@+id/fabMessages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/fab_margin"
+                    app:floating_background_color="@color/colorAccent"
+                    app:floating_left_icon="@drawable/ic_email_white_24dp"
+                    app:floating_title=""
+
+
+                    app:floating_title_color="@android:color/white">
+
+                </ru.dimorinny.floatingtextbutton.FloatingTextButton>
+
+            </android.support.design.widget.CoordinatorLayout>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>

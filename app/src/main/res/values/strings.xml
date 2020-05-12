@@ -1,0 +1,590 @@
+<resources>
+    <string name="api_url">https://alcor.dupree.pe/dupreeWS/</string>
+    <!--<string name="api_url">https://alcor2per.azzorti.co/dupreeWS/</string>-->
+
+    <string name="app_name">Dupree Azzorti</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="vuelvete_asesora">Quiero ser asesora</string>
+    <string name="servicio_al_cliente">Servicio al cliente</string>
+    <string name="catalogos">Mi catálogo</string>
+    <string name="iniciar_sesion">Iniciar Sesion</string>
+    <string name="dupree_cap">Dupree By Azzorti</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pre_inscripcion_may">(PRE-INSCRIPCIÓN)</string>
+    <string name="datos_personales">Datos personales:</string>
+    <string name="tipo_de_documento">Tipo de documento(*)</string>
+    <string name="campana_two_points">CAMPAÑA:</string>
+    <string name="cedula">Identificación(*)</string>
+    <string name="referido">Referido por</string>
+    <string name="nombre_s">Nombre(s)(*)</string>
+    <string name="fecha_de_nacimiento">Fecha de nacimiento(*)</string>
+    <string name="zona_seccion">Zona sección</string>
+    <string name="apellido_s">Apellido(s)(*)</string>
+
+    <string name="aceptar">Aceptar</string>
+
+    <string-array name="charOption">
+        <item>-Limpiar-</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>J</item>
+        <item>K</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>U</item>
+        <item>V</item>
+        <item>W</item>
+        <item>X</item>
+        <item>Y</item>
+        <item>Z</item>
+    </string-array>
+
+    <string-array name="typeIdenty">
+        <item>DNI</item>
+        <item>Doc. Extranjería</item>
+        <item>RUC</item>
+    </string-array>
+
+    <string-array name="parentescoOptions">
+        <item>ABUELO</item>
+        <item>AHIJADO</item>
+        <item>AMIGO</item>
+        <item>COMADRE</item>
+        <item>COMPADRE</item>
+        <item>COMPAÑERO</item>
+        <item>CONCUÑADO</item>
+        <item>CONSUEGRA</item>
+        <item>CONYUGE</item>
+        <item>CUÑADO</item>
+        <item>ESPOSA</item>
+        <item>ESPOSO</item>
+        <item>EX-ESPOSO</item>
+        <item>HERMANO</item>
+        <item>HIJO</item>
+        <item>MADRASTRA</item>
+        <item>MADRE</item>
+        <item>MADRINA</item>
+        <item>NIETO</item>
+        <item>NOVIO</item>
+        <item>NUERA</item>
+        <item>PADRASTRO</item>
+        <item>PADRE</item>
+        <item>PADRINO</item>
+        <item>PRIMO</item>
+        <item>SOBRINO</item>
+        <item>SUEGRO</item>
+        <item>TIA</item>
+        <item>TIO</item>
+        <item>YERNO</item>
+    </string-array>
+
+
+
+    <array name="array_parentesco">
+        <item>
+            <id>0</id>
+            <name>ABUELO</name>
+        </item>
+        <item>
+            <id>1</id>
+            <name>AHIJADO</name>
+        </item>
+        <item>
+            <id>2</id>
+            <name>AMIGO</name>
+        </item>
+        <item>
+            <id>3</id>
+            <name>COMADRE</name>
+        </item>
+        <item>
+            <id>4</id>
+            <name>COMPADRE</name>
+        </item>
+        <item>
+            <id>5</id>
+            <name>COMPAÑERO</name>
+        </item>
+        <item>
+            <id>6</id>
+            <name>CONCUÑADO</name>
+        </item>
+        <item>
+            <id>7</id>
+            <name>CONSUEGRA</name>
+        </item>
+        <item>
+            <id>8</id>
+            <name>CONYUGE</name>
+        </item>
+        <item>
+            <id>9</id>
+            <name>CUÑADO</name>
+        </item>
+        <item>
+            <id>10</id>
+            <name>ESPOSA</name>
+        </item>
+        <item>
+            <id>11</id>
+            <name>ESPOSO</name>
+        </item>
+        <item>
+            <id>12</id>
+            <name>EX-ESPOSO</name>
+        </item>
+        <item>
+            <id>13</id>
+            <name>HERMANO</name>
+        </item>
+        <item>
+            <id>14</id>
+            <name>HIJO</name>
+        </item>
+        <item>
+            <id>15</id>
+            <name>MADRASTRA</name>
+        </item>
+        <item>
+            <id>16</id>
+            <name>MADRE</name>
+        </item>
+        <item>
+            <id>17</id>
+            <name>MADRINA</name>
+        </item>
+        <item>
+            <id>18</id>
+            <name>NIETO</name>
+        </item>
+        <item>
+            <id>19</id>
+            <name>NOVIO</name>
+        </item>
+        <item>
+            <id>20</id>
+            <name>NUERA</name>
+        </item>
+        <item>
+            <id>21</id>
+            <name>PADRASTRO</name>
+        </item>
+        <item>
+            <id>22</id>
+            <name>PADRE</name>
+        </item>
+        <item>
+            <id>23</id>
+            <name>PADRINO</name>
+        </item>
+        <item>
+            <id>24</id>
+            <name>PRIMO</name>
+        </item>
+        <item>
+            <id>25</id>
+            <name>SOBRINO</name>
+        </item>
+        <item>
+            <id>26</id>
+            <name>SUEGRO</name>
+        </item>
+        <item>
+            <id>27</id>
+            <name>TIA</name>
+        </item>
+        <item>
+            <id>28</id>
+            <name>TIO</name>
+        </item>
+        <item>
+            <id>29</id>
+            <name>YERNO</name>
+        </item>
+    </array>
+
+
+    <string name="download">Descargar</string>
+    <string name="share">Compartir</string>
+
+    <string-array name="optionCatalogo">
+        <item>Compartir</item>
+        <item>Descargar</item>
+    </string-array>
+
+    <string-array name="typeVia">
+        <item>Avenida</item>
+        <item>Calle</item>
+        <item>Carrera</item>
+        <item>Diagonal</item>
+        <item>Transversal</item>
+        <item>Circular</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="bis1">
+        <item>-Limpiar-</item>
+        <item>Bis</item>
+    </string-array>
+
+    <string-array name="coord">
+        <item>-Limpiar-</item>
+        <item>Este</item>
+        <item>Norte</item>
+        <item>Sur</item>
+    </string-array>
+
+    <string-array name="dirSend">
+        <item>Dir. residencia</item>
+        <item>Otra</item>
+    </string-array>
+
+
+    <string name="cancelar">Cancelar</string>
+
+    <string name="title_activity_menu">MenuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="direccion_de_residencia">Dirección de residencia:</string>
+    <string name="tipo_via">Tipo vía</string>
+    <string name="numero">Número</string>
+    <string name="letra">Letra</string>
+    <string name="bis">Bis</string>
+    <string name="sur_este">Sur - Este</string>
+    <string name="datos_adicionales">Datos adicionales</string>
+    <string name="departamento">Departamento(*)</string>
+    <string name="ciudad">Provincia</string>
+    <string name="barrio">Distrito</string>
+    <string name="direccion_de_envio_pedido">Dirección de envio pedido:</string>
+    <string name="dir_residencia">Dir. residencia</string>
+    <string name="contacto">Contacto:</string>
+    <string name="telefono_fijo">Teléfono fijo</string>
+    <string name="telefono_movil">Teléfono Movil(*)</string>
+    <string name="direccion">Teléfono Movil</string>
+    <string name="correo_electronico">Correo electrónico(*)</string>
+    <string name="date_electronico">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@.-</string>
+    <string name="enviar">ENVIAR</string>
+    <string name="panel_principal">Panel principal</string>
+    <string name="ir_al_panel">Ir al panel</string>
+    <string name="panel_asesora">Panel asesora</string>
+    <string name="panel_gerente">Panel gerente</string>
+    <string name="incorporaciones">Incorporaciones</string>
+    <string name="realizar_preinscripcion">Realizar preinscripción</string>
+    <string name="lista_de_preinscripciones">Lista de preinscripciones</string>
+    <string name="posibles_asesoras">Posibles Asesoras</string>
+    <string name="lista_de_posibles_asesoras">Listado Posibles Asesoras</string>
+    <string name="pedido">Pedido</string>
+    <string name="hacer_pedidos">Hacer pedidos</string>
+    <string name="hacer_pre_pedidos">Hacer prepedidos</string>
+    <string name="faltantes">Faltantes</string>
+    <string name="estado_del_pedido">Estado del pedido</string>
+    <string name="incentivos">Incentivos</string>
+    <string name="consulta_de_puntos">Consulta de puntos</string>
+    <string name="redimir_incentivos">Redimir incentivos</string>
+    <string name="incentivos_por_referido">Incentivos por referido</string>
+    <string name="reportes">Reportes</string>
+    <string name="canjes_y_devoluciones_cdr">Canjes y devoluciones (CDR)</string>
+    <string name="seguimiento_peticiones_quejas_y_reclamos_pqr">Seguimiento, peticiones, quejas y reclamos (PQR)</string>
+    <string name="detalle_factura_pdf">Detalle factura (.PDF)</string>
+    <string name="pagos_realizados">Pagos realizados</string>
+    <string name="cupo_saldo_y_conferencia_asesora">Cupo, saldo y conferencia asesora</string>
+    <string name="pedidos_retenidos">Pedidos retenidos</string>
+    <string name="servicios">Servicios</string>
+    <string name="peticiones_quejas_y_reclamos_pqr">Peticiones, quejas y reclamos (PQR)</string>
+    <string name="pagos_en_l_nea">Pagos en línea</string>
+    <string name="configuracion">Configuración</string>
+
+    <!--AGREGADO PERU -->
+    <string name="Distribucion">Distribución</string>
+    <string name="geocodificacion_inversa">Geocodificación inversa</string>
+    <string name="consulta_deuda_asesora">Consulta deuda asesora</string>
+    <string name="indicadores_venta">Indicadores de venta</string>
+    <string name="confirmacion_manu">Azzortitrack</string>
+    <string name="listado_asesoras">Azzortimaps</string>
+    <string name="Cobranza">Cobranza</string>
+    <string name="visi_ases">Visita asesora</string>
+    <string name="tipo_vias">Via(*)</string>
+
+    <string-array name="motivos">
+        <item>SELECCIONE</item>
+        <item>NO UBICADO</item>
+        <item>NUEVA UBICACION</item>
+        <item>VISITADO</item>
+        <item>OTRO</item>
+    </string-array>
+
+
+    <!--FIN-->
+
+
+    <string name="modificar_perfil">Modificar perfil</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="tracking">Tracking</string>
+    <string name="campana">Campaña</string>
+    <string name="codigo">Código</string>
+    <string name="productos">Productos</string>
+    <string name="ofertas">Ofertas</string>
+
+    <string name="carrito">Pedido</string>
+    <string name="parentesco">Parentesco(*)</string>
+    <string name="referencia_personal">Referencia personal:</string>
+    <string name="referencia_familiar">Referencia familiar:</string>
+
+    <string name="preinscripcion">Preinscripción</string>
+    <string name="listado">Listado</string>
+    <string name="inscripcion">Inscripción</string>
+    <string name="desea_remover_pedido">Desea remover este artículo a su pedido?</string>
+    <string name="remover">Remover</string>
+    <string name="desea_agregar_pedido">Desea agregar este artículo a su pedido?</string>
+
+    <string name="guardar_cambios_server">Enviar</string>
+    <string name="desea_guardar_cambios_server">Desea enviar este pedido para que sea procesado?</string>
+    <string name="desea_guardar_cambios_server_pre">Desea enviar este prepedido para que sea procesado?</string>
+
+    <string name="repeat_file">Archivo repetido</string>
+    <string name="desea_sobreescribir_archivo">Ya existe un archivo con el mismo nombre, desea sobre-escribirlo?</string>
+
+    <string name="approve_preinscription">Aprobar/Rechazar pre-inscripción</string>
+    <string name="desea_aprobar_preinscription">Desea aprobar o rechazar la preinscripción de: </string>
+
+    <string name="view_catalogo">Ver catalogo</string>
+    <string name="desea_ver_catalogo">Seleccione una opción: </string>
+
+    <string name="agregar">Agregar</string>
+
+    <string name="desea_lammar">Desea realizar una llamada?</string>
+    <string name="llamar">Llamar</string>
+
+    <string name="desea_descargar">Desea descargar este archivo?</string>
+    <string name="descargar">Descargar</string>
+
+    <string name="desea_salir">Desea cerrar sesión?</string>
+    <string name="salir">Salir</string>
+
+    <string name="desea_actualizar">Hay una versión más reciente del catálogo de compras, desea actualizar?</string>
+    <string name="actualizar">Actualizar</string>
+
+    <string name="desea_compartir">Desea compartir esta app a una amiga?</string>
+    <string name="compartir">Compartir</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="configurando">CONFIGURANDO...</string>
+
+    <string name="no_hay_actualizaciones">No hay actualizaciones disponibles</string>
+
+    <string name="campo_requerido">Este campo es requerido</string>
+    <string name="clave_invalida">La clave es invalida</string>
+    <string name="claves_diferentes">Claves no coinciden</string>
+    <string name="formato_incorrecto">Formato no permitido</string>
+    <string name="telefonos_iguales">Telefonos identicos</string>
+    <string name="msg_espere">Espere…</string>
+
+
+    <string name="agregar_list">-Agregar barrio-</string>
+    <string name="desea_inscribir">Desea inscribir a</string>
+    <string name="desea_pre_inscribir">Desea PRE-inscribir a</string>
+    <string name="desea_editar_inscripcion">Desea editar los datos de inscripción de</string>
+    <string name="deba_validar">Debe validar</string>
+    <string name="desea_agregar_premio">Desea agregar premio?</string>
+    <string name="desea_remover_premio">Desea remover premio?</string>
+    <string name="desea_remover_mensajes">Desea eliminar estos mensajes?</string>
+    <string name="cedula_asesora">Cédula de asesora</string>
+    <string name="codigo_catalogo">Código catálogo</string>
+
+
+    <string name="pick_image_intent_text">pick_image_intent_text</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="aniadir">Añadir</string>
+    <string name="editar">Editar</string>
+    <string name="pedido_no_puede_modificarse">Este pedido no puede ser modificado</string>
+    <string name="pedido_no_puede_modificarse_pre">Este prepedido no puede ser modificado</string>
+    <string name="aprobar">APROBAR</string>
+    <string name="rechazar">RECHAZAR</string>
+    <string name="dialog_descargar">DESCARGAR</string>
+    <string name="dialog_view_online">e - book</string>
+    <string name="ver_previa_descarga">pdf</string>
+    <string name="seguimiento_servicios">Seguimiento servicios</string>
+    <string name="panel_resultados">Panel resultados</string>
+    <string name="edo_pedido">Pedido</string>
+    <string name="cedula_frontal">DNI Frontal</string>
+    <string name="cedula_adverso">DNI Adverso</string>
+    <string name="pagare_frontal">Solicitud Frontal</string>
+    <string name="pagare_adverso">Solicitud Adverso</string>
+    <string name="bandeja_de_entrada">Bandeja de entrada</string>
+    <string name="telefono_de_contacto">Telefono de contacto</string>
+    <string name="catalogos_de_premios">Catálogos de premios</string>
+    <string name="catalogo_de_productos">Catálogo de productos</string>
+    <string name="msg_actualizar">Actualizar</string>
+    <string name="referenciado_por">Referenciado por:</string>
+    <string name="documentos_adjuntos">Documentos adjuntos(*):</string>
+    <string name="only_letter_and_numer_basic">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
+    <string name="only_letter_basic">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="only_number_basic">0123456789</string>
+    <string name="only_usua">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_</string>
+    <string name="registradas">Registradas</string>
+    <string name="numero_letra">Número - Letra</string>
+    <string name="mas_de_seis_caracteres">Debe contener más de 6 caracteres</string>
+    <string name="consulta_general_de_asesora">Consulta general de asesora</string>
+    <string name="buscar">Buscar</string>
+    <string name="debe_buscar_asesora">Debe ingresar una cédula de asesora</string>
+    <string name="continuar">Continuar</string>
+    <string name="anterior">Anterior</string>
+
+
+    <string name="concat_pagina">Pág. %1$s</string>
+    <string name="concat_codigo">Código: %1$s</string>
+    <string name="concat_pts">%1$s pts.</string>
+    <string name="concat_dolar">S/. %1$s</string>
+
+    <string name="concat_cedula">Identificación: %1$s</string>
+    <string name="concat_dir">Dirección: %1$s</string>
+    <string name="concat_celular">Celular: %1$s</string>
+    <string name="concat_fecha_nacimiento">FN: %1$s</string>
+    <string name="concat_ciudad">Ciudad: %1$s</string>
+    <string name="concat_barrio">Barrio: %1$s</string>
+    <string name="concat_fecha_registro">F. Registro: %1$s</string>
+    <string name="concat_observacion">Observacion: %1$s</string>
+    <string name="concat_campana">Campaña: %1$s</string>
+    <string name="concat_precio_total">Valor total: S/. %1$s</string>
+    <string name="concat_id_factura">Factura: %1$s</string>
+    <string name="concat_saldo">Saldo: S/.%1$s</string>
+    <string name="concat_cupo_credito">"Cupo crédito: S/.%1$s</string>
+    <string name="concat_mensajes">"%1$s  Mensajes</string>
+    <string name="concat_nombre">Nombre: %1$s</string>
+    <string name="concat_producto">Producto: %1$s</string>
+    <string name="concat_cantidad_pedida">Cantidad pedida\n%1$s</string>
+    <string name="concat_cantidad_despachada">Cantidad despachada\n%1$s</string>
+    <string name="concat_valor">Valor: S/.%1$s</string>
+
+
+    <string name="buscar_por_cedula">Buscar por identificación</string>
+    <string name="ultima">-- útima --</string>
+    <string name="no_se_detectaron_cambios">No se detectaron cambios</string>
+    <string name="ingresar_cedula_valida">Debe ingresar una cédula valida…</string>
+    <string name="anadir">añadir</string>
+    <string name="ingresar_codigo">Ingresar código</string>
+    <string name="debe_ser_cedula_nombre">El dato ingresadotipo_de_documento debe ser una cédula o un nombre</string>
+    <string name="comentarios">Comentarios:</string>
+    <string name="historical">Historial</string>
+    <string name="pag_two_points">Pág.:</string>
+    <string name="producto_two_points">Producto:</string>
+    <string name="cod_two_points">Cód.:</string>
+    <string name="detalle_factura">Detalle factura</string>
+    <string name="fecha_two_point">Fecha:</string>
+    <string name="factura_two_point">Factura:</string>
+    <string name="t_reclamo_two_points">T. RECLAMO:</string>
+    <string name="cantidad_two_points">Cantidad:</string>
+    <string name="descripcion_two_points">Descripcion: </string>
+    <string name="observ_tow_points">Observ.:</string>
+    <string name="procede_two_points">PROCEDE:</string>
+    <string name="caso_two_points">Caso:</string>
+    <string name="gestion_two_points">Gestión:</string>
+    <string name="razon_two_points">Razón:</string>
+    <string name="usuario_two_points">Usuario:</string>
+    <string name="cedula_two_points">Cédula:</string>
+    <string name="saldo_two_points">Saldo:</string>
+    <string name="no_cambia">No cambia</string>
+    <string name="banco_two_points">Banco:</string>
+    <string name="valor_two_points">Valor:</string>
+    <string name="redimir">redimir</string>
+    <string name="numero_pedidos_two_points">Número pedidos:</string>
+    <string name="neto_two_points">Neto:</string>
+    <string name="cupo_two_points">Cupo:</string>
+    <string name="cartera_two_points">Cartera:</string>
+    <string name="code_two_points">Code:</string>
+    <string name="monto_minimo_two_points">Monto mínimo:</string>
+    <string name="bloqueo_two_points">Bloqueo:</string>
+    <string name="minimo_publico_two_points">Minimo público:</string>
+    <string name="total_two_points">Total:</string>
+    <string name="conferencia_two_points">Conferencia:</string>
+    <string name="concat_efectivos">Efectivos: S/.%1$s</string>
+    <string name="concat_redimidos">Redimidos: S/.%1$s</string>
+    <string name="concat_disponibles">Disponibles: S/.%1$s</string>
+    <string name="concat_pendientes">Pendientes: S/.%1$s</string>
+    <string name="error_leyendo_archivo">Error! leyendo el archivo… Intente nuevamente</string>
+    <string name="c_i_two_point">C.I.: %1$s</string>
+    <string name="concat_telefo_two_point">Telef.: %1$s</string>
+    <string name="concat_area_two_point">Area: %1$s</string>
+    <string name="concat_zona_two_point">Zona: %1$s</string>
+    <string name="oferta">Oferta</string>
+    <string name="galeria">Galeria</string>
+    <string name="camara">Cámara</string>
+    <string name="seleccionar">Seleccionar</string>
+    <string name="handled_501_se_cerro_sesion">Debe iniciar sesión nuevamente</string>
+
+    <!-- separador de direcciones-->
+    <string name="separador">#</string>
+
+    <!-- libreria barcode -->
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Acceso a la camara es necesario</string>
+    <string name="no_camera_permission">No hay permisos de uso de la camara.</string>
+    <string name="low_storage_error">Error de dependencias por bajo almacenamiento</string>
+    <string name="barcode_header">Click &quot;Read Barcode&quot; to read a barcode</string>
+    <string name="read_barcode">Read Barcode</string>
+    <string name="auto_focus">Auto Focus</string>
+    <string name="use_flash">Use Flash</string>
+    <string name="barcode_success">Lectura correcta</string>
+    <string name="barcode_failure">Fallo en lectura</string>
+    <string name="barcode_error">"Error reading barcode: %1$s"</string>
+
+
+    <string name="reporte_ubicacion_usuario">Ubicación Asesora</string>
+    <string name="msg_ubicacion_ok">Ubicación enviada exitosamente</string>
+    <string name="msg_ubicacion_no_ok">Ocurrio un problema al enviar la ubicación, intente de nuevo.</string>
+    <string name="no_gps_permissions">No se aceptó permisos</string>
+    <string name="gps_permission_granted">Gracias, aceptaste los permisos requeridos para el correcto funcionamiento de esta aplicación.</string>
+    <string name="text_alert_tittle_gps_enable">Habilitar servicio GPS</string>
+    <string name="active_gps">Tu servicio de ubicación está desactivado, debes habilitarlo para poder recibir servicios, ¿Desea activarlo?</string>
+    <string name="provincia">Provincia(*)</string>
+    <string name="distrito">Distrito(*)</string>
+    <string name="direccion_1">Dirección(*)</string>
+    <string name="referencia_1">Referencia(*)</string>
+    <string name="servicios_publicos">Recibo de Servicios</string>
+    <string name="sector">Sector(*)</string>
+    <string name="dni">DNI</string>
+    <string name="ruc">RUC</string>
+    <string name="central_riesgo">Central de Riesgo</string>
+    <string name="casa">Fachada de Casa</string>
+
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="title_activity_principal">Dupree Móvil</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_ubic_pedi">Pedidos</string>
+    <string name="title_activity_pedido_registrado">pedido_registrado</string>
+
+    <string name="mapbox_access_token">pk.eyJ1IjoiZHVwcmVlYXp6b3J0aSIsImEiOiJjazFxZ2p1a3QwMTZ1M2hxZ3BuN2l4OTZrIn0.Loh1w0sgnR3g-O-3oXWZMA</string>
+
+    <string name="permiso_ubicacion">Dupree Azzorti necesita permisos de ubicación para mostrar su funcionalidad.</string>
+    <string name="permiso">No cuentas con permiso de ubicación.</string>
+
+
+</resources>

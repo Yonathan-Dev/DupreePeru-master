@@ -1,0 +1,124 @@
+{
+  "parentezcos": [
+    {
+      "id": 0,
+      "name": "ABUELO"
+    },
+    {
+      "id": 1,
+      "name": "AHIJADO"
+    },
+    {
+      "id": 2,
+      "name": "AMIGO"
+    },
+    {
+      "id": 3,
+      "name": "COMADRE"
+    },
+    {
+      "id": 4,
+      "name": "COMPADRE"
+    },
+    {
+      "id": 5,
+      "name": "COMPAÑERO"
+    },
+    {
+      "id": 6,
+      "name": "CONCUÑADO"
+    },
+    {
+      "id": 7,
+      "name": "CONSUEGRA"
+    },
+    {
+      "id": 8,
+      "name": "CONYUGE"
+    },
+    {
+      "id": 9,
+      "name": "CUÑADO"
+    },
+    {
+      "id": 10,
+      "name": "ESPOSA"
+    },
+    {
+      "id": 11,
+      "name": "ESPOSO"
+    },
+    {
+      "id": 12,
+      "name": "EX-ESPOSO"
+    },
+    {
+      "id": 13,
+      "name": "HERMANO"
+    },
+    {
+      "id": 14,
+      "name": "HIJO"
+    },
+    {
+      "id": 15,
+      "name": "MADRASTRA"
+    },
+    {
+      "id": 16,
+      "name": "MADRE"
+    },
+    {
+      "id": 17,
+      "name": "MADRINA"
+    },
+    {
+      "id": 18,
+      "name": "NIETO"
+    },
+    {
+      "id": 19,
+      "name": "NOVIO"
+    },
+    {
+      "id": 20,
+      "name": "NUERA"
+    },
+    {
+      "id": 21,
+      "name": "PADRASTRO"
+    },
+    {
+      "id": 22,
+      "name": "PADRE"
+    },
+    {
+      "id": 23,
+      "name": "PADRINO"
+    },
+    {
+      "id": 24,
+      "name": "PRIMO"
+    },
+    {
+      "id": 25,
+      "name": "SOBRINO"
+    },
+    {
+      "id": 26,
+      "name": "SUEGRO"
+    },
+    {
+      "id": 27,
+      "name": "TIA"
+    },
+    {
+      "id": 28,
+      "name": "TIO"
+    },
+    {
+      "id": 29,
+      "name": "YERNO"
+    }
+  ]
+}

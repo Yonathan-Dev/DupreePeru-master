@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="@string/panel_principal">
+            <menu>
+                <!--SOLO ASESORA//////////////////////////////////////////////-->
+                <item
+                    android:id="@+id/menu_lat_home_asesoras"
+                    android:icon="@drawable/ic_home_white_24dp"
+                    android:title="@string/panel_asesora" />
+                <!--SOLO ASESORA//////////////////////////////////////////////-->
+                <!--SOLO GERENTE//////////////////////////////////////////////-->
+                <item
+                    android:id="@+id/menu_lat_home_gerentes"
+                    android:icon="@drawable/ic_home_white_24dp"
+                    android:title="@string/panel_resultados" />
+                <!--SOLO GERENTE//////////////////////////////////////////////-->
+                <item
+                    android:id="@+id/menu_lat_bandeja_entrada"
+                    android:icon="@drawable/ic_email_white_24dp"
+                    android:title="@string/bandeja_de_entrada" />
+                //reporte ubicación cliente
+                <item
+                    android:id="@+id/menu_lat_reporte_ubicacion"
+                    android:icon="@drawable/ic_user_location"
+                    android:title="@string/reporte_ubicacion_usuario" />
+
+            </menu>
+        </item>
+
+
+        <!--SOLO GERENTE//////////////////////////////////////////////-->
+        <item android:title="@string/posibles_asesoras" android:id="@+id/posibles_asesoras">
+            <menu>
+                <item
+                    android:id="@+id/menu_lat_posi_ase"
+                    android:icon="@drawable/ic_person_add_white_24dp"
+                    android:title="@string/posibles_asesoras" />
+                <item
+                    android:id="@+id/menu_lat_list_posi_ase"
+                    android:icon="@drawable/ic_people_white_24dp"
+                    android:title="@string/lista_de_posibles_asesoras" />
+            </menu>
+        </item>
+
+        <item android:title="@string/incorporaciones" android:id="@+id/incorporaciones">
+            <menu>
+                <item
+                    android:id="@+id/menu_lat_register"
+                    android:icon="@drawable/ic_person_add_white_24dp"
+                    android:title="@string/realizar_preinscripcion" />
+                <item
+                    android:id="@+id/menu_lat_list_pre"
+                    android:icon="@drawable/ic_people_white_24dp"
+                    android:title="@string/lista_de_preinscripciones" />
+            </menu>
+        </item>
+        <!--SOLO GERENTE//////////////////////////////////////////////-->
+
+        <item android:title="@string/pedido">
+            <menu>
+                <item
+                    android:id="@+id/menu_lat_hacer_pedidos"
+                    android:icon="@drawable/ic_add_shopping_cart_white_24dp"
+                    android:title="@string/hacer_pedidos" />
+                     <item
+                         android:id="@+id/menu_lat_hacer_prepedidos"
+                         android:icon="@drawable/icon_prepedidos"
+                         android:title="@string/hacer_pre_pedidos" />
+                     <item
+                         android:id="@+id/menu_lat_catalogo"
+                         android:icon="@drawable/ic_dashboard_white_24dp"
+                         android:title="@string/catalogo_de_productos" />
+                     <item
+                         android:id="@+id/menu_lat_cat_premios"
+                         android:icon="@drawable/ic_dashboard_white_24dp"
+                         android:title="@string/catalogos_de_premios" />
+                     <!--TODOS INDEPENDIENTE////////////////////////////-->
+                <item
+                    android:id="@+id/menu_lat_faltantes"
+                    android:icon="@drawable/ic_info_outline_white_24dp"
+                    android:title="@string/faltantes" />
+                <!--TODOS INDEPENDIENTE////////////////////////////-->
+                <item
+                    android:id="@+id/menu_lat_edo_pedido"
+                    android:icon="@drawable/ic_timeline_white_24dp"
+                    android:title="@string/estado_del_pedido" />
+            </menu>
+        </item>
+
+        <item android:title="@string/incentivos">
+            <menu>
+                <item
+                    android:id="@+id/menu_lat_consulta_puntos"
+                    android:icon="@drawable/ic_local_offer_white_24dp"
+                    android:title="@string/consulta_de_puntos" />
+                <!--SOLO ASESORA//////////////////////////////////////////////-->
+                <item
+                    android:id="@+id/menu_lat_redimir_incentivos"
+                    android:icon="@drawable/ic_loyalty_white_24dp"
+                    android:title="@string/redimir_incentivos" />
+                <!--SOLO ASESORA//////////////////////////////////////////////-->
+                <item
+                    android:id="@+id/menu_lat_incent_por_referido"
+                    android:icon="@drawable/ic_card_giftcard_white_24dp"
+                    android:title="@string/incentivos_por_referido" />
+            </menu>
+        </item>
+
+        <item android:title="@string/reportes">
+            <menu>
+
+                <item
+                    android:id="@+id/list_ases"
+                    android:icon="@drawable/list_ases"
+                    android:title="@string/listado_asesoras" />
+                <item
+                    android:id="@+id/repo_ases_deud"
+                    android:icon="@drawable/asesora"
+                    android:title="@string/consulta_deuda_asesora" />
+
+                <item
+                    android:id="@+id/menu_lat_reportes"
+                    android:icon="@drawable/ic_restore_white_24dp"
+                    android:title="@string/consulta_general_de_asesora" />
+                <!--<item-->
+                    <!--android:id="@+id/menu_lat_canjes_dev"-->
+                    <!--android:icon="@drawable/ic_restore_white_24dp"-->
+                    <!--android:title="@string/canjes_y_devoluciones_cdr" />-->
+                <!--<item-->
+                    <!--android:id="@+id/menu_lat_seg_pet_quej_rec_pqr"-->
+                    <!--android:icon="@drawable/ic_record_voice_over_white_24dp"-->
+                    <!--android:title="@string/seguimiento_servicios" />-->
+                <!--<item-->
+                    <!--android:id="@+id/menu_lat_detalle_factura"-->
+                    <!--android:icon="@drawable/ic_description_white_24dp"-->
+                    <!--android:title="@string/detalle_factura_pdf" />-->
+                <!--<item-->
+                    <!--android:id="@+id/menu_lat_pagos_realizados"-->
+                    <!--android:icon="@drawable/ic_check_white_24dp"-->
+                    <!--android:title="@string/pagos_realizados" />-->
+                <!--&lt;!&ndash;SOLO GERENTE//////////////////////////////////////////////&ndash;&gt;-->
+                <!--<item-->
+                    <!--android:id="@+id/menu_lat_cupo_saldo_conf"-->
+                    <!--android:icon="@drawable/ic_credit_card_white_24dp"-->
+                    <!--android:title="@string/cupo_saldo_y_conferencia_asesora" />-->
+
+                <item
+                    android:id="@+id/indi_vent"
+                    android:icon="@drawable/indi_vent"
+                    android:title="@string/indicadores_venta" />
+
+
+                <item
+                    android:id="@+id/menu_lat_pedidos_ret"
+                    android:icon="@drawable/ic_assignment_late_white_24dp"
+                    android:title="@string/pedidos_retenidos" />
+                <!--SOLO GERENTE//////////////////////////////////////////////-->
+
+
+            </menu>
+        </item>
+
+        <!--SOLO ASESORA//////////////////////////////////////////////-->
+        <item android:title="@string/servicios" android:id="@+id/servicios">
+            <menu>
+                <item
+                    android:id="@+id/menu_lat_pet_quej_rec_pqr"
+                    android:icon="@drawable/ic_record_voice_over_white_24dp"
+                    android:title="@string/peticiones_quejas_y_reclamos_pqr" />
+                <item
+                    android:id="@+id/menu_lat_pagos_linea"
+                    android:icon="@drawable/ic_credit_card_white_24dp"
+                    android:title="@string/pagos_en_l_nea" />
+            </menu>
+        </item>
+        <!--SOLO ASESORA//////////////////////////////////////////////-->
+
+        <!--PERU//////////////////////////////////////////////-->
+        <item android:title="@string/Distribucion" android:id="@+id/distribucion">
+            <menu>
+
+                <item
+                    android:id="@+id/proc_dist_conf_manu"
+                    android:icon="@drawable/etrack"
+                    android:title="@string/confirmacion_manu" />
+
+                <item
+                    android:id="@+id/geoc_inve"
+                    android:icon="@drawable/geocodificacion"
+                    android:title="@string/geocodificacion_inversa" />
+            </menu>
+        </item>
+
+
+        <item android:title="@string/Cobranza" android:id="@+id/cobranza">
+            <menu>
+
+                <item
+                    android:id="@+id/ubic_ases"
+                    android:icon="@drawable/ubic_ases"
+                    android:title="@string/visi_ases" />
+            </menu>
+        </item>
+
+        <!--SOLO PERU//////////////////////////////////////////////-->
+
+        <item android:title="@string/configuracion">
+            <menu>
+                <item
+                    android:id="@+id/menu_lat_update"
+                    android:visible="false"
+                    android:icon="@drawable/ic_system_update_white_24dp"
+                    android:title="@string/msg_actualizar" />
+                <item
+                    android:id="@+id/menu_lat_share"
+                    android:icon="@drawable/ic_share_white_24dp"
+                    android:title="@string/compartir" />
+                <item
+                    android:id="@+id/menu_lat_modif_perfil"
+                    android:icon="@drawable/ic_mode_edit_white_24dp"
+                    android:title="@string/modificar_perfil" />
+                <item
+                    android:id="@+id/menu_lat_logout"
+                    android:icon="@drawable/ic_power_settings_new_white_24dp"
+                    android:title="@string/cerrar_sesion" />
+            </menu>
+        </item>
+
+    </group>
+
+    <!--group android:id="@+id/nav_footer">
+        <item
+            android:id="@+id/nav_footer_1"
+            android:icon="@drawable/ic_mode_edit_white_24dp"
+            android:title="Footer Item 1" />
+        <item
+            android:id="@+id/nav_footer_2"
+            android:icon="@drawable/ic_mode_edit_white_24dp"
+            android:title="Footer Item 2" />
+    </group-->
+
+</menu>

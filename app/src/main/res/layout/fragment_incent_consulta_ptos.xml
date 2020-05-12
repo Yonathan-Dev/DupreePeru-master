@@ -1,0 +1,120 @@
+<layout>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        tools:context="com.dupreincaperu.dupree.mh_fragments_menu.IncentivosConsultaPtosFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/ctn_card_view"
+                        card_view:cardBackgroundColor="@color/transparent"
+                        card_view:cardCornerRadius="6dp"
+                        card_view:cardElevation="5dp"
+                        card_view:cardUseCompatPadding="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:weightSum="1"
+                            android:layout_margin="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_margin="2.5dp"
+                                android:layout_weight="0.3"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:padding="5dp">
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/profile_image"
+                                    android:layout_width="90dp"
+                                    android:layout_height="90dp"
+                                    android:src="@drawable/img_main_solicita_asesora"
+                                    app:civ_border_width="5dp"
+                                    app:civ_border_color="@color/azulDupree"/>
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:padding="5dp"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.7"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/nameAsesora"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:textSize="22sp"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/azulDupree"
+                                    tools:text="Enorelis Perez"/>
+
+                                <TextView
+                                    android:id="@+id/ptsEfectivos"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:text="Pts. Efectivos: 1085"/>
+
+                                <TextView
+                                    android:id="@+id/ptsRedimidos"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:text="Pts. Redimidos: 490"/>
+
+                                <TextView
+                                    android:id="@+id/ptsDisponibles"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:text="Pts. Disponibles: 595"/>
+                                <TextView
+                                    android:id="@+id/ptsPendientes"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:text="Pts. Pendientes: 248"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+    </FrameLayout>
+</layout>

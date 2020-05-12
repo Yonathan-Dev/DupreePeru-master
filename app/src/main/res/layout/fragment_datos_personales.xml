@@ -1,0 +1,283 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="callback"
+            type="android.view.View.OnClickListener"/>
+        <variable
+            name="model"
+            type="com.dupreeinca.lib_api_rest.model.dto.request.InscriptionDTO"/>
+    </data>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ctnInscription">
+
+        <android.support.v4.widget.NestedScrollView
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="@{model.referenciado_hint}"/>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:weightSum="1">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/txtInputNameReferido"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.8"
+
+                            android:textColorHint="@color/azulDupree"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                bind:isEnable="@{!model.refValidated}"
+                                android:text="@={model.referenciado_por}"
+                                android:hint="@{model.referenciado_hint}"
+                                android:id="@+id/txtIdentyCardRef"
+                                android:layout_marginTop="6dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:digits="@string/only_number_basic"
+
+                                />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <ImageButton
+                            android:onClick="@{(v) -> callback.onClick(v)}"
+                            bind:isVisible="@{!model.refValidated}"
+                            android:id="@+id/imgB_Searchref"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.2"
+                            android:visibility="visible"
+                            android:background="@color/transparent"
+                            android:layout_height="wrap_content"
+                            android:tint="@color/azulDupree"
+                            android:src="@drawable/ic_search_white_24dp"/>
+                        <ImageButton
+                            android:onClick="@{(v) -> callback.onClick(v)}"
+                            bind:isVisible="@{model.refValidated}"
+                            android:id="@+id/imgB_CleanRef"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.2"
+                            android:visibility="gone"
+                            android:background="@color/transparent"
+                            android:layout_height="wrap_content"
+                            android:tint="@color/azulDupree"
+                            android:src="@drawable/ic_close_white_24dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:id="@+id/linearImgVolante"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:padding="5dp"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone">
+                            <TextView
+                                android:layout_marginTop="24dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/azulDupree"
+                                android:text="Formato de autorización consulta:"/>
+
+                            <ImageView
+                                android:onClick="@{(v) -> callback.onClick(v)}"
+                                bind:picassoUrlFull="@{model.img_terminos}"
+                                android:id="@+id/imgVolante"
+                                android:src="@drawable/ph_add_image2"
+                                android:scaleType="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="256dp"
+                                android:clickable="false"
+                                android:enabled="false"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="@string/datos_personales"/>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:text="@={model.cedula}"
+                            android:id="@+id/txtIdentyCard"
+                            android:enabled="false"
+                            android:inputType="number"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="@string/only_number_basic"
+                            android:hint="@string/cedula"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/layoutTxtNameIncrip"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible">
+                        <EditText
+                            android:text="@={model.nombre}"
+                            android:id="@+id/txtNameIncrip"
+                            android:enabled="false"
+                            android:focusableInTouchMode="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="@string/only_letter_basic"
+                            android:hint="@string/nombre_s"/>
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/layoutTxtNamePre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:text="@={model.nomb_terc}"
+                            android:id="@+id/txtNamePre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:digits="@string/only_letter_basic"
+                            android:hint="@string/nombre_s" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/layoutTxtLastnamePre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:text="@={model.apel_terc}"
+                            android:id="@+id/txtLastnamePre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:digits="@string/only_letter_basic"
+                            android:hint="@string/apellido_s" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:onClick="@{(v) -> callback.onClick(v)}"
+                            android:text="@={model.nacimiento}"
+                            android:digits="@string/only_letter_basic"
+                            android:id="@+id/txtDateBird"
+                            android:focusableInTouchMode="false"
+                            android:inputType="date"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/fecha_de_nacimiento"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:text="@={model.zona_seccion}"
+                            android:digits="@string/only_number_basic"
+                            android:maxLength="3"
+                            android:inputType="number"
+                            android:id="@+id/txtZone"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/sector"/>
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:onClick="@{(v) -> callback.onClick(v)}"
+                        android:id="@+id/btnContinuar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="32dp"
+                        android:background="@drawable/boton_azul"
+                        android:textColor="@color/black"
+                        android:text="@string/continuar"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

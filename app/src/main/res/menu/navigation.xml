@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_dashboard" />
+
+    <item
+        android:id="@+id/navigation_asesora"
+        android:icon="@drawable/ic_record_voice_over_black_24dp"
+        android:title="@string/vuelvete_asesora" />
+
+    <item
+        android:id="@+id/navigation_atencion"
+        android:icon="@drawable/ic_headset_mic_black_24dp"
+        android:title="@string/servicio_al_cliente" />
+
+    <item
+        android:id="@+id/navigation_catalogos"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/catalogos" />
+
+    <item
+        android:id="@+id/navigation_login"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/iniciar_sesion" />
+
+</menu>
