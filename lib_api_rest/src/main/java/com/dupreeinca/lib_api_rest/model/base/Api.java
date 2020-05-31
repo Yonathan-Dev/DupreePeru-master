@@ -1,5 +1,10 @@
 package com.dupreeinca.lib_api_rest.model.base;
 
+import android.content.res.Resources;
+import android.provider.Settings;
+
+import com.dupreeinca.lib_api_rest.R;
+
 /**
  * Created by steveparrish on 2/23/18.
  */
@@ -7,6 +12,8 @@ package com.dupreeinca.lib_api_rest.model.base;
 public interface Api {
     String API_URL = "https://alcor.dupree.pe/dupreeWS/";
     //String API_URL = "https://alcor2per.azzorti.co/dupreeWS/";
+
+
     /**
      * Manufacturer API
      */

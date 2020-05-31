@@ -172,6 +172,8 @@ public class AuthFragment extends Fragment {
             public void onClick(View view) {
                 //gotoPage(PAGE_IDENTY);
                 publishResult(MH_Dialogs_Login.BROACAST_LOGIN_BTNFORGOT);
+                txtPwd.setText("");
+                guardarpreferencia();
             }
         });
 

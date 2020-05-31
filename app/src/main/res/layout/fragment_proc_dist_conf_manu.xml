@@ -26,7 +26,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_weight="1"
-            android:background="#f5dd4f"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:text="Azzortitrack"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -109,7 +109,7 @@
                 <TextView
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="#f5dd4f"
+                    android:background="@color/colorPrimary"
                     android:paddingLeft="7dp"
                     android:text="Campaña"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -143,7 +143,7 @@
                     android:id="@+id/txt_visi_pedido"
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="#f5dd4f"
+                    android:background="@color/colorPrimary"
                     android:paddingLeft="7dp"
                     android:text="N° Guia"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -176,7 +176,7 @@
                     android:id="@+id/txt_visi_pedi"
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="#f5dd4f"
+                    android:background="@color/colorPrimary"
                     android:paddingLeft="7dp"
                     android:text="Pedido"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -209,7 +209,7 @@
                 <TextView
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="#f5dd4f"
+                    android:background="@color/colorPrimary"
                     android:paddingLeft="7dp"
                     android:text="DNI"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -245,7 +245,7 @@
                 <TextView
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="#f5dd4f"
+                    android:background="@color/colorPrimary"
                     android:paddingLeft="7dp"
                     android:text="Cliente"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -285,7 +285,7 @@
                     android:id="@+id/txt_visi_dire"
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="#f5dd4f"
+                    android:background="@color/colorPrimary"
                     android:paddingLeft="7dp"
                     android:text="Dirección"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -322,7 +322,7 @@
                     android:id="@+id/txt_visi_caja"
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="#f5dd4f"
+                    android:background="@color/colorPrimary"
                     android:paddingLeft="7dp"
                     android:text="Cajas"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -360,7 +360,7 @@
                 <TextView
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="#f5dd4f"
+                    android:background="@color/colorPrimary"
                     android:paddingLeft="7dp"
                     android:text="Distancia"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -393,7 +393,7 @@
                 <TextView
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="#f5dd4f"
+                    android:background="@color/colorPrimary"
                     android:paddingLeft="7dp"
                     android:text="ModiDire"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -425,7 +425,7 @@
                 <TextView
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="#f5dd4f"
+                    android:background="@color/colorPrimary"
                     android:paddingLeft="7dp"
                     android:text="ModiRefe"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -483,6 +483,38 @@
             android:text="Rechazar"
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/borde_amar_negr"
+            android:text="Make an order" />
+
+        <TextView
+            android:id="@+id/tvItemSelected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="TEST" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout3"

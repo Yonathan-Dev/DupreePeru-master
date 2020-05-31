@@ -47,6 +47,7 @@ public class ForgotFragment extends Fragment {
             public void onClick(View view) {
                 if(validateAuth()){
                     httpNotifyForgot(txtIdenty.getText().toString());
+                    txtIdenty.setText("");
                 }
             }
         });

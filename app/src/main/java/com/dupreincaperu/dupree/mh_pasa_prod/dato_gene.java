@@ -11,11 +11,7 @@ public class dato_gene {
         } else if (puesta.equalsIgnoreCase("PROD")) {
             URL_EMPRESA="https://servicioweb.dupree.pe:443/hmvc/index.php/rest/";
         }
-        return this.URL_EMPRESA;
-    }
-
-    public String getSSL_EMPRESA(){
-        return puesta;
+        return URL_EMPRESA;
     }
 
 }

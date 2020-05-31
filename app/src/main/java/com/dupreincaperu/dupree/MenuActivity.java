@@ -159,6 +159,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
         navigationView.getMenu().findItem(R.id.proc_dist_conf_manu).setVisible(false);
         navigationView.getMenu().findItem(R.id.list_ases).setVisible(false);
         navigationView.getMenu().findItem(R.id.ubic_ases).setVisible(false);
+        navigationView.getMenu().findItem(R.id.aula_virt).setVisible(false);
 
         //MODULOS DESARROLLADOS
         navigationView.getMenu().findItem(R.id.menu_lat_hacer_pedidos).setVisible(false);
@@ -272,6 +273,10 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                     case "MENU_LAT_MODIF_PERFIL" :
                         navigationView.getMenu().findItem(R.id.menu_lat_modif_perfil).setVisible(true);
                         break;
+                    case "AULA_VIRT" :
+                        navigationView.getMenu().findItem(R.id.servicios).setVisible(true);
+                        navigationView.getMenu().findItem(R.id.aula_virt).setVisible(true);
+                        break;
 
                     case "CLIE":
                         navigationView.getMenu().findItem(R.id.menu_lat_bandeja_entrada).setVisible(true);
@@ -286,12 +291,15 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                         //navigationView.getMenu().findItem(R.id.menu_lat_incent_por_referido).setVisible(true);
                         //navigationView.getMenu().findItem(R.id.menu_lat_reportes).setVisible(true);
                         //navigationView.getMenu().findItem(R.id.menu_lat_pet_quej_rec_pqr).setVisible(true);
+                        navigationView.getMenu().findItem(R.id.menu_lat_modif_perfil).setVisible(true);
 
                         if (perfil.getPerfil().equalsIgnoreCase("L")){
                             /*navigationView.getMenu().findItem(R.id.menu_lat_pedidos_ret).setVisible(true);
                             navigationView.getMenu().findItem(R.id.menu_lat_redimir_incentivos).setVisible(false);
                             navigationView.getMenu().findItem(R.id.menu_lat_posi_ase).setVisible(true);
                             navigationView.getMenu().findItem(R.id.menu_lat_list_posi_ase).setVisible(true);*/
+                            navigationView.getMenu().findItem(R.id.servicios).setVisible(true);
+                            navigationView.getMenu().findItem(R.id.aula_virt).setVisible(true);
                             navigationView.getMenu().findItem(R.id.menu_lat_register).setVisible(true);
                             navigationView.getMenu().findItem(R.id.menu_lat_list_pre).setVisible(true);
                         }
@@ -560,6 +568,11 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
             case  R.id.ubic_ases:
                 fragmentoGenerico = new Fragmento_ubic_ases();
                 break;
+            case R.id.aula_virt:
+                Uri uri = Uri.parse("https://pluton.dupree.pe/login/index.php");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                break;
         }
 
         if (fragmentoGenerico != null) {
@@ -811,7 +824,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
     private void shareApp(){
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, " Hola! Encontré un app en la que puedes hacer pedidos en linea con dupreé, entra a https://play.google.com/store/apps/details?id=com.dupreinca.dupree&hl=es");
+        intent.putExtra(Intent.EXTRA_TEXT, " Hola! Encontré un app donde puedes interactuar con Dupreé by Azzorti, entra a https://play.google.com/store/apps/details?id=com.dupreincaperu.dupree");
         startActivity(Intent.createChooser(intent, "Compartir con"));
         Log.e(TAG,"Compartir");
     }

@@ -38,8 +38,13 @@ import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -302,10 +307,17 @@ public class DatosPersonalesFragment extends BaseFragment implements View.OnClic
             return false;
         }*/
         else if (model.getNacimiento().isEmpty()) {
-            msgToast("Seleccione fecha de nacimiento...");
             valid.setLoginError(getResources().getString(R.string.campo_requerido), binding.txtDateBird);
             return false;
-        } else if (model.getZona_seccion().isEmpty()) {
+        } else if (!validarFecha()) {
+            valid.setLoginError(getResources().getString(R.string.formato_fecha), binding.txtDateBird);
+            return false;
+        } else if (!validaEdad()){
+            valid.setLoginError(getResources().getString(R.string.mayor_edad), binding.txtDateBird);
+            return false;
+        }
+
+        else if (model.getZona_seccion().isEmpty()) {
             //msgToast("Campo sector... Verifique");
             valid.setLoginError(getResources().getString(R.string.campo_requerido), binding.txtZone);
             return false;
@@ -494,5 +506,64 @@ public class DatosPersonalesFragment extends BaseFragment implements View.OnClic
         catch (Exception e){
             msgToast("Imposible leer documento");
         }
+    }
+
+    public boolean validarFecha() {
+        boolean correcto = false;
+
+        try {
+            //Formato de fecha (día/mes/año)
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            formatoFecha.setLenient(false);
+            //Comprobación de la fecha
+            formatoFecha.parse(model.getNacimiento());
+            correcto = true;
+
+            String[] parts = model.getNacimiento().split("/");
+            String dia = parts[0];
+            String mes = parts[1] ;
+            String ano = parts[2];
+
+            if (ano.length()!=4 || Integer.parseInt(ano)<1900){
+                correcto = false;
+            } else if(dia.length()>2){
+                correcto = false;
+            } else if (mes.length()>2){
+                correcto = false;
+            }
+
+        } catch (ParseException e) {
+            //Si la fecha no es correcta, pasará por aquí
+            correcto = false;
+        }
+
+        return correcto;
+    }
+
+
+    public boolean validaEdad() {
+
+        String datos[] = model.getNacimiento().split("/");
+        int ano = Integer.parseInt(datos[2]);
+        int mes = Integer.parseInt(datos[1]);
+        int dia = Integer.parseInt(datos[0]);
+
+        Calendar today = Calendar.getInstance();
+
+        int diff_year   = today.get(Calendar.YEAR) -  ano;
+        int diff_month  = (today.get(Calendar.MONTH)+1) - mes;
+        int diff_day    = today.get(Calendar.DAY_OF_MONTH) - dia;
+
+        //Si está en ese año pero todavía no los ha cumplido
+        if (diff_month < 0 || (diff_month == 0 && diff_day < 0)) {
+            diff_year = diff_year - 1; //no aparecían los dos guiones del postincremento :|
+        }
+
+        if (diff_year>=18){
+            return true;
+        }
+
+        return false;
+
     }
 }

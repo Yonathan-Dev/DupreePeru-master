@@ -8,12 +8,12 @@
 
     <item
         android:id="@+id/navigation_asesora"
-        android:icon="@drawable/ic_record_voice_over_black_24dp"
+        android:icon="@drawable/quiero_serasesora"
         android:title="@string/vuelvete_asesora" />
 
     <item
         android:id="@+id/navigation_atencion"
-        android:icon="@drawable/ic_headset_mic_black_24dp"
+        android:icon="@drawable/servicio_cliente"
         android:title="@string/servicio_al_cliente" />
 
     <item

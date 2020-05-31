@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="drawerArrowStyle">@style/DrawerIcon</item>
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Light.NoActionBar" />
@@ -78,5 +79,12 @@
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowIsFloating">false</item>
     </style>
+
+    <!--Agregado peru-->
+    <style name="DrawerIcon" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/black</item>
+    </style>
+    <!--FIN-->
 
 </resources>

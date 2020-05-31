@@ -183,7 +183,7 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
         }
 
         if (!validarEmail(model.getCorreo())){
-            valid.setLoginError("Email no válido", binding.txtEmail);
+            valid.setLoginError(getResources().getString(R.string.email_novalido), binding.txtEmail);
             return false;
         }
 

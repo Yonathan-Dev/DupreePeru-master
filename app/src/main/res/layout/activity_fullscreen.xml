@@ -17,7 +17,7 @@
             android:id="@+id/image_flor"
             android:layout_width="179dp"
             android:layout_height="167dp"
-            android:src="@drawable/dupree_init_top2" />
+            android:src="@drawable/loading" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/transp_azulDupree"
+            android:background="@color/colorPrimary"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 

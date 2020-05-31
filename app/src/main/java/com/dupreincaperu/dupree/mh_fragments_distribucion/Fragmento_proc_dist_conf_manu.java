@@ -65,7 +65,6 @@ import com.dupreincaperu.dupree.BuildConfig;
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.mh_dial_peru.cuadro_confirma;
 import com.dupreincaperu.dupree.mh_dial_peru.cuadro_dialogo;
-import com.dupreincaperu.dupree.mh_dial_peru.cuadro_mensaje_bd;
 import com.dupreincaperu.dupree.mh_dial_peru.dialogo_acceso;
 import com.dupreincaperu.dupree.mh_dial_peru.dialogo_celular;
 import com.dupreincaperu.dupree.mh_dial_peru.dialogo_datos;
@@ -83,33 +82,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
 
 import static com.dupreincaperu.dupree.Constants.MY_DEFAULT_TIMEOUT;
 import static java.lang.Math.asin;
@@ -187,25 +167,24 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
     String URL_EMPRESA="";
 
+    Button btnOrder;
+    TextView tvItemSelected;
+    String[] listItems;
+    boolean[] checkendItems;
+    ArrayList<Integer> mUserItems = new ArrayList<>();
+
     @SuppressLint("RestrictedApi")
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         dato_gene URL = new dato_gene();
-        dato_gene SSL = new dato_gene();
-
         URL_EMPRESA = URL.getURL_EMPRESA();
 
         contexto = this;
         vista = inflater.inflate(R.layout.fragment_proc_dist_conf_manu, container, false);
 
         cargarpreferencias();
-        /*
-        if (String.valueOf(SSL.getSSL_EMPRESA()).equalsIgnoreCase("PROD")){
-            request = Volley.newRequestQueue(getContext(), new HurlStack(null, getSocketFactory()));
-        } else{
-            request = Volley.newRequestQueue(getContext(), new HurlStack(null, getSocketFactory_test()));
-        } */
+
         request = Volley.newRequestQueue(getContext());
 
         dni_ases                = (TextView) vista.findViewById(R.id.txtdni_ases);
@@ -226,6 +205,63 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         txt_dist_geog           = (TextView) vista.findViewById(R.id.txt_dist_geog);
         txt_modi_dire           = (TextView) vista.findViewById(R.id.txt_modi_dire);
         txt_modi_refe           = (TextView) vista.findViewById(R.id.txt_modi_refe);
+
+        btnOrder                = (Button)   vista.findViewById(R.id.btnOrder);
+        tvItemSelected          = (TextView) vista.findViewById(R.id.tvItemSelected);
+        listItems               = getResources().getStringArray(R.array.shopping_item);
+        checkendItems           = new boolean[listItems.length];
+
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                mBuilder.setTitle("Canjes y/o devolución");
+                mBuilder.setMultiChoiceItems(listItems, checkendItems, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int position, boolean isCheked) {
+                        if (isCheked){
+                            if(!mUserItems.contains(position)){
+                                mUserItems.add(position);
+                            }
+                        } else if(mUserItems.contains(position)){
+                                mUserItems.remove((Integer)position);
+                        }
+                    }
+                });
+
+                mBuilder.setCancelable(false);
+                mBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String item = "";
+                        for (int i =0; i<mUserItems.size() ; i++){
+                            item = item + listItems[mUserItems.get(i)];
+                            if (i!=mUserItems.size()-1){
+                                item = item + ",";
+                            }
+                        }
+                        tvItemSelected.setText(item);
+                    }
+                });
+
+                mBuilder.setNeutralButton("Limpiar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        for (int i=0;i<checkendItems.length;i++){
+                            checkendItems[i] = false;
+                            mUserItems.clear();
+                            tvItemSelected.setText("");
+                        }
+
+                    }
+                });
+
+                AlertDialog mDialog = mBuilder.create();
+                mDialog.show();
+            }
+        });
+
+
 
 
         searchView_nume_fact.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -744,6 +780,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                pdp.dismiss();
                 Toast.makeText(getContext(),"MOTI: No se puede conectar con el  servidor."+error,Toast.LENGTH_SHORT).show();
             }
         });
@@ -835,7 +872,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     cons_caja_dato();
                 } else {
                     limpiar_datos();
-                    new cuadro_mensaje_bd(getContext(), "El pedido no se encuentra asignado para esta fecha. !!",3);
+                    new dialogo_personal(getContext(),"El pedido no se encuentra asignado para esta fecha");
+                    //new cuadro_mensaje_bd(getContext(), "El pedido no se encuentra asignado para esta fecha. !!",3);
 
                 }
             }
@@ -906,6 +944,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
                         if (acti_fech.equalsIgnoreCase(getDate())){
                             carg_clie_dato(acti_fech,nume_iden,nomb_terc,apel_terc,dire_terc,nume_factc,remi_sri, codi_camp, cons_terc, cy, cx, dist_zona);
+                            carg_canj_devo(cons_terc);
                         } else {
                             cont = -1;
                             break;
@@ -915,13 +954,17 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     pdp.dismiss();
 
                     if (cont==0){
-                        new cuadro_mensaje_bd(getContext(), "No se cuenta con pedidos para cargar !!",1);
+                        new dialogo_personal(getContext(), "No se cuenta con pedidos para cargar");
+                        //new cuadro_mensaje_bd(getContext(), "No se cuenta con pedidos para cargar !!",1);
                     } else if(cont==-1){
-                        new cuadro_dialogo(getContext(), "*Error la fecha del equipo es "+getDate()+" y la fecha de asignación es "+acti_fech);
+                        new dialogo_personal(getContext(),"Error fecha de equipo es "+getDate()+" y fecha de asignación es "+acti_fech);
+                        //new cuadro_dialogo(getContext(), "*Error la fecha del equipo es "+getDate()+" y la fecha de asignación es "+acti_fech);
                     } else if (cont==1){
-                        new cuadro_mensaje_bd(getContext(), "Se cargó "+cont+" pedido con exito !!",1);
+                        new dialogo_personal(getContext(),"Se cargó "+cont+" pedido con exito");
+                        //new cuadro_mensaje_bd(getContext(), "Se cargó "+cont+" pedido con exito !!",1);
                     } else {
-                        new cuadro_mensaje_bd(getContext(), "Se cargaron "+cont+" pedidos con exito !!",1);
+                        new dialogo_personal(getContext(),"Se cargaron "+cont+" pedidos con exito");
+                        //new cuadro_mensaje_bd(getContext(), "Se cargaron "+cont+" pedidos con exito !!",1);
                     }
                     cont=0;
                 } catch (JSONException e) {
@@ -930,7 +973,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 try {
                     pdp.dismiss();
                     JSONObject mensaje = response.getJSONObject(0);
-                    new cuadro_mensaje_bd(getContext(), String.valueOf(mensaje.getString("mensaje")) ,3);
+                    new dialogo_personal(getContext(), mensaje.getString("mensaje"));
+                    //new cuadro_mensaje_bd(getContext(), String.valueOf(mensaje.getString("mensaje")) ,3);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -989,6 +1033,46 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
     }
 
+    private void carg_canj_devo(String cons_terc){
+
+        String url = URL_EMPRESA+"distribucion/carg_canj_devo?cons_terc="+cons_terc;
+        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    for (int i=0; i<response.length(); i++){
+                        JSONObject canje = response.getJSONObject(i);
+                        if (!canje.getString("cons_terc").equalsIgnoreCase("NO")){
+                            String cons_terc = canje.getString("cons_terc");
+                            String nume_serv = canje.getString("nume_serv");
+                            String codi_camp = canje.getString("codi_camp");
+                            String codi_prod = canje.getString("codi_prod");
+                            String nomb_prod = canje.getString("nomb_prod");
+                            String acti_esta = canje.getString("acti_esta");
+
+                            alma_canj_devo(cons_terc, nume_serv, codi_camp, codi_prod, nomb_prod, acti_esta);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pdp.dismiss();
+                Toast.makeText(getContext(),"CANJ: No se puede conectar con el  servidor."+error,Toast.LENGTH_SHORT).show();
+            }
+        });
+        request.add(jsonArrayRequest);
+
+
+    }
+
+    private void alma_canj_devo(String cons_terc, String nume_serv, String codi_camp,  String codi_prod, String nomb_prod, String acti_esta){
+        Toast.makeText(getContext(),"cons_terc "+cons_terc+" nume_serv "+nume_serv+" codi_Camp "+codi_camp+" codi_prod "+codi_prod+" nomb_prod "+nomb_prod+" acti_esta "+acti_esta, Toast.LENGTH_SHORT).show();
+    }
+
     private void elim_clie_dato () {
         MyDbHelper dbHelper = new MyDbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -1033,7 +1117,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                pdp.dismiss();
                 Toast.makeText(getContext(),"CARG: No se puede conectar con el  servidor."+error,Toast.LENGTH_SHORT).show();
             }
         });
@@ -1387,165 +1471,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         acti_usua = codi_usua;
         this.nume_celu = nume_celu;
         this.esta_celu = esta_celu;
-    }
-
-    public static void handleSSLHandshake() {
-        try {
-            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
-                public X509Certificate[] getAcceptedIssuers() {
-                    return new X509Certificate[0];
-                }
-                @Override
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                }
-                @Override
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                }
-            }};
-
-            SSLContext sc = SSLContext.getInstance("SSL");
-            sc.init(null, trustAllCerts, new SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String arg0, SSLSession arg1) {
-                    return true;
-                }
-            });
-        } catch (Exception ignored) {
-        }
-    }
-
-
-    private SSLSocketFactory getSocketFactory() {
-
-        CertificateFactory cf = null;
-        try {
-            cf = CertificateFactory.getInstance("X.509");
-            InputStream caInput = getResources().openRawResource(R.raw.movildupreepe);
-            Certificate ca;
-            try {
-                ca = cf.generateCertificate(caInput);
-                Log.e("CERT", "ca=" + ((X509Certificate) ca).getSubjectDN());
-            } finally {
-                caInput.close();
-            }
-
-            String keyStoreType = KeyStore.getDefaultType();
-            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-            keyStore.load(null, null);
-            keyStore.setCertificateEntry("ca", ca);
-
-
-            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-            tmf.init(keyStore);
-
-
-            HostnameVerifier hostnameVerifier = new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-
-                    Log.e("CipherUsed", session.getCipherSuite());
-                    return hostname.compareTo("movil.dupree.pe")==0; //The Hostname of your server
-
-                }
-            };
-
-
-            HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
-            SSLContext context = null;
-            context = SSLContext.getInstance("TLS");
-
-            context.init(null, tmf.getTrustManagers(), null);
-            HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
-
-            SSLSocketFactory sf = context.getSocketFactory();
-
-
-            return sf;
-
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }
-
-        return  null;
-    }
-
-
-    private SSLSocketFactory getSocketFactory_test() {
-
-        CertificateFactory cf = null;
-        try {
-            cf = CertificateFactory.getInstance("X.509");
-            InputStream caInput = getResources().openRawResource(R.raw.azzortico);
-            Certificate ca;
-            try {
-                ca = cf.generateCertificate(caInput);
-                Log.e("CERT", "ca=" + ((X509Certificate) ca).getSubjectDN());
-            } finally {
-                caInput.close();
-            }
-
-            String keyStoreType = KeyStore.getDefaultType();
-            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-            keyStore.load(null, null);
-            keyStore.setCertificateEntry("ca", ca);
-
-
-            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-            tmf.init(keyStore);
-
-
-            HostnameVerifier hostnameVerifier = new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-
-                    Log.e("CipherUsed", session.getCipherSuite());
-                    return hostname.compareTo("servicioweb2per.dupreincaperu.co")==0; //The Hostname of your server
-
-                }
-            };
-
-
-            HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
-            SSLContext context = null;
-            context = SSLContext.getInstance("TLS");
-
-            context.init(null, tmf.getTrustManagers(), null);
-            HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
-
-            SSLSocketFactory sf = context.getSocketFactory();
-
-
-            return sf;
-
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }
-
-        return  null;
     }
 
 

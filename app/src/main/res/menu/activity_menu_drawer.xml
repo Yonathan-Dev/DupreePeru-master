@@ -163,9 +163,15 @@
             </menu>
         </item>
 
+
         <!--SOLO ASESORA//////////////////////////////////////////////-->
         <item android:title="@string/servicios" android:id="@+id/servicios">
             <menu>
+                <item
+                    android:id="@+id/aula_virt"
+                    android:icon="@drawable/aula_virtual"
+                    android:title="@string/aula_virtual" />
+
                 <item
                     android:id="@+id/menu_lat_pet_quej_rec_pqr"
                     android:icon="@drawable/ic_record_voice_over_white_24dp"

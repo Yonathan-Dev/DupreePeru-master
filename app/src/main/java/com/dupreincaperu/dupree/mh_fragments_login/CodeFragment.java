@@ -48,6 +48,7 @@ public class CodeFragment extends Fragment {
             public void onClick(View view) {
                 if(validateACode()){
                     httpValidateCode(txtCode.getText().toString());
+                    txtCode.setText("");
                 }
             }
         });

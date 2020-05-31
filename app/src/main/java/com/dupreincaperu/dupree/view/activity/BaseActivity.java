@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -18,15 +19,17 @@ import com.dupreeinca.lib_api_rest.model.base.TTError;
 import com.dupreeinca.lib_api_rest.util.TTApp;
 
 import io.realm.Realm;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+//import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+//import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 
 public class BaseActivity extends AppCompatActivity implements BaseActivityListener{
     protected Realm realm;
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
+    //@Override
+    /*protected void attachBaseContext(Context newBase) {
+        //super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -5,6 +5,7 @@ import android.databinding.ViewDataBinding;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 
 import com.dupreeinca.lib_api_rest.controller.UserController;
@@ -20,6 +21,8 @@ import com.dupreincaperu.dupree.mh_utilities.Validate;
 import com.dupreincaperu.dupree.mh_utilities.mPreferences;
 import com.dupreincaperu.dupree.view.fragment.BaseFragment;
 import com.google.gson.Gson;
+
+import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -140,17 +143,24 @@ public class ConfigModPerfilFragment extends BaseFragment {
         }else if(binding.txtLastnamePerfil.getText().toString().isEmpty()){
             validate.setLoginError(getString(R.string.campo_requerido), binding.txtLastnamePerfil);
             return false;
-        }else if(binding.txtPhonePerfil.getText().toString().isEmpty()){
-            validate.setLoginError(getString(R.string.campo_requerido), binding.txtPhonePerfil);
+        }else if(binding.txtPhonePerfil.getText().toString().length()>0 && binding.txtPhonePerfil.getText().toString().length()<6){
+            validate.setLoginError("Telefono no válido", binding.txtPhonePerfil);
             return false;
-        }/*else if(binding.txtCellphonePerfil.getText().toString().length()<10){
-            validate.setLoginError(getString(R.string.campo_requerido), binding.txtCellphonePerfil);
+        }else if(binding.txtCellphonePerfil.getText().toString().length()!=9){
+            validate.setLoginError("Celular no válido", binding.txtCellphonePerfil);
             return false;
-        }*/else if(binding.txtPhonePerfil.getText().toString().equals(binding.txtCellphonePerfil.getText().toString())){
+        }else if(binding.txtPhonePerfil.getText().toString().equals(binding.txtCellphonePerfil.getText().toString())){
             validate.setLoginError(getString(R.string.telefonos_iguales), binding.txtCellphonePerfil);
             return false;
-        }else if(validate.isValidEmail(binding.txtEmail.getText().toString())){
+        } else if(binding.txtEmail.getText().toString().isEmpty()){
             validate.setLoginError(getString(R.string.campo_requerido), binding.txtEmail);
+            return false;
+        }
+        /*else if(validate.isValidEmail(binding.txtEmail.getText().toString())){
+            validate.setLoginError(getString(R.string.campo_requerido), binding.txtEmail);
+            return false;
+        } */else if (!validarEmail(binding.txtEmail.getText().toString())){
+            validate.setLoginError(getString(R.string.email_novalido), binding.txtEmail);
             return false;
         }
 
@@ -164,6 +174,11 @@ public class ConfigModPerfilFragment extends BaseFragment {
         binding.txtPhonePerfil.setText(dataUser.getTelefono());
         binding.txtCellphonePerfil.setText(dataUser.getCelular());
         binding.txtEmail.setText(dataUser.getCorreo());
+    }
+
+    private boolean validarEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
     }
 
 }

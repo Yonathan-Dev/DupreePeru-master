@@ -40,7 +40,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="10dp"
             android:text="Visita efectiva"
-            android:src="@drawable/list_ases"/>
+            android:src="@drawable/visitasefectivas"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -61,8 +61,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:text="Visualizar zona"
-            android:src="@drawable/map_marker_dark"/>
+            android:src="@drawable/visualizarzona"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -85,8 +84,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="10dp"
-            android:text="Visualizar zona"
-            android:src="@drawable/visita"/>
+            android:src="@drawable/visitaasesora"/>
 
     </LinearLayout>
 

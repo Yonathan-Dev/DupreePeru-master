@@ -105,8 +105,8 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                android:textColor="@color/azulDupree"
-                android:text="(Olvidé mi contraseña)"/>
+                android:textColor="@color/black"
+                android:text="¿Olvidaste tu contraseña?"/>
 
             <TextView
                 android:id="@+id/txt_vers_name"

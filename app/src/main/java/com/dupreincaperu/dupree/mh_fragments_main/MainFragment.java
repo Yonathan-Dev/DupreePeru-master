@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -60,9 +61,10 @@ public class MainFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         //****AGREGADO PERU*****//
-        viewPager = (ViewPager)v.findViewById(R.id.view_pager);
-        adapter = new CustomSwipeAadapter(getContext());
+        viewPager   = (ViewPager)v.findViewById(R.id.view_pager);
+        adapter     = new CustomSwipeAadapter(getContext());
         viewPager.setAdapter(adapter);
+
         Timer timer = new Timer();
         timer.schedule(new MyTimerTask(), 2000, 3000);
         //*********FIN*********//
@@ -82,9 +84,9 @@ public class MainFragment extends Fragment {
         imgSolicitaAsesora = (ImageView) v.findViewById(R.id.imgAtencionCliente);
 
         imgCatalogos = (ImageView) v.findViewById(R.id.imgCatalogos);
-        img = ImageLoader.getInstance();
+        /*img = ImageLoader.getInstance();
         img.init(PinchZoomImageView.configurarImageLoader(getActivity()));
-        img.displayImage(mPreferences.getImageCatalogo(getActivity()), imgCatalogos);
+        img.displayImage(mPreferences.getImageCatalogo(getActivity()), imgCatalogos);*/
 
 
         imgLogin = (ImageView) v.findViewById(R.id.imgLogin);

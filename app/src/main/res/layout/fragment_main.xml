@@ -45,6 +45,7 @@
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/view_pager"
+                    android:background="@color/white"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent">
                 </android.support.v4.view.ViewPager>
@@ -80,19 +81,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="fitXY"
-                            android:src="@drawable/img_main_vuelvete_asesora" />
+                            android:background="@color/white"
+                            android:src="@drawable/img_main_vuelvete_asesora1" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
-                            android:background="@color/transp_azulDupree"
+                            android:background="@color/colorPrimary"
                             android:padding="5dp"
                             android:text="@string/vuelvete_asesora"
                             android:textAlignment="center"
                             android:textColor="@color/negro"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textSize="18sp"/>
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
@@ -109,19 +110,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="fitXY"
-                            android:src="@drawable/img_main_solicita_asesora" />
+                            android:background="@color/white"
+                            android:src="@drawable/img_main_solicita_asesora1" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
-                            android:background="@color/transp_azulDupree"
+                            android:background="@color/colorPrimary"
                             android:padding="5dp"
                             android:text="@string/servicio_al_cliente"
                             android:textAlignment="center"
                             android:textColor="@color/negro"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textSize="18sp" />
                     </android.support.v7.widget.CardView>
 
                 </LinearLayout>
@@ -162,19 +163,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="fitXY"
-                            android:src="@drawable/img_main_catalogos" />
+                            android:background="@color/white"
+                            android:src="@drawable/img_main_catalogos1" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
-                            android:background="@color/transp_azulDupree"
+                            android:background="@color/colorPrimary"
                             android:padding="5dp"
                             android:text="@string/catalogos"
                             android:textAlignment="center"
                             android:textColor="@color/negro"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textSize="18sp"/>
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
@@ -191,19 +192,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="fitXY"
-                            android:src="@drawable/img_main_login" />
+                            android:background="@color/white"
+                            android:src="@drawable/img_main_login1" />
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:background="@color/transp_azulDupree"
-                            android:padding="5dp"
-                            android:text="@string/iniciar_sesion"
-                            android:textAlignment="center"
-                            android:textColor="@color/negro"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:layout_width    ="match_parent"
+                            android:layout_height   ="wrap_content"
+                            android:layout_gravity  ="bottom"
+                            android:background      ="@color/colorPrimary"
+                            android:padding         ="5dp"
+                            android:text            ="@string/iniciar_sesion"
+                            android:textAlignment   ="center"
+                            android:textColor       ="@color/negro"
+                            android:textSize        ="18sp"/>
                     </android.support.v7.widget.CardView>
                     <!--LinearLayout
                         android:layout_width="0dp"

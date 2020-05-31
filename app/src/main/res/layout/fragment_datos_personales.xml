@@ -231,11 +231,11 @@
                         <EditText
                             android:onClick="@{(v) -> callback.onClick(v)}"
                             android:text="@={model.nacimiento}"
-                            android:digits="@string/only_letter_basic"
                             android:id="@+id/txtDateBird"
-                            android:focusableInTouchMode="false"
-                            android:inputType="date"
+                            android:inputType="text"
                             android:layout_marginTop="8dp"
+                            android:maxLength="10"
+                            android:digits="@string/fecha_data"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/fecha_de_nacimiento"/>

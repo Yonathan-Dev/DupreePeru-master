@@ -142,17 +142,6 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
         URL_EMPRESA = URL.getURL_EMPRESA();
         request = Volley.newRequestQueue(getContext());
 
-        /*
-        binding.txtIdenty.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode==66){
-                    cargar_estado(binding.txtIdenty.getText().toString(), codi_usua);
-                }
-                //msgToast("Aqui"+keyCode);
-                return false;
-            }
-        });*/
 
     }
 
@@ -625,9 +614,10 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
                         String codi_zona  = clie.getString("codi_zona").trim();
                         String codi_sect  = clie.getString("codi_sect").trim();
                         String camp_ingr  = clie.getString("camp_ingr").trim();
+                        String ulti_camp  = clie.getString("codi_camp_1").trim();
                         String sald_docu  = clie.getString("sald_docu").trim();
                         String tipo_clie  = clie.getString("tipo_clie").trim();
-                        new EstadoPreincripcion(getContext(), nomb_comp, codi_zona, codi_sect, camp_ingr, sald_docu, tipo_clie);
+                        new EstadoPreincripcion(getContext(), nomb_comp, codi_zona, codi_sect, camp_ingr, ulti_camp, sald_docu, tipo_clie);
                         if (!tipo_clie.equalsIgnoreCase("POSIBLE REINCORPORACION")){
                             setRefValidated(false);
                         }

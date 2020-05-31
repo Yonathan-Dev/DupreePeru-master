@@ -20,6 +20,11 @@ public class CustomSwipeAadapter extends PagerAdapter {
     String urlbanner2 = "https://alcor.dupree.pe/image/banner/450/2.jpg";
     String urlbanner3 = "https://alcor.dupree.pe/image/banner/450/3.jpg";
 
+    int draw;
+    int a = R.drawable.bannerazzorti1;
+    int b = R.drawable.bannerazzorti2;
+    int c = R.drawable.bannerazzorti3;
+
     private String[] image_resource = {urlbanner1,urlbanner2,urlbanner3};
 
     public CustomSwipeAadapter(Context context){
@@ -47,20 +52,22 @@ public class CustomSwipeAadapter extends PagerAdapter {
 
         switch (position){
             case 0:
-                url = urlbanner1;
+                //url = urlbanner1;
+                draw = a;
                 break;
             case 1:
-                url = urlbanner2;
+                //url = urlbanner2;
+                draw = b;
                 break;
             case 2:
-                url = urlbanner3;
+                //url = urlbanner3;
+                draw = c;
                 break;
         }
 
         Picasso.get()
-                .load(url)
+                .load(draw)
                 .placeholder(R.drawable.ph_add_image2)
-                .centerInside()
                 .error(R.drawable.ph_add_image2)
                 .fit()
                 .into(imageView);

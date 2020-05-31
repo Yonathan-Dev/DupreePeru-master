@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:gravity="top"
         tools:layout_editor_absoluteX="23dp"
         tools:layout_editor_absoluteY="84dp">
 
@@ -107,8 +108,8 @@
                     android:id="@+id/imgraya"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="#f5dd4f"
-                    android:src="@android:color/holo_blue_dark"
+                    android:background="@color/colorPrimary"
+                    android:src="@android:color/black"
                     android:visibility="invisible"
                     tools:ignore="MissingConstraints"
                     tools:layout_editor_absoluteX="128dp"
@@ -148,7 +149,7 @@
                     android:layout_width="84dp"
                     android:layout_height="wrap_content"
                     android:text="Zona"
-                    android:textColor="#00508B"
+                    android:textColor="@color/black"
                     android:layout_marginLeft="5dp"
                     android:textStyle="bold"
                     android:visibility="invisible"
@@ -187,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:text="Campaña"
                     android:layout_marginLeft="5dp"
-                    android:textColor="#00508B"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:visibility="invisible" />
 
@@ -226,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="Deuda"
-                    android:textColor="#00508B"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:visibility="invisible" />
 

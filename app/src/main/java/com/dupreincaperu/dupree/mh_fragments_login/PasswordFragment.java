@@ -49,6 +49,8 @@ public class PasswordFragment extends Fragment {
             public void onClick(View view) {
                 if(validateNewPwd()){
                     httpValidatePwd(new RequiredNewPwd(mPreferences.getCodeSMS(getActivity()), txtNewPwd.getText().toString(), txtRepeatNewPwd.getText().toString()));
+                    txtNewPwd.setText("");
+                    txtRepeatNewPwd.setText("");
                 }
             }
         });
@@ -65,6 +67,12 @@ public class PasswordFragment extends Fragment {
             return false;
         } else if(!txtRepeatNewPwd.getText().toString().equals(txtNewPwd.getText().toString())){
             valid.setLoginError(getResources().getString(R.string.claves_diferentes), txtRepeatNewPwd);
+            return false;
+        } else if (txtNewPwd.getText().toString().length()<6){
+            valid.setLoginError(getResources().getString(R.string.longitud_contra), txtNewPwd);
+            return false;
+        } else if (txtRepeatNewPwd.getText().toString().length()<6){
+            valid.setLoginError(getResources().getString(R.string.longitud_contra), txtRepeatNewPwd);
             return false;
         }
         return true;

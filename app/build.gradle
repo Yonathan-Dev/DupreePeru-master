@@ -23,8 +23,8 @@ android {
         applicationId "com.dupreincaperu.dupree"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 8
-        versionName "0.8"
+        versionCode 11
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -128,7 +128,10 @@ dependencies {
     implementation 'com.github.dimorinny:floating-text-button:0.0.4'
 
     //custom font
-    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+    //implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+    /*
+    implementation 'io.github.inflationx:calligraphy3:3.1.1'
+    implementation 'io.github.inflationx:viewpump:2.0.3'*/
 
     //extra
     implementation 'io.realm:android-adapters:2.1.0'

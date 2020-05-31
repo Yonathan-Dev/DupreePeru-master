@@ -4,7 +4,7 @@
 
     <string name="app_name">Dupree Azzorti</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard">Inicio</string>
     <string name="title_notifications">Notifications</string>
     <string name="vuelvete_asesora">Quiero ser asesora</string>
     <string name="servicio_al_cliente">Servicio al cliente</string>
@@ -285,6 +285,7 @@
     <string name="direccion">Teléfono Movil</string>
     <string name="correo_electronico">Correo electrónico(*)</string>
     <string name="date_electronico">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@.-</string>
+    <string name="date_contra">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@.-*</string>
     <string name="enviar">ENVIAR</string>
     <string name="panel_principal">Panel principal</string>
     <string name="ir_al_panel">Ir al panel</string>
@@ -315,6 +316,7 @@
     <string name="peticiones_quejas_y_reclamos_pqr">Peticiones, quejas y reclamos (PQR)</string>
     <string name="pagos_en_l_nea">Pagos en línea</string>
     <string name="configuracion">Configuración</string>
+    <string name="aula_virtual">Aula virtual</string>
 
     <!--AGREGADO PERU -->
     <string name="Distribucion">Distribución</string>
@@ -398,11 +400,15 @@
     <string name="no_hay_actualizaciones">No hay actualizaciones disponibles</string>
 
     <string name="campo_requerido">Este campo es requerido</string>
+    <string name="formato_fecha">Formato incorrecto</string>
+    <string name="mayor_edad">Asesora debe ser mayor de edad</string>
     <string name="clave_invalida">La clave es invalida</string>
     <string name="claves_diferentes">Claves no coinciden</string>
+    <string name="longitud_contra">Longitud minima 6 caracteres</string>
     <string name="formato_incorrecto">Formato no permitido</string>
     <string name="telefonos_iguales">Telefonos identicos</string>
     <string name="msg_espere">Espere…</string>
+    <string name="email_novalido">Email no válido</string>
 
 
     <string name="agregar_list">-Agregar barrio-</string>
@@ -445,6 +451,7 @@
     <string name="only_letter_and_numer_basic">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
     <string name="only_letter_basic">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="only_number_basic">0123456789</string>
+    <string name="fecha_data">0123456789/</string>
     <string name="only_usua">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_</string>
     <string name="registradas">Registradas</string>
     <string name="numero_letra">Número - Letra</string>
@@ -585,6 +592,13 @@
 
     <string name="permiso_ubicacion">Dupree Azzorti necesita permisos de ubicación para mostrar su funcionalidad.</string>
     <string name="permiso">No cuentas con permiso de ubicación.</string>
-
+    
+    <string-array name="shopping_item">
+        <item>onion</item>
+        <item>sausage</item>
+        <item>Milk</item>
+        <item>Beef</item>
+        <item>Olive</item>
+    </string-array>
 
 </resources>
