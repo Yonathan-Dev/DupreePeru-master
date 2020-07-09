@@ -107,6 +107,7 @@ public class AuthFragment extends Fragment {
     String corr_empl = "";
     String nume_iden = "";
     String nomb_comp = "";
+    String tipo_vinc = "";
 
     String[] reporte;
     RequestQueue request;
@@ -133,15 +134,8 @@ public class AuthFragment extends Fragment {
         verifica_base();
 
         dato_gene URL = new dato_gene();
-        dato_gene SSL = new dato_gene();
         URL_EMPRESA = URL.getURL_EMPRESA();
 
-        /*
-        if (String.valueOf(SSL.getSSL_EMPRESA()).equalsIgnoreCase("PROD")) {
-            request = Volley.newRequestQueue(getContext(), new HurlStack(null, getSocketFactory()));
-        } else {
-            request = Volley.newRequestQueue(getContext(), new HurlStack(null, getSocketFactory_test()));
-        }*/
 
         request = Volley.newRequestQueue(getContext());
 
@@ -249,6 +243,7 @@ public class AuthFragment extends Fragment {
         String nume_iden    = this.nume_iden;
         String nomb_comp    = this.nomb_comp;
         String corr_empl    = this.corr_empl;
+        String tipo_vinc    = this.tipo_vinc;
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("codi_usua",  codi_usua);
@@ -257,6 +252,7 @@ public class AuthFragment extends Fragment {
         editor.putString("nume_iden",  nume_iden);
         editor.putString("nomb_comp",  nomb_comp);
         editor.putString("corr_empl",  corr_empl);
+        editor.putString("tipo_vinc",  tipo_vinc);
 
         editor.commit();
     }
@@ -377,6 +373,7 @@ public class AuthFragment extends Fragment {
                     corr_empl = empleado.getString("corr_empl").trim();
                     nume_iden = empleado.getString("nume_iden").trim();
                     nomb_comp = (nomb_empl+" "+apel_empl).toUpperCase();
+                    tipo_vinc = empleado.getString("tipo_vinc");
 
                     guardarpreferencia();
 
@@ -499,137 +496,6 @@ public class AuthFragment extends Fragment {
 
     }
 
-    //certificado para el modo produccion
-    private SSLSocketFactory getSocketFactory() {
-
-        CertificateFactory cf = null;
-        try {
-            cf = CertificateFactory.getInstance("X.509");
-            InputStream caInput = getResources().openRawResource(R.raw.movildupreepe);
-            Certificate ca;
-            try {
-                ca = cf.generateCertificate(caInput);
-                Log.e("CERT", "ca=" + ((X509Certificate) ca).getSubjectDN());
-            } finally {
-                caInput.close();
-            }
-
-            String keyStoreType = KeyStore.getDefaultType();
-            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-            keyStore.load(null, null);
-            keyStore.setCertificateEntry("ca", ca);
-
-
-            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-            tmf.init(keyStore);
-
-
-            HostnameVerifier hostnameVerifier = new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-
-                    Log.e("CipherUsed", session.getCipherSuite());
-                    return hostname.compareTo("movil.dupree.pe")==0; //The Hostname of your server
-
-                }
-            };
-
-
-            HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
-            SSLContext context = null;
-            context = SSLContext.getInstance("TLS");
-
-            context.init(null, tmf.getTrustManagers(), null);
-            HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
-
-            SSLSocketFactory sf = context.getSocketFactory();
-
-
-            return sf;
-
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }
-
-        return  null;
-    }
-
-
-    //Certificado para el ambiente de calidad (pruebas)
-    private SSLSocketFactory getSocketFactory_test() {
-
-        CertificateFactory cf = null;
-        try {
-            cf = CertificateFactory.getInstance("X.509");
-            InputStream caInput = getResources().openRawResource(R.raw.azzortico);
-            Certificate ca;
-            try {
-                ca = cf.generateCertificate(caInput);
-                Log.e("CERT", "ca=" + ((X509Certificate) ca).getSubjectDN());
-            } finally {
-                caInput.close();
-            }
-
-            String keyStoreType = KeyStore.getDefaultType();
-            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-            keyStore.load(null, null);
-            keyStore.setCertificateEntry("ca", ca);
-
-
-            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-            tmf.init(keyStore);
-
-
-            HostnameVerifier hostnameVerifier = new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-
-                    Log.e("CipherUsed", session.getCipherSuite());
-                    return hostname.compareTo("servicioweb2per.azzorti.co")==0; //The Hostname of your server
-
-                }
-            };
-
-
-            HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
-            SSLContext context = null;
-            context = SSLContext.getInstance("TLS");
-
-            context.init(null, tmf.getTrustManagers(), null);
-            HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
-
-            SSLSocketFactory sf = context.getSocketFactory();
-
-            return sf;
-
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }
-
-        return  null;
-    }
 
     private boolean permiso_camara() {
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){

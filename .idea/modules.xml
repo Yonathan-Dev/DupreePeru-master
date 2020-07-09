@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DupreePeru-master.iml" filepath="$PROJECT_DIR$/DupreePeru-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib_api_rest/lib_api_rest.iml" filepath="$PROJECT_DIR$/lib_api_rest/lib_api_rest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib_image/lib_image.iml" filepath="$PROJECT_DIR$/lib_image/lib_image.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DupreePeru-master.iml" filepath="$PROJECT_DIR$/DupreePeru-master.iml" group="DupreePeru-master" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="DupreePeru-master/app" />
+      <module fileurl="file://$PROJECT_DIR$/lib_api_rest/lib_api_rest.iml" filepath="$PROJECT_DIR$/lib_api_rest/lib_api_rest.iml" group="DupreePeru-master/lib_api_rest" />
+      <module fileurl="file://$PROJECT_DIR$/lib_image/lib_image.iml" filepath="$PROJECT_DIR$/lib_image/lib_image.iml" group="DupreePeru-master/lib_image" />
     </modules>
   </component>
 </project>

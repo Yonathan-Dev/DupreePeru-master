@@ -122,7 +122,7 @@ public class ConvertUtil {
         File file = new File(path);
 
         Uri uri = null;
-            uri = Uri.fromFile(file);
+        uri = Uri.fromFile(file);
 
 
         return uri;
@@ -137,7 +137,7 @@ public class ConvertUtil {
             result = uri.getPath();
         } else {
             cursor.moveToFirst();
-            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);//DATA --> Deprecator
             result = cursor.getString(idx);
             cursor.close();
         }
@@ -291,7 +291,7 @@ public class ConvertUtil {
         return  bmpPic;//context.getCacheDir()+fileName;
     }
 
-        public static Bitmap resizeAndCompressImageBeforeSend(Context context, Uri fileUri, Bitmap.CompressFormat mCompressFormat){
+    public static Bitmap resizeAndCompressImageBeforeSend(Context context, Uri fileUri, Bitmap.CompressFormat mCompressFormat){
         String filePath = fileUri.getPath();
         String fileName = "scv" + "evymrc" + "." + getMimeType(mCompressFormat);
         //OLD

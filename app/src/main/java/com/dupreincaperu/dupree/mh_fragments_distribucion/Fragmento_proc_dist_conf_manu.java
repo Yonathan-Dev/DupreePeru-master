@@ -24,12 +24,16 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import android.support.design.widget.FloatingActionButton;
+
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -45,9 +49,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -106,61 +114,41 @@ import static java.lang.Math.sqrt;
 
 public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_confirma.FinalizoCuadroDialogo, dialogo_celular.CelularCuadroDialogo, dialogo_datos.DatosCuadroDialogo{
 
-    public static final String STRING_PREFERENCES = "DatosUsuario";
-    public static final String PREFERENCES_ESTADO_SESION = "EstadoSesion";
 
     static final Integer PHONESTATS = 0x1;
 
-    TextView dni_ases;
-    TextView asesora;
-    TextView nume_factura;
-    TextView cant_cajas;
-    TextView txt_nume_celu;
-    TextView txt_dist_geog;
-    TextView txt_modi_dire;
-    TextView txt_modi_refe;
+    TextView dni_ases, asesora, nume_factura, cant_cajas, txt_cant_fuer, txt_cant_bols, txt_nume_celu, txt_dist_geog, txt_modi_dire, txt_modi_refe, txt_celu_ter1;
+    TextView direccion, txt_dire_refe;
     Button btn_conf_manu, btn_rech_manu;
-
-    TextView direccion;
     String acti_usua;
     View vista;
-
     ImageView gps;
-
     SwitchCompat switchForActionBar;
-
     SearchView searchView_nume_fact;
     Fragmento_proc_dist_conf_manu contexto;
     String fac_lati="", fac_long="", fac_dire="", fact_sri="", nomb_moti="", fac_imag="";
     int codi_vers =0;
-    String  acti_fech,nume_iden,nomb_terc,apel_terc, dire_terc, nume_factc, remi_sri, codi_camp, cons_terc, cy, cx, dist_zona, cant_caja, codi_caja, desc_caja, docu_sri, nume_celu, esta_celu;
+    String  acti_fech,nume_iden,nomb_terc,apel_terc, dire_terc, dire_refe, nume_factc, remi_sri, codi_camp, cons_terc, cy, cx, dist_zona, celu_ter1, cant_caja, codi_caja, desc_caja, docu_sri, nume_celu, esta_celu;
     int cons_fac_conf;
     String sinc_fact_sri="", sinc_fac_lati="", sinc_fac_long="", sinc_fac_dire="", sinc_acti_usua="", sinc_acti_hora="", sinc_nomb_moti="", sinc_nume_fact="", sinc_fac_imag="", acti_hora_veri="", sinc_codi_vers="", sinc_nume_iden="", sinc_codi_camp="", sinc_modi_dire="", sinc_modi_refe="";
     String path_sinc_imag ="", fact_sri_sinc_imag="", nume_fact_sinc_imag;
     FloatingActionButton fab_ubic_ases, fab_edit_dire;
+    com.getbase.floatingactionbutton.FloatingActionsMenu fab_menu;
+    LinearLayout lny_cuad_dato, lny_boto_conf;
+    com.getbase.floatingactionbutton.FloatingActionButton fab_carg_pedi, fab_sinc_pedi, fab_segu_pedi;
 
     private long mLastClickTime = 0;
+    int cont=0, cant_sinc = 0, dist = 0, distancia = 0;
+    String mensaje="", estado="";
+    TextView resultadoQR, txt_codi_camp;
 
-    int cont=0;
-    int cant_sinc = 0;
-    int dist = 0;
-    int distancia = 0;
-
-    String mensaje="";
-    String estado="";
-
-    TextView resultadoQR;
-    TextView txt_codi_camp;
     String array_nomb_moti[];
 
     Bitmap bitmap;
     boolean modo;
 
     private ProgressDialog pdp = null;
-    private ProgressDialog progress = null;
-    private Handler updateBarHandler;
-
-    AlertDialog.Builder builder;
+    private ProgressDialog pds = null;
 
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
@@ -172,6 +160,10 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     String[] listItems;
     boolean[] checkendItems;
     ArrayList<Integer> mUserItems = new ArrayList<>();
+
+    ListView lv_pedi;
+    ArrayList<String> clientes= new ArrayList<String>();
+    ArrayAdapter<CharSequence> adapter;
 
     @SuppressLint("RestrictedApi")
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -190,12 +182,15 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         dni_ases                = (TextView) vista.findViewById(R.id.txtdni_ases);
         asesora                 = (TextView) vista.findViewById(R.id.txt_nomb_aseso);
         direccion               = (TextView) vista.findViewById(R.id.txt_direccion);
+        txt_dire_refe           = (TextView) vista.findViewById(R.id.txt_dire_refe);
         nume_factura            = (TextView) vista.findViewById(R.id.txt_nume_pedido);
         searchView_nume_fact    = (SearchView) vista.findViewById(R.id.searchview_nume_fact);
         resultadoQR             = (TextView) vista.findViewById(R.id.txt_bole_elec);
         gps                     = (ImageView) vista.findViewById(R.id.imggps);
         switchForActionBar      = (SwitchCompat)vista.findViewById(R.id.switchForActionBar);
         cant_cajas              = (TextView)vista.findViewById(R.id.txt_cant_caja);
+        txt_cant_fuer           = (TextView)vista.findViewById(R.id.txt_cant_fuer);
+        txt_cant_bols           = (TextView)vista.findViewById(R.id.txt_cant_bols);
         btn_conf_manu           = (Button) vista.findViewById(R.id.btn_conf_manu);
         btn_rech_manu           = (Button) vista.findViewById(R.id.btn_rech_manu);
         fab_ubic_ases           = (FloatingActionButton) vista.findViewById(R.id.fab_ubic_ases);
@@ -205,11 +200,19 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         txt_dist_geog           = (TextView) vista.findViewById(R.id.txt_dist_geog);
         txt_modi_dire           = (TextView) vista.findViewById(R.id.txt_modi_dire);
         txt_modi_refe           = (TextView) vista.findViewById(R.id.txt_modi_refe);
+        txt_celu_ter1           = (TextView) vista.findViewById(R.id.txt_celu_ter1);
+        lv_pedi                 = (ListView) vista.findViewById(R.id.lv_pedi);
 
         btnOrder                = (Button)   vista.findViewById(R.id.btnOrder);
         tvItemSelected          = (TextView) vista.findViewById(R.id.tvItemSelected);
         listItems               = getResources().getStringArray(R.array.shopping_item);
         checkendItems           = new boolean[listItems.length];
+        lny_cuad_dato           = (LinearLayout) vista.findViewById(R.id.lny_cuad_dato);
+        lny_boto_conf           = (LinearLayout) vista.findViewById(R.id.lny_boto_conf);
+        fab_carg_pedi           = vista.findViewById(R.id.fab_carg_pedi);
+        fab_sinc_pedi           = vista.findViewById(R.id.fab_sinc_pedi);
+        fab_segu_pedi           = vista.findViewById(R.id.fab_segu_pedi);
+        fab_menu                = vista.findViewById(R.id.fab_menu);
 
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -263,16 +266,17 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
 
 
-
         searchView_nume_fact.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String nume_fact) {
 
                 elim_clie_dato();
                 elim_pedi_conf();
-
                 lectura_pedido(nume_fact);
+                searchView_nume_fact.setQuery("", false);
+                searchView_nume_fact.setIconified(true);
                 searchView_nume_fact.clearFocus();
+                lv_pedi.setVisibility(View.GONE);
 
                 return true;
             }
@@ -280,16 +284,39 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                if (newText.equalsIgnoreCase("")){
-                    limpiar_datos();
-                    searchView_nume_fact.clearFocus();
-                    fab_ubic_ases.setVisibility(View.GONE);
-                    fab_edit_dire.setVisibility(View.GONE);
+                if (clientes.isEmpty()){
+                    lista_pedidos();
+                } else if(newText.equalsIgnoreCase("")){
+                    lv_pedi.setVisibility(View.GONE);
+                } else {
+                    lv_pedi.setVisibility(View.VISIBLE);
+                    adapter.getFilter().filter(newText);
                 }
 
+                if (newText.length()>0) {
+                    limpiar();
+                }
                 return true;
             }
         });
+
+        lv_pedi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                elim_clie_dato();
+                elim_pedi_conf();
+
+                String nume_fact = String.valueOf(adapter.getItem(position)).replace("\n", ",");
+                String[] pedi  = nume_fact.split(",");
+
+                lectura_pedido(pedi[0]);
+                searchView_nume_fact.setQuery("", false);
+                searchView_nume_fact.setIconified(true);
+                searchView_nume_fact.clearFocus();
+                lv_pedi.setVisibility(View.GONE);
+            }
+        });
+
 
 
         btn_conf_manu.setOnClickListener(new View.OnClickListener() {
@@ -322,7 +349,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     } else if (dist>distancia){
                         new dialogo_personal(getContext(),"EL PUNTO DE ENTREGA SE ENCUENTRA A "+dist+" METROS");
                     } else {
-                        estado = "Entrega";
+                        estado = "confirmación";
                         nomb_moti = "";
                         guardar_distribucion();
                     }
@@ -359,7 +386,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         limpiar_datos();
                     } else {
                         new cuadro_confirma(getContext(), Fragmento_proc_dist_conf_manu.this, array_nomb_moti);
-                        estado = "Devolución";
+                        estado = "motivo";
                     }
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
@@ -393,6 +420,54 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 new dialogo_datos(getContext(), Fragmento_proc_dist_conf_manu.this);
             }
         });
+
+        fab_carg_pedi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isNetDisponible()) {
+                    cons_clie_dato();
+                    cons_caja_dato();
+                } else {
+                    new dialogo_personal(getContext(), "No cuenta conexión a Internet");
+                }
+            }
+        });
+
+        fab_sinc_pedi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((SystemClock.elapsedRealtime() - mLastClickTime) > 1000){
+                    if (isNetDisponible()) {
+                        sinc_fac_conf();
+                    } else {
+                        new dialogo_personal(getContext(), "No cuenta conexión a Internet");
+                    }
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+            }
+        });
+
+        fab_segu_pedi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent t  = new Intent(getContext(), pedido_track.class);
+                startActivity(t);
+            }
+        });
+
+        txt_celu_ter1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (txt_celu_ter1.getText().toString().trim().length()==9){
+                    String numero =  "tel:"+txt_celu_ter1.getText().toString().trim();
+                    Intent i = new Intent(Intent.ACTION_CALL);
+                    i.setData(Uri.parse("tel:"+txt_celu_ter1.getText().toString().trim()));
+                    startActivity(i);
+                }
+
+            }
+        });
+
 
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
@@ -448,6 +523,10 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             case R.id.nuevo:
                 limpiar_datos();
                 new dialogo_personal(getContext(),"Se limpiaron los datos");
+                return true;
+
+            case R.id.celular:
+                new dialogo_personal(getContext(),nume_celu);
                 return true;
 
             case R.id.cargar:
@@ -622,7 +701,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             try {
                 Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
                 List<Address> list = geocoder.getFromLocation(
-                        Double.parseDouble(fac_lati), Double.parseDouble(fac_long), 1);
+                        Double.parseDouble(fac_lati), Double.parseDouble(fac_long), 3);
                 if (!list.isEmpty()) {
                     Address DirCalle = list.get(0);
                     fac_dire = String.valueOf(DirCalle.getAddressLine(0));
@@ -653,7 +732,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
         AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getContext());
         dialogo1.setTitle("Atención");
-        dialogo1.setMessage("¿ Esta seguro que desea registrar la "+estado+" ?");
+        dialogo1.setMessage("¿ Esta seguro que desea registrar "+estado+" ?");
         dialogo1.setCancelable(false);
         dialogo1.setPositiveButton("Aceptar",   new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
@@ -680,7 +759,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                                         estado="";
 
                                     } else {
-                                        if (estado.equalsIgnoreCase("Devolución")){
+                                        if (estado.equalsIgnoreCase("motivo")){
                                             new dialogo_personal(getContext(),""+mensaje);
                                             alma_pedi_conf(nume_factura.getText().toString(), nomb_moti);
                                             Intent t = new Intent(getContext(), toma_foto.class);
@@ -711,7 +790,13 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                             }
                         });
 
+                        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                                MY_DEFAULT_TIMEOUT,
+                                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
                         request.add(jsonArrayRequest);
+
                         pdp = new ProgressDialog(getContext());
                         pdp.show();
                         pdp.setContentView(R.layout.progress_dialog);
@@ -730,7 +815,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
                         alma_pedi_conf(nume_factura.getText().toString(),nomb_moti);
 
-                        if (estado.equalsIgnoreCase("Devolución")){
+                        if (estado.equalsIgnoreCase("motivo")){
                             Intent t = new Intent(getContext(), toma_foto.class);
                             t.putExtra("nume_fact",nume_factura.getText().toString());
                             t.putExtra("fact_sri", resultadoQR.getText().toString());
@@ -760,9 +845,10 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 try {
                     borr_moti_rech_dist();
                     int t = response.length();
-                    array_nomb_moti = new String[t];
-                    for (int i=0; i< t;i++){
-                        JSONObject devolucion = response.getJSONObject(i);
+                    array_nomb_moti = new String[t+1];
+                    array_nomb_moti[0]="SELECCIONE MOTIVO";
+                    for (int i=1; i<t+1;i++){
+                        JSONObject devolucion = response.getJSONObject(i-1);
                         array_nomb_moti[i]=devolucion.getString("nomb_moti").trim();
                         String nomb_moti = array_nomb_moti[i];
                         alma_moti_rech_dist(nomb_moti);
@@ -784,6 +870,12 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 Toast.makeText(getContext(),"MOTI: No se puede conectar con el  servidor."+error,Toast.LENGTH_SHORT).show();
             }
         });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         request.add(jsonArrayRequest);
     }
 
@@ -794,8 +886,11 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         nume_factura.setText("");
         asesora.setText("");
         direccion.setText("");
+        txt_dire_refe.setText("");
         resultadoQR.setText("");
         cant_cajas.setText("");
+        txt_cant_fuer.setText("");
+        txt_cant_bols.setText("");
         txt_codi_camp.setText("");
         txt_dist_geog.setText("");
         txt_modi_dire.setText("");
@@ -810,6 +905,9 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         fab_edit_dire.setVisibility(View.GONE);
         dist = 0;
         distancia = 0;
+        lny_cuad_dato.setVisibility(View.GONE);
+        fab_menu.setVisibility(View.VISIBLE);
+        lny_boto_conf.setVisibility(View.GONE);
     }
 
 
@@ -824,25 +922,41 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
             if (count.getCount()>0){
 
-                Cursor c = db.rawQuery("SELECT nomb_terc || ' ' || apel_terc as nomb_clie, nume_fact, nume_iden, dire_terc, remi_sri, acti_fech, codi_camp, cy, cx, dist_zona FROM cliente WHERE nume_fact  = '"+nume_fact.trim()+"' ", null);
+                Cursor c = db.rawQuery("SELECT nomb_terc || ' ' || apel_terc as nomb_clie, nume_fact, nume_iden, dire_terc, remi_sri, acti_fech, codi_camp, cy, cx, dist_zona, celu_ter1, dire_refe FROM cliente WHERE nume_fact  = '"+nume_fact.trim()+"' ", null);
 
                 if (c.getCount()>0){
                     if (c.moveToFirst()){
 
                         if (String.valueOf(c.getString(5)).equalsIgnoreCase(getDate())) {
+                            lny_cuad_dato.setVisibility(View.VISIBLE);
+                            fab_menu.setVisibility(View.INVISIBLE);
+                            lny_boto_conf.setVisibility(View.VISIBLE);
                             asesora.setText(String.valueOf(c.getString(0)));
                             nume_factura.setText(String.valueOf(c.getInt(1)));
                             dni_ases.setText(String.valueOf(c.getString(2)));
                             direccion.setText(String.valueOf(c.getString(3)));
                             resultadoQR.setText(String.valueOf(c.getString(4)));
                             txt_codi_camp.setText(String.valueOf(c.getString(6)));
-                            obtener_caja_off(String.valueOf(c.getString(4)));
+                            obtener_caja_off(String.valueOf(c.getString(1)));
                             txt_dist_geog.setText( haversineGreatCircleDistance(String.valueOf(c.getString(7)), String.valueOf(c.getString(8)), fac_lati ,fac_long ) );
+
 
                             if (!c.getString(9).equalsIgnoreCase("")){
                                 distancia = Integer.parseInt(c.getString(9));
                             } else{
                                 distancia = dist+1;
+                            }
+
+                            if (c.getString(10).length()==9){
+                                txt_celu_ter1.setText(String.valueOf(c.getString(10)));
+                            } else {
+                                txt_celu_ter1.setText("");
+                            }
+
+                            if (String.valueOf(c.getString(11)).equalsIgnoreCase("") ){
+                                txt_dire_refe.setText("-");
+                            } else {
+                                txt_dire_refe.setText(String.valueOf(c.getString(11)));
                             }
 
                             if (txt_dist_geog.getText().toString().trim().equalsIgnoreCase("") && !txt_dist_geog.getText().toString().trim().equalsIgnoreCase("SP") ){
@@ -880,15 +994,17 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         }
     }
 
-    private void obtener_caja_off(String remi_sri) {
+    private void obtener_caja_off(String nume_fact) {
         MyDbHelper dbHelper = new MyDbHelper(getContext());
         SQLiteDatabase db =  dbHelper.getReadableDatabase();
 
         if (db!=null){
-            Cursor c = db.rawQuery("SELECT  count(*) cant FROM caja WHERE remi_sri  = '"+remi_sri+"' ", null);
+            Cursor c = db.rawQuery("SELECT  cant_caja, cant_fuer, cant_bols FROM caja WHERE nume_fact  = '"+nume_fact+"' ", null);
             if (c.moveToNext()){
                 do {
                     cant_cajas.setText(String.valueOf(c.getString(0)));
+                    txt_cant_fuer.setText(String.valueOf(c.getString(1)));
+                    txt_cant_bols.setText(String.valueOf(c.getString(2)));
                 } while (c.moveToNext());
             }
         }
@@ -927,6 +1043,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
                 int i = response.length();
                 try {
+
                     while (i >= 1){
                         JSONObject carg_pedi = response.getJSONObject(i-1);
                         acti_fech  = carg_pedi.getString("acti_fech").trim();
@@ -934,6 +1051,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         nomb_terc  = carg_pedi.getString("nomb_terc").trim();
                         apel_terc  = carg_pedi.getString("apel_terc").trim();
                         dire_terc  = carg_pedi.getString("dire_terc").trim();
+                        dire_refe  = carg_pedi.getString("dire_refe").trim();
                         nume_factc = carg_pedi.getString("nume_fact").trim();
                         remi_sri   = carg_pedi.getString("remi_sri").trim();
                         codi_camp  = carg_pedi.getString("codi_camp").trim();
@@ -941,16 +1059,19 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         cy         = carg_pedi.getString("cy").trim();
                         cx         = carg_pedi.getString("cx").trim();
                         dist_zona  = carg_pedi.getString("dist_zona").trim();
+                        celu_ter1  = carg_pedi.getString("celu_ter1").trim();
 
                         if (acti_fech.equalsIgnoreCase(getDate())){
-                            carg_clie_dato(acti_fech,nume_iden,nomb_terc,apel_terc,dire_terc,nume_factc,remi_sri, codi_camp, cons_terc, cy, cx, dist_zona);
+                            carg_clie_dato(acti_fech,nume_iden,nomb_terc,apel_terc,dire_terc,dire_refe,nume_factc,remi_sri, codi_camp, cons_terc, cy, cx, dist_zona, celu_ter1);
                             carg_canj_devo(cons_terc);
                         } else {
                             cont = -1;
                             break;
                         }
                         i--;
+
                     }
+
                     pdp.dismiss();
 
                     if (cont==0){
@@ -1003,7 +1124,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     }
 
 
-    private void carg_clie_dato (String acti_fech, String nume_iden, String nomb_terc, String apel_terc, String dire_terc, String nume_factc, String remi_sri, String codi_camp, String cons_terc, String cy, String cx, String dist_zona) {
+    private void carg_clie_dato (String acti_fech, String nume_iden, String nomb_terc, String apel_terc, String dire_terc, String dire_refe, String nume_factc, String remi_sri, String codi_camp, String cons_terc, String cy, String cx, String dist_zona, String celu_ter1) {
         MyDbHelper dbHelper = new MyDbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         int f = 0;
@@ -1014,6 +1135,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         }
 
         if (db!=null && f==0){
+            clientes.clear();
             cont ++;
             db.execSQL("INSERT INTO "+ ClienteContract.ClienteEntry.TABLE_NAME +
                     "("+ ClienteContract.ClienteEntry.COLUMN_ACTI_FECH+","
@@ -1021,14 +1143,16 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     + ClienteContract.ClienteEntry.COLUMN_NOMB_TERC+","
                     + ClienteContract.ClienteEntry.COLUMN_APEL_TERC+","
                     + ClienteContract.ClienteEntry.COLUMN_DIRE_TERC+","
+                    + ClienteContract.ClienteEntry.COLUMN_DIRE_REFE+","
                     + ClienteContract.ClienteEntry.COLUMN_NUME_FACT+","
                     + ClienteContract.ClienteEntry.COLUMN_REMI_SRI+","
                     + ClienteContract.ClienteEntry.COLUMN_CODI_CAMP+","
                     + ClienteContract.ClienteEntry.COLUMN_CONS_TERC+","
                     + ClienteContract.ClienteEntry.COLUMN_CY+","
                     + ClienteContract.ClienteEntry.COLUMN_CX+","
-                    + ClienteContract.ClienteEntry.COLUMN_DIST_ZONA+ ")" +
-                    "VALUES ('"+acti_fech+"','"+nume_iden+"','"+nomb_terc+"','"+apel_terc+"','"+dire_terc+"','"+nume_factc+"','"+remi_sri+"','"+codi_camp+"','"+cons_terc+"','"+cy+"','"+cx+"','"+dist_zona+"')");
+                    + ClienteContract.ClienteEntry.COLUMN_DIST_ZONA+","
+                    + ClienteContract.ClienteEntry.COLUMN_CELU_TER1+ ")" +
+                    "VALUES ('"+acti_fech+"','"+nume_iden+"','"+nomb_terc+"','"+apel_terc+"','"+dire_terc+"','"+dire_refe+"','"+nume_factc+"','"+remi_sri+"','"+codi_camp+"','"+cons_terc+"','"+cy+"','"+cx+"','"+dist_zona+"','"+celu_ter1+"')");
         }
 
     }
@@ -1064,13 +1188,19 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 Toast.makeText(getContext(),"CANJ: No se puede conectar con el  servidor."+error,Toast.LENGTH_SHORT).show();
             }
         });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         request.add(jsonArrayRequest);
 
 
     }
 
     private void alma_canj_devo(String cons_terc, String nume_serv, String codi_camp,  String codi_prod, String nomb_prod, String acti_esta){
-        Toast.makeText(getContext(),"cons_terc "+cons_terc+" nume_serv "+nume_serv+" codi_Camp "+codi_camp+" codi_prod "+codi_prod+" nomb_prod "+nomb_prod+" acti_esta "+acti_esta, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"cons_terc "+cons_terc+" nume_serv "+nume_serv+" codi_Camp "+codi_camp+" codi_prod "+codi_prod+" nomb_prod "+nomb_prod+" acti_esta "+acti_esta, Toast.LENGTH_SHORT).show();
     }
 
     private void elim_clie_dato () {
@@ -1079,8 +1209,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         if (db!=null){
 
             db.execSQL("DELETE FROM cliente WHERE acti_fech <> '"+getDate()+"' ");
-            db.execSQL("DELETE FROM caja WHERE remi_sri in " +
-                    "(SELECT caja.remi_sri FROM caja LEFT JOIN cliente ON caja.remi_sri = cliente.remi_sri WHERE cliente.remi_sri is null)");
+            db.execSQL("DELETE FROM caja    WHERE acti_fech <> '"+getDate()+"' ");
         }
     }
 
@@ -1103,11 +1232,12 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 try {
                     while (i >= 1){
                         JSONObject carg_caja = response.getJSONObject(i-1);
-                        cant_caja = carg_caja.getString("cant_caja").trim();
-                        codi_caja = carg_caja.getString("codi_caja").trim();
-                        docu_sri = carg_caja.getString("remi_sri").trim();
-                        desc_caja = carg_caja.getString("desc_caja").trim();
-                        carg_caja_dato(codi_caja,docu_sri,desc_caja, cant_caja);
+                        String cant_caja = carg_caja.getString("cant_caja").trim();
+                        String cant_fuer = carg_caja.getString("cant_fuer").trim();
+                        String cant_bols = carg_caja.getString("cant_bols").trim();
+                        String nume_fact = carg_caja.getString("nume_fact").trim();
+                        String acti_fech = carg_caja.getString("acti_fech").trim();
+                        carg_caja_dato(cant_caja, cant_fuer, cant_bols, nume_fact, acti_fech);
                         i--;
                     }
                 } catch (JSONException e) {
@@ -1121,26 +1251,34 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 Toast.makeText(getContext(),"CARG: No se puede conectar con el  servidor."+error,Toast.LENGTH_SHORT).show();
             }
         });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         request.add(jsonArrayRequest);
     }
 
 
-    private void carg_caja_dato (String codi_caja, String docu_sri, String desc_caja, String cant_caja) {
+    private void carg_caja_dato (String cant_caja, String cant_fuer, String cant_bols, String nume_fact, String acti_fech) {
         MyDbHelper dbHelper = new MyDbHelper(getContext());
         SQLiteDatabase db3 = dbHelper.getWritableDatabase();
         int f = 0;
-        Cursor c = db3.rawQuery("SELECT count(*) as CONT FROM caja WHERE TRIM(remi_sri) = '"+docu_sri.trim()+"' ", null);
+        Cursor c = db3.rawQuery("SELECT count(*) as CONT FROM caja WHERE nume_fact = '"+nume_fact.trim()+"' ", null);
 
         if (c.moveToFirst()){
             f = Integer.parseInt(c.getString(c.getColumnIndex("CONT")))  ;
         }
 
-        if (db3!=null && f < Integer.parseInt(cant_caja)){
+        if (db3!=null && f==0){
             db3.execSQL("INSERT INTO "+ CajaContract.CajaEntry.TABLE_NAME +
-                    "("+ CajaContract.CajaEntry.COLUMN_CODI_CAJA+","
-                    + CajaContract.CajaEntry.COLUMN_REMI_SRI+","
-                    + CajaContract.CajaEntry.COLUMN_DESC_CAJA+ ")" +
-                    "VALUES ('"+codi_caja+"','"+docu_sri+"','"+desc_caja+"')");
+                    "("+ CajaContract.CajaEntry.COLUMN_CANT_CAJA+","+
+                    CajaContract.CajaEntry.COLUMN_CANT_FUER+","+
+                    CajaContract.CajaEntry.COLUMN_CANT_BOLS+","+
+                    CajaContract.CajaEntry.COLUMN_NUME_FACT+","+
+                    CajaContract.CajaEntry.COLUMN_ACTI_FECH+ ")" +
+                    " VALUES ('"+cant_caja+"', '"+cant_fuer+"', '"+cant_bols+"','"+nume_fact+"','"+acti_fech+"')");
         }
     }
 
@@ -1257,12 +1395,14 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                                 //El numero de guia tiene longitud maximo de 13 digitos(la respuesta puede ser la guia o mensaje)
                                 if (resp.length()>13){
                                     Toast.makeText(getContext(), resp.toUpperCase(), Toast.LENGTH_SHORT).show();
+                                    //pdp.dismiss();
                                 } else {
-                                    //Snackbar.make(vista, "Sincronizando "+cant_sinc, Snackbar.LENGTH_LONG).show();
                                     sinc_fac_conf_imag_indi(resp, acti_hora_veri);
                                     borr_fac_conf_indi(resp);
                                 }
+                                pds.dismiss();
                             } catch (JSONException e) {
+                                pds.dismiss();
                                 e.printStackTrace();
                             }
                         }
@@ -1270,7 +1410,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Toast.makeText(getContext(), "SINC: No se puede conectar con el servidor.", Toast.LENGTH_SHORT).show();
-                            pdp.dismiss();
+                            pds.dismiss();
                         }
                     });
 
@@ -1280,19 +1420,21 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
                     request.add(jsonArrayRequest);
-                    //i++;
-                } while (c.moveToNext());
 
-                pdp = new ProgressDialog(getContext());
-                pdp.show();
-                pdp.setContentView(R.layout.progress_dialog_bd);
-                pdp.setCancelable(false);
-                pdp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                } while (c.moveToNext());
             }
-            //most_cant_sinc(i);
+
+            pds = new ProgressDialog(getContext());
+            pds.show();
+            pds.setContentView(R.layout.progress_dialog_bd);
+            pds.setCancelable(false);
+            pds.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         } else{
             new dialogo_personal(getContext(), "No existe pedidos para sincronizar");
         }
+
+
     }
 
     private void sinc_fac_conf_imag_indi(String fact_sri, String acti_hora_veri) {
@@ -1315,9 +1457,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
                 } while (c.moveToNext());
             }
-        } else {
-
-            pdp.dismiss();
         }
 
     }
@@ -1331,16 +1470,16 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 {
                     @Override
                     public void onResponse(String response) {
-                        pdp.dismiss();
-                        //Snackbar.make(vista,"",Snackbar.LENGTH_LONG).show();
-                        Toast.makeText(getContext(),response.trim(),Toast.LENGTH_SHORT).show();
+                        //pdp.dismiss();
+                        Log.e("ALMAIMA", response.trim());
+                        //Toast.makeText(getContext(),response.trim(),Toast.LENGTH_SHORT).show();
                     }
                 },
                 new Response.ErrorListener()
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        pdp.dismiss();
+                        //pdp.dismiss();
                         Toast.makeText(getContext(),"No se puede conectar con el servidor."+error,Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -1608,7 +1747,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         txt_nume_celu.setVisibility(View.GONE);
                         if (mensaje.equalsIgnoreCase("NO REGISTRADO")){
                             txt_nume_celu.setText("");
-                            new dialogo_acceso(getContext(),"CELULAR SIN ACCESO");
+                            new dialogo_acceso(getContext(),"TRANSPORTISTA SIN ACCESO");
                             eliminarDatos();
                             nume_celu="";
                             esta_celu="";
@@ -1633,7 +1772,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         nume_celu="";
                         esta_celu="";
                         guardarpreferencia();
-                        new dialogo_acceso(getContext(),"CELULAR SIN ACCESO");
+                        new dialogo_acceso(getContext(),"TRANSPORTISTA SIN ACCESO");
                         eliminarDatos();
                     } else{
                         txt_nume_celu.setVisibility(View.VISIBLE);
@@ -1686,6 +1825,70 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         editor.putString("esta_celu",esta_celu);
         editor.commit();
     }
+
+    @SuppressLint("RestrictedApi")
+    private void limpiar() {
+        dni_ases.setText("");
+        nume_factura.setText("");
+        asesora.setText("");
+        direccion.setText("");
+        txt_dire_refe.setText("");
+        resultadoQR.setText("");
+        cant_cajas.setText("");
+        txt_cant_fuer.setText("");
+        txt_cant_bols.setText("");
+        txt_codi_camp.setText("");
+        txt_dist_geog.setText("");
+        txt_modi_dire.setText("");
+        txt_modi_refe.setText("");
+        txt_celu_ter1.setText("");
+        fac_lati = "";
+        fac_long = "";
+        fac_dire = "";
+        fact_sri = "";
+        nomb_moti= "";
+        fab_ubic_ases.setVisibility(View.GONE);
+        fab_edit_dire.setVisibility(View.GONE);
+        dist = 0;
+        distancia = 0;
+        lny_cuad_dato.setVisibility(View.GONE);
+        fab_menu.setVisibility(View.VISIBLE);
+        lny_boto_conf.setVisibility(View.GONE);
+    }
+
+
+    private void lista_pedidos() {
+
+        MyDbHelper dbHelper = new MyDbHelper(getContext());
+        SQLiteDatabase db =  dbHelper.getReadableDatabase();
+
+        if (db!=null){
+            Cursor count = db.rawQuery(" SELECT nume_fact FROM cliente ", null);
+
+            if (count.getCount()>0){
+
+                Cursor c = db.rawQuery("SELECT nomb_terc || ' ' || apel_terc as nomb_clie, nume_fact FROM cliente ", null);
+
+                if (c.getCount()>0){
+
+                    if (c.moveToNext()){
+                        do {
+                            String nomb_clie = String.valueOf(c.getString(0));
+                            String nume_fact = String.valueOf(c.getInt(1));
+                            //clientes.add(nume_fact+"\n"+nomb_clie);
+                            clientes.add(nume_fact);
+                        } while (c.moveToNext());
+                    }
+
+
+                }
+                adapter = new ArrayAdapter(getContext(),android.R.layout.select_dialog_item, clientes);
+                lv_pedi.setAdapter(adapter);
+            }
+
+        }
+    }
+
 
 
 }

@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME = "distribucion.db";
 
     public MyDbHelper(Context context) {
@@ -22,22 +22,26 @@ public class MyDbHelper extends SQLiteOpenHelper {
                     ClienteContract.ClienteEntry.COLUMN_NOMB_TERC +" TEXT,"+
                     ClienteContract.ClienteEntry.COLUMN_APEL_TERC +" TEXT,"+
                     ClienteContract.ClienteEntry.COLUMN_DIRE_TERC +" TEXT,"+
+                    ClienteContract.ClienteEntry.COLUMN_DIRE_REFE +" TEXT,"+
                     ClienteContract.ClienteEntry.COLUMN_NUME_FACT +" INTEGER,"+
                     ClienteContract.ClienteEntry.COLUMN_REMI_SRI  +" TEXT,"+
                     ClienteContract.ClienteEntry.COLUMN_CODI_CAMP +" TEXT,"+
                     ClienteContract.ClienteEntry.COLUMN_CONS_TERC +" TEXT,"+
                     ClienteContract.ClienteEntry.COLUMN_CY  +" TEXT,"+
                     ClienteContract.ClienteEntry.COLUMN_CX  +" TEXT,"+
-                    ClienteContract.ClienteEntry.COLUMN_DIST_ZONA  +" TEXT)"
+                    ClienteContract.ClienteEntry.COLUMN_DIST_ZONA  +" TEXT,"+
+                    ClienteContract.ClienteEntry.COLUMN_CELU_TER1  +" TEXT)"
         );
 
         db.execSQL("CREATE TABLE "+
                     CajaContract.CajaEntry.TABLE_NAME + "("+
                     CajaContract.CajaEntry.COLUMN_CONS_CAJA +" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                    CajaContract.CajaEntry.COLUMN_CODI_CAJA +" TEXT,"+
-                    CajaContract.CajaEntry.COLUMN_REMI_SRI + " TEXT,"+
-                    CajaContract.CajaEntry.COLUMN_DESC_CAJA + " TEXT)"
-                  );
+                    CajaContract.CajaEntry.COLUMN_NUME_FACT +" TEXT,"+
+                    CajaContract.CajaEntry.COLUMN_CANT_CAJA +" TEXT,"+
+                    CajaContract.CajaEntry.COLUMN_CANT_FUER +" TEXT,"+
+                    CajaContract.CajaEntry.COLUMN_CANT_BOLS +" TEXT,"+
+                    CajaContract.CajaEntry.COLUMN_ACTI_FECH + " TEXT)"
+        );
 
         db.execSQL("CREATE TABLE "+
                     Fac_confContract.Fac_confEntry.TABLE_NAME + "("+

@@ -38,7 +38,9 @@
         android:title="Etrack"
         app:showAsAction="always" /> -->
 
+
     <item
+        android:visible="false"
         android:id="@+id/cargar"
         android:checked="false"
         android:enabled="true"
@@ -49,12 +51,12 @@
 
 
     <item
+        android:visible="false"
         android:id="@+id/sincronizar"
         android:icon="@drawable/sincronizar"
         android:orderInCategory="100"
         android:title="Sincronizar"
-        app:showAsAction="always|withText"
-        android:visible="true" />
+        app:showAsAction="always|withText" />
 
     <item
         android:id="@+id/confirmar"
@@ -73,12 +75,28 @@
         app:showAsAction="always"/>
 
     <item
+        android:visible="false"
         android:id="@+id/nuevo"
         android:icon="@drawable/nuevo"
         android:orderInCategory="100"
         android:title="Limpiar"
         app:showAsAction="always"/>
 
+    <item
+        android:visible="true"
+        android:id="@+id/celular"
+        android:icon="@drawable/celular"
+        android:orderInCategory="100"
+        android:title="Telefono"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/sqlite"
+        android:icon="@drawable/pendientessincronizar"
+        android:orderInCategory="100"
+        android:title="Pendiente a sincronizar"
+        app:showAsAction="always|withText"
+        android:visible="true" />
 
     <item
         android:id="@+id/myswitch"
@@ -88,6 +106,7 @@
         app:showAsAction="always" />
 
     <item
+        android:visible="false"
         android:id="@+id/empty"
         android:orderInCategory="101"
         android:icon="@drawable/menu"
@@ -97,7 +116,6 @@
         <menu>
 
             <item
-                android:id="@+id/sqlite"
                 android:icon="@drawable/sqlite"
                 android:orderInCategory="100"
                 android:title="Pendiente a sincronizar"
@@ -114,7 +132,7 @@
 
             <item
                 android:id="@+id/track"
-                android:icon="@drawable/track"
+                android:icon="@drawable/revision"
                 android:orderInCategory="100"
                 android:title="Track"
                 app:showAsAction="always|withText"
@@ -122,4 +140,8 @@
 
      </menu>
     </item>
+
+
+
+
 </menu>

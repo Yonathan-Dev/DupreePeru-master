@@ -5,7 +5,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:background="@drawable/boton_azul"
+            android:background="@drawable/boton_color_dupree"
             android:layout_width="match_parent"
             android:weightSum="1"
             android:orientation="horizontal"

@@ -39,7 +39,8 @@
         <activity android:name="com.dupreincaperu.dupree.mh_fragments_distribucion.toma_foto" />
         <activity android:name="com.dupreincaperu.dupree.mh_fragments_ventas.ubic_ases" />
         <activity android:name="com.dupreincaperu.dupree.mh_fragments_distribucion.pedido_track" />
-        <activity android:name="com.dupreincaperu.dupree.mh_fragments_distribucion.pedido_registrado" /> <!-- FIREBASE -->
+        <activity android:name="com.dupreincaperu.dupree.mh_fragments_distribucion.pedido_registrado" />
+        <!-- FIREBASE -->
         <service android:name="com.dupreincaperu.dupree.mh_firebase.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -64,6 +65,7 @@
         -->
 
         <!--Es el provider es de COLOMBIA-->
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.image.lib_image.provider"
@@ -76,6 +78,7 @@
         </provider>
 
         <!-- Este provider es de Peru (Este se coloco el nombre com.image.lib_image.provider)-->
+
         <!--
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -85,7 +88,8 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
-        </provider> -->
+        </provider>
+        -->
 
         <!--
  <provider android:name="android.support.v4.content.FileProvider"

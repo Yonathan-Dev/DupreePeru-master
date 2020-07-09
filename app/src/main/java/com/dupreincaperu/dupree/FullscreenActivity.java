@@ -286,7 +286,8 @@ public class FullscreenActivity extends AppCompatActivity  {
             @Override
             public void error(TTError error) {
                 Log.e(TAG, "getBanner() -> error(): " + new Gson().toJson(error));
-                errorLoadInitData();
+                gotoMain();
+                //errorLoadInitData(); //Caso contrario muestra un error y no carga el app
             }
         });
     }

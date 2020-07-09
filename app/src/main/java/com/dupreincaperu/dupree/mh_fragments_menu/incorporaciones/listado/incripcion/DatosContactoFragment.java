@@ -1,18 +1,34 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.listado.incripcion;
 
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.databinding.ViewDataBinding;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.image.lib_image.util.PermissionCamera;
 import com.dupreeinca.lib_api_rest.model.dto.request.InscriptionDTO;
@@ -24,10 +40,24 @@ import com.dupreincaperu.dupree.mh_utilities.dialogs.DialogListOption;
 import com.dupreincaperu.dupree.view.activity.BaseActivityListener;
 import com.dupreincaperu.dupree.view.fragment.BaseFragment;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.Manifest.permission_group.CAMERA;
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -39,6 +69,12 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
     private FragmentDatosContactoBinding binding;
     private InscriptionDTO model;
     private PermissionCamera camera;
+
+    final int COD_SELECCIONA=10;
+    final int COD_FOTO=20;
+    String path;
+    Bitmap bitmap;
+
     public DatosContactoFragment() {
         // Required empty public constructor
     }
@@ -283,13 +319,24 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
             public void onModelSelected(ModelList item) {
                 switch (item.getId()) {
                     case 0:
-                        camera.checkPermissionCamera();
+                        if (Build.VERSION.SDK_INT >= 29) {
+                            tomarFotografia();
+                        } else {
+                            camera.checkPermissionCamera();
+                        }
+
                         break;
                     case 1:
-                        camera.checkPermissionGalery();
+                        if (Build.VERSION.SDK_INT >= 29) {
+                            cargargaleria();
+                        } else {
+                            camera.checkPermissionGalery();
+                        }
                         break;
                 }
             }
+
+
         });
     }
 
@@ -299,13 +346,14 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
         camera.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    /*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 //        String path = getActivity().getCacheDir() + "dupree_"+"documents"+"_temporary_file"+String.valueOf(imageSelected)+".jpg";
 
         camera.onActivityResult(requestCode, resultCode, data, false);
-    }
+    }*/
 
     File fileList;
     @Override
@@ -318,7 +366,7 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
 
 
     private void updateFile(File file, int indexFile){
-        Log.e(TAG,"File: "+String.valueOf(indexFile)+", "+file.getAbsolutePath());
+        Log.e(TAG," File: "+String.valueOf(indexFile)+", "+file.getAbsolutePath());
         switch (indexFile){
             case IMG_CED_FRT:
                 model.setCedula_frontal(file.getAbsolutePath());
@@ -343,4 +391,126 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
                 break;
         }
     }
+
+    public void tomarFotografia(){
+
+        File fileImagen = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        boolean isCreada = fileImagen.exists();
+
+        if(isCreada==false){
+            isCreada = fileImagen.mkdirs();
+        }
+
+        if(isCreada==true){
+            String nombreImagen = new SimpleDateFormat("yyMMddHHmmss").format(new Date());
+            path = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+File.separator+nombreImagen+".jpg";
+            File imagen =new File(path);
+
+            if (imagen.exists()){
+                imagen.delete();
+            }
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.N) {
+                String authorities="com.image.lib_image"+".provider";
+                Uri imageUri= FileProvider.getUriForFile(getContext(),authorities,imagen);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+            } else {
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imagen));
+            }
+            startActivityForResult(intent,COD_FOTO);
+        }
+    }
+
+    public void cargargaleria() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, COD_SELECCIONA);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (Build.VERSION.SDK_INT < 29) {
+            camera.onActivityResult(requestCode, resultCode, data, false);
+        } else {
+            if (resultCode==RESULT_OK){
+                switch (requestCode){
+
+                    case COD_SELECCIONA:
+                        Uri uri = data.getData();
+                        try {
+                            bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        bitmap = Bitmap.createScaledBitmap(bitmap, 750, 750, false);
+                        String nombreImagen = new SimpleDateFormat("yyMMddHHmmss").format(new Date());
+                        path = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+File.separator+nombreImagen+".jpg";
+                        try {
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(path));
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        File image = new File(path);
+                        updateFile(image, imageSelected);
+
+                        break;
+
+                    case COD_FOTO:
+                        RedimeRotarImagen();
+                        break;
+                }
+
+            }
+        }
+    }
+
+    public void RedimeRotarImagen(){
+
+        bitmap = BitmapFactory.decodeFile(path);
+        Bitmap bitmapout = Bitmap.createScaledBitmap(bitmap, 750, 750, false);
+
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
+        Bitmap rotateBitmap = Bitmap.createBitmap(bitmapout, 0, 0, bitmapout.getWidth(),
+                bitmapout.getHeight(), matrix, true);
+
+
+        try {
+            rotateBitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(path));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        File imageFile =new File(path);
+        updateFile(imageFile, imageSelected);
+
+    }
+
+    public static String getPath(Context context, Uri uri) throws URISyntaxException {
+        if ("content".equalsIgnoreCase(uri.getScheme())) {
+            String[] projection = { "_data" };
+            Cursor cursor = null;
+
+            try {
+                cursor = context.getContentResolver().query(uri, projection, null, null, null);
+                int column_index = cursor.getColumnIndexOrThrow("_data");
+                if (cursor.moveToFirst()) {
+                    return cursor.getString(column_index);
+                }
+            } catch (Exception e) {
+                // Eat it
+            }
+        }
+        else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+
+        return null;
+    }
+
+
+
 }

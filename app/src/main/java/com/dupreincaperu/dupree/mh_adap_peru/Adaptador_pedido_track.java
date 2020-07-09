@@ -15,14 +15,14 @@ public class Adaptador_pedido_track extends RecyclerView.Adapter<Adaptador_pedid
 
     ArrayList<String> ListNume;
     ArrayList<String> ListPedi;
-    ArrayList<String> ListConf;
+    ArrayList<String> ListEsta;
     ArrayList<String> ListMoti;
     ArrayList<String> ListHora;
 
-    public Adaptador_pedido_track(ArrayList<String> listNume, ArrayList<String> listPedi, ArrayList<String> listConf, ArrayList<String> listMoti, ArrayList<String> listHora) {
+    public Adaptador_pedido_track(ArrayList<String> listNume, ArrayList<String> listPedi, ArrayList<String> listEsta, ArrayList<String> listMoti, ArrayList<String> listHora) {
         ListNume = listNume;
         ListPedi = listPedi;
-        ListConf = listConf;
+        ListEsta = listEsta;
         ListMoti = listMoti;
         ListHora = listHora;
     }
@@ -41,7 +41,7 @@ public class Adaptador_pedido_track extends RecyclerView.Adapter<Adaptador_pedid
     public void onBindViewHolder(@NonNull Adaptador_pedido_track.ViewHolderDatos holder, int position) {
         holder.asignardatos_nume(ListNume.get(position));
         holder.asignardatos_pedi(ListPedi.get(position));
-        holder.asignardatos_conf(ListConf.get(position));
+        holder.asignardatos_esta(ListEsta.get(position));
         holder.asignardatos_moti(ListMoti.get(position));
         holder.asignardatos_hora(ListHora.get(position));
     }
@@ -55,7 +55,7 @@ public class Adaptador_pedido_track extends RecyclerView.Adapter<Adaptador_pedid
 
         TextView nume;
         TextView pedi;
-        TextView conf;
+        TextView esta;
         TextView moti;
         TextView hora;
 
@@ -63,29 +63,36 @@ public class Adaptador_pedido_track extends RecyclerView.Adapter<Adaptador_pedid
             super(itemView);
             nume = (TextView) itemView.findViewById(R.id.nume);
             pedi = (TextView) itemView.findViewById(R.id.pedi_trac);
-            conf = (TextView) itemView.findViewById(R.id.confirmado);
+            esta = (TextView) itemView.findViewById(R.id.estado);
             moti = (TextView) itemView.findViewById(R.id.motivado);
             hora = (TextView) itemView.findViewById(R.id.hora);
         }
 
-        public void asignardatos_nume(String datos) {
-            nume.setText(datos);
+        public void asignardatos_nume(String id) {
+            nume.setText(id);
         }
 
-        public void asignardatos_pedi(String datos) {
-            pedi.setText(datos);
+        public void asignardatos_pedi(String nume_fact) {
+            pedi.setText(nume_fact);
         }
 
-        public void asignardatos_conf(String datos) {
-            conf.setText(datos);
+        public void asignardatos_esta(String estado) {
+            esta.setText(estado);
+            if (estado.equalsIgnoreCase("CONFIRMADO") && !estado.equalsIgnoreCase("-")){
+                nume.setCompoundDrawablesWithIntrinsicBounds(0,0,0,R.drawable.registrado);
+            } else if (estado.equalsIgnoreCase("MOTIVADO") && !estado.equalsIgnoreCase("-")){
+                nume.setCompoundDrawablesWithIntrinsicBounds(0,0,0,R.drawable.rechazado);
+            } else if (estado.equalsIgnoreCase("ASIGNADO") && !estado.equalsIgnoreCase("-")){
+                nume.setCompoundDrawablesWithIntrinsicBounds(0,0,0,R.drawable.pendiente);
+            }
         }
 
-        public void asignardatos_moti(String datos) {
-            moti.setText(datos);
+        public void asignardatos_moti(String nomb_moti) {
+            moti.setText(nomb_moti);
         }
 
-        public void asignardatos_hora(String datos) {
-            hora.setText(datos);
+        public void asignardatos_hora(String acti_hora) {
+            hora.setText(acti_hora);
         }
     }
 

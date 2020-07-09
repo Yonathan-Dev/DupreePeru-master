@@ -12,9 +12,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -23,7 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.dupreincaperu.dupree.mh_dial_peru.EstadoPreincripcion;
+import com.dupreincaperu.dupree.mh_dial_peru.estadoPreincripcion;
 import com.dupreincaperu.dupree.mh_pasa_prod.dato_gene;
 import com.image.lib_image.util.PermissionCamera;
 import com.dupreeinca.lib_api_rest.controller.InscripcionController;
@@ -184,21 +182,18 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
                                         validate.setLoginError("El DNI debe tener 8 digitos", binding.txtIdenty);
                                     } else if(!binding.txtIdenty.getText().toString().isEmpty()) {
                                         cifin(new Identy(binding.txtIdenty.getText().toString()));
-                                        cargar_estado(binding.txtIdenty.getText().toString(), codi_usua);
                                     }
                                 } else if(binding.txtSpnTypeId.getText().toString().equalsIgnoreCase("RUC")) {
                                     if (binding.txtIdenty.getText().toString().length()!=11){
                                         validate.setLoginError("El RUC debe tener 11 digitos", binding.txtIdenty);
                                     } else if(!binding.txtIdenty.getText().toString().isEmpty()) {
                                         cifin(new Identy(binding.txtIdenty.getText().toString()));
-                                        cargar_estado(binding.txtIdenty.getText().toString(), codi_usua);
                                     }
                                 } else if(binding.txtSpnTypeId.getText().toString().equalsIgnoreCase("Doc. Extranjería")) {
                                     if (binding.txtIdenty.getText().toString().length() <= 6){
                                         validate.setLoginError("Carnet debe ser mayor a 6 digitos", binding.txtIdenty);
                                     } else if(!binding.txtIdenty.getText().toString().isEmpty()) {
                                         cifin(new Identy(binding.txtIdenty.getText().toString()));
-                                        cargar_estado(binding.txtIdenty.getText().toString(), codi_usua);
                                     }
                                 }
                             }
@@ -251,13 +246,16 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
 
                     if(name.equals("RECHAZADO"))
                         showSnackBarDuration(name+" por centrales de riesgo", 5000);
+
                 }
+                cargar_estado(binding.txtIdenty.getText().toString(), codi_usua);
             }
 
             @Override
             public void error(TTError error) {
                 dismissProgress();
                 checkSession(error);
+                cargar_estado(binding.txtIdenty.getText().toString(), codi_usua);
             }
         });
     }
@@ -356,9 +354,8 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
     {
         Validate valid=new Validate();
         //datos personales
-        if (binding.txtSpnTypeId.getText().toString().isEmpty())
-        {
-            msgToast("Seleccione tipo de documento...");
+        if (binding.txtSpnTypeId.getText().toString().isEmpty()){
+            //msgToast("Seleccione tipo de documento...");
             valid.setLoginError(getResources().getString(R.string.campo_requerido), binding.txtSpnTypeId);
             return false;
         }
@@ -369,7 +366,7 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
             return false;
         }*/
         else if(!isRefValidated()){
-            msgToast("Debe validar la cédula... Verifique");
+            //msgToast("Debe validar la cédula... Verifique");
             valid.setLoginError(getString(R.string.deba_validar),binding.txtIdenty);
             return false;
         }
@@ -385,7 +382,7 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
         }
         else if (!binding.rdbsexomasc.isChecked() && !binding.rdbsexofeme.isChecked() )
         {
-            msgToast("Sexo invalido...");
+            msgToast("Seleccione el sexo");
             return false;
         }
         return true;
@@ -485,7 +482,7 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
         this.refValidated = refValidated;
 
         binding.btnRegister.setEnabled(refValidated);
-        binding.btnRegister.setBackground(refValidated ? getResources().getDrawable(R.drawable.boton_azul) : getResources().getDrawable(R.drawable.rounded_background_gray));
+        binding.btnRegister.setBackground(refValidated ? getResources().getDrawable(R.drawable.boton_color_dupree) : getResources().getDrawable(R.drawable.rounded_background_gray));
 
 
         fileList=null;
@@ -617,7 +614,10 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
                         String ulti_camp  = clie.getString("codi_camp_1").trim();
                         String sald_docu  = clie.getString("sald_docu").trim();
                         String tipo_clie  = clie.getString("tipo_clie").trim();
-                        new EstadoPreincripcion(getContext(), nomb_comp, codi_zona, codi_sect, camp_ingr, ulti_camp, sald_docu, tipo_clie);
+                        if (ulti_camp.equalsIgnoreCase("null")){
+                            ulti_camp = "-";
+                        }
+                        new estadoPreincripcion(getContext(), nomb_comp, codi_zona, codi_sect, camp_ingr, ulti_camp, sald_docu, tipo_clie);
                         if (!tipo_clie.equalsIgnoreCase("POSIBLE REINCORPORACION")){
                             setRefValidated(false);
                         }

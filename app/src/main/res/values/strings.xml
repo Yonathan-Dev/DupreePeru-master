@@ -1,6 +1,6 @@
 <resources>
-    <string name="api_url">https://alcor.dupree.pe/dupreeWS/</string>
-    <!--<string name="api_url">https://alcor2per.azzorti.co/dupreeWS/</string>-->
+    <!--<string name="api_url">https://alcor.dupree.pe/dupreeWS/</string>-->
+    <string name="api_url">https://alcor2per.azzorti.co/dupreeWS/</string>
 
     <string name="app_name">Dupree Azzorti</string>
     <string name="title_home">Home</string>
@@ -22,7 +22,7 @@
     <string name="cedula">Identificación(*)</string>
     <string name="referido">Referido por</string>
     <string name="nombre_s">Nombre(s)(*)</string>
-    <string name="fecha_de_nacimiento">Fecha de nacimiento(*)</string>
+    <string name="fecha_de_nacimiento">Fecha de nacimiento (d/m/aaaa)(*)</string>
     <string name="zona_seccion">Zona sección</string>
     <string name="apellido_s">Apellido(s)(*)</string>
 
@@ -341,7 +341,7 @@
     <!--FIN-->
 
 
-    <string name="modificar_perfil">Modificar perfil</string>
+    <string name="modificar_perfil">Modificar datos</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="tracking">Tracking</string>
     <string name="campana">Campaña</string>

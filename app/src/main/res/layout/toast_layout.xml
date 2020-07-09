@@ -3,15 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/lytLayout"
-    android:layout_width="300dp"
+    android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:gravity="center|left"
+    android:gravity="center"
     android:orientation="vertical"
-    android:layout_marginLeft="40dp"
-    android:layout_marginRight="40dp"
-    android:background="@drawable/borde_negro"
-    android:padding="5dip" >
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:background="@drawable/borde_indi_vent">
 
     <ImageView android:id="@+id/imgIcono"
         android:layout_height="100dp"
@@ -27,7 +26,7 @@
 
         <TextView
             android:id="@+id/txtMensaje"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"

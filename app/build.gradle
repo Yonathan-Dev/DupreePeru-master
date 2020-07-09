@@ -23,8 +23,8 @@ android {
         applicationId "com.dupreincaperu.dupree"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 11
-        versionName "1.1"
+        versionCode 17
+        versionName "1.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -121,7 +121,7 @@ dependencies {
     implementation "com.google.firebase:firebase-messaging:$rootProject.ext.firebaseSupportVersion"
     implementation "com.google.firebase:firebase-auth:$rootProject.ext.firebaseSupportVersion"
     implementation "com.google.firebase:firebase-core:$rootProject.ext.firebaseSupportVersion"
-
+    implementation "com.google.firebase:firebase-config:$rootProject.ext.firebaseSupportVersion"
 
     //text
     implementation 'me.biubiubiu.justifytext:library:1.1'

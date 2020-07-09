@@ -1,6 +1,7 @@
 package com.dupreincaperu.dupree.mh_fragments_main;
 
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
@@ -157,6 +158,10 @@ public class MainFragment extends Fragment {
         }
     };
 
+    public String getURLForResource (int resourceId) {
+        return Uri.parse("android.resource://"+R.class.getPackage().getName()+"/" +resourceId).toString();
+    }
+
     public void SlidePresentacion(SliderLayout slider) {
         try{
             String objetcImge = mPreferences.getJSONImageBanner(getActivity());
@@ -164,10 +169,13 @@ public class MainFragment extends Fragment {
 
             if(list_image != null){
                 HashMap<String, String> file_maps = new HashMap<String, String>();
-                file_maps.put("1", list_image.getImg1());
+                /*file_maps.put("1", list_image.getImg1());
                 file_maps.put("2", list_image.getImg2());
-                file_maps.put("3", list_image.getImg3());
+                file_maps.put("3", list_image.getImg3());*/
 
+                file_maps.put("1", getURLForResource(R.drawable.bannerazzorti1));
+                file_maps.put("2", getURLForResource(R.drawable.bannerazzorti2));
+                file_maps.put("3", getURLForResource(R.drawable.bannerazzorti3));
 
                 BannerSliderAdapter SliderView=null;
                 for (String name : file_maps.keySet()) {

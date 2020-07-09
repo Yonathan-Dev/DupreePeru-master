@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.LocalBroadcastManager;
@@ -16,10 +17,16 @@ import android.widget.Toast;
 
 import com.dupreincaperu.dupree.mh_adapters.MainPagerAdapter;
 import com.dupreincaperu.dupree.mh_adapters.AuthenticatePagerAdapter;
+import com.dupreincaperu.dupree.mh_dial_peru.actualizarApp;
 import com.dupreincaperu.dupree.mh_dialogs.MH_Dialogs_Login;
 import com.dupreeinca.lib_api_rest.model.dto.response.DataAuth;
 import com.dupreeinca.lib_api_rest.model.dto.response.GenericDTO;
 import com.dupreincaperu.dupree.mh_utilities.mPreferences;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     ViewPager mViewPager;
 
     private BottomNavigationView bottomNavigation;
+
+    int version;
+    FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
 
     //Toolbar toolbar;
     @Override
@@ -188,6 +198,33 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         registerBroadcat();
         Log.i(TAG,"onResume()");
+
+        //Actualiza version app firebase
+        PackageInfo packageInfo;
+        try {
+            packageInfo = this.getPackageManager().getPackageInfo(getPackageName(),0);
+            version = packageInfo.versionCode;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        remoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder().setDeveloperModeEnabled(true).build());
+        HashMap<String, Object> actualizacion = new HashMap<>();
+        actualizacion.put("versioncode",version);
+        Task<Void> fetch = remoteConfig.fetch(0);
+        fetch.addOnSuccessListener(this,aVoid -> {
+            remoteConfig.activateFetched();
+            version(version);
+        } );
+    }
+
+    private void version(int version) {
+        int    versioncode      = (int) remoteConfig.getLong("versioncode");
+        String urlplaystore     = remoteConfig.getString("urlplaystore");
+        String versionname      = remoteConfig.getString("versioname");
+        if (versioncode>version){
+            new actualizarApp(this,urlplaystore);
+        }
     }
 
     @Override

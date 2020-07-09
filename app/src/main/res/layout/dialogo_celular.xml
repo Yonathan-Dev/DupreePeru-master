@@ -26,7 +26,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#000000"
-        android:text="INGRESE NÚMERO DE CELULAR" />
+        android:text="INGRESE TRANSPORTISTA" />
 
     <EditText
         android:id="@+id/edt_nume_celu"
@@ -67,7 +67,7 @@
             android:layout_marginLeft="80dp"
             android:layout_marginRight="80dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/boton_azul"
+            android:background="@drawable/boton_color_dupree"
             android:text="ACEPTAR"
             android:textColor="#000000" />
 

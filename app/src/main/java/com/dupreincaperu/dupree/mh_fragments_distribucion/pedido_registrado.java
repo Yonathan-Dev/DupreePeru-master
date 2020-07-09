@@ -78,7 +78,7 @@ public class pedido_registrado extends AppCompatActivity {
 
                         ListGuia.add(fact_sri.trim());
                         ListPedido.add(nume_fact.trim());
-                        ListUbicacion.add(fac_lati.substring(0,6));
+                        ListUbicacion.add(fac_lati.substring(0,6)+", "+fac_long.substring(0,6));
                         ListCont.add(String.valueOf(i));
                         ListFecha.add(acti_hora.trim());
 

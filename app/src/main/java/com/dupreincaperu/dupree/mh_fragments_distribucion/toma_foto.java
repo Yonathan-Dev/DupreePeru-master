@@ -45,9 +45,12 @@ import com.android.volley.toolbox.Volley;
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.mh_pasa_prod.dato_gene;
 import com.dupreincaperu.dupree.mh_sqlite.MyDbHelper;
+import com.image.lib_image.BuildConfig;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -207,7 +210,15 @@ public class toma_foto extends AppCompatActivity {
     }
 
     private void tomarFotografia() {
+        /*
         File fileImagen = new File(Environment.getExternalStorageDirectory(),RUTA_IMAGEN);
+        boolean isCreada = fileImagen.exists();*/
+
+        /*
+        String imageFilePath = getExternalFilesDir(Environment.DIRECTORY_PICTURES)+File.separator+"picture.jpg";
+        Toast.makeText(getBaseContext(),"RUTA : "+imageFilePath, Toast.LENGTH_SHORT).show();*/
+
+        File fileImagen = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         boolean isCreada = fileImagen.exists();
 
         if(isCreada==false){
@@ -215,16 +226,15 @@ public class toma_foto extends AppCompatActivity {
         }
         if(isCreada==true){
             nombreImagen = pedido+".jpg";
+            path=getExternalFilesDir(Environment.DIRECTORY_PICTURES)+File.separator+nombreImagen;
 
-            path=Environment.getExternalStorageDirectory()+File.separator+RUTA_IMAGEN+File.separator+nombreImagen;
-            File imagen=new File(path);
+            File imagen =new File(path);
 
             if (imagen.exists()){
                 imagen.delete();
             }
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
             if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.N) {
                 //String authorities=getApplicationContext().getPackageName()+".provider";
                 String authorities="com.image.lib_image"+".provider";
@@ -255,40 +265,32 @@ public class toma_foto extends AppCompatActivity {
                     break;
 
                 case COD_FOTO:
-                    MediaScannerConnection.scanFile(this, new String[]{path}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("Ruta de almacenamiento","Path: "+path);
-                                }
-                            });
-                    bitmap= BitmapFactory.decodeFile(path);
-                    imagen.setImageBitmap(bitmap);
+                    RedimeRotarImagen();
                     break;
             }
-            bitmap = redimensionar_imagen(bitmap, 500, 500);
-            //Reduccion de imagen a 15KB
+
         }
     }
 
 
-    private Bitmap redimensionar_imagen(Bitmap bitmap, float  anchoNuevo, float altoNuevo) {
+    public void RedimeRotarImagen(){
 
-        int ancho = bitmap.getWidth();
-        int alto = bitmap.getHeight();
+        bitmap = BitmapFactory.decodeFile(path);
+        Bitmap bitmapout = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
 
-        if (ancho>anchoNuevo || alto>altoNuevo){
-            float escalaancho = anchoNuevo / ancho;
-            float escalalto = altoNuevo / alto;
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
+        Bitmap rotateBitmap = Bitmap.createBitmap(bitmapout, 0, 0, bitmapout.getWidth(),
+                bitmapout.getHeight(), matrix, true);
 
-            Matrix matrix = new Matrix();
-            matrix.postScale(escalaancho, escalalto);
-
-            return Bitmap.createBitmap(bitmap, 0, 0 , ancho, alto, matrix, false);
+        try {
+            rotateBitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(path));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        else{
-            return bitmap;
-        }
+
+        imagen.setImageBitmap(rotateBitmap);
+
     }
 
     private void guardar_imagen(Drawable imag_anti) {
@@ -307,7 +309,8 @@ public class toma_foto extends AppCompatActivity {
                         {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(getBaseContext(),response.trim(),Toast.LENGTH_SHORT).show();
+                                Log.e("ALMAIMA",response.trim());
+                                //Toast.makeText(getBaseContext(),response.trim(),Toast.LENGTH_SHORT).show();
 
                                 finish();
                                 pdp.dismiss();
@@ -318,7 +321,7 @@ public class toma_foto extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 pdp.dismiss();
-                                Toast.makeText(getBaseContext(),"No se puede conectar con el servidor."+error,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(),"IMAG: No se puede conectar con el servidor."+error,Toast.LENGTH_SHORT).show();
                             }
                         }
                 ) {

@@ -14,6 +14,7 @@ public final class ClienteContract {
         public static final String COLUMN_NOMB_TERC = "nomb_terc";
         public static final String COLUMN_APEL_TERC = "apel_terc";
         public static final String COLUMN_DIRE_TERC = "dire_terc";
+        public static final String COLUMN_DIRE_REFE = "dire_refe";
         public static final String COLUMN_NUME_FACT = "nume_fact";
         public static final String COLUMN_REMI_SRI  = "remi_sri";
         public static final String COLUMN_CODI_CAMP = "codi_camp";
@@ -21,6 +22,7 @@ public final class ClienteContract {
         public static final String COLUMN_CY        = "cy";
         public static final String COLUMN_CX        = "cx";
         public static final String COLUMN_DIST_ZONA = "dist_zona";
+        public static final String COLUMN_CELU_TER1 = "celu_ter1";
     }
 
 

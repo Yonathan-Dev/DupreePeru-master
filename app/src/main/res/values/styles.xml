@@ -85,6 +85,13 @@
         <item name="spinBars">true</item>
         <item name="color">@android:color/black</item>
     </style>
+
+    <style name="custom_fab">
+        <item name="android:background">@drawable/bordefondotextview</item>
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
     <!--FIN-->
 
 </resources>

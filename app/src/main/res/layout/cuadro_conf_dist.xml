@@ -28,9 +28,9 @@
             android:layout_marginEnd="84dp"
             android:layout_marginRight="84dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/boton_rojo"
-            android:text="Rechazar"
-            android:textColor="@android:color/background_light"
+            android:background="@drawable/borde_amar_negr"
+            android:text="Aceptar"
+            android:textColor="@android:color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +54,7 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/txtmenmotivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +65,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="4dp"
             android:text="Seleccionar motivo:"
-            android:textColor="#00508B"
+            android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/spn_motivo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +83,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:textColor="#ff0000"
-            android:textSize="8sp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -90,7 +91,7 @@
         <ImageView
             android:id="@+id/img_cerr_moti"
             android:layout_width="29dp"
-            android:layout_height="21dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"

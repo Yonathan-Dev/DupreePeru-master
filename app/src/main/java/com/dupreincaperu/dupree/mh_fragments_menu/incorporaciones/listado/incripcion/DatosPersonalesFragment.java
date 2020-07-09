@@ -289,11 +289,11 @@ public class DatosPersonalesFragment extends BaseFragment implements View.OnClic
             valid.setLoginError("La identificación debe ser validado",binding.txtIdentyCardRef);
             return false;
         } else if(model.getNombre().isEmpty()){
-            msgToast("Nombre de asesora... Verifique");
+            //msgToast("Nombre de asesora... Verifique");
             valid.setLoginError(getString(R.string.campo_requerido),binding.txtNameIncrip);
             return false;
         } else if(model.getCedula().isEmpty()){
-            msgToast("Cêdula de asesora... Verifique");
+            //msgToast("Cêdula de asesora... Verifique");
             valid.setLoginError(getString(R.string.campo_requerido),binding.txtIdentyCard);
             return false;
         }

@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FBDE40</color>
+    <color name="colorPrimary">#fbe256</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#000000</color>
 
     <color name="colorSecundario">#000000</color>
 
     <color name="azulDupree">#a7000000</color>
-    <color name="yellowDupree4">#FBDE40</color>
-    <color name="yellowDupree3">#FBDE40</color>
+    <color name="yellowDupree4">#fbe256</color>
+    <color name="yellowDupree3">#fbe256</color>
 
+    <color name="colorborde">#f8dc5d</color>
+    <color name="colorfondo">#f4e192</color>
+    <color name="colortexto">#444444</color>
+    <color name="colorplateado">#9e9e9e</color>
 
     <!--<color name="azulDupree">#008bfc</color>
     <color name="azulDupree4">#64B5F6</color>
     <color name="azulDupree3">#BBDEFB</color>-->
-    <color name="transp_azulDupree">#FBDE40</color>
+    <color name="transp_azulDupree">#fbe256</color>
    <!-- <color name="transp_azulDupree">#8c008bfc</color>-->
-    <color name="transp_dupree_1">#FBDE40</color>
+    <color name="transp_dupree_1">#fbe256</color>
 
     <color name="transp_azulDupree_chat">#1c008bfc</color>
 
@@ -52,7 +56,7 @@
     <color name="green_check2">#FF00C853</color>
 
     <color name="red_1">#E53935</color>
-    <color name="orange_600">#FBDE40</color>
+    <color name="orange_600">#fbe256</color>
 
 
     <color name="black_overlay">#66000000</color>

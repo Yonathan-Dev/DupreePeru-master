@@ -98,7 +98,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
     Camera camera;
     private Profile perfil;
     String codi_prog[];
-    String nomb_comp, corr_empl;
+    String nomb_comp, corr_empl, tipo_vinc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,7 +141,13 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
 
         //Para el uso de imagenes
         camera = new Camera(MenuActivity.this);
-        showMenuByPerfil(binding.navView);
+        //showMenuByPerfil(binding.navView);
+
+        if (!tipo_vinc.equalsIgnoreCase("T")){
+            showMenuByPerfil(binding.navView);
+        } else{
+            habilitarModulos(binding.navView);
+        }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         hview = navigationView.getHeaderView(0);
@@ -297,9 +303,9 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                             /*navigationView.getMenu().findItem(R.id.menu_lat_pedidos_ret).setVisible(true);
                             navigationView.getMenu().findItem(R.id.menu_lat_redimir_incentivos).setVisible(false);
                             navigationView.getMenu().findItem(R.id.menu_lat_posi_ase).setVisible(true);
-                            navigationView.getMenu().findItem(R.id.menu_lat_list_posi_ase).setVisible(true);*/
+                            navigationView.getMenu().findItem(R.id.menu_lat_list_posi_ase).setVisible(true);
                             navigationView.getMenu().findItem(R.id.servicios).setVisible(true);
-                            navigationView.getMenu().findItem(R.id.aula_virt).setVisible(true);
+                            navigationView.getMenu().findItem(R.id.aula_virt).setVisible(true);*/
                             navigationView.getMenu().findItem(R.id.menu_lat_register).setVisible(true);
                             navigationView.getMenu().findItem(R.id.menu_lat_list_pre).setVisible(true);
                         }
@@ -308,6 +314,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                 tamano--;
             }
         }
+
 
     }
 
@@ -947,12 +954,41 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
         String nomb_comp = preferences.getString("nomb_comp","");
         String corr_empl = preferences.getString("corr_empl","");
         this.nomb_comp = nomb_comp;
+        this.tipo_vinc = preferences.getString("tipo_vinc","");;
 
         if (corr_empl.equalsIgnoreCase("null"))
             this.corr_empl = "";
         else
             this.corr_empl = corr_empl;
 
+    }
+
+    private void habilitarModulos(NavigationView navigationView){
+        navigationView.getMenu().findItem(R.id.menu_lat_home_asesoras).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_home_gerentes).setVisible(false);
+        navigationView.getMenu().findItem(R.id.posibles_asesoras).setVisible(false);
+        navigationView.getMenu().findItem(R.id.incorporaciones).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_pedidos_ret).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_edo_pedido).setVisible(false);
+        navigationView.getMenu().findItem(R.id.servicios).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_reporte_ubicacion).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_hacer_pedidos).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_hacer_prepedidos).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_catalogo).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_cat_premios).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_faltantes).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_consulta_puntos).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_incent_por_referido).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_reportes).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_pet_quej_rec_pqr).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_update).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_modif_perfil).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_bandeja_entrada).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_share).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menu_lat_logout).setVisible(true);
+        navigationView.getMenu().findItem(R.id.proc_dist_conf_manu).setVisible(true);
+        navigationView.getMenu().findItem(R.id.geoc_inve).setVisible(true);
+        onNavigationItemSelected(navigationView.getMenu().findItem(R.id.proc_dist_conf_manu));
     }
 
     protected void onDestroy() {

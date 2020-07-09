@@ -19,7 +19,8 @@ ext {
     minSdkVersion = 19
     minSdkVersion_modern = 21
     minSdkVersion_legacy = 15
-    buildToolsVersion = "28.0.3"
+    //buildToolsVersion = "28.0.3"
+    buildToolsVersion = "30.0.0 rc4"
 
     androidSupportVersion = '28.0.0'
     firebaseSupportVersion = '11.8.0'
@@ -35,8 +36,6 @@ allprojects {
         maven {
             url 'https://github.com/uPhyca/stetho-realm/raw/master/maven-repo'
         }
-
-
     }
 }
 

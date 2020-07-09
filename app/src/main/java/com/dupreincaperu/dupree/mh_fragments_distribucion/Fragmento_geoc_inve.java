@@ -28,6 +28,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.mh_dial_peru.cuadro_mensaje_bd;
+import com.dupreincaperu.dupree.mh_dial_peru.dialogo_personal;
 import com.dupreincaperu.dupree.mh_pasa_prod.dato_gene;
 
 import org.json.JSONArray;
@@ -72,7 +73,7 @@ public class Fragmento_geoc_inve extends Fragment {
     ImageView cale_fac_conf, geoc_fac_conf;
     TextView acti_hora_fac_conf;
     EditText edt_codi_zona;
-    String acti_hora="", cons_fac_conf="",fac_lati="", fac_long="", fac_dire="", codi_zona="", acti_usua="", acti_usua_vaci="" ;
+    String acti_hora="", cons_fac_conf="",fac_lati="", fac_long="", fac_dire="", codi_zona="";
     int cont_geoc=0, cont_auxi=0;
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
@@ -85,12 +86,7 @@ public class Fragmento_geoc_inve extends Fragment {
         dato_gene SSL = new dato_gene();
 
         URL_EMPRESA = URL.getURL_EMPRESA();
-        /*
-        if (String.valueOf(SSL.getSSL_EMPRESA()).equalsIgnoreCase("PROD")){
-            request = Volley.newRequestQueue(getContext(), new HurlStack(null, getSocketFactory()));
-        } else{
-            request = Volley.newRequestQueue(getContext(), new HurlStack(null, getSocketFactory_test()));
-        } */
+
         request = Volley.newRequestQueue(getContext());
 
         contexto = this;
@@ -131,10 +127,12 @@ public class Fragmento_geoc_inve extends Fragment {
             @Override
             public void onClick(View v) {
                 /*if(edt_codi_zona.getText().toString().equalsIgnoreCase("")){
+                    new dialogo_personal(getContext(), "Error ingrese la zona");
                     Toast.makeText(getContext(),"*Error ingrese la zona.",Toast.LENGTH_SHORT).show();
                 } else  */
                 if (acti_hora.equalsIgnoreCase("")){
-                    Toast.makeText(getContext(),"*Error ingrese la fecha",Toast.LENGTH_SHORT).show();
+                    new dialogo_personal(getContext(), "Error ingrese la fecha");
+                    //Toast.makeText(getContext(),"*Error ingrese la fecha",Toast.LENGTH_SHORT).show();
                 } else {
                     codi_zona = edt_codi_zona.getText().toString();
                     obtener_coordenadas(acti_hora, codi_zona);
@@ -154,7 +152,7 @@ public class Fragmento_geoc_inve extends Fragment {
             try {
                 Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
                 List<Address> list = geocoder.getFromLocation(
-                        Double.parseDouble(fac_lati), Double.parseDouble(fac_long), 1);
+                        Double.parseDouble(fac_lati), Double.parseDouble(fac_long), 3);
                 if (!list.isEmpty()) {
                     Address DirCalle = list.get(0);
                     fac_dire = String.valueOf(DirCalle.getAddressLine(0));

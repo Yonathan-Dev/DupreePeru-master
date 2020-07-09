@@ -1,4 +1,5 @@
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
@@ -9,7 +10,6 @@
             type="com.dupreeinca.lib_api_rest.model.dto.request.InscriptionDTO"/>
     </data>
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -228,17 +228,18 @@
                         android:layout_marginEnd="16dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <EditText
-                            android:onClick="@{(v) -> callback.onClick(v)}"
-                            android:text="@={model.nacimiento}"
                             android:id="@+id/txtDateBird"
-                            android:inputType="text"
-                            android:layout_marginTop="8dp"
-                            android:maxLength="10"
-                            android:digits="@string/fecha_data"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/fecha_de_nacimiento"/>
+                            android:layout_marginTop="8dp"
+                            android:digits="@string/fecha_data"
+                            android:hint="@string/fecha_de_nacimiento"
+                            android:inputType="text"
+                            android:maxLength="10"
+                            android:onClick="@{(v) -> callback.onClick(v)}"
+                            android:text="@={model.nacimiento}" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -270,7 +271,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="32dp"
-                        android:background="@drawable/boton_azul"
+                        android:background="@drawable/boton_color_dupree"
                         android:textColor="@color/black"
                         android:text="@string/continuar"/>
                 </LinearLayout>

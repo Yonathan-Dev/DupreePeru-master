@@ -21,7 +21,7 @@ public class pedido_track extends AppCompatActivity {
 
     ArrayList<String> ListNume;
     ArrayList<String> ListPedi;
-    ArrayList<String> ListConf;
+    ArrayList<String> ListEsta;
     ArrayList<String> ListMoti;
     ArrayList<String> ListHora;
     RecyclerView recycler;
@@ -52,13 +52,13 @@ public class pedido_track extends AppCompatActivity {
 
         ListNume = new ArrayList<String>();
         ListPedi = new ArrayList<String>();
-        ListConf = new ArrayList<String>();
+        ListEsta = new ArrayList<String>();
         ListMoti = new ArrayList<String>();
         ListHora = new ArrayList<String>();
         int i = 1;
 
         if(db!=null) {
-            Cursor c = db.rawQuery("SELECT cliente.nume_fact, pedi_conf.nomb_moti, pedi_conf.acti_hora acti_hora FROM cliente LEFT JOIN pedi_conf ON cliente.nume_fact = pedi_conf.nume_fact ORDER BY acti_hora DESC", null);
+            Cursor c = db.rawQuery("SELECT cliente.nume_fact, pedi_conf.nomb_moti, pedi_conf.acti_hora FROM cliente LEFT JOIN pedi_conf ON cliente.nume_fact = pedi_conf.nume_fact ORDER BY acti_hora DESC", null);
             int p = c.getCount();
 
             if (p>0){
@@ -71,30 +71,30 @@ public class pedido_track extends AppCompatActivity {
                         String acti_hora   = c.getString(2);
 
                         ListNume.add(String.valueOf(i));
-
                         ListPedi.add(nume_fact.trim());
 
+
                         if (acti_hora == null || acti_hora ==""){
-                            ListConf.add("NO");
+                            ListEsta.add("ASIGNADO");
+                        } else if(nomb_moti.length()>1){
+                            ListEsta.add("MOTIVADO");
                         } else {
-                            ListConf.add("SI");
+                            ListEsta.add("CONFIRMADO");
                         }
 
-                        if (nomb_moti.trim() == "null"){
-                            ListMoti.add("");
-                        } else if (nomb_moti.trim().equalsIgnoreCase("") ){
-                            ListMoti.add("NO");
+                        if (nomb_moti.trim() == "null" || nomb_moti.trim().equalsIgnoreCase("") ){
+                            ListMoti.add("-");
                         } else{
-                            ListMoti.add("SI");
+                            ListMoti.add(nomb_moti.trim());
                         }
 
                         if (acti_hora == null){
-                            ListHora.add("");
+                            ListHora.add("-");
                         } else {
                             ListHora.add(acti_hora.trim());
                         }
 
-                        Adaptador_pedido_track adapter = new Adaptador_pedido_track(ListNume, ListPedi, ListConf, ListMoti, ListHora);
+                        Adaptador_pedido_track adapter = new Adaptador_pedido_track(ListNume, ListPedi, ListEsta, ListMoti, ListHora);
                         recycler.setAdapter(adapter);
 
                         i++;

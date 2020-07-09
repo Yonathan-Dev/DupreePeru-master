@@ -112,7 +112,6 @@ public class Http {
                 .client(client.build())
                 .build();
 
-
     }
 
     private GenericListener genericListener;
@@ -576,8 +575,8 @@ public class Http {
                             String jsonInString = response.errorBody().string();
                             Log.e(TAG, "Retrofit Response : " + jsonInString);
                             GenericDTO resp = new Gson().fromJson(jsonInString, GenericDTO.class);
-
-                            msgError = resp.getRaise().get(0).getField().concat(". ").concat(resp.getRaise().get(0).getError());
+                            msgError=resp.getRaise().get(0).getError();
+                            //msgError = resp.getRaise().get(0).getField().concat(". ").concat(resp.getRaise().get(0).getError());
                         } catch (IOException e) {
                             msgError = myContext.getResources().getString(R.string.http_error_desconocido);
                         }

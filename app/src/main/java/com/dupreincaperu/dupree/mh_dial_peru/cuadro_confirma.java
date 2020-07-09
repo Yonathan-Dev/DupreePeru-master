@@ -48,7 +48,7 @@ public class cuadro_confirma {
         no_confi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!motivo.getSelectedItem().toString().equalsIgnoreCase("")){
+                if (!motivo.getSelectedItem().toString().equalsIgnoreCase("SELECCIONE MOTIVO")){
                     interfaz.ResultadoCuadroDialogo(motivo.getSelectedItem().toString());
                     dialogo.dismiss();
                 } else {

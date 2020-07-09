@@ -14,19 +14,17 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorfondo"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView52"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:gravity="center"
             android:text="Seguimiento de pedido"
             android:textAllCaps="true"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -35,34 +33,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="13dp">
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/borde_azul"
             android:orientation="vertical">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/RecyclerTrack"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#00571919"
-                android:scrollbars="vertical"
-                android:textAlignment="center">
+                android:scrollbars="vertical">
 
             </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>

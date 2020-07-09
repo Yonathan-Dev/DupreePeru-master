@@ -287,21 +287,21 @@ public class DirFormato1Fragment extends BaseFragment implements View.OnClickLis
         //departamento
         if (model.getDepartamento().isEmpty())
         {
-            msgToast("Dir. Res. > Dpto... Verifique");
+            msgToast("Campo departamento requerido");
             valid.setLoginError(getResources().getString(R.string.campo_requerido), binding.txtSpnDepartamento);
             return false;
         }
 
         if (model.getName_ciudad().isEmpty())
         {
-            msgToast("Dir. Res. > Ciudad... Verifique");
+            msgToast("Campo provincia requerido");
             valid.setLoginError(getResources().getString(R.string.campo_requerido), binding.txtSpnNameCiudad);
             return false;
         }
 
         if (model.getBarrio().isEmpty())
         {
-            msgToast("Dir. Res. > Barrio... Verifique");
+            msgToast("Campo distrito requerido");
             valid.setLoginError(getResources().getString(R.string.campo_requerido), binding.txtSpnBarrio);
             return false;
         }
