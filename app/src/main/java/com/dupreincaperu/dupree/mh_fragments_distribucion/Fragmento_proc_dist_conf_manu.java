@@ -1040,10 +1040,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-
                 int i = response.length();
                 try {
-
                     while (i >= 1){
                         JSONObject carg_pedi = response.getJSONObject(i-1);
                         acti_fech  = carg_pedi.getString("acti_fech").trim();
@@ -1063,13 +1061,12 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
                         if (acti_fech.equalsIgnoreCase(getDate())){
                             carg_clie_dato(acti_fech,nume_iden,nomb_terc,apel_terc,dire_terc,dire_refe,nume_factc,remi_sri, codi_camp, cons_terc, cy, cx, dist_zona, celu_ter1);
-                            carg_canj_devo(cons_terc);
+                            //carg_canj_devo(cons_terc);
                         } else {
                             cont = -1;
                             break;
                         }
                         i--;
-
                     }
 
                     pdp.dismiss();
