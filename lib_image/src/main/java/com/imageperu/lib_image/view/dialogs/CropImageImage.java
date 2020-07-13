@@ -1,4 +1,4 @@
-package com.image.lib_image.view.dialogs;
+package com.imageperu.lib_image.view.dialogs;
 
 import android.app.Dialog;
 import android.databinding.DataBindingUtil;
@@ -16,9 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.image.lib_image.R;
-import com.image.lib_image.databinding.FragmentEditCutImageBinding;
-import com.image.lib_image.util.ConvertUtil;
+import com.imageperu.lib_image.R;
+import com.imageperu.lib_image.databinding.FragmentEditCutImageBinding;
+import com.imageperu.lib_image.util.ConvertUtil;
 import com.isseiaoki.simplecropview.CropImageView;
 import com.isseiaoki.simplecropview.callback.CropCallback;
 import com.isseiaoki.simplecropview.callback.LoadCallback;
@@ -152,7 +152,7 @@ public class CropImageImage extends DialogFragment implements View.OnClickListen
         //try {
             //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), outputUri);
             if(cutImageReady != null){
-                cutImageReady.croppeFile(/*"data:image/png;base64," +*/ ConvertUtil.getPath(getContext(), outputUri));
+                cutImageReady.croppeFile(/*"data:imageperu/png;base64," +*/ ConvertUtil.getPath(getContext(), outputUri));
             }
         //} catch (IOException | NullPointerException e) {
         //    e.printStackTrace();

@@ -24,7 +24,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -34,7 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.dupreincaperu.dupree.mh_pasa_prod.dato_gene;
-import com.image.lib_image.MyProviderImage;
+import com.imageperu.lib_image.MyProviderImage;
 import com.dupreeinca.lib_api_rest.controller.UploadFileController;
 import com.dupreeinca.lib_api_rest.model.dto.response.UrlCatalogoDTO;
 import com.dupreeinca.lib_api_rest.model.dto.response.UrlsCatalogosDTO;

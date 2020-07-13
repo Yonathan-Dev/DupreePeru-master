@@ -1,4 +1,4 @@
-package com.image.lib_image.util;
+package com.imageperu.lib_image.util;
 
 import android.Manifest;
 import android.app.Activity;
@@ -16,8 +16,8 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.image.lib_image.BuildConfig;
-import com.image.lib_image.view.dialogs.CropImageImage;
+import com.imageperu.lib_image.BuildConfig;
+import com.imageperu.lib_image.view.dialogs.CropImageImage;
 import com.isseiaoki.simplecropview.CropImageView;
 
 import java.io.File;

@@ -35,7 +35,7 @@ public class UploadFileController extends TTGenericController {
             return;
         }
 
-        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+        RequestBody reqFile = RequestBody.create(MediaType.parse("imageperu/*"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("imagen", file.getName(), reqFile);
         RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
 
@@ -60,7 +60,7 @@ public class UploadFileController extends TTGenericController {
         }
 
         File file = new File(pathFile);
-        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+        RequestBody reqFile = RequestBody.create(MediaType.parse("imageperu/*"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("imagen", file.getName(), reqFile);
         RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
 

@@ -21,7 +21,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.image.lib_image.MyProviderImage;
+import com.imageperu.lib_image.MyProviderImage;
 import com.dupreeinca.lib_api_rest.model.dto.response.UrlCatalogoDTO;
 import com.dupreeinca.lib_api_rest.model.dto.response.UrlsCatalogosDTO;
 import com.dupreeinca.lib_api_rest.model.view.Profile;

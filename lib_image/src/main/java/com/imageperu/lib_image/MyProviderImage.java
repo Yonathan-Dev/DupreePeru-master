@@ -1,4 +1,4 @@
-package com.image.lib_image;
+package com.imageperu.lib_image;
 
 /**
  * Created by marwuinh@gmail.com on 3/16/19.

@@ -1,4 +1,4 @@
-package com.image.lib_image.util;
+package com.imageperu.lib_image.util;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;

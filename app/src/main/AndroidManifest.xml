@@ -68,7 +68,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.image.lib_image.provider"
+            android:authorities="com.imageperu.lib_image.provider"
             android:exported="false"
             android:grantUriPermissions="true"
             tools:replace="android:authorities">
@@ -77,7 +77,7 @@
                 android:resource="@xml/provider_image_paths" />
         </provider>
 
-        <!-- Este provider es de Peru (Este se coloco el nombre com.image.lib_image.provider)-->
+        <!-- Este provider es de Peru (Este se coloco el nombre imageperuperu.lib_image.provider)-->
 
         <!--
         <provider

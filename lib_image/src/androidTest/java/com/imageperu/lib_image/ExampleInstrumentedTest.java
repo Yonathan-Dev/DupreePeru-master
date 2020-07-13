@@ -1,4 +1,4 @@
-package com.image.lib_image;
+package com.imageperu.lib_image;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

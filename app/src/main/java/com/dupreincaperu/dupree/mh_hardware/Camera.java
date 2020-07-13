@@ -45,7 +45,7 @@ public class Camera {
     public static final int PICK_IMAGE_REQUEST = 2;
     //captured picture uri
     public static Uri picUri;
-    //image later permissions
+    //imageperu later permissions
     public static final String TAKE_PHOTO="Take Photo";
     public static final String CHOOSE_PHOTO="Choose from Library";
     public static  final String BROACAST_DATA="broacast_data";
@@ -163,9 +163,9 @@ public class Camera {
 
     public void onActivityResultHand(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            //user is returning from capturing an image using the camera
+            //user is returning from capturing an imageperu using the camera
             if(requestCode == CAMERA_CAPTURE){
-                //get the Uri for the captured image
+                //get the Uri for the captured imageperu
                 Uri uri = picUri;
                 //carry out the crop operation
                 performCrop();
@@ -179,13 +179,13 @@ public class Camera {
                 picUri = data.getData();
                 Log.d("uriGallery", picUri.toString());
                 performCrop();
-            } else if(requestCode == PIC_CROP){//user is returning from cropping the image
+            } else if(requestCode == PIC_CROP){//user is returning from cropping the imageperu
                 //get the returned data
                 Log.e("performCrop()","................................X");
                 Bundle extras = data.getExtras();
                 //get the cropped bitmap
                 Bitmap thePic = (Bitmap) extras.get("data");
-                //display the returned cropped image
+                //display the returned cropped imageperu
                 //ENVIAR LA IMAGEN
                 imageViewPic.setImageBitmap(thePic);
                 //convertImageToBase64(thePic);
@@ -250,7 +250,7 @@ public class Camera {
 
     private byte[] convertImageBitmanToByte(Bitmap bitmap){
         //si viene d euna ruta
-        //Bitmap bm = BitmapFactory.decodeFile("/path/to/image.jpg");
+        //Bitmap bm = BitmapFactory.decodeFile("/path/to/imageperu.jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
         byte[] b = baos.toByteArray();
@@ -274,8 +274,8 @@ public class Camera {
             //call the standard crop action intent (the user device may not support it)
             Intent cropIntent = new Intent("com.android.camera.action.CROP");
             Log.e("performCrop()","................................2");
-            //indicate image type and Uri
-            cropIntent.setDataAndType(picUri, "image/*");
+            //indicate imageperu type and Uri
+            cropIntent.setDataAndType(picUri, "imageperu/*");
 
             ///// PERMISOS PARA ANDROID >6
 

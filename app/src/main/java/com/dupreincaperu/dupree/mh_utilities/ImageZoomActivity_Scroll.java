@@ -48,7 +48,7 @@ public class ImageZoomActivity_Scroll extends AppCompatActivity {
         dots = new TextView[array_images.length];
         addBottomDots(0);
 
-        //image.add(Data.mh_nearby_users.get(position).getImage());//primera imagen antes de actualizar
+        //imageperu.add(Data.mh_nearby_users.get(position).getImage());//primera imagen antes de actualizar
         mCustomPagerAdapter = new ProfileViewPagerAdapter(ImageZoomActivity_Scroll.this, image);
         viewpager_zoom.setAdapter(mCustomPagerAdapter);
         viewpager_zoom.addOnPageChangeListener(mOnPageChangeListener);

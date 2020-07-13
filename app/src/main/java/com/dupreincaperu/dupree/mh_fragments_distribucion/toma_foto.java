@@ -13,7 +13,6 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -45,7 +44,6 @@ import com.android.volley.toolbox.Volley;
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.mh_pasa_prod.dato_gene;
 import com.dupreincaperu.dupree.mh_sqlite.MyDbHelper;
-import com.image.lib_image.BuildConfig;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -237,7 +235,7 @@ public class toma_foto extends AppCompatActivity {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.N) {
                 //String authorities=getApplicationContext().getPackageName()+".provider";
-                String authorities="com.image.lib_image"+".provider";
+                String authorities="com.imageperu.lib_image"+".provider";
                 Uri imageUri= FileProvider.getUriForFile(this,authorities,imagen);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             } else {
@@ -279,7 +277,7 @@ public class toma_foto extends AppCompatActivity {
         Bitmap bitmapout = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
 
         Matrix matrix = new Matrix();
-        matrix.postRotate(90);
+        matrix.postRotate(0);
         Bitmap rotateBitmap = Bitmap.createBitmap(bitmapout, 0, 0, bitmapout.getWidth(),
                 bitmapout.getHeight(), matrix, true);
 
@@ -290,7 +288,6 @@ public class toma_foto extends AppCompatActivity {
         }
 
         imagen.setImageBitmap(rotateBitmap);
-
     }
 
     private void guardar_imagen(Drawable imag_anti) {

@@ -23,8 +23,8 @@ android {
         applicationId "com.dupreincaperu.dupree"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 17
-        versionName "1.7"
+        versionCode 18
+        versionName "1.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -107,7 +107,7 @@ dependencies {
     //permission
     implementation 'pub.devrel:easypermissions:2.0.0'
 
-    //image
+    //imageperu
     implementation 'com.squareup.picasso:picasso:2.4.0'
     // implementation 'com.squareup.picasso:picasso:2.71828'
 

@@ -930,7 +930,7 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
 
                         Intent shareIntent = new Intent();
                         shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
-                        shareIntent.setType("image/png");
+                        shareIntent.setType("imageperu/png");
                         shareIntent.setAction(Intent.ACTION_SEND);
                         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         startActivity(Intent.createChooser(shareIntent, "Compartir imagen del mapa"));

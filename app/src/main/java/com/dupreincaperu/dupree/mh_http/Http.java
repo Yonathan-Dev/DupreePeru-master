@@ -1121,7 +1121,7 @@ public class Http {
         Log.e("JSON", "uploadChatImage: "+new Gson().toJson(filePath));
         Log.e("JSON", "uploadChatImage: "+new Gson().toJson(file.getName()));
 
-        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+        RequestBody reqFile = RequestBody.create(MediaType.parse("imageperu/*"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("imagen", file.getName(), reqFile);
         RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
 
@@ -3192,7 +3192,7 @@ public class Http {
         Log.e("JSON", "uploadChatImage: "+new Gson().toJson(file.getPath()));
         Log.e("JSON", "uploadChatImage: "+new Gson().toJson(file.getName()));
 
-        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+        RequestBody reqFile = RequestBody.create(MediaType.parse("imageperu/*"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("imagen", file.getName(), reqFile);
         //RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
 
@@ -3259,7 +3259,7 @@ public class Http {
 //        Log.e("JSON", "uploadChatImage: "+new Gson().toJson(file.getPath()));
 //        Log.e("JSON", "uploadChatImage: "+new Gson().toJson(file.getName()));
 //
-//        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+//        RequestBody reqFile = RequestBody.create(MediaType.parse("imageperu/*"), file);
 //        MultipartBody.Part body = MultipartBody.Part.createFormData("imagen", file.getName(), reqFile);
 //        RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
 //
@@ -3329,7 +3329,7 @@ public class Http {
         Log.e("JSON", "uploadChatImage: "+new Gson().toJson(file.getPath()));
         Log.e("JSON", "uploadChatImage: "+new Gson().toJson(file.getName()));
 
-        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+        RequestBody reqFile = RequestBody.create(MediaType.parse("imageperu/*"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("imagen", file.getName(), reqFile);
         RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
 

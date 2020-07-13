@@ -1,5 +1,5 @@
 <resources>
-   <string name="api_url">https://alcor.dupree.pe/dupreeWS/</string>
+    <string name="api_url">https://alcor.dupree.pe/dupreeWS/</string>
     <!--<string name="api_url">https://alcor2per.azzorti.co/dupreeWS/</string>-->
 
     <string name="app_name">Dupree Azzorti</string>

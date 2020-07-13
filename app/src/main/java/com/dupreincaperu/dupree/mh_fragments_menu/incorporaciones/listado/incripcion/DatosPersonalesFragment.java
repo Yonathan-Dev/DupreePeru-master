@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import com.image.lib_image.util.PermissionCamera;
+import com.imageperu.lib_image.util.PermissionCamera;
 import com.dupreeinca.lib_api_rest.controller.InscripcionController;
 import com.dupreeinca.lib_api_rest.controller.UploadFileController;
 import com.dupreeinca.lib_api_rest.enums.EnumFormatDireccion;
@@ -40,11 +40,9 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**

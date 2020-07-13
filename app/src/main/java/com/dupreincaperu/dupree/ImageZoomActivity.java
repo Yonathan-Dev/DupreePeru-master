@@ -52,7 +52,7 @@ public class ImageZoomActivity extends AppCompatActivity {
         /*
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("image/*");
+        intent.setType("imageperu/*");
         startActivityForResult(intent, REQUEST_OPEN_RESULT_CODE);
         */
 

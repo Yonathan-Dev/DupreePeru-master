@@ -1,8 +1,6 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.listado.incripcion;
 
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,14 +8,11 @@ import android.databinding.ViewDataBinding;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.media.ExifInterface;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
@@ -27,10 +22,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.image.lib_image.util.PermissionCamera;
+import com.imageperu.lib_image.util.PermissionCamera;
 import com.dupreeinca.lib_api_rest.model.dto.request.InscriptionDTO;
 import com.dupreeinca.lib_api_rest.util.models.ModelList;
 import com.dupreincaperu.dupree.R;
@@ -40,14 +33,11 @@ import com.dupreincaperu.dupree.mh_utilities.dialogs.DialogListOption;
 import com.dupreincaperu.dupree.view.activity.BaseActivityListener;
 import com.dupreincaperu.dupree.view.fragment.BaseFragment;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,8 +45,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static android.Manifest.permission_group.CAMERA;
 import static android.app.Activity.RESULT_OK;
 
 
@@ -412,7 +400,7 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.N) {
-                String authorities="com.image.lib_image"+".provider";
+                String authorities="com.imageperu.lib_image"+".provider";
                 Uri imageUri= FileProvider.getUriForFile(getContext(),authorities,imagen);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             } else {

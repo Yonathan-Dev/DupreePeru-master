@@ -255,7 +255,7 @@ public class CameraSource {
     //==============================================================================================
 
     /**
-     * Callback interface used to signal the moment of actual image capture.
+     * Callback interface used to signal the moment of actual imageperu capture.
      */
     public interface ShutterCallback {
         /**
@@ -268,11 +268,11 @@ public class CameraSource {
     }
 
     /**
-     * Callback interface used to supply image data from a photo capture.
+     * Callback interface used to supply imageperu data from a photo capture.
      */
     public interface PictureCallback {
         /**
-         * Called when image data is available after a picture is taken.  The format of the data
+         * Called when imageperu data is available after a picture is taken.  The format of the data
          * is a jpeg binary.
          */
         void onPictureTaken(byte[] data);
@@ -490,8 +490,8 @@ public class CameraSource {
      * preview is suspended while the picture is being taken, but will resume once picture taking is
      * done.
      *
-     * @param shutter the callback for image capture moment, or null
-     * @param jpeg    the callback for JPEG image data, or null
+     * @param shutter the callback for imageperu capture moment, or null
+     * @param jpeg    the callback for JPEG imageperu data, or null
      */
     public void takePicture(ShutterCallback shutter, PictureCallback jpeg) {
         synchronized (mCameraLock) {
@@ -836,7 +836,7 @@ public class CameraSource {
      * Even though we may only need the preview size, it's necessary to find both the preview
      * size and the picture size of the camera together, because these need to have the same aspect
      * ratio.  On some hardware, if you would only set the preview size, you will get a distorted
-     * image.
+     * imageperu.
      *
      * @param camera        the camera to select a preview size from
      * @param desiredWidth  the desired width of the camera preview frames
@@ -1022,7 +1022,7 @@ public class CameraSource {
 
     /**
      * Creates one buffer for the camera preview callback.  The size of the buffer is based off of
-     * the camera preview size and the format of the camera image.
+     * the camera preview size and the format of the camera imageperu.
      *
      * @return a new preview buffer of the appropriate size for the current camera settings
      */
@@ -1125,7 +1125,7 @@ public class CameraSource {
 
                 if (!mBytesToByteBuffer.containsKey(data)) {
                     Log.d(TAG,
-                        "Skipping frame.  Could not find ByteBuffer associated with the image " +
+                        "Skipping frame.  Could not find ByteBuffer associated with the imageperu " +
                         "data from the camera.");
                     return;
                 }

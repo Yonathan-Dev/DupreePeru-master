@@ -1,4 +1,4 @@
-package com.image.lib_image.util;
+package com.imageperu.lib_image.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -23,7 +23,7 @@ public class SamsungCamera {
      *
      * @param context       The current context
      * @param selectedImage The Image URI
-     * @return Bitmap image results
+     * @return Bitmap imageperu results
      * @throws IOException
      */
     public static Bitmap handleSamplingAndRotationBitmap(Context context, Uri selectedImage)
@@ -66,7 +66,7 @@ public class SamsungCamera {
      */
     private static int calculateInSampleSize(BitmapFactory.Options options,
                                              int reqWidth, int reqHeight) {
-        // Raw height and width of image
+        // Raw height and width of imageperu
         final int height = options.outHeight;
         final int width = options.outWidth;
         int inSampleSize = 1;
@@ -77,15 +77,15 @@ public class SamsungCamera {
             final int heightRatio = Math.round((float) height / (float) reqHeight);
             final int widthRatio = Math.round((float) width / (float) reqWidth);
 
-            // Choose the smallest ratio as inSampleSize value, this will guarantee a final image
+            // Choose the smallest ratio as inSampleSize value, this will guarantee a final imageperu
             // with both dimensions larger than or equal to the requested height and width.
             inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
 
-            // This offers some additional logic in case the image has a strange
+            // This offers some additional logic in case the imageperu has a strange
             // aspect ratio. For example, a panorama may have a much larger
             // width than height. In these cases the total pixels might still
             // end up being too large to fit comfortably in memory, so we should
-            // be more aggressive with sample down the image (=larger inSampleSize).
+            // be more aggressive with sample down the imageperu (=larger inSampleSize).
 
             final float totalPixels = width * height;
 
@@ -100,9 +100,9 @@ public class SamsungCamera {
     }
 
     /**
-     * Rotate an image if required.
+     * Rotate an imageperu if required.
      *
-     * @param img           The image bitmap
+     * @param img           The imageperu bitmap
      * @param selectedImage Image URI
      * @return The resulted Bitmap after manipulation
      */

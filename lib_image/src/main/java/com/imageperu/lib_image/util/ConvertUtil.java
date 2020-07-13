@@ -1,4 +1,4 @@
-package com.image.lib_image.util;
+package com.imageperu.lib_image.util;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -104,7 +104,7 @@ public class ConvertUtil {
             Bitmap b = SamsungCamera.handleSamplingAndRotationBitmap(inContext, imageUri);
             return b;
         } catch (IOException | NullPointerException e) {
-            Log.e(TAG, "error to uri image");
+            Log.e(TAG, "error to uri imageperu");
             return null;
         }
     }
@@ -228,7 +228,7 @@ public class ConvertUtil {
         // Image nin islenmeden onceki genislik ve yuksekligi
         final int height = options.outHeight;
         final int width = options.outWidth;
-        Log.d(debugTag,"image height: "+height+ "---image width: "+ width);
+        Log.d(debugTag,"imageperu height: "+height+ "---imageperu width: "+ width);
         int inSampleSize = 1;
 
         if (height > reqHeight || width > reqWidth) {
@@ -249,13 +249,13 @@ public class ConvertUtil {
     public static Bitmap resizeAndCompressImageBeforeSend(Context context, String filePath, String fileName){
         final int MAX_IMAGE_SIZE = 1 * 1024 * 1024; // max final file size in kilobytes
 
-        // First decode with inJustDecodeBounds=true to check dimensions of image
+        // First decode with inJustDecodeBounds=true to check dimensions of imageperu
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(filePath,options);
 
-        // Calculate inSampleSize(First we are going to resize the image to 800x800 image, in order to not have a big but very low quality image.
-        //resizing the image will already reduce the file size, but after resizing we will check the file size and start to compress image
+        // Calculate inSampleSize(First we are going to resize the imageperu to 800x800 imageperu, in order to not have a big but very low quality imageperu.
+        //resizing the imageperu will already reduce the file size, but after resizing we will check the file size and start to compress imageperu
         options.inSampleSize = calculateInSampleSize(options, 800, 800);
 
         // Decode bitmap with inSampleSize set
