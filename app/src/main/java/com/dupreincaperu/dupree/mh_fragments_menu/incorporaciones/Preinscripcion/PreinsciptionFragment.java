@@ -618,7 +618,7 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
                             ulti_camp = "-";
                         }
                         new estadoPreincripcion(getContext(), nomb_comp, codi_zona, codi_sect, camp_ingr, ulti_camp, sald_docu, tipo_clie);
-                        if (!tipo_clie.equalsIgnoreCase("POSIBLE REINCORPORACION")){
+                        if (!tipo_clie.equalsIgnoreCase("POSIBLE REINCORPORACION") || !tipo_clie.equalsIgnoreCase("SIN PEDIDO") ){
                             setRefValidated(false);
                         }
                     }
