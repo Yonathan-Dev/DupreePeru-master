@@ -97,20 +97,11 @@
                 android:textColor="@color/negro"
                 android:text="ENTRAR"/>
 
-            <TextView
-                android:id="@+id/txt_regi_usua"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:text="Registrarse"/>
 
             <TextView
                 android:id="@+id/tvForgot"
                 android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
