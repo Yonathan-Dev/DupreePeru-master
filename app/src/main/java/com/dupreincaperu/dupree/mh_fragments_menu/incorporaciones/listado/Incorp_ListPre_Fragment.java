@@ -137,7 +137,7 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
 
                 //Este es para los casos de revision que solo lo pueden realizar los GZ
             }*/else if(dataRow.getEstado().equals(EnumStatusPreInsc.REVISION.getKey())
-                    && perfil.getPerfil().equals(Profile.GERENTE_ZONA) && dataRow.getUsuario().equals(Profile.LIDER)){
+                    && perfil.getPerfil().equals(Profile.GERENTE_ZONA) /*&& dataRow.getUsuario().equals(Profile.LIDER)*/){
 
                 nameSelected = dataRow.getNombre() + " " + dataRow.getApellido();
                 identySelected = dataRow.getCedula();
