@@ -88,6 +88,7 @@
                         android:inputType="phone"
                         android:layout_marginTop="8dp"
                         android:maxLength="7"
+                        android:focusableInTouchMode="false"
                         android:digits="@string/only_number_basic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -106,6 +107,7 @@
                         android:layout_marginTop="8dp"
                         android:maxLength="9"
                         android:digits="@string/only_number_basic"
+                        android:focusableInTouchMode="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/telefono_movil"/>
@@ -122,6 +124,7 @@
                         android:inputType="textEmailAddress"
                         android:layout_marginTop="8dp"
                         android:digits="@string/date_electronico"
+                        android:focusableInTouchMode="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/correo_electronico"/>
