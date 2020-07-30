@@ -127,16 +127,17 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
                     && perfil.getPerfil().equals(Profile.GERENTE_ZONA) && dataRow.getUsuario().equals(Profile.LIDER)){
                 identySelected = dataRow.getCedula();
                 testPreInscription(dataRow.getNombre() + " " + dataRow.getApellido(), row);
-            }/*else if(dataRow.getEstado().equals(EnumStatusPreInsc.RECHAZADO.getKey())) {
-                nameSelected = dataRow.getNombre() + " " + dataRow.getApellido();
+            }else if(dataRow.getEstado().equals(EnumStatusPreInsc.RECHAZADO.getKey())) {
+                /*nameSelected = dataRow.getNombre() + " " + dataRow.getApellido();
                 identySelected = dataRow.getCedula();
                 formato_direccion = dataRow.getFormato_direccion();
 
-                testEditInscription(nameSelected,dataRow.getEstado());
-                //msgToast("Esta preinscripción se encuentra " + dataRow.getEstado());
+                testEditInscription(nameSelected,dataRow.getEstado());*/
+
+                msgToast("Esta preinscripción se encuentra " + dataRow.getEstado());
 
                 //Este es para los casos de revision que solo lo pueden realizar los GZ
-            }*/else if(dataRow.getEstado().equals(EnumStatusPreInsc.REVISION.getKey())
+            }else if(dataRow.getEstado().equals(EnumStatusPreInsc.REVISION.getKey())
                     && perfil.getPerfil().equals(Profile.GERENTE_ZONA) /*&& dataRow.getUsuario().equals(Profile.LIDER)*/){
 
                 nameSelected = dataRow.getNombre() + " " + dataRow.getApellido();
