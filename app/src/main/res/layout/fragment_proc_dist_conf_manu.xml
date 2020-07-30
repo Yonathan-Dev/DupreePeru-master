@@ -106,7 +106,6 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/borde_track"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent">
 
@@ -114,17 +113,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
+                android:background="@drawable/borde_plomo"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="85dp"
                     android:layout_height="28dp"
-                    android:textSize="16dp"
                     android:gravity="center|left"
                     android:layout_gravity="center"
-                    android:background="@drawable/borde_track_dato"
                     android:paddingLeft="5dp"
-                    android:text="Campaña"
+                    android:text="CAMPAÑA"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/borde_plomo"
                     android:textColor="@color/black"
                     android:visibility="visible" />
 
@@ -135,7 +136,7 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="28dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/colorplateado" />
             </LinearLayout>
 
 
@@ -149,30 +150,22 @@
                     android:id="@+id/txt_visi_pedido"
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="@color/colorPrimary"
                     android:paddingLeft="7dp"
                     android:text="N° Guia"
-                    android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:visibility="visible"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="130dp"
-                    tools:layout_editor_absoluteY="649dp" />
+                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/txt_bole_elec"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingLeft="5dp"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toTopOf="@+id/txt_direccion"
-                    tools:ignore="MissingConstraints,NotSibling"
-                    tools:layout_editor_absoluteX="8dp" />
+                    android:paddingLeft="5dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
+                android:background="@drawable/borde_plomo"
                 android:orientation="horizontal">
 
                 <TextView
@@ -181,10 +174,11 @@
                     android:layout_height="28dp"
                     android:gravity="left|center"
                     android:layout_gravity="center"
-                    android:background="@drawable/borde_track_dato"
                     android:paddingLeft="5dp"
-                    android:textSize="16dp"
-                    android:text="Pedido"
+                    android:text="PEDIDO"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/borde_plomo"
                     android:textColor="@color/black"
                     android:visibility="visible"/>
 
@@ -195,12 +189,13 @@
                     android:gravity="left|center"
                     android:layout_gravity="center"
                     android:paddingLeft="5dp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/colorplateado"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
+                android:background="@drawable/borde_plomo"
                 android:orientation="horizontal">
 
                 <TextView
@@ -208,10 +203,11 @@
                     android:layout_height="28dp"
                     android:gravity="center|left"
                     android:layout_gravity="center"
-                    android:background="@drawable/borde_track_dato"
                     android:paddingLeft="5dp"
-                    android:textSize="16dp"
                     android:text="DNI"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/borde_plomo"
                     android:textColor="@color/black"
                     android:visibility="visible"/>
 
@@ -223,26 +219,28 @@
                     android:layout_gravity="center"
                     android:paddingLeft="5dp"
                     android:layout_below="@+id/txt_nomb_aseso"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/colorplateado" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:background="@drawable/borde_plomo"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="85dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/borde_track_dato"
-                    android:gravity="left|center"
                     android:layout_gravity="center"
+                    android:gravity="left|center"
                     android:paddingLeft="5dp"
-                    android:textSize="16dp"
-                    android:text="Cliente"
+                    android:text="CLIENTE"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/borde_plomo"
                     android:textColor="@color/black"
-                    android:visibility="visible"/>
+                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/txt_nomb_aseso"
@@ -251,24 +249,26 @@
                     android:layout_gravity="center"
                     android:gravity="left|center"
                     android:paddingLeft="5dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/colorplateado" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:background="@drawable/borde_plomo"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="85dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/borde_track_dato"
                     android:paddingLeft="5dp"
                     android:layout_gravity="center"
-                    android:textSize="16dp"
                     android:gravity="center|left"
-                    android:text="Dirección"
+                    android:text="DIRECCIÓN"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/borde_plomo"
                     android:textColor="@color/black"
                     android:visibility="visible"/>
 
@@ -278,12 +278,13 @@
                     android:layout_height="40dp"
                     android:gravity="center|left"
                     android:paddingLeft="5dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/colorplateado" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:background="@drawable/borde_plomo"
                 android:orientation="horizontal">
 
                 <TextView
@@ -291,10 +292,11 @@
                     android:layout_height="40dp"
                     android:gravity="center|left"
                     android:layout_gravity="center"
-                    android:background="@drawable/borde_track_dato"
                     android:paddingLeft="5dp"
-                    android:textSize="16dp"
-                    android:text="Referencia"
+                    android:text="REFERENCIA"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/borde_plomo"
                     android:textColor="@color/black"
                     android:visibility="visible"/>
 
@@ -305,7 +307,7 @@
                     android:gravity="center|left"
                     android:layout_gravity="center"
                     android:paddingLeft="5dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/colorplateado" />
 
             </LinearLayout>
 
@@ -313,17 +315,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
+                android:background="@drawable/borde_plomo"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="85dp"
                     android:layout_height="28dp"
-                    android:background="@drawable/borde_track_dato"
                     android:paddingLeft="5dp"
-                    android:textSize="16dp"
                     android:gravity="center|left"
                     android:layout_gravity="center"
-                    android:text="Paquetes"
+                    android:text="PAQUETES"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/borde_plomo"
                     android:textColor="@color/black"
                     android:visibility="visible" />
 
@@ -332,11 +336,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="28dp"
                     android:paddingLeft="5dp"
-                    android:textSize="16dp"
                     android:gravity="center|left"
                     android:layout_gravity="center"
-                    android:text="Cajas :"
-                    android:textColor="@color/black"
+                    android:text="CAJAS :"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorplateado"
                     android:visibility="visible" />
 
                 <TextView
@@ -345,16 +350,17 @@
                     android:layout_height="28dp"
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/colorplateado" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="28dp"
-                    android:textSize="16dp"
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:text="Bolsas :"
-                    android:textColor="@color/black"
+                    android:text="BOLSAS :"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorplateado"
                     android:visibility="visible" />
 
                 <TextView
@@ -363,16 +369,17 @@
                     android:layout_height="28dp"
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/colorplateado" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="28dp"
-                    android:textSize="16dp"
                     android:gravity="center|left"
                     android:layout_gravity="center"
-                    android:text="Por fuera :"
-                    android:textColor="@color/black"
+                    android:text="POR FUERA :"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorplateado"
                     android:visibility="visible" />
 
                 <TextView
@@ -381,13 +388,14 @@
                     android:layout_height="28dp"
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/colorplateado" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
+                android:background="@drawable/borde_plomo_dos"
                 android:orientation="horizontal">
 
                 <TextView
@@ -396,10 +404,11 @@
                     android:layout_height="28dp"
                     android:gravity="left|center"
                     android:layout_gravity="center"
-                    android:background="@drawable/borde_track_dato"
                     android:paddingLeft="5dp"
-                    android:textSize="16dp"
-                    android:text="Celular"
+                    android:text="CELULAR"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/borde_plomo_dos"
                     android:textColor="@color/black"
                     android:visibility="visible" />
 
@@ -411,7 +420,7 @@
                     android:gravity="center|left"
                     android:layout_gravity="center"
                     android:drawableRight="@drawable/llamar_usuaria"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/colorplateado" />
             </LinearLayout>
 
 
