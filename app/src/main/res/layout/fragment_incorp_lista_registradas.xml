@@ -13,9 +13,10 @@
 
             <android.support.v7.widget.SearchView
                 android:id="@+id/search_view"
-                android:digits="@string/only_letter_and_numer_basic"
+                android:digits="@string/only_number_basic"
                 app:queryHint="@string/buscar_por_cedula"
                 android:iconifiedByDefault="false"
+                android:inputType="number"
                 app:defaultQueryHint="@string/buscar_por_cedula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
