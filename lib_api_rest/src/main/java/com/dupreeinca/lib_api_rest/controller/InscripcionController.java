@@ -9,6 +9,7 @@ import com.dupreeinca.lib_api_rest.dao.PosiblesNuevasDAO;
 import com.dupreeinca.lib_api_rest.model.base.TTError;
 import com.dupreeinca.lib_api_rest.model.base.TTResultListener;
 import com.dupreeinca.lib_api_rest.model.dto.request.ApprovePreIns;
+import com.dupreeinca.lib_api_rest.model.dto.request.ElimPreIns;
 import com.dupreeinca.lib_api_rest.model.dto.request.Identy;
 import com.dupreeinca.lib_api_rest.model.dto.request.IdentyName;
 import com.dupreeinca.lib_api_rest.model.dto.request.InscriptionDTO;
@@ -175,6 +176,31 @@ public class InscripcionController extends TTGenericController {
 
         InscripcionDAO dao = new InscripcionDAO(getContext());
         dao.aprobarPreinscripcion(data, new TTResultListener<GenericDTO>() {
+            @Override
+            public void success(GenericDTO result) {
+                //Errror de Backend
+                if(result.getCode() == 404){
+                    listener.error(TTError.errorFromMessage(result.getRaise().get(0).getField().concat(". ").concat(result.getRaise().get(0).getError())));
+                } else {
+                    listener.success(result);
+                }
+            }
+
+            @Override
+            public void error(TTError error) {
+                listener.error(error);
+            }
+        });
+    }
+
+    public void eliminarPreinscripcion(ElimPreIns data, final TTResultListener<GenericDTO> listener){
+        if(!this.isNetworkingOnline(getContext())){
+            listener.error(TTError.errorFromMessage(context.getResources().getString(R.string.http_datos_no_disponibles)));
+            return;
+        }
+
+        InscripcionDAO dao = new InscripcionDAO(getContext());
+        dao.eliminarPreinscripcion(data, new TTResultListener<GenericDTO>() {
             @Override
             public void success(GenericDTO result) {
                 //Errror de Backend

@@ -370,6 +370,8 @@
 
     <string name="approve_preinscription">Aprobar/Rechazar pre-inscripción</string>
     <string name="desea_aprobar_preinscription">Desea aprobar o rechazar la preinscripción de: </string>
+    <string name="eliminar_preinscription">Eliminar pre-inscripción</string>
+    <string name="desea_eliminar_preinscription">Desea eliminar la preinscripción de: </string>
 
     <string name="view_catalogo">Ver catalogo</string>
     <string name="desea_ver_catalogo">Seleccione una opción: </string>
