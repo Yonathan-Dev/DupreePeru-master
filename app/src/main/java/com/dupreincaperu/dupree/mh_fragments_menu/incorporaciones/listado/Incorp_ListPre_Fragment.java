@@ -136,7 +136,7 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
 
                 testEditInscription(nameSelected,dataRow.getEstado());
 
-                //Es para casos cuando se desea eliminar
+                //Es para casos donde se desea eliminar una presinscripcion
             }*/else if(dataRow.getEstado().equals(EnumStatusPreInsc.RECHAZADO.getKey())) {
                 identySelected = dataRow.getCedula();
                 testElimInscription(dataRow.getNombre() + " " + dataRow.getApellido(), row);
@@ -148,7 +148,8 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
                 nameSelected = dataRow.getNombre() + " " + dataRow.getApellido();
                 identySelected = dataRow.getCedula();
                 formato_direccion = dataRow.getFormato_direccion();
-                testEditInscription(nameSelected,dataRow.getEstado());
+                testReviInscription(nameSelected,dataRow.getEstado());
+                //testEditInscription(nameSelected,dataRow.getEstado());
             }
 
 
@@ -239,6 +240,18 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
         simpleDialog.show(getChildFragmentManager(),"mDialog");
     }
 
+    public void testReviInscription(String to, String estado){
+        SimpleDialog simpleDialog = new SimpleDialog();
+        simpleDialog.loadData(getString(R.string.revision), getString(R.string.desea_revisar_inscripcion)+" "+to+"?");
+        simpleDialog.setListener(new SimpleDialog.ListenerResult() {
+            @Override
+            public void result(boolean status) {
+                if(status)
+                    gotoInscripcion(true,estado);
+            }
+        });
+        simpleDialog.show(getChildFragmentManager(),"mDialog");
+    }
 
 
 
@@ -283,7 +296,7 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
             public void result(boolean status) {
                 if (status){
                     showProgress();
-                    inscripcionController.eliminarPreinscripcion(new ElimPreIns(identySelected, status ? ElimPreIns.ELIMINAR : ElimPreIns.CANCELAR), new TTResultListener<GenericDTO>() {
+                    inscripcionController.eliminarPreinscripcion(new ElimPreIns(identySelected, ElimPreIns.ELIMINAR), new TTResultListener<GenericDTO>() {
                         @Override
                         public void success(GenericDTO result) {
                             dismissProgress();
