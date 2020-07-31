@@ -18,6 +18,7 @@ import com.dupreeinca.lib_api_rest.controller.InscripcionController;
 import com.dupreeinca.lib_api_rest.enums.EnumStatusPreInsc;
 import com.dupreeinca.lib_api_rest.model.base.TTError;
 import com.dupreeinca.lib_api_rest.model.base.TTResultListener;
+import com.dupreeinca.lib_api_rest.model.dto.request.ElimPreIns;
 import com.dupreeinca.lib_api_rest.model.dto.response.GenericDTO;
 import com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.IncorporacionesVPages;
 import com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.listado.incripcion.InscripcionActivity;
@@ -127,22 +128,28 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
                     && perfil.getPerfil().equals(Profile.GERENTE_ZONA) && dataRow.getUsuario().equals(Profile.LIDER)){
                 identySelected = dataRow.getCedula();
                 testPreInscription(dataRow.getNombre() + " " + dataRow.getApellido(), row);
+                //Editar cuando esta RECHAZADO
             }/*else if(dataRow.getEstado().equals(EnumStatusPreInsc.RECHAZADO.getKey())) {
-                nameSelected = dataRow.getNombre() + " " + dataRow.getApellido();
+                /*nameSelected = dataRow.getNombre() + " " + dataRow.getApellido();
                 identySelected = dataRow.getCedula();
                 formato_direccion = dataRow.getFormato_direccion();
 
                 testEditInscription(nameSelected,dataRow.getEstado());
-                //msgToast("Esta preinscripción se encuentra " + dataRow.getEstado());
+
+                //Es para casos donde se desea eliminar una presinscripcion
+            }*/else if(dataRow.getEstado().equals(EnumStatusPreInsc.RECHAZADO.getKey())) {
+                identySelected = dataRow.getCedula();
+                testElimInscription(dataRow.getNombre() + " " + dataRow.getApellido(), row);
 
                 //Este es para los casos de revision que solo lo pueden realizar los GZ
-            }*/else if(dataRow.getEstado().equals(EnumStatusPreInsc.REVISION.getKey())
+            } else if(dataRow.getEstado().equals(EnumStatusPreInsc.REVISION.getKey())
                     && perfil.getPerfil().equals(Profile.GERENTE_ZONA) /*&& dataRow.getUsuario().equals(Profile.LIDER)*/){
 
                 nameSelected = dataRow.getNombre() + " " + dataRow.getApellido();
                 identySelected = dataRow.getCedula();
                 formato_direccion = dataRow.getFormato_direccion();
-                testEditInscription(nameSelected,dataRow.getEstado());
+                testReviInscription(nameSelected,dataRow.getEstado());
+                //testEditInscription(nameSelected,dataRow.getEstado());
             }
 
 
@@ -233,6 +240,20 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
         simpleDialog.show(getChildFragmentManager(),"mDialog");
     }
 
+    public void testReviInscription(String to, String estado){
+        SimpleDialog simpleDialog = new SimpleDialog();
+        simpleDialog.loadData(getString(R.string.revision), getString(R.string.desea_revisar_inscripcion)+" "+to+"?");
+        simpleDialog.setListener(new SimpleDialog.ListenerResult() {
+            @Override
+            public void result(boolean status) {
+                if(status)
+                    gotoInscripcion(true,estado);
+            }
+        });
+        simpleDialog.show(getChildFragmentManager(),"mDialog");
+    }
+
+
 
     public void testPreInscription(String to, int row){
         SimpleDialog3Button simpleDialog = new SimpleDialog3Button();
@@ -247,6 +268,7 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
                         dismissProgress();
 
                         String msg = result.getResult();
+
                         if(msg != null){
                             msgToast(msg);
                             refreshList(msg, row);
@@ -262,6 +284,43 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
             }
         });
         simpleDialog.show(getChildFragmentManager(),"mDialog");
+    }
+
+
+    public void testElimInscription(String to, int row){
+
+        SimpleDialog simpleDialog = new SimpleDialog();
+        simpleDialog.loadData(getString(R.string.eliminar_preinscription), getString(R.string.desea_eliminar_preinscription)+" "+to+"?");
+        simpleDialog.setListener(new SimpleDialog.ListenerResult() {
+            @Override
+            public void result(boolean status) {
+                if (status){
+                    showProgress();
+                    inscripcionController.eliminarPreinscripcion(new ElimPreIns(identySelected, ElimPreIns.ELIMINAR), new TTResultListener<GenericDTO>() {
+                        @Override
+                        public void success(GenericDTO result) {
+                            dismissProgress();
+
+                            String msg = result.getResult();
+
+                            if(msg != null){
+                                refresh();
+                                msgToast(msg);
+                            }
+                        }
+
+                        @Override
+                        public void error(TTError error) {
+                            dismissProgress();
+                            checkSession(error);
+                        }
+                    });
+                }
+
+            }
+        });
+        simpleDialog.show(getChildFragmentManager(),"mDialog");
+
     }
 
     private void addRetenidos(ListPreinscripcionDTO result){

@@ -7,6 +7,7 @@ import com.dupreeinca.lib_api_rest.dao.base.TTGenericDAO;
 import com.dupreeinca.lib_api_rest.model.base.TTError;
 import com.dupreeinca.lib_api_rest.model.base.TTResultListener;
 import com.dupreeinca.lib_api_rest.model.dto.request.ApprovePreIns;
+import com.dupreeinca.lib_api_rest.model.dto.request.ElimPreIns;
 import com.dupreeinca.lib_api_rest.model.dto.request.Identy;
 import com.dupreeinca.lib_api_rest.model.dto.request.IdentyName;
 import com.dupreeinca.lib_api_rest.model.dto.request.InscriptionDTO;
@@ -146,6 +147,22 @@ public class InscripcionDAO extends TTGenericDAO {
         },getRetrofit()));
     }
 
+    public void eliminarPreinscripcion(ElimPreIns data, final TTResultListener<GenericDTO> listener){
+        iRest rest = getRetrofit().create(iRest.class);
+        Call<GenericDTO> call = rest.eliminarPreinscripcion(new Gson().toJson(data));
+        call.enqueue(new TTCallback<GenericDTO>(new TTResultListener<GenericDTO>() {
+            @Override
+            public void success(GenericDTO result) {
+                listener.success(result);
+            }
+
+            @Override
+            public void error(TTError error) {
+                listener.error(error);
+            }
+        },getRetrofit()));
+    }
+
     public void validateCentralRiesgo(Identy data, final TTResultListener<GenericDTO> listener){
         iRest rest = getRetrofit().create(iRest.class);
         Call<GenericDTO> call = rest.validateCentralRiesgo(new Gson().toJson(data));
@@ -211,6 +228,10 @@ public class InscripcionDAO extends TTGenericDAO {
         @FormUrlEncoded
         @POST("panel/estado_prelider")
         Call<GenericDTO> aprobarPreinscripcion(@Field("Params") String json);
+
+        @FormUrlEncoded
+        @POST("panel/elimina_pre")
+        Call<GenericDTO> eliminarPreinscripcion(@Field("Params") String json);
 
         @FormUrlEncoded
         @POST("reportes/cifin")

@@ -1,6 +1,6 @@
 <resources>
-    <string name="api_url">https://alcor.dupree.pe/dupreeWS/</string>
-    <!--<string name="api_url">https://alcor2per.azzorti.co/dupreeWS/</string>-->
+    <!--<string name="api_url">https://alcor.dupree.pe/dupreeWS/</string>-->
+    <string name="api_url">https://alcor2per.azzorti.co/dupreeWS/</string>
 
     <string name="app_name">Dupree Azzorti</string>
     <string name="title_home">Home</string>
@@ -357,6 +357,7 @@
     <string name="preinscripcion">Preinscripción</string>
     <string name="listado">Listado</string>
     <string name="inscripcion">Inscripción</string>
+    <string name="revision">Revisión</string>
     <string name="desea_remover_pedido">Desea remover este artículo a su pedido?</string>
     <string name="remover">Remover</string>
     <string name="desea_agregar_pedido">Desea agregar este artículo a su pedido?</string>
@@ -370,6 +371,8 @@
 
     <string name="approve_preinscription">Aprobar/Rechazar pre-inscripción</string>
     <string name="desea_aprobar_preinscription">Desea aprobar o rechazar la preinscripción de: </string>
+    <string name="eliminar_preinscription">Eliminar preinscripción</string>
+    <string name="desea_eliminar_preinscription">Esta seguro que desea eliminar la preinscripción de: </string>
 
     <string name="view_catalogo">Ver catalogo</string>
     <string name="desea_ver_catalogo">Seleccione una opción: </string>
@@ -415,6 +418,7 @@
     <string name="desea_inscribir">Desea inscribir a</string>
     <string name="desea_pre_inscribir">Desea PRE-inscribir a</string>
     <string name="desea_editar_inscripcion">Desea editar los datos de inscripción de</string>
+    <string name="desea_revisar_inscripcion">Desea revisar los datos de inscripción de</string>
     <string name="deba_validar">Debe validar</string>
     <string name="desea_agregar_premio">Desea agregar premio?</string>
     <string name="desea_remover_premio">Desea remover premio?</string>
