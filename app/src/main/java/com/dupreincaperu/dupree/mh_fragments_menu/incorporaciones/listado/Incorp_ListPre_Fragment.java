@@ -255,6 +255,7 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
                         dismissProgress();
 
                         String msg = result.getResult();
+
                         if(msg != null){
                             msgToast(msg);
                             refreshList(msg, row);
@@ -280,25 +281,29 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
         simpleDialog.setListener(new SimpleDialog.ListenerResult() {
             @Override
             public void result(boolean status) {
-                showProgress();
-                inscripcionController.eliminarPreinscripcion(new ElimPreIns(identySelected, status ? ElimPreIns.ELIMINAR : ElimPreIns.CANCELAR), new TTResultListener<GenericDTO>() {
-                    @Override
-                    public void success(GenericDTO result) {
-                        dismissProgress();
+                if (status){
+                    showProgress();
+                    inscripcionController.eliminarPreinscripcion(new ElimPreIns(identySelected, status ? ElimPreIns.ELIMINAR : ElimPreIns.CANCELAR), new TTResultListener<GenericDTO>() {
+                        @Override
+                        public void success(GenericDTO result) {
+                            dismissProgress();
 
-                        String msg = result.getResult();
-                        if(msg != null){
-                            msgToast(msg);
-                            refreshList(msg, row);
+                            String msg = result.getResult();
+
+                            if(msg != null){
+                                refresh();
+                                msgToast(msg);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void error(TTError error) {
-                        dismissProgress();
-                        checkSession(error);
-                    }
-                });
+                        @Override
+                        public void error(TTError error) {
+                            dismissProgress();
+                            checkSession(error);
+                        }
+                    });
+                }
+
             }
         });
         simpleDialog.show(getChildFragmentManager(),"mDialog");
