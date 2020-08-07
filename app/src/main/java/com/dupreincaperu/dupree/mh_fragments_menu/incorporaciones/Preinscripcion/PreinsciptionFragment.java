@@ -82,7 +82,7 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
 
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
-    String URL_EMPRESA="", codi_usua="";
+    String codi_usua="";
     private ProgressDialog pdp = null;
 
     public PreinsciptionFragment() {
@@ -136,10 +136,7 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
         binding.btCamera.setOnClickListener(mListenerClick);
         binding.btnRegister.setOnClickListener(mListenerClick);
 
-        dato_gene URL = new dato_gene();
-        URL_EMPRESA = URL.getURL_EMPRESA();
         request = Volley.newRequestQueue(getContext());
-
 
     }
 
@@ -600,7 +597,7 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
     }
 
     private void cargar_estado(String nume_iden, String codi_usua){
-        String url = URL_EMPRESA+"gerentes/esta?nume_iden="+nume_iden+"&codi_usua="+codi_usua;
+        String url = getString(R.string.url_empr)+"gerentes/esta?nume_iden="+nume_iden+"&codi_usua="+codi_usua;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

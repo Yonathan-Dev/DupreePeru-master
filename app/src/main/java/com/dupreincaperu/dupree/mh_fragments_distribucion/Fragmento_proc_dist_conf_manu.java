@@ -153,8 +153,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
 
-    String URL_EMPRESA="";
-
     Button btnOrder;
     TextView tvItemSelected;
     String[] listItems;
@@ -168,9 +166,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     @SuppressLint("RestrictedApi")
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        dato_gene URL = new dato_gene();
-        URL_EMPRESA = URL.getURL_EMPRESA();
 
         contexto = this;
         vista = inflater.inflate(R.layout.fragment_proc_dist_conf_manu, container, false);
@@ -744,7 +739,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         limpiar_datos();
                     } else {
 
-                        String url = URL_EMPRESA+"distribucion/regi?fac_lati="+fac_lati+"&fac_long="+fac_long+"&fac_dire="+fac_dire+"&fact_sri="+resultadoQR.getText().toString()+"&nomb_moti="+nomb_moti+"&fac_imag="+fac_imag+"&acti_usua="+acti_usua+"&nume_fact="+nume_factura.getText().toString()+"&codi_vers="+getCodiVersionCode()+"&nume_iden="+dni_ases.getText().toString()+"&codi_camp="+txt_codi_camp.getText().toString()+"&modi_dire="+txt_modi_dire.getText().toString().trim()+"&modi_refe="+txt_modi_refe.getText().toString().trim();
+                        String url = getString(R.string.url_empr)+"distribucion/regi?fac_lati="+fac_lati+"&fac_long="+fac_long+"&fac_dire="+fac_dire+"&fact_sri="+resultadoQR.getText().toString()+"&nomb_moti="+nomb_moti+"&fac_imag="+fac_imag+"&acti_usua="+acti_usua+"&nume_fact="+nume_factura.getText().toString()+"&codi_vers="+getCodiVersionCode()+"&nume_iden="+dni_ases.getText().toString()+"&codi_camp="+txt_codi_camp.getText().toString()+"&modi_dire="+txt_modi_dire.getText().toString().trim()+"&modi_refe="+txt_modi_refe.getText().toString().trim();
                         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                             @SuppressLint("MissingPermission")
                             @Override
@@ -838,7 +833,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     }
 
     private void motivos_devolucion() {
-        String url = URL_EMPRESA+"distribucion/moti";
+        String url = getString(R.string.url_empr)+"distribucion/moti?";
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -856,18 +851,11 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                try {
-                    JSONObject mensaje = response.getJSONObject(0);
-                    Toast.makeText(getContext(),mensaje.getString("mensaje"),Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                pdp.dismiss();
-                Toast.makeText(getContext(),"MOTI: No se puede conectar con el  servidor."+error,Toast.LENGTH_SHORT).show();
+                Log.i("proc_dist_conf_manu", "MOTI: No se puede conectar con el  servidor."+error);
             }
         });
 
@@ -1036,7 +1024,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     }
 
     private void cons_clie_dato() {
-        String url = URL_EMPRESA+"distribucion/descpedi?nume_celu="+nume_celu;
+        String url = getString(R.string.url_empr)+"distribucion/descpedi?nume_celu="+nume_celu;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -1156,7 +1144,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
     private void carg_canj_devo(String cons_terc){
 
-        String url = URL_EMPRESA+"distribucion/carg_canj_devo?cons_terc="+cons_terc;
+        String url = getString(R.string.url_empr)+"distribucion/carg_canj_devo?cons_terc="+cons_terc;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -1220,7 +1208,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     }
 
     private void cons_caja_dato() {
-        String url = URL_EMPRESA+"distribucion/desccaja?nume_celu="+nume_celu;
+        String url = getString(R.string.url_empr)+"distribucion/desccaja?nume_celu="+nume_celu;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -1380,7 +1368,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
                     Log.i("acti_hora_veri", "-->" + sinc_fact_sri+"--"+acti_hora_veri);
 
-                    String url = URL_EMPRESA + "distribucion/regi_sinc?fact_sri=" + sinc_fact_sri + "&fac_lati=" + sinc_fac_lati + "&fac_long=" + sinc_fac_long + "&fac_dire=" + sinc_fac_dire + "&acti_usua=" + sinc_acti_usua + "&acti_hora=" + sinc_acti_hora + "&nomb_moti=" + sinc_nomb_moti + "&acti_hora_veri=" + acti_hora_veri.trim()+ "&nume_fact=" + sinc_nume_fact+"&codi_vers="+sinc_codi_vers+"&nume_iden="+sinc_nume_iden+"&codi_camp="+sinc_codi_camp+"&modi_dire="+sinc_modi_dire+"&modi_refe="+sinc_modi_refe;
+                    String url = getString(R.string.url_empr)+"distribucion/regi_sinc?fact_sri=" + sinc_fact_sri + "&fac_lati=" + sinc_fac_lati + "&fac_long=" + sinc_fac_long + "&fac_dire=" + sinc_fac_dire + "&acti_usua=" + sinc_acti_usua + "&acti_hora=" + sinc_acti_hora + "&nomb_moti=" + sinc_nomb_moti + "&acti_hora_veri=" + acti_hora_veri.trim()+ "&nume_fact=" + sinc_nume_fact+"&codi_vers="+sinc_codi_vers+"&nume_iden="+sinc_nume_iden+"&codi_camp="+sinc_codi_camp+"&modi_dire="+sinc_modi_dire+"&modi_refe="+sinc_modi_refe;
                     jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
                         @Override
@@ -1461,7 +1449,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
     private  void carg_fac_conf_imag(final String fact_sri_sinc_imag, final String nume_fact_sinc_imag, final Bitmap bitmap, final String acti_hora_veri) {
 
-        String url = URL_EMPRESA+"distribucion/imag?";
+        String url = getString(R.string.url_empr)+"distribucion/imag?";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
                 {
@@ -1571,7 +1559,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     }
 
     private void borr_moti_rech_dist() {
-        MyDbHelper dbHelper = new MyDbHelper(getContext());
+        MyDbHelper dbHelper = new MyDbHelper(getActivity());
         SQLiteDatabase db8 =  dbHelper.getReadableDatabase();
         if (db8!=null){
             db8.execSQL("DELETE FROM "+ Moti_rech_distContract.Moti_rech_distEntry.TABLE_NAME);
@@ -1658,7 +1646,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
     private void validar_identidad(final String nume_iden) {
 
-        String url = URL_EMPRESA+"asesora/ubic?nume_iden="+nume_iden;
+        String url = getString(R.string.url_empr)+"asesora/ubic?nume_iden="+nume_iden;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
 
@@ -1732,7 +1720,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         if (v_nume_celu.equalsIgnoreCase("")){
             new dialogo_celular(getContext(), Fragmento_proc_dist_conf_manu.this);
         } else {
-            String url = URL_EMPRESA+"usuario/celu?nume_celu="+v_nume_celu;
+            String url = getString(R.string.url_empr)+"usuario/celu?nume_celu="+v_nume_celu;
 
             jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
