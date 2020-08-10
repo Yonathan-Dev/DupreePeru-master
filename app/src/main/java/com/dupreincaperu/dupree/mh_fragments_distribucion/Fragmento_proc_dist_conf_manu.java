@@ -967,6 +967,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     limpiar_datos();
                     new dialogo_personal(getContext(), "Pedido "+nume_fact+" no asignado" );
                 }
+                c.close();
             } else {
 
                 if (isNetDisponible()) {
@@ -975,11 +976,11 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 } else {
                     limpiar_datos();
                     new dialogo_personal(getContext(),"El pedido no se encuentra asignado para esta fecha");
-                    //new cuadro_mensaje_bd(getContext(), "El pedido no se encuentra asignado para esta fecha. !!",3);
-
                 }
             }
+            count.close();
         }
+        db.close();
     }
 
     private void obtener_caja_off(String nume_fact) {
@@ -995,7 +996,9 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     txt_cant_bols.setText(String.valueOf(c.getString(2)));
                 } while (c.moveToNext());
             }
+            c.close();
         }
+        db.close();
     }
 
     private String haversineGreatCircleDistance(String cy, String cx, String fac_lati, String fac_long){
@@ -1127,8 +1130,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     + ClienteContract.ClienteEntry.COLUMN_NUME_IDEN+","
                     + ClienteContract.ClienteEntry.COLUMN_NOMB_TERC+","
                     + ClienteContract.ClienteEntry.COLUMN_APEL_TERC+","
-                    + ClienteContract.ClienteEntry.COLUMN_DIRE_TERC+","
                     + ClienteContract.ClienteEntry.COLUMN_DIRE_REFE+","
+                    + ClienteContract.ClienteEntry.COLUMN_DIRE_TERC+","
                     + ClienteContract.ClienteEntry.COLUMN_NUME_FACT+","
                     + ClienteContract.ClienteEntry.COLUMN_REMI_SRI+","
                     + ClienteContract.ClienteEntry.COLUMN_CODI_CAMP+","
@@ -1139,7 +1142,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     + ClienteContract.ClienteEntry.COLUMN_CELU_TER1+ ")" +
                     "VALUES ('"+acti_fech+"','"+nume_iden+"','"+nomb_terc+"','"+apel_terc+"','"+dire_terc+"','"+dire_refe+"','"+nume_factc+"','"+remi_sri+"','"+codi_camp+"','"+cons_terc+"','"+cy+"','"+cx+"','"+dist_zona+"','"+celu_ter1+"')");
         }
-
+        c.close();
+        db.close();
     }
 
     private void carg_canj_devo(String cons_terc){
@@ -1196,6 +1200,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             db.execSQL("DELETE FROM cliente WHERE acti_fech <> '"+getDate()+"' ");
             db.execSQL("DELETE FROM caja    WHERE acti_fech <> '"+getDate()+"' ");
         }
+        db.close();
     }
 
 
@@ -1205,6 +1210,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         if (db!=null){
             db.execSQL("DELETE FROM pedi_conf WHERE date (acti_hora) <> '"+getDate()+"' ");
         }
+        db.close();
     }
 
     private void cons_caja_dato() {
@@ -1265,6 +1271,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     CajaContract.CajaEntry.COLUMN_ACTI_FECH+ ")" +
                     " VALUES ('"+cant_caja+"', '"+cant_fuer+"', '"+cant_bols+"','"+nume_fact+"','"+acti_fech+"')");
         }
+        c.close();
+        db3.close();
     }
 
 
@@ -1298,6 +1306,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     + Fac_confContract.Fac_confEntry.COLUMN_MODI_REFE+ ")" +
                     "VALUES ('"+fact_sri+"','"+fac_lati+"','"+fac_long+"','"+fac_dire+"','"+acti_usua+"','"+getDateTime()+"','"+nume_fact+"','"+nomb_moti+"','"+codi_vers+"','"+nume_iden+"','"+codi_camp+"','"+modi_dire+"','"+modi_refe+"' )");
         }
+        c.close();
+        db4.close();
     }
 
 
@@ -1320,6 +1330,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         if (db!=null){
             db.execSQL("INSERT INTO pedi_conf (nume_fact, nomb_moti, acti_hora) VALUES ('"+nume_fact+"','"+nomb_moti+"','"+acti_hora+"')");
         }
+        c.close();
+        db.close();
 
     }
 
@@ -1419,7 +1431,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             new dialogo_personal(getContext(), "No existe pedidos para sincronizar");
         }
 
-
+        c.close();
+        db5.close();
     }
 
     private void sinc_fac_conf_imag_indi(String fact_sri, String acti_hora_veri) {
@@ -1443,6 +1456,9 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 } while (c.moveToNext());
             }
         }
+
+        c.close();
+        db5.close();
 
     }
 
@@ -1556,6 +1572,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     "(" + Moti_rech_distContract.Moti_rech_distEntry.COLUMN_NOMB_MOTI+ ")" +
                     "VALUES ('"+nomb_moti+"')");
         }
+        c.close();
+        db7.close();
     }
 
     private void borr_moti_rech_dist() {
@@ -1564,6 +1582,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         if (db8!=null){
             db8.execSQL("DELETE FROM "+ Moti_rech_distContract.Moti_rech_distEntry.TABLE_NAME);
         }
+        db8.close();
     }
 
     private void carg_moti_rech_moti() {
@@ -1583,7 +1602,9 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     i++;
                 } while (c.moveToNext());
             }
+            c.close();
         }
+        db9.close();
     }
 
     private void cargarpreferencias() {
@@ -1596,7 +1617,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         this.nume_celu = nume_celu;
         this.esta_celu = esta_celu;
     }
-
 
     private void sinc_pedi_falt() {
         MyDbHelper dbHelper = new MyDbHelper(getContext());
@@ -1612,7 +1632,9 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     Toast.makeText(getContext(), "Tiene "+t+" pedido(s) por sincronizar.",Toast.LENGTH_SHORT).show();
                 }
             }
+            c.close();
         }
+        db.close();
     }
 
     private void elim_fac_conf() {
@@ -1621,6 +1643,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         if (db!=null){
             db.execSQL("DELETE FROM fac_conf  WHERE Cast ((JulianDay('"+getDate()+"') - JulianDay(DATE(acti_hora)) ) As Integer)> 1 ");
         }
+        db.close();
     }
 
     private void eliminarDatos() {
@@ -1632,6 +1655,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             db.execSQL("DELETE FROM caja");
             db.execSQL("DELETE FROM pedi_conf");
         }
+        db.close();
     }
 
 
@@ -1865,15 +1889,15 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         } while (c.moveToNext());
                     }
 
-
                 }
                 adapter = new ArrayAdapter(getContext(),android.R.layout.select_dialog_item, clientes);
                 lv_pedi.setAdapter(adapter);
+
+                c.close();
             }
-
+            count.close();
         }
+        db.close();
     }
-
-
 
 }
