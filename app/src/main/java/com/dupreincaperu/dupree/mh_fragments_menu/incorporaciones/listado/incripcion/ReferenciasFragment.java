@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.dupreeinca.lib_api_rest.controller.InscripcionController;
 import com.dupreeinca.lib_api_rest.controller.UploadFileController;
@@ -42,7 +43,7 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
     private FragmentReferenciasBinding binding;
     private InscriptionDTO model;
     private Referencia modelRefPersonal;
-    private Referencia modelRefFamiliar;
+    //private Referencia modelRefFamiliar;
 
     private UploadFileController uploadFileController;
     private InscripcionController inscripController;
@@ -69,7 +70,7 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
         if((bundle = getArguments()) != null && (model = bundle.getParcelable(TAG)) != null) {
             isOnCreate = true;
             modelRefPersonal = model.getReferencia().get(0);
-            modelRefFamiliar = model.getReferencia().get(1);
+            //modelRefFamiliar = model.getReferencia().get(1);
         } else {
             onBack();
         }
@@ -81,7 +82,7 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
         binding.setCallback(this);
         binding.setModel(model);
         binding.setModelRefPersonal(modelRefPersonal);
-        binding.setModelRefFamiliar(modelRefFamiliar);
+        //binding.setModelRefFamiliar(modelRefFamiliar);
     }
 
     @Override
@@ -365,7 +366,7 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
 
         List<Referencia> referenciaList = new ArrayList<>();
         referenciaList.add(modelRefPersonal);
-        referenciaList.add(modelRefFamiliar);
+        //referenciaList.add(modelRefFamiliar);
 
         model.setReferencia(referenciaList);
 

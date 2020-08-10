@@ -156,23 +156,18 @@ public class PanelAsesoraFragment extends TabManagerFragment {
     private void setData(boolean isVisible, PanelAsesora data){
 
         if (data!=null){
-            
             if (data.getCampana()!=null){
                 binding.tvCamp.setText(data!=null ? getString(R.string.concat_campana, data.getCampana()) : "");
             }
-
             if (data.getNombre_asesora()!=null){
                 binding.tvNameAsesora.setText(data!=null ? data.getNombre_asesora() : "");
             }
-
             if(data.getSaldo()!=null){
                 binding.tvSaldoAsesora.setText(data!=null ? getString(R.string.concat_saldo, data.getSaldo()) : "");
             }
-
             if (data.getCupo_credito()!=null){
                 binding.tvCupoAsesora.setText(data!=null ? getString(R.string.concat_cupo_credito, data.getCupo_credito()) : "");
             }
-
             if(data!=null && data.getCantidad_mensajes()!=null)
                 binding.fabMessages.setTitle(getString(R.string.concat_mensajes, data.getCantidad_mensajes()));
 
@@ -181,7 +176,6 @@ public class PanelAsesoraFragment extends TabManagerFragment {
             binding.tabs.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
             binding.profileImage.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
         }
-
     }
 
     private void updateView(PanelAsesora data){
