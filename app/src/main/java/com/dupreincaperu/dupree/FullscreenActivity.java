@@ -34,6 +34,7 @@ import com.google.gson.JsonSyntaxException;
 import org.json.JSONObject;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -154,7 +155,12 @@ public class FullscreenActivity extends AppCompatActivity  {
         //ESTO SE HACE PARA ATRAPAR NOTIFICACIONES FIREBASE EN SEGUNDO PLANO O MUERTA (LLEGAN LOS DATOS EN EL INTENT)
 
         //Realm.init(this);//esto debe iniciarse una vez en la app, debo colocarlo ene l main y menu para cuando pase directo. (creo)
-        realm = Realm.getDefaultInstance();
+        try{
+            realm = Realm.getDefaultInstance();
+        }catch (Exception e){
+            Realm.init(getApplicationContext());
+            realm = Realm.getDefaultInstance();
+        }
 
         if(mPreferences.getIsNotNewAppOn(FullscreenActivity.this) && mPreferences.isChangeCampanaON(FullscreenActivity.this)) {
             loadAllData();
