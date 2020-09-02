@@ -938,9 +938,10 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void guardarpreferencia() {
-
+        String tipo_usua = "";
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        String tipo_usua    = perfil.getPerfil();
+        if (!perfil.getPerfil().equalsIgnoreCase(null))
+            tipo_usua    = perfil.getPerfil();
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("tipo_usua",  tipo_usua);

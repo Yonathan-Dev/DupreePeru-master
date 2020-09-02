@@ -153,8 +153,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
 
-    String URL_EMPRESA="";
-
     Button btnOrder;
     TextView tvItemSelected;
     String[] listItems;
@@ -168,9 +166,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     @SuppressLint("RestrictedApi")
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        dato_gene URL = new dato_gene();
-        URL_EMPRESA = URL.getURL_EMPRESA();
 
         contexto = this;
         vista = inflater.inflate(R.layout.fragment_proc_dist_conf_manu, container, false);
@@ -744,7 +739,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         limpiar_datos();
                     } else {
 
-                        String url = URL_EMPRESA+"distribucion/regi?fac_lati="+fac_lati+"&fac_long="+fac_long+"&fac_dire="+fac_dire+"&fact_sri="+resultadoQR.getText().toString()+"&nomb_moti="+nomb_moti+"&fac_imag="+fac_imag+"&acti_usua="+acti_usua+"&nume_fact="+nume_factura.getText().toString()+"&codi_vers="+getCodiVersionCode()+"&nume_iden="+dni_ases.getText().toString()+"&codi_camp="+txt_codi_camp.getText().toString()+"&modi_dire="+txt_modi_dire.getText().toString().trim()+"&modi_refe="+txt_modi_refe.getText().toString().trim();
+                        String url = getString(R.string.url_empr)+"distribucion/regi?fac_lati="+fac_lati+"&fac_long="+fac_long+"&fac_dire="+fac_dire+"&fact_sri="+resultadoQR.getText().toString()+"&nomb_moti="+nomb_moti+"&fac_imag="+fac_imag+"&acti_usua="+acti_usua+"&nume_fact="+nume_factura.getText().toString()+"&codi_vers="+getCodiVersionCode()+"&nume_iden="+dni_ases.getText().toString()+"&codi_camp="+txt_codi_camp.getText().toString()+"&modi_dire="+txt_modi_dire.getText().toString().trim()+"&modi_refe="+txt_modi_refe.getText().toString().trim();
                         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                             @SuppressLint("MissingPermission")
                             @Override
@@ -838,7 +833,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     }
 
     private void motivos_devolucion() {
-        String url = URL_EMPRESA+"distribucion/moti";
+        String url = getString(R.string.url_empr)+"distribucion/moti?";
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -856,18 +851,11 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                try {
-                    JSONObject mensaje = response.getJSONObject(0);
-                    Toast.makeText(getContext(),mensaje.getString("mensaje"),Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                pdp.dismiss();
-                Toast.makeText(getContext(),"MOTI: No se puede conectar con el  servidor."+error,Toast.LENGTH_SHORT).show();
+                Log.i("proc_dist_conf_manu", "MOTI: No se puede conectar con el  servidor."+error);
             }
         });
 
@@ -979,6 +967,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     limpiar_datos();
                     new dialogo_personal(getContext(), "Pedido "+nume_fact+" no asignado" );
                 }
+                c.close();
             } else {
 
                 if (isNetDisponible()) {
@@ -987,11 +976,11 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                 } else {
                     limpiar_datos();
                     new dialogo_personal(getContext(),"El pedido no se encuentra asignado para esta fecha");
-                    //new cuadro_mensaje_bd(getContext(), "El pedido no se encuentra asignado para esta fecha. !!",3);
-
                 }
             }
+            count.close();
         }
+        db.close();
     }
 
     private void obtener_caja_off(String nume_fact) {
@@ -1007,7 +996,9 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     txt_cant_bols.setText(String.valueOf(c.getString(2)));
                 } while (c.moveToNext());
             }
+            c.close();
         }
+        db.close();
     }
 
     private String haversineGreatCircleDistance(String cy, String cx, String fac_lati, String fac_long){
@@ -1036,7 +1027,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     }
 
     private void cons_clie_dato() {
-        String url = URL_EMPRESA+"distribucion/descpedi?nume_celu="+nume_celu;
+        String url = getString(R.string.url_empr)+"distribucion/descpedi?nume_celu="+nume_celu;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -1139,8 +1130,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     + ClienteContract.ClienteEntry.COLUMN_NUME_IDEN+","
                     + ClienteContract.ClienteEntry.COLUMN_NOMB_TERC+","
                     + ClienteContract.ClienteEntry.COLUMN_APEL_TERC+","
-                    + ClienteContract.ClienteEntry.COLUMN_DIRE_TERC+","
                     + ClienteContract.ClienteEntry.COLUMN_DIRE_REFE+","
+                    + ClienteContract.ClienteEntry.COLUMN_DIRE_TERC+","
                     + ClienteContract.ClienteEntry.COLUMN_NUME_FACT+","
                     + ClienteContract.ClienteEntry.COLUMN_REMI_SRI+","
                     + ClienteContract.ClienteEntry.COLUMN_CODI_CAMP+","
@@ -1151,12 +1142,13 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     + ClienteContract.ClienteEntry.COLUMN_CELU_TER1+ ")" +
                     "VALUES ('"+acti_fech+"','"+nume_iden+"','"+nomb_terc+"','"+apel_terc+"','"+dire_terc+"','"+dire_refe+"','"+nume_factc+"','"+remi_sri+"','"+codi_camp+"','"+cons_terc+"','"+cy+"','"+cx+"','"+dist_zona+"','"+celu_ter1+"')");
         }
-
+        c.close();
+        db.close();
     }
 
     private void carg_canj_devo(String cons_terc){
 
-        String url = URL_EMPRESA+"distribucion/carg_canj_devo?cons_terc="+cons_terc;
+        String url = getString(R.string.url_empr)+"distribucion/carg_canj_devo?cons_terc="+cons_terc;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -1208,6 +1200,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             db.execSQL("DELETE FROM cliente WHERE acti_fech <> '"+getDate()+"' ");
             db.execSQL("DELETE FROM caja    WHERE acti_fech <> '"+getDate()+"' ");
         }
+        db.close();
     }
 
 
@@ -1217,10 +1210,11 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         if (db!=null){
             db.execSQL("DELETE FROM pedi_conf WHERE date (acti_hora) <> '"+getDate()+"' ");
         }
+        db.close();
     }
 
     private void cons_caja_dato() {
-        String url = URL_EMPRESA+"distribucion/desccaja?nume_celu="+nume_celu;
+        String url = getString(R.string.url_empr)+"distribucion/desccaja?nume_celu="+nume_celu;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -1277,6 +1271,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     CajaContract.CajaEntry.COLUMN_ACTI_FECH+ ")" +
                     " VALUES ('"+cant_caja+"', '"+cant_fuer+"', '"+cant_bols+"','"+nume_fact+"','"+acti_fech+"')");
         }
+        c.close();
+        db3.close();
     }
 
 
@@ -1310,6 +1306,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     + Fac_confContract.Fac_confEntry.COLUMN_MODI_REFE+ ")" +
                     "VALUES ('"+fact_sri+"','"+fac_lati+"','"+fac_long+"','"+fac_dire+"','"+acti_usua+"','"+getDateTime()+"','"+nume_fact+"','"+nomb_moti+"','"+codi_vers+"','"+nume_iden+"','"+codi_camp+"','"+modi_dire+"','"+modi_refe+"' )");
         }
+        c.close();
+        db4.close();
     }
 
 
@@ -1332,6 +1330,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         if (db!=null){
             db.execSQL("INSERT INTO pedi_conf (nume_fact, nomb_moti, acti_hora) VALUES ('"+nume_fact+"','"+nomb_moti+"','"+acti_hora+"')");
         }
+        c.close();
+        db.close();
 
     }
 
@@ -1380,7 +1380,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
                     Log.i("acti_hora_veri", "-->" + sinc_fact_sri+"--"+acti_hora_veri);
 
-                    String url = URL_EMPRESA + "distribucion/regi_sinc?fact_sri=" + sinc_fact_sri + "&fac_lati=" + sinc_fac_lati + "&fac_long=" + sinc_fac_long + "&fac_dire=" + sinc_fac_dire + "&acti_usua=" + sinc_acti_usua + "&acti_hora=" + sinc_acti_hora + "&nomb_moti=" + sinc_nomb_moti + "&acti_hora_veri=" + acti_hora_veri.trim()+ "&nume_fact=" + sinc_nume_fact+"&codi_vers="+sinc_codi_vers+"&nume_iden="+sinc_nume_iden+"&codi_camp="+sinc_codi_camp+"&modi_dire="+sinc_modi_dire+"&modi_refe="+sinc_modi_refe;
+                    String url = getString(R.string.url_empr)+"distribucion/regi_sinc?fact_sri=" + sinc_fact_sri + "&fac_lati=" + sinc_fac_lati + "&fac_long=" + sinc_fac_long + "&fac_dire=" + sinc_fac_dire + "&acti_usua=" + sinc_acti_usua + "&acti_hora=" + sinc_acti_hora + "&nomb_moti=" + sinc_nomb_moti + "&acti_hora_veri=" + acti_hora_veri.trim()+ "&nume_fact=" + sinc_nume_fact+"&codi_vers="+sinc_codi_vers+"&nume_iden="+sinc_nume_iden+"&codi_camp="+sinc_codi_camp+"&modi_dire="+sinc_modi_dire+"&modi_refe="+sinc_modi_refe;
                     jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
                         @Override
@@ -1431,7 +1431,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             new dialogo_personal(getContext(), "No existe pedidos para sincronizar");
         }
 
-
+        c.close();
+        db5.close();
     }
 
     private void sinc_fac_conf_imag_indi(String fact_sri, String acti_hora_veri) {
@@ -1456,12 +1457,15 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             }
         }
 
+        c.close();
+        db5.close();
+
     }
 
 
     private  void carg_fac_conf_imag(final String fact_sri_sinc_imag, final String nume_fact_sinc_imag, final Bitmap bitmap, final String acti_hora_veri) {
 
-        String url = URL_EMPRESA+"distribucion/imag?";
+        String url = getString(R.string.url_empr)+"distribucion/imag?";
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
                 {
@@ -1568,14 +1572,17 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     "(" + Moti_rech_distContract.Moti_rech_distEntry.COLUMN_NOMB_MOTI+ ")" +
                     "VALUES ('"+nomb_moti+"')");
         }
+        c.close();
+        db7.close();
     }
 
     private void borr_moti_rech_dist() {
-        MyDbHelper dbHelper = new MyDbHelper(getContext());
+        MyDbHelper dbHelper = new MyDbHelper(getActivity());
         SQLiteDatabase db8 =  dbHelper.getReadableDatabase();
         if (db8!=null){
             db8.execSQL("DELETE FROM "+ Moti_rech_distContract.Moti_rech_distEntry.TABLE_NAME);
         }
+        db8.close();
     }
 
     private void carg_moti_rech_moti() {
@@ -1595,7 +1602,9 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     i++;
                 } while (c.moveToNext());
             }
+            c.close();
         }
+        db9.close();
     }
 
     private void cargarpreferencias() {
@@ -1608,7 +1617,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         this.nume_celu = nume_celu;
         this.esta_celu = esta_celu;
     }
-
 
     private void sinc_pedi_falt() {
         MyDbHelper dbHelper = new MyDbHelper(getContext());
@@ -1624,7 +1632,9 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     Toast.makeText(getContext(), "Tiene "+t+" pedido(s) por sincronizar.",Toast.LENGTH_SHORT).show();
                 }
             }
+            c.close();
         }
+        db.close();
     }
 
     private void elim_fac_conf() {
@@ -1633,6 +1643,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         if (db!=null){
             db.execSQL("DELETE FROM fac_conf  WHERE Cast ((JulianDay('"+getDate()+"') - JulianDay(DATE(acti_hora)) ) As Integer)> 1 ");
         }
+        db.close();
     }
 
     private void eliminarDatos() {
@@ -1644,6 +1655,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             db.execSQL("DELETE FROM caja");
             db.execSQL("DELETE FROM pedi_conf");
         }
+        db.close();
     }
 
 
@@ -1658,7 +1670,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
     private void validar_identidad(final String nume_iden) {
 
-        String url = URL_EMPRESA+"asesora/ubic?nume_iden="+nume_iden;
+        String url = getString(R.string.url_empr)+"asesora/ubic?nume_iden="+nume_iden;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
 
@@ -1732,7 +1744,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         if (v_nume_celu.equalsIgnoreCase("")){
             new dialogo_celular(getContext(), Fragmento_proc_dist_conf_manu.this);
         } else {
-            String url = URL_EMPRESA+"usuario/celu?nume_celu="+v_nume_celu;
+            String url = getString(R.string.url_empr)+"usuario/celu?nume_celu="+v_nume_celu;
 
             jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
@@ -1877,15 +1889,15 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         } while (c.moveToNext());
                     }
 
-
                 }
                 adapter = new ArrayAdapter(getContext(),android.R.layout.select_dialog_item, clientes);
                 lv_pedi.setAdapter(adapter);
+
+                c.close();
             }
-
+            count.close();
         }
+        db.close();
     }
-
-
 
 }

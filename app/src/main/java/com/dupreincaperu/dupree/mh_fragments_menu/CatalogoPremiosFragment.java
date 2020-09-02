@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.imageperu.lib_image.MyProviderImage;
 import com.dupreeinca.lib_api_rest.controller.CatalogosController;
@@ -405,10 +406,14 @@ public class CatalogoPremiosFragment extends BaseFragment implements CatalogoPre
         simpleDialog.setListener(new SimpleDialog3Button.ListenerResult() {
             @Override
             public void result(boolean status) {
-                if(status)
+                if(status){
+                    if (!dataRow.getPdf().equalsIgnoreCase(""))
                     openCatalogoPDF(dataRow.getPdf());
-                else
+                }
+                else{
+                    if (!dataRow.getUrl().equalsIgnoreCase(""))
                     viewCatalogOnline(dataRow.getUrl());
+                }
             }
         });
         simpleDialog.show(getChildFragmentManager(),"mDialog");

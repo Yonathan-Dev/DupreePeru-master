@@ -373,7 +373,8 @@ public class AuthFragment extends Fragment {
                     corr_empl = empleado.getString("corr_empl").trim();
                     nume_iden = empleado.getString("nume_iden").trim();
                     nomb_comp = (nomb_empl+" "+apel_empl).toUpperCase();
-                    tipo_vinc = empleado.getString("tipo_vinc");
+                    if (!empleado.getString("tipo_vinc").equalsIgnoreCase(null))
+                        tipo_vinc = empleado.getString("tipo_vinc");
 
                     guardarpreferencia();
 

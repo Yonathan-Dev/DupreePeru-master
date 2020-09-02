@@ -87,7 +87,7 @@ public class CatalogosFragment extends BaseFragment {
 
     private UploadFileController fileController;
 
-    String URL_EMPRESA="";
+    //String URL_EMPRESA="";
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
     String code_cata_prim="", urls_port_prim="", nomb_cata_prim="", urls_pdfs_prim="", urls_cata_prim="";
@@ -107,8 +107,8 @@ public class CatalogosFragment extends BaseFragment {
     protected void initViews(ViewDataBinding view) {
         binding = (FragmentCatalogosBinding) view;
 
-        dato_gene URL = new dato_gene();
-        URL_EMPRESA   = URL.getURL_EMPRESA();
+        //dato_gene URL = new dato_gene();
+        //URL_EMPRESA   = URL.getURL_EMPRESA();
         request       = Volley.newRequestQueue(getContext());
         carga_catalogo();
 
@@ -523,7 +523,7 @@ public class CatalogosFragment extends BaseFragment {
 
     private void carga_catalogo() {
 
-        String url = URL_EMPRESA+"catalogo/cata?codi_pais=PER";
+        String url = getString(R.string.url_empr)+"catalogo/cata?codi_pais=PER";
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
 
@@ -550,7 +550,8 @@ public class CatalogosFragment extends BaseFragment {
                     binding.txtNumCampA.setText(code_cata_prim);
                     binding.txtNumCampB.setText(code_cata_segu);
                     img = ImageLoader.getInstance();
-                    img.init(PinchZoomImageView.configurarImageLoader(getActivity()));
+                    if (!PinchZoomImageView.configurarImageLoader(getActivity()).equals(null))
+                        img.init(PinchZoomImageView.configurarImageLoader(getActivity()));
 
                     img.displayImage(urls_port_prim, binding.imgCampA);
                     img.displayImage(urls_port_segu, binding.imgCampB);
