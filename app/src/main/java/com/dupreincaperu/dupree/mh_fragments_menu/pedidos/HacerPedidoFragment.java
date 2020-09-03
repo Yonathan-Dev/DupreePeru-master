@@ -1,12 +1,20 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.pedidos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ViewDataBinding;
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
@@ -32,13 +40,45 @@ import com.dupreeinca.lib_api_rest.model.dto.response.realm.Catalogo;
 import com.dupreeinca.lib_api_rest.model.dto.response.realm.ItemCarrito;
 import com.dupreeinca.lib_api_rest.model.view.Profile;
 import com.dupreeinca.lib_api_rest.util.models.ModelList;
+import com.dupreincaperu.dupree.MenuActivity;
 import com.dupreincaperu.dupree.R;
+import com.dupreincaperu.dupree.databinding.FragmentPanelAsesoraBinding;
+import com.dupreincaperu.dupree.databinding.FragmentPanelAsesoraBindingImpl;
 import com.dupreincaperu.dupree.databinding.FragmentPedidosHacerBinding;
 import com.dupreincaperu.dupree.mh_adapters.CatalogoListAdapter;
+import com.dupreincaperu.dupree.mh_adapters.IncorporacionPagerAdapter;
+import com.dupreincaperu.dupree.mh_adapters.NuevasPagerAdapter;
 import com.dupreincaperu.dupree.mh_adapters.PedidosPagerAdapter;
 import com.dupreincaperu.dupree.mh_adapters.base.TabViewPager.TabManagerFragment;
+import com.dupreincaperu.dupree.mh_dial_peru.cuadro_confirma;
+import com.dupreincaperu.dupree.mh_dial_peru.dialogoPedido;
 import com.dupreincaperu.dupree.mh_dialogs.InputDialog;
 import com.dupreincaperu.dupree.mh_dialogs.SimpleDialog;
+import com.dupreincaperu.dupree.mh_fragments_asesora.Fragmento_repo_ases_deud;
+import com.dupreincaperu.dupree.mh_fragments_cobranza.Fragmento_ubic_ases;
+import com.dupreincaperu.dupree.mh_fragments_distribucion.Fragmento_geoc_inve;
+import com.dupreincaperu.dupree.mh_fragments_distribucion.Fragmento_proc_dist_conf_manu;
+import com.dupreincaperu.dupree.mh_fragments_main.CatalogosAdvanceFragment;
+import com.dupreincaperu.dupree.mh_fragments_main.CatalogosFragment;
+import com.dupreincaperu.dupree.mh_fragments_main.ContactFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.BandejaEntradaFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.CatalogoPremiosFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.ConfigModPerfilFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.IncentivosConsultaPtosFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.IncentivosRedimirFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.IncentivosReferidoFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.PanelGerenteFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.PedidosEdoPedidoFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.PedidosFaltantesFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.ReporteRetenidosFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.Servicios_PagosOnLine_Fragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.UbicacionFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.Incorp_Nuevas_Fragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.Incorp_Todos_Fragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.panel_asesoras.PanelAsesoraFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.reportes.ReportesFragment;
+import com.dupreincaperu.dupree.mh_fragments_ventas.Fragmento_indi_vent;
+import com.dupreincaperu.dupree.mh_fragments_ventas.Fragmento_list_ases;
 import com.dupreincaperu.dupree.mh_holders.CatalogoHolder;
 import com.dupreincaperu.dupree.mh_utilities.KeyBoard;
 import com.google.gson.Gson;
@@ -55,7 +95,7 @@ import io.realm.RealmResults;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HacerPedidoFragment extends TabManagerFragment implements BasePedido, CatalogoHolder.Events{
+public class HacerPedidoFragment extends TabManagerFragment implements dialogoPedido.cierroDialogo, BasePedido, CatalogoHolder.Events{
 
     public static final String TAG = HacerPedidoFragment.class.getName();
     public FragmentPedidosHacerBinding binding;
@@ -167,6 +207,16 @@ public class HacerPedidoFragment extends TabManagerFragment implements BasePedid
 
         binding.swipePedidos.setOnRefreshListener(mOnRefreshListener);
         binding.swipePedidos.setEnabled(false);
+
+        String corte = "A";
+        if (corte.equalsIgnoreCase("C")){
+            String codi_camp_actu = "202002";
+            String codi_camp_sigu = "202003";
+            String fech_inic = "15/09/2020";
+            String fech_fina = "25/09/2020";
+            new dialogoPedido(getContext(), HacerPedidoFragment.this, codi_camp_actu, codi_camp_sigu, fech_inic, fech_fina);
+        }
+
     }
 
     @Override
@@ -177,6 +227,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements BasePedid
         controlVisible(false, "");
         filterCatalogoDB("");//mostrar toodo el catalogo
         checkEdoPedido();
+
     }
 
     private MenuItem searchItem;
@@ -330,6 +381,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements BasePedid
             }
         });
 //        new Http(getActivity()).liquidarPedido(obtainProductsLiquidate(), TAG, BROACAST_LIQUIDATE_PRODUCTS);
+
     }
 
     private double total_pedido = 0;
@@ -354,9 +406,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements BasePedid
             }
 
         }
-
-
         return new LiquidarSend(id_pedido, paquetones, productos, ofertas);
+
     }
 
     private void checkEdoPedido(){
@@ -830,4 +881,33 @@ public class HacerPedidoFragment extends TabManagerFragment implements BasePedid
         Log.e(TAG, "onDetach()");
         setHasOptionsMenu(false);
     }
+
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        /*
+        String codi_camp = "202002";
+        String fech_inic = "15/09/2020";
+        String fech_fina = "25/09/2020";
+        new dialogoPedido(getContext(), HacerPedidoFragment.this, codi_camp, fech_inic, fech_fina);*/
+
+    }
+
+    @Override
+    public void ResultadoDialogo() {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+
+        if(this.perfil.getPerfil().equalsIgnoreCase("L")){
+            Fragment fragmentoGenerico = new PanelGerenteFragment();
+            fragmentManager.beginTransaction().replace(R.id.fragment, fragmentoGenerico).commit();
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Panel resultados");
+        } else{
+            Fragment fragmentoGenerico = new PanelAsesoraFragment();
+            fragmentManager.beginTransaction().replace(R.id.fragment, fragmentoGenerico).commit();
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Panel asesora");
+        }
+
+    }
+
 }
