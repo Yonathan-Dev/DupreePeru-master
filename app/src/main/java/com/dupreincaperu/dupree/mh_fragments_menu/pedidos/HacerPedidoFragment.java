@@ -3,6 +3,7 @@ package com.dupreincaperu.dupree.mh_fragments_menu.pedidos;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.ViewDataBinding;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,12 +12,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.SearchView;
+import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -25,6 +28,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.dupreeinca.lib_api_rest.controller.PedidosController;
 import com.dupreeinca.lib_api_rest.enums.EnumLiquidar;
@@ -239,12 +243,15 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         searchItem = menu.findItem(R.id.menu_action_search);
 
         searchView = (SearchView) searchItem.getActionView();
-        searchView.setQueryHint(getString(R.string.ingresar_codigo));
+
+        ImageView searchIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_button);
+        searchIcon.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.ic_black_search_24));
+        searchView.setQueryHint(Html.fromHtml("<font color = #000000>" + getString(R.string.ingresar_codigo) + "</font>"));
 
         EditText txtSearch = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         //txtSearch.setInputType(InputType.TYPE_CLASS_NUMBER);
         txtSearch.setInputType(InputType.TYPE_CLASS_TEXT);
-
+        txtSearch.setTextColor(Color.BLACK);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -263,6 +270,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         });
 
         searchView.setIconified(true);//inicialmente oculto
+
 
         if(dataStore.getTipoPerfil()!=null) {
             boolean isAsesora = dataStore.getTipoPerfil().getPerfil().equals(Profile.ADESORA);
