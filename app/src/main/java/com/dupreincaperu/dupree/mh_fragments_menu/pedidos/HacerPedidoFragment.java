@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.dupreeinca.lib_api_rest.controller.PedidosController;
 import com.dupreeinca.lib_api_rest.enums.EnumLiquidar;
@@ -80,6 +81,7 @@ import com.dupreincaperu.dupree.mh_fragments_menu.UbicacionFragment;
 import com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.Incorp_Nuevas_Fragment;
 import com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.Incorp_Todos_Fragment;
 import com.dupreincaperu.dupree.mh_fragments_menu.panel_asesoras.PanelAsesoraFragment;
+import com.dupreincaperu.dupree.mh_fragments_menu.pedidos.ofertas.OffersFragment;
 import com.dupreincaperu.dupree.mh_fragments_menu.reportes.ReportesFragment;
 import com.dupreincaperu.dupree.mh_fragments_ventas.Fragmento_indi_vent;
 import com.dupreincaperu.dupree.mh_fragments_ventas.Fragmento_list_ases;
@@ -131,9 +133,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     private boolean productsEditable=false;
     private boolean offersEditable=false;
 
-       public HacerPedidoFragment() {
+    public HacerPedidoFragment() {
         // Required empty public constructor
-
     }
 
     //MARK: TabManagerFragment
@@ -181,6 +182,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         pedidosPagerAdapter = new PedidosPagerAdapter(getChildFragmentManager());
         binding.pagerView.addOnPageChangeListener(mOnPageChangeListener);
         binding.pagerView.setOffscreenPageLimit(3);
+
         binding.fabSendPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -212,14 +214,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         binding.swipePedidos.setOnRefreshListener(mOnRefreshListener);
         binding.swipePedidos.setEnabled(false);
 
-        String corte = "A";
-        if (corte.equalsIgnoreCase("C")){
-            String codi_camp_actu = "202002";
-            String codi_camp_sigu = "202003";
-            String fech_inic = "15/09/2020";
-            String fech_fina = "25/09/2020";
-            new dialogoPedido(getContext(), HacerPedidoFragment.this, codi_camp_actu, codi_camp_sigu, fech_inic, fech_fina);
-        }
 
     }
 
@@ -461,6 +455,19 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
     private void updateView(){
         Log.e(TAG, "updateView()");
+
+        if (!resultEdoPedido.getMensaje().equalsIgnoreCase("")){
+            new dialogoPedido(getContext(), HacerPedidoFragment.this, resultEdoPedido.getMensaje().toUpperCase());
+        } else{
+            String asesora = resultEdoPedido.getAsesora();
+            String[] arraySaldo = asesora.split("S/.");
+            Double saldo = Double.parseDouble(arraySaldo[1]);
+            String mensaje = "Usted tiene un saldo de S/. "+saldo;
+            if (saldo>25){
+                new dialogoPedido(getContext(), HacerPedidoFragment.this, mensaje.toUpperCase());
+            }
+        }
+
         controlVisible(true, resultEdoPedido.getAsesora());
         //muestra o no ofertas
         pedidosPagerAdapter.getOffersFragment().setShowOffers(resultEdoPedido.getOfertas().getActivo().equals(EstadoPedidoDTO.SHOW_PRDUCTS));

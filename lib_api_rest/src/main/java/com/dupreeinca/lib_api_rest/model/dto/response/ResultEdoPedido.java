@@ -5,7 +5,7 @@ package com.dupreeinca.lib_api_rest.model.dto.response;
  */
 
 public class ResultEdoPedido {
-    private String id_pedido;
+    private String id_pedido ="758451";
     private ListaProductos productos;
     private ListaOfertas ofertas;
     private String puntos;
@@ -13,6 +13,8 @@ public class ResultEdoPedido {
     private String estado_pedido;
     private String asesora;
     private String campana;
+    private String mensaje;
+
 
 
     public String getId_pedido() {
@@ -45,5 +47,9 @@ public class ResultEdoPedido {
 
     public String getCampana() {
         return campana;
+    }
+
+    public String getMensaje() {
+        return mensaje;
     }
 }
