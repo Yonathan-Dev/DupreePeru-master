@@ -901,11 +901,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     @Override
     public void onResume(){
         super.onResume();
-        /*
-        String codi_camp = "202002";
-        String fech_inic = "15/09/2020";
-        String fech_fina = "25/09/2020";
-        new dialogoPedido(getContext(), HacerPedidoFragment.this, codi_camp, fech_inic, fech_fina);*/
 
     }
 
