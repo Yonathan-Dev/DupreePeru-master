@@ -2,6 +2,7 @@ package com.dupreincaperu.dupree.mh_fragments_menu.pedidos;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.ViewDataBinding;
 import android.graphics.Color;
 import android.net.Uri;
@@ -31,6 +32,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.dupreeinca.lib_api_rest.controller.BannerController;
 import com.dupreeinca.lib_api_rest.controller.PedidosController;
 import com.dupreeinca.lib_api_rest.enums.EnumLiquidar;
 import com.dupreeinca.lib_api_rest.model.base.TTError;
@@ -40,11 +42,14 @@ import com.dupreeinca.lib_api_rest.model.dto.request.LiquidarProducto;
 import com.dupreeinca.lib_api_rest.model.dto.request.LiquidarSend;
 import com.dupreeinca.lib_api_rest.model.dto.response.EstadoPedidoDTO;
 import com.dupreeinca.lib_api_rest.model.dto.response.LiquidarDTO;
+import com.dupreeinca.lib_api_rest.model.dto.response.ListProductCatalogoDTO;
+import com.dupreeinca.lib_api_rest.model.dto.response.ProductCatalogoDTO;
 import com.dupreeinca.lib_api_rest.model.dto.response.ResultEdoPedido;
 import com.dupreeinca.lib_api_rest.model.dto.response.realm.Catalogo;
 import com.dupreeinca.lib_api_rest.model.dto.response.realm.ItemCarrito;
 import com.dupreeinca.lib_api_rest.model.view.Profile;
 import com.dupreeinca.lib_api_rest.util.models.ModelList;
+import com.dupreincaperu.dupree.FullscreenActivity;
 import com.dupreincaperu.dupree.MenuActivity;
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.databinding.FragmentPanelAsesoraBinding;
@@ -88,6 +93,7 @@ import com.dupreincaperu.dupree.mh_fragments_ventas.Fragmento_list_ases;
 import com.dupreincaperu.dupree.mh_holders.CatalogoHolder;
 import com.dupreincaperu.dupree.mh_utilities.KeyBoard;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -132,6 +138,10 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
     private boolean productsEditable=false;
     private boolean offersEditable=false;
+
+    private BannerController bannerController;
+    String campanaActual;
+    String nume_iden;
 
     public HacerPedidoFragment() {
         // Required empty public constructor
@@ -221,6 +231,15 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     protected void onLoadedView() {
         Log.e(TAG, "onLoadedView()");
         pedidosController = new PedidosController(getContext());
+        //API rest
+
+        String campana =  getActivity().getIntent().getStringExtra("campanaActual");
+        if (campana != null){
+            campanaActual = campana;
+            msgToast(campanaActual);
+        }
+        bannerController =  new BannerController(getContext());
+        cargarpreferencias();
 
         controlVisible(false, "");
         filterCatalogoDB("");//mostrar toodo el catalogo
@@ -455,10 +474,11 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
     private void updateView(){
         Log.e(TAG, "updateView()");
+        obtainCatalogo();
 
         if (!resultEdoPedido.getMensaje().equalsIgnoreCase("")){
             new dialogoPedido(getContext(), HacerPedidoFragment.this, resultEdoPedido.getMensaje().toUpperCase());
-        } else{
+        } else {
             String asesora = resultEdoPedido.getAsesora();
             String[] arraySaldo = asesora.split("S/.");
             Double saldo = Double.parseDouble(arraySaldo[1]);
@@ -901,7 +921,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     @Override
     public void onResume(){
         super.onResume();
-
+        cargarpreferencias();
     }
 
     @Override
@@ -918,6 +938,69 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Panel asesora");
         }
 
+    }
+
+
+    private void obtainCatalogo(){
+
+        bannerController.getProductos(campanaActual, nume_iden, new TTResultListener<ProductCatalogoDTO>() {
+            @Override
+            public void success(ProductCatalogoDTO result) {
+                Log.e(TAG, "obtainCatalogo() -> success():" + new Gson().toJson(result));
+                //un detalle envia 200 con error 404
+                if (result.getCode() == 404) {
+                    errorLoadInitData();
+                } else {
+                    responseCatalogo(result.getResult());
+                }
+            }
+
+            @Override
+            public void error(TTError error) {
+                Log.e(TAG, "obtainCatalogo() -> error():" + new Gson().toJson(error));
+
+                //error de Backend
+                if (!error.getCodigo().equalsIgnoreCase("")){
+                    if(error.getStatusCode() == 404) {
+                        try {
+                            ProductCatalogoDTO resp = new Gson().fromJson(error.getErrorBody(), ProductCatalogoDTO.class);
+                            responseCatalogo(resp.getResult());
+                        } catch (JsonSyntaxException e) {
+                            //terminatedProcess();
+                            //Se comenta para que pueda ingresar al menu esto pasa cuando no carga los productos de catalogo
+                            errorLoadInitData();
+                        }
+                    } else {
+                        //terminatedProcess();
+                        errorLoadInitData();
+                    }
+                }
+            }
+        });
+
+    }
+
+    ListProductCatalogoDTO listaProd_catalogo;
+    public void responseCatalogo(ListProductCatalogoDTO listaProd_catalogo){
+        Log.e(TAG, "listaProd_catalogo.getOfertas(): "+new Gson().toJson(listaProd_catalogo.getOfertas()));
+        Log.e(TAG, "listaProd_catalogo.getPaquetones(): "+new Gson().toJson(listaProd_catalogo.getPaquetones()));
+        Log.e(TAG, "listaProd_catalogo.getProductos(): "+new Gson().toJson(listaProd_catalogo.getProductos()));
+        if(listaProd_catalogo.getProductos()!=null && listaProd_catalogo.getProductos().size()>0) {
+            this.listaProd_catalogo = listaProd_catalogo;
+
+        } else{
+            errorLoadInitData();
+        }
+    }
+
+    public void errorLoadInitData(){
+        msgToast("No se pueden cargar datos iniciales");
+    }
+
+    private void cargarpreferencias() {
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+        String nume_iden = preferences.getString("nume_iden","");
+        this.nume_iden = nume_iden;
     }
 
 }

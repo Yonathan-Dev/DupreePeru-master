@@ -42,10 +42,8 @@ public class dialogoPedido {
 
         final Button    btn_cerr_dial = (Button)   dialogo.findViewById(R.id.btn_cerr_dial);
         final TextView  txt_parr_unos = (TextView) dialogo.findViewById(R.id.txt_parr_unos);
-        //final TextView  txt_parr_doss = (TextView) dialogo.findViewById(R.id.txt_parr_doss);
 
         txt_parr_unos.setText(mensaje);
-        //xt_parr_doss.setText("Puede ingresar a digitar el pedido de "+codi_camp_sigu+ " a partir del "+fech_inic+" hasta el "+fech_fina+".");
 
         btn_cerr_dial.setOnClickListener(new View.OnClickListener() {
             @Override
