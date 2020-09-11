@@ -826,7 +826,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     }
 
     private void filterCatalogoDB(final String textFilter){
-        msgToast("-->"+textFilter);
+
         Log.v(TAG,"filterCatalogoDB... ---------------filterCatalogoDB--------------");
         realm.beginTransaction();
         try {
