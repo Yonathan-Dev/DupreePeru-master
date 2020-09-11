@@ -826,6 +826,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     }
 
     private void filterCatalogoDB(final String textFilter){
+        msgToast("-->"+textFilter);
         Log.v(TAG,"filterCatalogoDB... ---------------filterCatalogoDB--------------");
         realm.beginTransaction();
         try {
@@ -928,7 +929,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     public void ResultadoDialogo() {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
-        if(this.perfil.getPerfil().equalsIgnoreCase("L")){
+        if(this.perfil.getPerfil().equalsIgnoreCase("L") || this.perfil.getPerfil().equalsIgnoreCase("Z") ){
             Fragment fragmentoGenerico = new PanelGerenteFragment();
             fragmentManager.beginTransaction().replace(R.id.fragment, fragmentoGenerico).commit();
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Panel resultados");
@@ -942,6 +943,10 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
 
     private void obtainCatalogo(){
+
+        if (!cedula.equalsIgnoreCase("")){
+            nume_iden = cedula;
+        }
 
         bannerController.getProductos(campanaActual, nume_iden, new TTResultListener<ProductCatalogoDTO>() {
             @Override
