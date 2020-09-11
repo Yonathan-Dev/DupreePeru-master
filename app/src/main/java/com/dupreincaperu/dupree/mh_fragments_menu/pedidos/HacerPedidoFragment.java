@@ -209,6 +209,17 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             }
         });
 
+        binding.fabNextPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //pedidosPagerAdapter.getOffersFragment().setEnable(isEnable());
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                Fragment fragmentoGenerico = new OffersFragment();
+                fragmentManager.beginTransaction().replace(R.id.fragment, fragmentoGenerico).commit();
+                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Ofertas");
+            }
+        });
+
         //CONTROL DE FILTROS Y CATALOGO
         realm = Realm.getDefaultInstance();
 
