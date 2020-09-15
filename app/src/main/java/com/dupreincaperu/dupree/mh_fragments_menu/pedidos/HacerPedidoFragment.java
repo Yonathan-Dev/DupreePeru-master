@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.databinding.ViewDataBinding;
 import android.graphics.Color;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -30,6 +31,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.dupreeinca.lib_api_rest.controller.BannerController;
@@ -172,7 +174,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         List<ModelList> items = new ArrayList<>();
         items.add(new ModelList(R.drawable.ic_shopping_cart_white_24dp, getString(R.string.carrito)));
         items.add(new ModelList(R.drawable.ic_list_white_24dp, getString(R.string.ofertas)));
-        items.add(new ModelList(R.drawable.baseline_assignment_white_24, getString(R.string.historical)));
+        //items.add(new ModelList(R.drawable.baseline_assignment_white_24, getString(R.string.historical)));
         return items;
     }
 
@@ -191,7 +193,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
         pedidosPagerAdapter = new PedidosPagerAdapter(getChildFragmentManager());
         binding.pagerView.addOnPageChangeListener(mOnPageChangeListener);
-        binding.pagerView.setOffscreenPageLimit(3);
+        binding.pagerView.setOffscreenPageLimit(2);
 
         binding.fabSendPedido.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,21 +204,23 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                 }
 
                 if(pedidosPagerAdapter.getCarritoFragment().validate()){
-                    testRefreshServer();
+                    if (binding.pagerView.getCurrentItem()==1){
+                        testRefreshServer();
+                    } else {
+                        binding.pagerView.setCurrentItem(binding.pagerView.getCurrentItem()+1);
+                    }
                 } else {
                     msgToast(getString(R.string.no_se_detectaron_cambios));
                 }
             }
         });
 
-        binding.fabNextPedido.setOnClickListener(new View.OnClickListener() {
+        binding.fabbackPedido.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //pedidosPagerAdapter.getOffersFragment().setEnable(isEnable());
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                Fragment fragmentoGenerico = new OffersFragment();
-                fragmentManager.beginTransaction().replace(R.id.fragment, fragmentoGenerico).commit();
-                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Ofertas");
+            public void onClick(View view) {
+                if(binding.pagerView.getCurrentItem()!=0){
+                    binding.pagerView.setCurrentItem(binding.pagerView.getCurrentItem()-1);
+                }
             }
         });
 
@@ -234,8 +238,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
         binding.swipePedidos.setOnRefreshListener(mOnRefreshListener);
         binding.swipePedidos.setEnabled(false);
-
-
     }
 
     @Override
@@ -477,10 +479,12 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
     private void fabShow(boolean isVisible){
         binding.fabSendPedido.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
+        binding.fabbackPedido.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
     }
 
     private void setBackGroungColor(int color){
         binding.fabSendPedido.setBackgroundColor(color);
+        binding.fabbackPedido.setBackgroundColor(color);
     }
 
     private void updateView(){
@@ -614,24 +618,23 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                 case PedidosPagerAdapter.PAGE_CARRITO:
                     enableSearch(true);
                     fabShow(true);
+
                     pedidosPagerAdapter.getCarritoFragment().setEnable(isEnable());
                     pedidosPagerAdapter.getOffersFragment().setEnable(isEnable());
-
                     pedidosPagerAdapter.getCarritoFragment().updateCarrito();
                     break;
                 case PedidosPagerAdapter.PAGE_OFFERS:
                     enableSearch(true);
-                    fabShow(false);
+                    fabShow(true);
                     pedidosPagerAdapter.getCarritoFragment().setEnable(isEnable());
                     pedidosPagerAdapter.getOffersFragment().setEnable(isEnable());
-
                     pedidosPagerAdapter.getOffersFragment().filterOffersDB("");
                     break;
-                case PedidosPagerAdapter.PAGE_HISTORICAL:
+                /*case PedidosPagerAdapter.PAGE_HISTORICAL:
                     enableSearch(false);
                     fabShow(false);
                     pedidosPagerAdapter.getHistorialFragment().setIdentyFacturas(cedula);
-                    break;
+                    break;*/
             }
 
             hideSearchView();
@@ -681,7 +684,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         pedidosPagerAdapter.getCarritoFragment().clearCartDB();
         pedidosPagerAdapter.getCarritoFragment().updateCarrito();
 
-        pedidosPagerAdapter.getHistorialFragment().updateView(null);
+        //pedidosPagerAdapter.getHistorialFragment().updateView(null);
     }
 
     String cedula = "";
@@ -704,18 +707,18 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
                 updateView();
 
-                dataFacturas();
+                //dataFacturas();
             }
 
             @Override
             public void error(TTError error) {
-                setPageCurrent(PedidosPagerAdapter.PAGE_HISTORICAL);
+                //setPageCurrent(PedidosPagerAdapter.PAGE_HISTORICAL);
 
                 dismissProgress();
                 checkSession(error);
 
                 if(error.getStatusCode() != 404 || error.getStatusCode() != 501) {
-                    dataFacturas();
+                    //dataFacturas();
                 }
             }
         });
@@ -723,9 +726,9 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     }
 
     private void dataFacturas(){
-        if (getPageCurrent() == PedidosPagerAdapter.PAGE_HISTORICAL) {
+        /*if (getPageCurrent() == PedidosPagerAdapter.PAGE_HISTORICAL) {
             pedidosPagerAdapter.getHistorialFragment().searchIdenty(cedula);
-        }
+        }*/
     }
     ///////////CONTROL DEL FILTRO DE PEDIDOS////////////
 
@@ -881,7 +884,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
 
     private void controlEditable(){
-        setBackGroungColor((productsEditable | offersEditable) ? getResources().getColor(R.color.colorAccent) : getResources().getColor(R.color.green_check));
+        setBackGroungColor((productsEditable | offersEditable) ? getResources().getColor(R.color.green_check) : getResources().getColor(R.color.green_check));
     }
 
     @Override
@@ -902,7 +905,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         Log.e(TAG, "Update Total: "+total_pedido);
 
         NumberFormat formatter = NumberFormat.getInstance(Locale.US);
-        fabTitle("S/. ".concat(formatter.format(total_pedido)));
+        //fabTitle("S/. ".concat(formatter.format(total_pedido)));
+        fabTitle("Siguiente");
     }
 
     @Override

@@ -74,7 +74,9 @@
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         android:id="@+id/swipePedidos"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="70dp"
+                        >
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
@@ -102,22 +104,22 @@
                         android:id="@+id/fabSendPedido"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center"
+                        android:layout_gravity="bottom|right"
                         android:layout_margin="@dimen/fab_margin"
                         app:floating_background_color="@color/colorAccent"
-                        app:floating_left_icon="@drawable/ic_save_white_24dp"
+                        app:floating_left_icon="@drawable/ic_next_navigate_next_24"
                         app:floating_title=""
                         app:floating_title_color="@android:color/white"/>
 
                     <ru.dimorinny.floatingtextbutton.FloatingTextButton
-                        android:id="@+id/fabNextPedido"
+                        android:id="@+id/fabbackPedido"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|left"
                         android:layout_margin="@dimen/fab_margin"
                         app:floating_background_color="@color/colorAccent"
-                        app:floating_left_icon="@drawable/ic_next_navigate_next_24"
-                        app:floating_title=""
+                        app:floating_left_icon="@drawable/ic_back_navigate_before_24"
+                        app:floating_title="Retroceder"
                         app:floating_title_color="@android:color/white"/>
 
 

@@ -136,7 +136,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/navigate_next/baseline_navigate_next_24.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/navigate_before/baseline_navigate_before_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -147,7 +147,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_next_navigate_next_24" />
+                            <entry key="outputName" value="ic_back_navigate_before_24" />
                             <entry key="sourceFile" value="C:\Users\yonathan.galindo\Desktop\Unidad\DupreePeru-master" />
                           </map>
                         </option>
