@@ -121,13 +121,11 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
     public boolean validate(){
         if(listFilterOffers.size()>0){
             for(int i=0;i<listFilterOffers.size(); i++){
-                if (listFilterOffers.get(i).getCantidad() != listFilterOffers.get(i).getCantidadServer())
-                {
+                if (listFilterOffers.get(i).getCantidad() != listFilterOffers.get(i).getCantidadServer()) {
                     return true;
                 }
             }
         }
-
         return false;
     }
 

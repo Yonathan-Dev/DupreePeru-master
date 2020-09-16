@@ -48,7 +48,6 @@ public class PedidosPagerAdapter extends FragmentStatePagerAdapter {
                 historialFragment = FacturasFragment.newInstance();
                 return historialFragment;*/
         }
-
         return null;
     }
 

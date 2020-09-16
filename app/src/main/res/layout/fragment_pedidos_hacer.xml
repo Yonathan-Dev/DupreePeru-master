@@ -109,7 +109,7 @@
                         app:floating_background_color="@color/colorAccent"
                         app:floating_left_icon="@drawable/ic_next_navigate_next_24"
                         app:floating_title=""
-                        app:floating_title_color="@android:color/white"/>
+                        app:floating_title_color="@android:color/black"/>
 
                     <ru.dimorinny.floatingtextbutton.FloatingTextButton
                         android:id="@+id/fabbackPedido"
@@ -120,7 +120,7 @@
                         app:floating_background_color="@color/colorAccent"
                         app:floating_left_icon="@drawable/ic_back_navigate_before_24"
                         app:floating_title="Retroceder"
-                        app:floating_title_color="@android:color/white"/>
+                        app:floating_title_color="@android:color/black"/>
 
 
                 </android.support.design.widget.CoordinatorLayout>

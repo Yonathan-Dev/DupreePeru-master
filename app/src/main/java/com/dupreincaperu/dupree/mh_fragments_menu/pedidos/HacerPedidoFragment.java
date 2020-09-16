@@ -669,7 +669,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     }
 
     private void initFAB(){
-        setBackGroungColor(getResources().getColor(R.color.green_check));
+        setBackGroungColor(getResources().getColor(R.color.colorPrimary));
         fabTitle("");
     }
 
@@ -884,7 +884,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
 
     private void controlEditable(){
-        setBackGroungColor((productsEditable | offersEditable) ? getResources().getColor(R.color.green_check) : getResources().getColor(R.color.green_check));
+        setBackGroungColor((productsEditable | offersEditable) ? getResources().getColor(R.color.colorPrimary) : getResources().getColor(R.color.colorPrimary));
     }
 
     @Override
