@@ -1,6 +1,7 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.pedidos.ofertas;
 
 
+import android.content.Intent;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 
 import com.dupreeinca.lib_api_rest.model.dto.response.realm.Oferta;
+import com.dupreincaperu.dupree.ImageZoomActivity;
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.databinding.FragmentProductsBinding;
 import com.dupreincaperu.dupree.mh_adapters.OffersListAdapter;
@@ -108,6 +110,11 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
         if(viewParent != null){
             viewParent.offersEditable(isEditable);
         }
+    }
+
+    @Override
+    public void onExpImagClick(Oferta dataRow, int row) {
+        gotoZoomImage(dataRow.getUrl_img());
     }
 
     @Override
@@ -474,5 +481,11 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
     public void onDetach() {
         super.onDetach();
         viewParent = null;
+    }
+
+    private void gotoZoomImage(String urlImage){
+        Intent intent = new Intent(getActivity(), ImageZoomActivity.class);
+        intent.putExtra(ImageZoomActivity.URL_IMAGE, urlImage);
+        startActivity(intent);
     }
 }

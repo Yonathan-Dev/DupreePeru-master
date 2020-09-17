@@ -30,6 +30,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -196,6 +197,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         pedidosPagerAdapter = new PedidosPagerAdapter(getChildFragmentManager());
         binding.pagerView.addOnPageChangeListener(mOnPageChangeListener);
         binding.pagerView.setOffscreenPageLimit(2);
+        binding.pagerView.setPagingEnabled(false);
 
         binding.fabSendPedido.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,6 +245,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         binding.swipePedidos.setOnRefreshListener(mOnRefreshListener);
         binding.swipePedidos.setEnabled(false);
     }
+
+
 
     @Override
     protected void onLoadedView() {
@@ -538,6 +542,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
     private void selectAction(){
         Log.e(TAG, "selectAction()");
+
         switch (resultEdoPedido.getEstado_pedido()) {
             case PEDIDO_NUEVO:
                 // Todoel proceso desde cero, puede existir algo loca
@@ -612,8 +617,10 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         }
     }
 
+
     private ViewPager.OnPageChangeListener mOnPageChangeListener
             = new ViewPager.OnPageChangeListener() {
+
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -622,6 +629,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         @Override
         public void onPageSelected(int position) {
             Log.i(TAG,"PAGE_MAIN Page: "+position);
+
             switch (position){
                 case PedidosPagerAdapter.PAGE_CARRITO:
                     enableSearch(true);

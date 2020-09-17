@@ -1,5 +1,7 @@
 package com.dupreincaperu.dupree.mh_holders;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
@@ -9,8 +11,10 @@ import android.view.View;
 
 import com.dupreeinca.lib_api_rest.model.dto.response.realm.Oferta;
 import com.dupreincaperu.dupree.BaseAPP;
+import com.dupreincaperu.dupree.ImageZoomActivity;
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.databinding.ItemOffersBinding;
+import com.dupreincaperu.dupree.mh_fragments_distribucion.Fragmento_proc_dist_conf_manu;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -28,6 +32,7 @@ public class OfertasHolder extends RecyclerView.ViewHolder{
     private String TAG = OfertasHolder.class.getName();
     private ItemOffersBinding binding;
     private Events events;
+    OfertasHolder contexto;
 
     public OfertasHolder(@NonNull ItemOffersBinding binding, Events events) {
         super(binding.getRoot());
@@ -97,6 +102,16 @@ public class OfertasHolder extends RecyclerView.ViewHolder{
             img.init(configurarImageLoader());
             img.displayImage(item.getUrl_img(), binding.imagen);
         }
+
+        binding.imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(events != null && isEnable){
+                    events.onExpImagClick(item, getAdapterPosition());
+                }
+
+            }
+        });
 
         binding.tvPage.setText(resources.getString(R.string.concat_pagina, item.getPage()));
         binding.tvCode.setText(resources.getString(R.string.concat_codigo, item.getId()));
@@ -193,7 +208,11 @@ public class OfertasHolder extends RecyclerView.ViewHolder{
         void onDecreaseClick(Oferta dataRow, int row);
 
         void onAddEditableClick(boolean isEditable);
+        void onExpImagClick(Oferta dataRow, int row);
 //        void addEditable(Oferta dataRow, int row);
 //        void removeEditable(Oferta dataRow, int row);
     }
+
+
+
 }
