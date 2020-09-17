@@ -18,6 +18,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.SearchView;
@@ -25,6 +26,7 @@ import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -62,7 +64,7 @@ import com.dupreincaperu.dupree.mh_adapters.IncorporacionPagerAdapter;
 import com.dupreincaperu.dupree.mh_adapters.NuevasPagerAdapter;
 import com.dupreincaperu.dupree.mh_adapters.PedidosPagerAdapter;
 import com.dupreincaperu.dupree.mh_adapters.base.TabViewPager.TabManagerFragment;
-import com.dupreincaperu.dupree.mh_dial_peru.cuadro_confirma;
+import com.dupreincaperu.dupree.mh_dial_peru.dialogoMensaje;
 import com.dupreincaperu.dupree.mh_dial_peru.dialogoPedido;
 import com.dupreincaperu.dupree.mh_dialogs.InputDialog;
 import com.dupreincaperu.dupree.mh_dialogs.SimpleDialog;
@@ -199,7 +201,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             @Override
             public void onClick(View view) {
                 if(!isEnable()) {
-                    msgToast(getString(R.string.pedido_no_puede_modificarse));
+                    //msgToast(getString(R.string.pedido_no_puede_modificarse));
+                    new dialogoMensaje(getContext(), getString(R.string.pedido_no_puede_modificarse));
                     return;
                 }
 
@@ -210,7 +213,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                         binding.pagerView.setCurrentItem(binding.pagerView.getCurrentItem()+1);
                     }
                 } else {
-                    msgToast(getString(R.string.no_se_detectaron_cambios));
+                    new dialogoMensaje(getContext(),getString(R.string.no_se_detectaron_cambios));
+                    //msgToast(getString(R.string.no_se_detectaron_cambios));
                 }
             }
         });
@@ -273,10 +277,13 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         ImageView searchIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_button);
         searchIcon.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.ic_black_search_24));
         searchView.setQueryHint(Html.fromHtml("<font color = #000000>" + getString(R.string.ingresar_codigo) + "</font>"));
+        //searchItem.onActionViewExpanded();
 
         EditText txtSearch = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         //txtSearch.setInputType(InputType.TYPE_CLASS_NUMBER);
         txtSearch.setInputType(InputType.TYPE_CLASS_TEXT);
+
+
         txtSearch.setTextColor(Color.BLACK);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -302,7 +309,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             boolean isAsesora = dataStore.getTipoPerfil().getPerfil().equals(Profile.ADESORA);
             searchAsesora.setVisible(!isAsesora);
         } else {
-            msgToast(getString(R.string.handled_501_se_cerro_sesion));
+            new dialogoMensaje(getContext(),getString(R.string.handled_501_se_cerro_sesion));
+            //msgToast(getString(R.string.handled_501_se_cerro_sesion));
             gotoMain();
         }
 
@@ -496,10 +504,10 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         } else {
             String asesora = resultEdoPedido.getAsesora();
             String[] arraySaldo = asesora.split("S/.");
-            Double saldo = Double.parseDouble(arraySaldo[1]);
-            String mensaje = "Usted tiene un saldo de S/. "+saldo;
-            if (saldo>25){
-                new dialogoPedido(getContext(), HacerPedidoFragment.this, mensaje.toUpperCase());
+
+            String mensaje = "Usted tiene un saldo de S/. "+arraySaldo[1];
+            if (Double.parseDouble(arraySaldo[1])>0){
+                new dialogoMensaje(getContext(), mensaje.toUpperCase());
             }
         }
 
@@ -618,7 +626,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                 case PedidosPagerAdapter.PAGE_CARRITO:
                     enableSearch(true);
                     fabShow(true);
-
                     pedidosPagerAdapter.getCarritoFragment().setEnable(isEnable());
                     pedidosPagerAdapter.getOffersFragment().setEnable(isEnable());
                     pedidosPagerAdapter.getCarritoFragment().updateCarrito();
@@ -757,7 +764,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         });
         d.show(getActivity().getSupportFragmentManager(),"mDialog");
     }
-
 
     private void increaseCart(int position){
         Log.i(TAG, "increaseCart(), pos: "+position);
@@ -933,7 +939,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         setHasOptionsMenu(false);
     }
 
-
     @Override
     public void onResume(){
         super.onResume();
@@ -953,9 +958,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             fragmentManager.beginTransaction().replace(R.id.fragment, fragmentoGenerico).commit();
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Panel asesora");
         }
-
     }
-
 
     private void obtainCatalogo(){
 

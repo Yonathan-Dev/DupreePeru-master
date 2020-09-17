@@ -298,7 +298,6 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                         //navigationView.getMenu().findItem(R.id.menu_lat_reportes).setVisible(true);
                         //navigationView.getMenu().findItem(R.id.menu_lat_pet_quej_rec_pqr).setVisible(true);
                         navigationView.getMenu().findItem(R.id.menu_lat_modif_perfil).setVisible(true);
-
                         if (perfil.getPerfil().equalsIgnoreCase("L")){
                             /*navigationView.getMenu().findItem(R.id.menu_lat_pedidos_ret).setVisible(true);
                             navigationView.getMenu().findItem(R.id.menu_lat_redimir_incentivos).setVisible(false);
