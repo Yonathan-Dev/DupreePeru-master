@@ -20,6 +20,8 @@ import com.dupreincaperu.dupree.mh_holders.OfertasHolder;
 import com.dupreincaperu.dupree.view.fragment.BaseFragment;
 import com.google.gson.Gson;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -483,9 +485,11 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
         viewParent = null;
     }
 
-    private void gotoZoomImage(String urlImage){
+    private void gotoZoomImage(String urlImage) {
         Intent intent = new Intent(getActivity(), ImageZoomActivity.class);
         intent.putExtra(ImageZoomActivity.URL_IMAGE, urlImage);
         startActivity(intent);
+
+
     }
 }

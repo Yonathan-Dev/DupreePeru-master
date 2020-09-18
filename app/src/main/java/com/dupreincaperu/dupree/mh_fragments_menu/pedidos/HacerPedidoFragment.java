@@ -281,7 +281,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         ImageView searchIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_button);
         searchIcon.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.ic_black_search_24));
         searchView.setQueryHint(Html.fromHtml("<font color = #000000>" + getString(R.string.ingresar_codigo) + "</font>"));
-        //searchItem.onActionViewExpanded();
 
         EditText txtSearch = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         //txtSearch.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -481,7 +480,12 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         binding.ctxNameAsesora.setVisibility(isVisible && !TextUtils.isEmpty(text) ? View.VISIBLE : View.GONE);
         enableSearch(isVisible);
 
-        fabShow(isVisible);
+        if (!text.equalsIgnoreCase("")){
+            fabShow(true);
+        } else {
+            fabShow(false);
+        }
+
 
     }
 
@@ -1025,7 +1029,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     }
 
     public void errorLoadInitData(){
-        msgToast("No se pueden cargar datos iniciales");
+        new dialogoMensaje(getContext(), "No se pueden cargar datos iniciales");
+        //msgToast("No se pueden cargar datos iniciales");
     }
 
     private void cargarpreferencias() {
