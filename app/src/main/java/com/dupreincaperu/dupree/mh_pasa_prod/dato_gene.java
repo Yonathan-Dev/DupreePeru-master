@@ -4,7 +4,7 @@ package com.dupreincaperu.dupree.mh_pasa_prod;
 public class dato_gene {
 
     private String URL_EMPRESA;
-        private String puesta="TEST";
+    private String puesta="PROD";
 
     public String getURL_EMPRESA(){
         if (puesta.equalsIgnoreCase("TEST")) {

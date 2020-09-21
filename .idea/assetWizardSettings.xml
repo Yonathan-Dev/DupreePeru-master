@@ -136,7 +136,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/phone_enabled/baseline_phone_enabled_24.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/record_voice_over/baseline_record_voice_over_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -146,8 +146,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="09fa0d" />
-                            <entry key="outputName" value="llamar_usuaria" />
+                            <entry key="outputName" value="ic_record_voice_over_white_24dp" />
                             <entry key="sourceFile" value="C:\Users\yonathan.galindo\Desktop\Unidad\DupreePeru-master" />
                           </map>
                         </option>

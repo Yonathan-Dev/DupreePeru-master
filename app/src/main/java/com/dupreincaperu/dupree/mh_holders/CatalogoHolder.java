@@ -1,10 +1,12 @@
 package com.dupreincaperu.dupree.mh_holders;
 
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.dupreeinca.lib_api_rest.model.dto.response.realm.Catalogo;
 import com.dupreincaperu.dupree.BaseAPP;
@@ -40,6 +42,7 @@ public class CatalogoHolder extends RecyclerView.ViewHolder{
                 }
             }
         });
+
         binding.imgBDecrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,12 +88,25 @@ public class CatalogoHolder extends RecyclerView.ViewHolder{
 
         binding.imgBDecrease.setColorFilter(isEnable ? resources.getColor(R.color.azulDupree) :resources.getColor(R.color.gray_5),android.graphics.PorterDuff.Mode.MULTIPLY);
         binding.imgBIncrease.setColorFilter(isEnable ? resources.getColor(R.color.azulDupree) :resources.getColor(R.color.gray_5),android.graphics.PorterDuff.Mode.MULTIPLY);
-        binding.imgBAddCart.setColorFilter(isEnable ? resources.getColor(R.color.azulDupree) :resources.getColor(R.color.gray_5),android.graphics.PorterDuff.Mode.MULTIPLY);
-        binding.tvAddCart.setTextColor(isEnable ? resources.getColor(R.color.azulDupree) : resources.getColor(R.color.gray_5));
+        if (item.getFaltante().equalsIgnoreCase("1")){
+            binding.imgBAddCart.setVisibility(View.GONE);
+            binding.tvAddCart.setVisibility(View.GONE);
+        } else{
+            binding.imgBAddCart.setVisibility(View.VISIBLE);
+            binding.tvAddCart.setVisibility(View.VISIBLE);
+            binding.imgBAddCart.setColorFilter(isEnable ? resources.getColor(R.color.azulDupree) :resources.getColor(R.color.gray_5),android.graphics.PorterDuff.Mode.MULTIPLY);
+            binding.tvAddCart.setTextColor(isEnable ? resources.getColor(R.color.azulDupree) : resources.getColor(R.color.gray_5));
+        }
+
 
         if(item.getCantidad() == item.getCantidadServer()) {
             //SON IGUALES, NO HAY CAMBIO
-            if(item.getCantidad()>=1) {// no esta en el server
+
+            if(item.getFaltante().equalsIgnoreCase("1")){
+                binding.imagen.setImageResource(R.drawable.ic_flor_red_180x180);//Faltante
+                binding.tvStatus.setText("Faltante");
+                binding.tvStatus.setTextColor(Color.RED);
+            } else if(item.getCantidad()>=1) {// no esta en el server
                 binding.imagen.setImageResource(R.drawable.ic_flor180x180);//no hay cambios
                 binding.tvStatus.setText("");
                 binding.tvStatus.setTextColor(resources.getColor(R.color.azulDupree));
@@ -104,7 +120,11 @@ public class CatalogoHolder extends RecyclerView.ViewHolder{
         }
         else if (item.getCantidad() != item.getCantidadServer())
         {
-            if (item.getCantidad() == 0 && item.getCantidadServer() >= 1) {
+            if(item.getFaltante().equalsIgnoreCase("1")){
+                binding.imagen.setImageResource(R.drawable.ic_flor_red_180x180);//Faltante
+                binding.tvStatus.setText("Faltante");
+                binding.tvStatus.setTextColor(resources.getColor(R.color.red_1));
+            } else if (item.getCantidad() == 0 && item.getCantidadServer() >= 1) {
                 binding.imagen.setImageResource(R.drawable.ic_flor_red_180x180);//eliminar
                 binding.tvStatus.setText(R.string.eliminar);
                 binding.tvStatus.setTextColor(resources.getColor(R.color.red_1));

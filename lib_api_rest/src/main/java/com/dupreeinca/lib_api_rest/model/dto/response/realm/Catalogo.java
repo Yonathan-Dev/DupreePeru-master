@@ -15,6 +15,7 @@ public class Catalogo extends RealmObject{
     private String valor;
     private String url_img;
     private String page;
+    private String faltante;
 
     private int cantidad=0;
 
@@ -41,6 +42,10 @@ public class Catalogo extends RealmObject{
 
     public String getPage() {
         return page;
+    }
+
+    public String getFaltante() {
+        return faltante;
     }
 
     public int getCantidad() {

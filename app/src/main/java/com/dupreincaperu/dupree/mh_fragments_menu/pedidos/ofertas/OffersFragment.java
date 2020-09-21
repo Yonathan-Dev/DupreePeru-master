@@ -1,6 +1,7 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.pedidos.ofertas;
 
 
+import android.content.Intent;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,15 +9,22 @@ import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 
 import com.dupreeinca.lib_api_rest.model.dto.response.realm.Oferta;
+import com.dupreincaperu.dupree.ImageZoomActivity;
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.databinding.FragmentProductsBinding;
 import com.dupreincaperu.dupree.mh_adapters.OffersListAdapter;
+import com.dupreincaperu.dupree.mh_dial_peru.dialogoMensaje;
 import com.dupreincaperu.dupree.mh_dialogs.SimpleDialog;
 import com.dupreincaperu.dupree.mh_fragments_menu.pedidos.BasePedido;
 import com.dupreincaperu.dupree.mh_holders.OfertasHolder;
 import com.dupreincaperu.dupree.view.fragment.BaseFragment;
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -24,6 +32,7 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +52,7 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
 
     public static OffersFragment newInstance() {
         Bundle args = new Bundle();
-        
+
         OffersFragment fragment = new OffersFragment();
         fragment.setArguments(args);
         return fragment;
@@ -66,11 +75,9 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
         binding.recycler.setLayoutManager(new GridLayoutManager(getActivity(),2));
         binding.recycler.setHasFixedSize(true);
 
-
         //listPremios = new ArrayList<>();
         listFilterOffers = new ArrayList<>();
         adapter_catalogo = new OffersListAdapter(listFilterOffers, this);
-
         binding.recycler.setAdapter(adapter_catalogo);
     }
 
@@ -112,6 +119,11 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
     }
 
     @Override
+    public void onExpImagClick(Oferta dataRow, int row) {
+        gotoZoomImage(dataRow.getUrl_img());
+    }
+
+    @Override
     protected void onLoadedView() {
         //QUIZAS INICESARIO, PARA NO DEJAR LA PANTALLA VACIA
         filterOffersDB("");//mostrar todo el catalogo
@@ -121,13 +133,11 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
     public boolean validate(){
         if(listFilterOffers.size()>0){
             for(int i=0;i<listFilterOffers.size(); i++){
-                if (listFilterOffers.get(i).getCantidad() != listFilterOffers.get(i).getCantidadServer())
-                {
+                if (listFilterOffers.get(i).getCantidad() != listFilterOffers.get(i).getCantidadServer()) {
                     return true;
                 }
             }
         }
-
         return false;
     }
 
@@ -255,6 +265,7 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
     public void sincOfertasDB(List<Oferta> listServer, boolean edit){
         Log.v(TAG,"sincOfertasDB... ---------------sincOfertasDB--------------");
         // si no hay ofertas, se agrega a la base de datos.....
+
         if(listServer.size()>0) {
 
             querycat = realm.where(Oferta.class).findAll();
@@ -312,9 +323,12 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
     }
 
     public void writeOfertas(final List<Oferta> listServer){
+        Log.v(TAG, "Productos peru: " + new Gson().toJson(listServer));
+
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
-            public void execute(Realm bgRealm) {
+            public void execute(Realm bgRealm)
+            {
                 bgRealm.insert(listServer);
             }
         }, new Realm.Transaction.OnSuccess() {
@@ -330,7 +344,9 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
             public void onError(Throwable error) {
                 // Transaction failed and was automatically canceled.
                 Log.e(TAG,"writeOfertas... ---------------error--------------");
-                Log.e(TAG,"writeOfertas... "+error.getMessage());
+                new dialogoMensaje(getContext(), "Error al cargar las ofertas");
+                //msgToast(""+error.getMessage());
+                Log.e(TAG,"writeOfertas... "+error);
                 //realm.close();
             }
         });
@@ -431,7 +447,8 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
     }
 
     private boolean showOffers=false;
-    public void setShowOffers(boolean showOffers) {
+    public void setShowOffers(boolean showOffers)
+    {
         this.showOffers = showOffers;
     }
 
@@ -471,4 +488,13 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
         super.onDetach();
         viewParent = null;
     }
+
+    private void gotoZoomImage(String urlImage) {
+        if (!urlImage.equalsIgnoreCase("")){
+            Intent intent = new Intent(getActivity(), ImageZoomActivity.class);
+            intent.putExtra(ImageZoomActivity.URL_IMAGE, urlImage);
+            startActivity(intent);
+        }
+    }
+
 }

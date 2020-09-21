@@ -15,16 +15,16 @@ import com.dupreincaperu.dupree.mh_fragments_menu.pedidos.ofertas.OffersFragment
 
 public class PedidosPagerAdapter extends FragmentStatePagerAdapter {
     private final String TAG=PedidosPagerAdapter.class.getName();
-    public final int numPages = 3;
+    public final int numPages = 2;
     public static final int PAGE_CARRITO=0;
     public static final int PAGE_OFFERS=1;
-    public static final int PAGE_HISTORICAL=2;
+    //public static final int PAGE_HISTORICAL=2;
 
 
     //private ProductsFragment productsFragment;
     private CarritoFragment carritoFragment;
     private OffersFragment offersFragment;
-    private FacturasFragment historialFragment;
+    //private FacturasFragment historialFragment;
     private String fragmentPrepedidos;
 
 
@@ -43,12 +43,11 @@ public class PedidosPagerAdapter extends FragmentStatePagerAdapter {
                 Log.e(TAG, "create -> PAGE_OFFERS");
                 offersFragment = OffersFragment.newInstance();
                 return offersFragment;
-            case PAGE_HISTORICAL:
+            /*case PAGE_HISTORICAL:
                 Log.e(TAG, "create -> PAGE_HISTORICAL");
                 historialFragment = FacturasFragment.newInstance();
-                return historialFragment;
+                return historialFragment;*/
         }
-
         return null;
     }
 
@@ -65,7 +64,7 @@ public class PedidosPagerAdapter extends FragmentStatePagerAdapter {
         return offersFragment;
     }
 
-    public FacturasFragment getHistorialFragment() {
+    /*public FacturasFragment getHistorialFragment() {
         return historialFragment;
-    }
+    }*/
 }

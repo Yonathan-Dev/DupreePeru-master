@@ -40,6 +40,7 @@
         <activity android:name="com.dupreincaperu.dupree.mh_fragments_ventas.ubic_ases" />
         <activity android:name="com.dupreincaperu.dupree.mh_fragments_distribucion.pedido_track" />
         <activity android:name="com.dupreincaperu.dupree.mh_fragments_distribucion.pedido_registrado" />
+
         <!-- FIREBASE -->
         <service android:name="com.dupreincaperu.dupree.mh_firebase.MyFirebaseMessagingService">
             <intent-filter>

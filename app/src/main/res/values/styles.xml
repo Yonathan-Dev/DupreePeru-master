@@ -11,6 +11,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Light.NoActionBar" />
 
+
     <style name="textView_Main" parent="@android:style/TextAppearance.Medium">
         <item name="android:typeface">normal</item>
         <item name="android:layout_width">match_parent</item>
@@ -89,7 +90,6 @@
     <style name="custom_fab">
         <item name="android:background">@drawable/bordefondotextview</item>
         <item name="android:textColor">@color/black</item>
-
     </style>
 
     <!--FIN-->

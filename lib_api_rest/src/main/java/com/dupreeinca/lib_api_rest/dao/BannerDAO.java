@@ -13,6 +13,7 @@ import com.dupreeinca.lib_api_rest.model.dto.response.VersionDTO;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -70,9 +71,9 @@ public class BannerDAO extends TTGenericDAO {
         },getRetrofit()));
     }
 
-    public void getProductos(final String campanaActual, final TTResultListener<ProductCatalogoDTO> listener){
+    public void getProductos(final String campanaActual, final String cedula, final TTResultListener<ProductCatalogoDTO> listener){
         iRest rest = getRetrofit().create(iRest.class);
-        Call<ProductCatalogoDTO> call = rest.getProductos(new Gson().toJson(campanaActual));
+        Call<ProductCatalogoDTO> call = rest.getProductos(new Gson().toJson(campanaActual), cedula);
         call.enqueue(new TTCallback<ProductCatalogoDTO>(new TTResultListener<ProductCatalogoDTO>() {
             @Override
             public void success(ProductCatalogoDTO result) {
@@ -99,6 +100,7 @@ public class BannerDAO extends TTGenericDAO {
         Call<VersionDTO> obtainVersion();
 
         @GET("pedidos/productos")
-        Call<ProductCatalogoDTO> getProductos(@Query("filters") String campana);
+        Call<ProductCatalogoDTO> getProductos(@Query("filters") String campana, @Query("cedula") String cedula);
+
     }
 }

@@ -86,7 +86,7 @@ public class BannerController extends TTGenericController {
         });
     }
 
-    public void getProductos(final String campana,final TTResultListener<ProductCatalogoDTO> listener){
+    public void getProductos(final String campana, final String cedula, final TTResultListener<ProductCatalogoDTO> listener){
 
         Log.e(TAG, "obtainVersion()");
         if(!this.isNetworkingOnline(getContext())){
@@ -95,7 +95,7 @@ public class BannerController extends TTGenericController {
         }
 
         BannerDAO dao = new BannerDAO(getContext());
-        dao.getProductos(campana,new TTResultListener<ProductCatalogoDTO>() {
+        dao.getProductos(campana, cedula, new TTResultListener<ProductCatalogoDTO>() {
             @Override
             public void success(ProductCatalogoDTO result) {
                 listener.success(result);

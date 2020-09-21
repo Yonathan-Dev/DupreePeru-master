@@ -31,10 +31,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
-import org.json.JSONObject;
-
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -329,6 +326,7 @@ public class FullscreenActivity extends AppCompatActivity  {
 
     UrlsCatalogosDTO responseUrlCatalogos;
     public void responseFileCatalogos(UrlsCatalogosDTO responseUrlCatalogos){
+
         if(responseUrlCatalogos!=null) {
             this.responseUrlCatalogos = responseUrlCatalogos;
             //SE DECIDE SI SE DESCARGA LA LISTA DE PRODUCTOS O NO
@@ -344,11 +342,10 @@ public class FullscreenActivity extends AppCompatActivity  {
 
 
     private void obtainCatalogo(){
-
-        bannerController.getProductos(campanaActual, new TTResultListener<ProductCatalogoDTO>() {
+        bannerController.getProductos(campanaActual, "", new TTResultListener<ProductCatalogoDTO>() {
             @Override
             public void success(ProductCatalogoDTO result) {
-                Log.e(TAG, "obtainCatalogo() -> success(): " + new Gson().toJson(result));
+                Log.e(TAG, "obtainCatalogo() -> success():" + new Gson().toJson(result));
                 //un detalle envia 200 con error 404
                 if (result.getCode() == 404) {
                     errorLoadInitData();
@@ -359,7 +356,7 @@ public class FullscreenActivity extends AppCompatActivity  {
 
             @Override
             public void error(TTError error) {
-                Log.e(TAG, "obtainCatalogo() -> error(): " + new Gson().toJson(error));
+                Log.e(TAG, "obtainCatalogo() -> error():" + new Gson().toJson(error));
 
                 //error de Backend
                 if (!error.getCodigo().equalsIgnoreCase("")){
@@ -379,7 +376,6 @@ public class FullscreenActivity extends AppCompatActivity  {
                 } else {
                     terminatedProcess();
                 }
-
 
             }
         });

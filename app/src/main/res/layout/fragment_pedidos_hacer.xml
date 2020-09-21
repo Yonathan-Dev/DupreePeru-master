@@ -59,6 +59,7 @@
                         android:layout_height="wrap_content">
 
                         <android.support.design.widget.TabLayout
+                            android:visibility="gone"
                             android:id="@+id/tabs"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -73,7 +74,9 @@
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         android:id="@+id/swipePedidos"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="70dp"
+                        >
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
@@ -81,6 +84,7 @@
                                 android:id="@+id/pagerView"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+
                                 android:paddingTop="0dp"
                                 android:paddingLeft="0dp"
                                 android:paddingRight="0dp"
@@ -99,14 +103,27 @@
 
                     <ru.dimorinny.floatingtextbutton.FloatingTextButton
                         android:id="@+id/fabSendPedido"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center"
+                        android:layout_gravity="bottom|right"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="@dimen/fab_margin"
+                        android:layout_marginTop="@dimen/fab_margin"
+                        app:floating_background_color="@color/colorAccent"
+                        app:floating_left_icon="@drawable/ic_next_navigate_next_24"
+                        app:floating_title=""
+                        app:floating_title_color="@android:color/black"/>
+
+                    <ru.dimorinny.floatingtextbutton.FloatingTextButton
+                        android:id="@+id/fabbackPedido"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|left"
                         android:layout_margin="@dimen/fab_margin"
                         app:floating_background_color="@color/colorAccent"
-                        app:floating_left_icon="@drawable/ic_save_white_24dp"
-                        app:floating_title=""
-                        app:floating_title_color="@android:color/white"/>
+                        app:floating_left_icon="@drawable/ic_back_navigate_before_24"
+                        app:floating_title="Retroceder"
+                        app:floating_title_color="@android:color/black"/>
 
 
                 </android.support.design.widget.CoordinatorLayout>
