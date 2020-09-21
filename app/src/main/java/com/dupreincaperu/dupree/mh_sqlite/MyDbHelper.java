@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
     private static final String DATABASE_NAME = "distribucion.db";
 
     public MyDbHelper(Context context) {
@@ -89,6 +89,17 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 Pedi_confContract.Pedi_confEntry.COLUMN_ACTI_HORA + " TEXT)"
         );
 
+        db.execSQL("CREATE TABLE "+
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.TABLE_NAME + "("+
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CONS_CANJ+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CONS_TERC +" TEXT,"+
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NUME_SERV +" TEXT,"+
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CODI_CAMP +" TEXT,"+
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NUME_FACT +" TEXT,"+
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CODI_PROD +" TEXT,"+
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NOMB_PROD + " TEXT)"
+        );
+
     }
 
     @Override
@@ -100,6 +111,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+ Tab_prog_moviContract.Tab_prog_moviEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS "+ Moti_rech_distContract.Moti_rech_distEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS "+ Pedi_confContract.Pedi_confEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS "+ CanjesDevolucionesContract.CanjesDevolucionesEntry.TABLE_NAME);
 
         onCreate(db);
     }

@@ -31,6 +31,7 @@ import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 
+import com.dupreincaperu.dupree.mh_sqlite.CanjesDevolucionesContract;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import android.support.design.widget.FloatingActionButton;
 
@@ -158,6 +159,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     String[] listItems;
     boolean[] checkendItems;
     ArrayList<Integer> mUserItems = new ArrayList<>();
+    ArrayList<String>  listCanjes = new ArrayList<>();
 
     ListView lv_pedi;
     ArrayList<String> clientes= new ArrayList<String>();
@@ -200,8 +202,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
         btnOrder                = (Button)   vista.findViewById(R.id.btnOrder);
         tvItemSelected          = (TextView) vista.findViewById(R.id.tvItemSelected);
-        listItems               = getResources().getStringArray(R.array.shopping_item);
-        checkendItems           = new boolean[listItems.length];
+        //listItems               = getResources().getStringArray(R.array.shopping_item);
+        //checkendItems           = new boolean[listItems.length];
         lny_cuad_dato           = (LinearLayout) vista.findViewById(R.id.lny_cuad_dato);
         lny_boto_conf           = (LinearLayout) vista.findViewById(R.id.lny_boto_conf);
         fab_carg_pedi           = vista.findViewById(R.id.fab_carg_pedi);
@@ -212,8 +214,13 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listItems = new String[listCanjes.size()];
+                listItems = listCanjes.toArray(listItems);
+                checkendItems  = new boolean[listItems.length];
+
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
                 mBuilder.setTitle("Canjes y/o devolución");
+
                 mBuilder.setMultiChoiceItems(listItems, checkendItems, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position, boolean isCheked) {
@@ -731,6 +738,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         dialogo1.setCancelable(false);
         dialogo1.setPositiveButton("Aceptar",   new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
+                mostrarCanjesDevoluciones();
 
                 if (isNetDisponible() && modo == true) {
 
@@ -1052,7 +1060,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
                         if (acti_fech.equalsIgnoreCase(getDate())){
                             carg_clie_dato(acti_fech,nume_iden,nomb_terc,apel_terc,dire_terc,dire_refe,nume_factc,remi_sri, codi_camp, cons_terc, cy, cx, dist_zona, celu_ter1);
-                            //carg_canj_devo(cons_terc);
+                            carg_canj_devo(cons_terc, codi_camp);
                         } else {
                             cont = -1;
                             break;
@@ -1146,24 +1154,24 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         db.close();
     }
 
-    private void carg_canj_devo(String cons_terc){
+    private void carg_canj_devo(String cons_terc, String codi_camp){
 
-        String url = getString(R.string.url_empr)+"distribucion/carg_canj_devo?cons_terc="+cons_terc;
+        String url = getString(R.string.url_empr)+"distribucion/carg_canj_devo?cons_terc="+cons_terc+"&codi_camp="+codi_camp;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
                     for (int i=0; i<response.length(); i++){
                         JSONObject canje = response.getJSONObject(i);
-                        if (!canje.getString("cons_terc").equalsIgnoreCase("NO")){
+                        if (!canje.getString("cons_terc").equalsIgnoreCase("")){
                             String cons_terc = canje.getString("cons_terc");
                             String nume_serv = canje.getString("nume_serv");
                             String codi_camp = canje.getString("codi_camp");
+                            String nume_fact = canje.getString("nume_fact");
                             String codi_prod = canje.getString("codi_prod");
                             String nomb_prod = canje.getString("nomb_prod");
-                            String acti_esta = canje.getString("acti_esta");
-
-                            alma_canj_devo(cons_terc, nume_serv, codi_camp, codi_prod, nomb_prod, acti_esta);
+                            alma_canj_devo(cons_terc, nume_serv, codi_camp, nume_fact, codi_prod, nomb_prod);
+                            listCanjes.add(nomb_prod);
                         }
                     }
                 } catch (JSONException e) {
@@ -1188,8 +1196,23 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
     }
 
-    private void alma_canj_devo(String cons_terc, String nume_serv, String codi_camp,  String codi_prod, String nomb_prod, String acti_esta){
-        //Toast.makeText(getContext(),"cons_terc "+cons_terc+" nume_serv "+nume_serv+" codi_Camp "+codi_camp+" codi_prod "+codi_prod+" nomb_prod "+nomb_prod+" acti_esta "+acti_esta, Toast.LENGTH_SHORT).show();
+    private void alma_canj_devo(String cons_terc, String nume_serv, String codi_camp, String nume_fact, String codi_prod, String nomb_prod){
+
+        MyDbHelper dbHelper = new MyDbHelper(getContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        if (db!=null){
+            db.execSQL("INSERT INTO "+ CanjesDevolucionesContract.CanjesDevolucionesEntry.TABLE_NAME +
+                    "("+ CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CONS_TERC+","
+                    + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NUME_SERV+","
+                    + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CODI_CAMP+","
+                    + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NUME_FACT+","
+                    + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CODI_PROD+","
+                    + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NOMB_PROD+ ")" +
+                        "VALUES ('"+cons_terc+"','"+nume_serv+"','"+codi_camp+"','"+nume_fact+"','"+codi_prod+"','"+nomb_prod+"')");
+        }
+        db.close();
+
     }
 
     private void elim_clie_dato () {
@@ -1654,6 +1677,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             db.execSQL("DELETE FROM cliente");
             db.execSQL("DELETE FROM caja");
             db.execSQL("DELETE FROM pedi_conf");
+            db.execSQL("DELETE FROM canjesdevoluciones");
         }
         db.close();
     }
@@ -1898,6 +1922,60 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             count.close();
         }
         db.close();
+    }
+
+
+    public void mostrarCanjesDevoluciones(){
+
+        listItems = new String[listCanjes.size()];
+        listItems = listCanjes.toArray(listItems);
+        checkendItems  = new boolean[listItems.length];
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+        mBuilder.setTitle("Canjes y/o devolución");
+
+        mBuilder.setMultiChoiceItems(listItems, checkendItems, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int position, boolean isCheked) {
+                if (isCheked){
+                    if(!mUserItems.contains(position)){
+                        mUserItems.add(position);
+                    }
+                } else if(mUserItems.contains(position)){
+                    mUserItems.remove((Integer)position);
+                }
+            }
+        });
+
+        mBuilder.setCancelable(false);
+        mBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String item = "";
+                for (int i =0; i<mUserItems.size() ; i++){
+                    item = item + listItems[mUserItems.get(i)];
+                    if (i!=mUserItems.size()-1){
+                        item = item + ",";
+                    }
+                }
+                tvItemSelected.setText(item);
+            }
+        });
+
+        mBuilder.setNeutralButton("Limpiar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                for (int i=0;i<checkendItems.length;i++){
+                    checkendItems[i] = false;
+                    mUserItems.clear();
+                    tvItemSelected.setText("");
+                }
+
+            }
+        });
+
+        AlertDialog mDialog = mBuilder.create();
+        mDialog.show();
     }
 
 }
