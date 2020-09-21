@@ -39,7 +39,8 @@
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_cerr_dial"

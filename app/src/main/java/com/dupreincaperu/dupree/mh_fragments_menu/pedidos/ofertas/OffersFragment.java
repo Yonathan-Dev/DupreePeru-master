@@ -20,8 +20,11 @@ import com.dupreincaperu.dupree.mh_holders.OfertasHolder;
 import com.dupreincaperu.dupree.view.fragment.BaseFragment;
 import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -29,6 +32,7 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -486,10 +490,11 @@ public class OffersFragment extends BaseFragment implements OfertasHolder.Events
     }
 
     private void gotoZoomImage(String urlImage) {
-        Intent intent = new Intent(getActivity(), ImageZoomActivity.class);
-        intent.putExtra(ImageZoomActivity.URL_IMAGE, urlImage);
-        startActivity(intent);
-
-
+        if (!urlImage.equalsIgnoreCase("")){
+            Intent intent = new Intent(getActivity(), ImageZoomActivity.class);
+            intent.putExtra(ImageZoomActivity.URL_IMAGE, urlImage);
+            startActivity(intent);
+        }
     }
+
 }

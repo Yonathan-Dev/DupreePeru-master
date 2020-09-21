@@ -25,7 +25,7 @@
         android:gravity="center"
         android:text="-"
         android:textAllCaps="true"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_cerr_dial_pers"
@@ -39,8 +39,8 @@
         android:layout_marginRight="80dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="30dp"
-        android:background="@color/colorPrimary"
-        android:text="ACEPTAR"
+        android:background="@drawable/fondoprimarycolor"
+        android:text="CERRAR"
         android:textColor="#000000" />
 
 </LinearLayout>
