@@ -3,29 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.dupreincaperu.dupree">
     <!-- "com.dupree2.Dupre" -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.FLAG_GRANT_WRITE_URI_PERMISSION" />
-    <uses-permission android:name="android.permission.FLAG_GRANT_READ_URI_PERMISSION" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
-
     <application
-        android:name="com.dupreincaperu.dupree.BaseAPP"
+        android:name=".BaseAPP"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -33,25 +12,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.dupreincaperu.dupree.mh_fragments_ventas.list_ases" />
-        <activity android:name="com.dupreincaperu.dupree.mh_fragments_ventas.visita" />
-        <activity android:name="com.dupreincaperu.dupree.mh_fragments_cobranza.ruta" />
-        <activity android:name="com.dupreincaperu.dupree.mh_fragments_distribucion.toma_foto" />
-        <activity android:name="com.dupreincaperu.dupree.mh_fragments_ventas.ubic_ases" />
-        <activity android:name="com.dupreincaperu.dupree.mh_fragments_distribucion.pedido_track" />
-        <activity android:name="com.dupreincaperu.dupree.mh_fragments_distribucion.pedido_registrado" />
-
-        <!-- FIREBASE -->
-        <service android:name="com.dupreincaperu.dupree.mh_firebase.MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <service android:name="com.dupreincaperu.dupree.mh_firebase.MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
+        <activity android:name=".mh_fragments_distribucion.Canjesdevoluciones"></activity>
+        <activity android:name=".mh_fragments_ventas.list_ases" />
+        <activity android:name=".mh_fragments_ventas.visita" />
+        <activity android:name=".mh_fragments_cobranza.ruta" />
+        <activity android:name=".mh_fragments_distribucion.toma_foto" />
+        <activity android:name=".mh_fragments_ventas.ubic_ases" />
+        <activity android:name=".mh_fragments_distribucion.pedido_track" />
+        <activity android:name=".mh_fragments_distribucion.pedido_registrado" /> <!-- FIREBASE -->
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MenuActivity"
+            android:configChanges="orientation"
+            android:label="@string/title_activity_menu"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <!--
         provider
             android:name="android.support.v4.content.FileProvider"
@@ -64,22 +44,8 @@
                 android:resource="@xml/provider_paths" />
         </provider
         -->
-
-        <!--Es el provider es de COLOMBIA-->
-
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.imageperu.lib_image.provider"
-            android:exported="false"
-            android:grantUriPermissions="true"
-            tools:replace="android:authorities">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_image_paths" />
-        </provider>
-
-        <!-- Este provider es de Peru (Este se coloco el nombre imageperuperu.lib_image.provider)-->
-
+        <!-- Es el provider es de COLOMBIA -->
+        <activity android:name=".ImageZoomActivity" /> <!-- Este provider es de Peru (Este se coloco el nombre imageperuperu.lib_image.provider) -->
         <!--
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -91,7 +57,6 @@
                 android:resource="@xml/provider_paths" />
         </provider>
         -->
-
         <!--
  <provider android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.com.cloudemotion.lib_image.provider"
@@ -104,32 +69,19 @@
         </provider>
         -->
         <activity
-            android:name="com.dupreincaperu.dupree.MainActivity"
-            android:configChanges="orientation"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name="com.dupreincaperu.dupree.MenuActivity"
-            android:configChanges="orientation"
-            android:label="@string/title_activity_menu"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-        <activity android:name="com.dupreincaperu.dupree.ImageZoomActivity" />
-        <activity
-            android:name="com.dupreincaperu.dupree.mh_utilities.ImageZoomActivity_Scroll"
+            android:name=".mh_utilities.ImageZoomActivity_Scroll"
             android:label="Imagen"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.dupreincaperu.dupree.CatalogoViewerActivity"
+            android:name=".CatalogoViewerActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.dupreincaperu.dupree.mh_bar_scann.BarcodeCaptureActivity"
+            android:name=".mh_bar_scann.BarcodeCaptureActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.dupreincaperu.dupree.FullscreenActivity"
+            android:name=".FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme">
@@ -139,15 +91,56 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.dupreincaperu.dupree.PDFActivity" />
+        <activity android:name=".PDFActivity" />
+        <activity android:name=".mh_fragments_menu.incorporaciones.listado.incripcion.InscripcionActivity" />
+        <activity android:name=".mh_fragments_menu.reportes.ReportesActivity" />
+        <activity android:name=".mh_fragments_menu.pedidos.historial.detalle_factura.DetalleFacturaActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="01afc6e213851731dcca8bc277b49b80fbb73dd6" />
 
-        <activity android:name="com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.listado.incripcion.InscripcionActivity" />
-        <activity android:name="com.dupreincaperu.dupree.mh_fragments_menu.reportes.ReportesActivity" />
-        <activity android:name="com.dupreincaperu.dupree.mh_fragments_menu.pedidos.historial.detalle_factura.DetalleFacturaActivity" />
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.imageperu.lib_image.provider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_image_paths" />
+        </provider>
+        <service android:name=".mh_firebase.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".mh_firebase.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
     </application>
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.FLAG_GRANT_WRITE_URI_PERMISSION" />
+    <uses-permission android:name="android.permission.FLAG_GRANT_READ_URI_PERMISSION" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 </manifest>

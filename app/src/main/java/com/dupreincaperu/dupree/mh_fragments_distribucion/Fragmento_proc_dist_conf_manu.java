@@ -31,6 +31,7 @@ import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 
+import com.dupreincaperu.dupree.mh_dial_peru.dialogoCanjes;
 import com.dupreincaperu.dupree.mh_sqlite.CanjesDevolucionesContract;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import android.support.design.widget.FloatingActionButton;
@@ -113,7 +114,7 @@ import static java.lang.Math.sqrt;
  * A simple {@link Fragment} subclass.
  */
 
-public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_confirma.FinalizoCuadroDialogo, dialogo_celular.CelularCuadroDialogo, dialogo_datos.DatosCuadroDialogo{
+public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_confirma.FinalizoCuadroDialogo, dialogo_celular.CelularCuadroDialogo, dialogo_datos.DatosCuadroDialogo, dialogoCanjes.mostrarCanjes {
 
 
     static final Integer PHONESTATS = 0x1;
@@ -293,8 +294,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     } else {
                         estado = "confirmación";
                         nomb_moti = "";
-                        desc_dato(dni_ases.getText().toString().trim());
-
+                        guardar_distribucion();
                     }
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
@@ -594,6 +594,12 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         fab_edit_dire.setVisibility(View.GONE);
     }
 
+    public void ResultadoDialogo(String nume_iden) {
+        Toast.makeText(getContext(),""+nume_iden, Toast.LENGTH_SHORT).show();
+        Intent canjesdevo = new Intent(getContext(), Canjesdevoluciones.class);
+        startActivity(canjesdevo);
+    }
+
     public class Localizacion implements LocationListener {
         Fragmento_proc_dist_conf_manu fragmento_proc_dist_conf_manu;
         public Fragmento_proc_dist_conf_manu getFragmento_proc_dist_conf_manu() {
@@ -712,8 +718,9 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                                             startActivity(t);
                                         }
                                         else{
-                                            new dialogo_personal(getContext(),""+mensaje);
+                                            //new dialogo_personal(getContext(),""+mensaje);
                                             alma_pedi_conf(nume_factura.getText().toString(), nomb_moti);
+                                            descargarCanjes(dni_ases.getText().toString().trim());
                                         }
                                         limpiar_datos();
                                         estado="";
@@ -1895,7 +1902,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     }
                 }
                 tvItemSelected.setText(item);
-                guardar_distribucion();
             }
         });
 
@@ -1907,7 +1913,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     mUserItems.clear();
                     tvItemSelected.setText("");
                 }
-                guardar_distribucion();
             }
         });
 
@@ -1915,7 +1920,22 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         mDialog.show();
     }
 
-    private void desc_dato(String nume_iden) {
+    private void descargarCanjes(String nume_iden) {
+
+        MyDbHelper dbHelper = new MyDbHelper(getContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT nume_iden FROM canjesdevoluciones WHERE nume_iden = '"+nume_iden+"' ", null);
+
+        if (c.getCount() > 0 && db != null) {
+            new dialogoCanjes(getContext(),Fragmento_proc_dist_conf_manu.this, nume_iden);
+        }
+        c.close();
+        db.close();
+
+    }
+
+    /*
+    private void descargarCanjes(String nume_iden) {
         listCanjes.clear();
         tvItemSelected.setText("");
         mUserItems.clear();
@@ -1930,15 +1950,11 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     listCanjes.add(String.valueOf(c.getString(0)));
                 } while (c.moveToNext());
             }
-
-            mostrarCanjesDevoluciones();
-        } else {
-            guardar_distribucion();
+            new dialogoCanjes(getContext(),Fragmento_proc_dist_conf_manu.this);
+            //mostrarCanjesDevoluciones();
         }
-
         c.close();
         db.close();
 
-    }
-
+    }*/
 }
