@@ -92,12 +92,15 @@ public class MyDbHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE "+
                 CanjesDevolucionesContract.CanjesDevolucionesEntry.TABLE_NAME + "("+
                 CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CONS_CANJ+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_ACTI_FECH +" TEXT,"+
                 CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CONS_TERC +" TEXT,"+
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NUME_IDEN +" TEXT,"+
                 CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NUME_SERV +" TEXT,"+
                 CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CODI_CAMP +" TEXT,"+
                 CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NUME_FACT +" TEXT,"+
                 CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CODI_PROD +" TEXT,"+
-                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NOMB_PROD + " TEXT)"
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NOMB_PROD +" TEXT,"+
+                CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CANT_MOVI +" TEXT)"
         );
 
     }

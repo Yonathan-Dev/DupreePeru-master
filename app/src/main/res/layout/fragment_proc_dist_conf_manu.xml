@@ -89,7 +89,6 @@
         </LinearLayout>
 
         <ListView
-            android:visibility="gone"
             android:id="@+id/lv_pedi"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -574,14 +573,6 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btnOrder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/borde_amar_negr"
-            android:text="Make an order" />
 
         <TextView
             android:id="@+id/tvItemSelected"

@@ -9,13 +9,15 @@ public final class CanjesDevolucionesContract {
         public static final String TABLE_NAME = "canjesdevoluciones";
 
         public static final String COLUMN_CONS_CANJ = "cons_canj";
+        public static final String COLUMN_ACTI_FECH = "acti_fech";
         public static final String COLUMN_CONS_TERC = "cons_terc";
+        public static final String COLUMN_NUME_IDEN = "nume_iden";
         public static final String COLUMN_NUME_SERV = "nume_serv";
         public static final String COLUMN_CODI_CAMP = "codi_camp";
         public static final String COLUMN_NUME_FACT = "nume_fact";
         public static final String COLUMN_CODI_PROD = "codi_prod";
         public static final String COLUMN_NOMB_PROD = "nomb_prod";
+        public static final String COLUMN_CANT_MOVI = "cant_movi";
     }
-
 
 }

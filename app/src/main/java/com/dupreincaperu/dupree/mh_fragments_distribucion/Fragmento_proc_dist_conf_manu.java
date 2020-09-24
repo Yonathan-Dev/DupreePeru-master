@@ -154,7 +154,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
 
-    Button btnOrder;
+
     TextView tvItemSelected;
     String[] listItems;
     boolean[] checkendItems;
@@ -200,73 +200,13 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         txt_celu_ter1           = (TextView) vista.findViewById(R.id.txt_celu_ter1);
         lv_pedi                 = (ListView) vista.findViewById(R.id.lv_pedi);
 
-        btnOrder                = (Button)   vista.findViewById(R.id.btnOrder);
-        tvItemSelected          = (TextView) vista.findViewById(R.id.tvItemSelected);
-        //listItems               = getResources().getStringArray(R.array.shopping_item);
-        //checkendItems           = new boolean[listItems.length];
         lny_cuad_dato           = (LinearLayout) vista.findViewById(R.id.lny_cuad_dato);
+        tvItemSelected          = (TextView) vista.findViewById(R.id.tvItemSelected);
         lny_boto_conf           = (LinearLayout) vista.findViewById(R.id.lny_boto_conf);
         fab_carg_pedi           = vista.findViewById(R.id.fab_carg_pedi);
         fab_sinc_pedi           = vista.findViewById(R.id.fab_sinc_pedi);
         fab_segu_pedi           = vista.findViewById(R.id.fab_segu_pedi);
         fab_menu                = vista.findViewById(R.id.fab_menu);
-
-        btnOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listItems = new String[listCanjes.size()];
-                listItems = listCanjes.toArray(listItems);
-                checkendItems  = new boolean[listItems.length];
-
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
-                mBuilder.setTitle("Canjes y/o devolución");
-
-                mBuilder.setMultiChoiceItems(listItems, checkendItems, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int position, boolean isCheked) {
-                        if (isCheked){
-                            if(!mUserItems.contains(position)){
-                                mUserItems.add(position);
-                            }
-                        } else if(mUserItems.contains(position)){
-                                mUserItems.remove((Integer)position);
-                        }
-                    }
-                });
-
-                mBuilder.setCancelable(false);
-                mBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String item = "";
-                        for (int i =0; i<mUserItems.size() ; i++){
-                            item = item + listItems[mUserItems.get(i)];
-                            if (i!=mUserItems.size()-1){
-                                item = item + ",";
-                            }
-                        }
-                        tvItemSelected.setText(item);
-                    }
-                });
-
-                mBuilder.setNeutralButton("Limpiar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        for (int i=0;i<checkendItems.length;i++){
-                            checkendItems[i] = false;
-                            mUserItems.clear();
-                            tvItemSelected.setText("");
-                        }
-
-                    }
-                });
-
-                AlertDialog mDialog = mBuilder.create();
-                mDialog.show();
-            }
-        });
-
-
 
         searchView_nume_fact.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -353,7 +293,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     } else {
                         estado = "confirmación";
                         nomb_moti = "";
-                        guardar_distribucion();
+                        desc_dato(dni_ases.getText().toString().trim());
+
                     }
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
@@ -738,7 +679,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         dialogo1.setCancelable(false);
         dialogo1.setPositiveButton("Aceptar",   new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
-                mostrarCanjesDevoluciones();
 
                 if (isNetDisponible() && modo == true) {
 
@@ -1072,16 +1012,12 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
                     if (cont==0){
                         new dialogo_personal(getContext(), "No se cuenta con pedidos para cargar");
-                        //new cuadro_mensaje_bd(getContext(), "No se cuenta con pedidos para cargar !!",1);
                     } else if(cont==-1){
                         new dialogo_personal(getContext(),"Error fecha de equipo es "+getDate()+" y fecha de asignación es "+acti_fech);
-                        //new cuadro_dialogo(getContext(), "*Error la fecha del equipo es "+getDate()+" y la fecha de asignación es "+acti_fech);
                     } else if (cont==1){
                         new dialogo_personal(getContext(),"Se cargó "+cont+" pedido con exito");
-                        //new cuadro_mensaje_bd(getContext(), "Se cargó "+cont+" pedido con exito !!",1);
                     } else {
                         new dialogo_personal(getContext(),"Se cargaron "+cont+" pedidos con exito");
-                        //new cuadro_mensaje_bd(getContext(), "Se cargaron "+cont+" pedidos con exito !!",1);
                     }
                     cont=0;
                 } catch (JSONException e) {
@@ -1091,7 +1027,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     pdp.dismiss();
                     JSONObject mensaje = response.getJSONObject(0);
                     new dialogo_personal(getContext(), mensaje.getString("mensaje"));
-                    //new cuadro_mensaje_bd(getContext(), String.valueOf(mensaje.getString("mensaje")) ,3);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -1165,13 +1100,14 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         JSONObject canje = response.getJSONObject(i);
                         if (!canje.getString("cons_terc").equalsIgnoreCase("")){
                             String cons_terc = canje.getString("cons_terc");
+                            String nume_iden = canje.getString("nume_iden");
                             String nume_serv = canje.getString("nume_serv");
                             String codi_camp = canje.getString("codi_camp");
                             String nume_fact = canje.getString("nume_fact");
                             String codi_prod = canje.getString("codi_prod");
                             String nomb_prod = canje.getString("nomb_prod");
-                            alma_canj_devo(cons_terc, nume_serv, codi_camp, nume_fact, codi_prod, nomb_prod);
-                            listCanjes.add(nomb_prod);
+                            String cant_movi = canje.getString("cant_movi");
+                            alma_canj_devo(cons_terc, nume_iden, nume_serv, codi_camp, nume_fact, codi_prod, nomb_prod, cant_movi);
                         }
                     }
                 } catch (JSONException e) {
@@ -1193,39 +1129,39 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
         request.add(jsonArrayRequest);
 
-
     }
 
-    private void alma_canj_devo(String cons_terc, String nume_serv, String codi_camp, String nume_fact, String codi_prod, String nomb_prod){
+    private void alma_canj_devo(String cons_terc, String nume_iden, String nume_serv, String codi_camp, String nume_fact, String codi_prod, String nomb_prod, String cant_movi){
 
         MyDbHelper dbHelper = new MyDbHelper(getContext());
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        SQLiteDatabase db   = dbHelper.getWritableDatabase();
 
         if (db!=null){
             db.execSQL("INSERT INTO "+ CanjesDevolucionesContract.CanjesDevolucionesEntry.TABLE_NAME +
-                    "("+ CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CONS_TERC+","
+                    "("+ CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_ACTI_FECH+","
+                    + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CONS_TERC+","
+                    + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NUME_IDEN+","
                     + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NUME_SERV+","
                     + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CODI_CAMP+","
                     + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NUME_FACT+","
                     + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CODI_PROD+","
-                    + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NOMB_PROD+ ")" +
-                        "VALUES ('"+cons_terc+"','"+nume_serv+"','"+codi_camp+"','"+nume_fact+"','"+codi_prod+"','"+nomb_prod+"')");
+                    + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_NOMB_PROD+","
+                    + CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CANT_MOVI+ ")" +
+                        "VALUES ('"+getDate()+"', '"+cons_terc+"', '"+nume_iden+"', '"+nume_serv+"','"+codi_camp+"','"+nume_fact+"','"+codi_prod+"','"+nomb_prod+"','"+cant_movi+"')");
         }
         db.close();
-
     }
 
     private void elim_clie_dato () {
         MyDbHelper dbHelper = new MyDbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         if (db!=null){
-
-            db.execSQL("DELETE FROM cliente WHERE acti_fech <> '"+getDate()+"' ");
-            db.execSQL("DELETE FROM caja    WHERE acti_fech <> '"+getDate()+"' ");
+            db.execSQL("DELETE FROM cliente            WHERE acti_fech <> '"+getDate()+"' ");
+            db.execSQL("DELETE FROM caja               WHERE acti_fech <> '"+getDate()+"' ");
+            db.execSQL("DELETE FROM canjesdevoluciones WHERE acti_fech <> '"+getDate()+"' ");
         }
         db.close();
     }
-
 
     private void elim_pedi_conf () {
         MyDbHelper dbHelper = new MyDbHelper(getContext());
@@ -1379,7 +1315,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         MyDbHelper dbHelper = new MyDbHelper(getContext());
         final SQLiteDatabase db5 = dbHelper.getWritableDatabase();
         Cursor c = db5.rawQuery("SELECT fact_sri, fac_lati, fac_long, fac_dire, acti_usua, acti_hora, nomb_moti, nume_fact, codi_vers, nume_iden, codi_camp, modi_dire, modi_refe FROM fac_conf ", null);
-        //int i=0;
+
         if(c.getCount()>0 && db5!=null){
             if (c.moveToFirst()){
                 do {
@@ -1415,7 +1351,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                                 //El numero de guia tiene longitud maximo de 13 digitos(la respuesta puede ser la guia o mensaje)
                                 if (resp.length()>13){
                                     Toast.makeText(getContext(), resp.toUpperCase(), Toast.LENGTH_SHORT).show();
-                                    //pdp.dismiss();
+
                                 } else {
                                     sinc_fac_conf_imag_indi(resp, acti_hora_veri);
                                     borr_fac_conf_indi(resp);
@@ -1959,6 +1895,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     }
                 }
                 tvItemSelected.setText(item);
+                guardar_distribucion();
             }
         });
 
@@ -1970,12 +1907,38 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     mUserItems.clear();
                     tvItemSelected.setText("");
                 }
-
+                guardar_distribucion();
             }
         });
 
         AlertDialog mDialog = mBuilder.create();
         mDialog.show();
+    }
+
+    private void desc_dato(String nume_iden) {
+        listCanjes.clear();
+        tvItemSelected.setText("");
+        mUserItems.clear();
+
+        MyDbHelper dbHelper = new MyDbHelper(getContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT nomb_prod FROM canjesdevoluciones WHERE nume_iden = '"+nume_iden+"' ", null);
+
+        if (c.getCount() > 0 && db != null) {
+            if (c.moveToFirst()) {
+                do {
+                    listCanjes.add(String.valueOf(c.getString(0)));
+                } while (c.moveToNext());
+            }
+
+            mostrarCanjesDevoluciones();
+        } else {
+            guardar_distribucion();
+        }
+
+        c.close();
+        db.close();
+
     }
 
 }
