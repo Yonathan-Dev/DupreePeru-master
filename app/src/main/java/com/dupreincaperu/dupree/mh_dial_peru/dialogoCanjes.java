@@ -23,7 +23,7 @@ public class dialogoCanjes {
 
     private final dialogoCanjes contexto;
 
-    public dialogoCanjes(final Context Contexto, mostrarCanjes actividad, String nume_iden) {
+    public dialogoCanjes(final Context Contexto, mostrarCanjes actividad, String nume_iden, String cant_movi) {
 
         interfaz = actividad;
 
@@ -37,8 +37,9 @@ public class dialogoCanjes {
 
         final Button    btn_acep_dial = (Button)   dialogo.findViewById(R.id.btn_acep_dial);
         final Button    btn_cerr_dial = (Button)   dialogo.findViewById(R.id.btn_cerr_dial);
+        final TextView  txt_mens_canj = (TextView) dialogo.findViewById(R.id.txt_mens_canj);
 
-
+        txt_mens_canj.setText("El cliente tiene "+cant_movi+" producto(s) de canjes y/o devoluciones POR recoger");
         btn_acep_dial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -595,8 +595,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     }
 
     public void ResultadoDialogo(String nume_iden) {
-        Toast.makeText(getContext(),""+nume_iden, Toast.LENGTH_SHORT).show();
         Intent canjesdevo = new Intent(getContext(), Canjesdevoluciones.class);
+        canjesdevo.putExtra("nume_iden", nume_iden);
         startActivity(canjesdevo);
     }
 
@@ -1927,11 +1927,15 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         Cursor c = db.rawQuery("SELECT nume_iden FROM canjesdevoluciones WHERE nume_iden = '"+nume_iden+"' ", null);
 
         if (c.getCount() > 0 && db != null) {
-            new dialogoCanjes(getContext(),Fragmento_proc_dist_conf_manu.this, nume_iden);
+            Cursor d = db.rawQuery("SELECT sum(cant_movi) cant_movi FROM canjesdevoluciones WHERE nume_iden = '"+nume_iden+"' ", null);
+            if (d.moveToNext()){
+                    String cant_movi = String.valueOf(d.getString(0));
+                    new dialogoCanjes(getContext(),Fragmento_proc_dist_conf_manu.this, nume_iden, cant_movi);
+            }
+            d.close();
         }
         c.close();
         db.close();
-
     }
 
     /*
