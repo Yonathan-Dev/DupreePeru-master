@@ -597,6 +597,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     public void ResultadoDialogo(String nume_iden) {
         Intent canjesdevo = new Intent(getContext(), Canjesdevoluciones.class);
         canjesdevo.putExtra("nume_iden", nume_iden);
+        canjesdevo.putExtra("modo",modo);
         startActivity(canjesdevo);
     }
 
@@ -761,7 +762,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                         limpiar_datos();
                     } else {
                         alma_fac_conf(fac_lati, fac_long, fac_dire, resultadoQR.getText().toString(), nomb_moti, acti_usua, nume_factura.getText().toString(), String.valueOf(getCodiVersionCode()), dni_ases.getText().toString(), txt_codi_camp.getText().toString(), txt_modi_dire.getText().toString().trim(), txt_modi_refe.getText().toString().trim());
-                        new dialogo_personal(getContext(),"Registrado");
+                        //new dialogo_personal(getContext(),"Registrado");
 
                         alma_pedi_conf(nume_factura.getText().toString(),nomb_moti);
 
@@ -771,6 +772,8 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                             t.putExtra("fact_sri", resultadoQR.getText().toString());
                             t.putExtra("modo", modo);
                             startActivity(t);
+                        } else {
+                            descargarCanjes(dni_ases.getText().toString().trim());
                         }
                         estado="";
                         limpiar_datos();

@@ -35,8 +35,19 @@
             android:inputType="number"
             android:queryHint="Codigo de producto" />
 
+        <ListView
+            android:visibility="gone"
+            android:id="@+id/lv_codi_prod"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </ListView>
+
+
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/lny_cuad_prod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,6 +63,7 @@
                 android:text="Nombre del producto"
                 android:textStyle="normal"
                 android:textSize="16dp"
+                android:inputType="textMultiLine"
                 android:textColor="@color/black"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
@@ -116,7 +128,7 @@
                 android:gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="10dp">
 
                 <ImageButton
                     android:id="@+id/img_remo_cont"
@@ -145,35 +157,56 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_height="30dp"
+                android:layout_width="match_parent"
+                android:text="Observación"
+                android:textStyle="normal"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center"
+                android:gravity="left|center"/>
 
+            <EditText
+                android:id="@+id/edt_obse_apro"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
+                android:padding="5dp"
+                android:inputType="textMultiLine"
+                android:maxLength="250"
+                android:digits="only_letter_and_numer_basic"
+                android:background="@drawable/borde_indi_vent"/>
 
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/lny_cuad_guar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:layout_gravity="center"
             android:gravity="bottom|center">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_regi_prod"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:src="@drawable/guardar"
                 app:fab_size="normal"
                 app:fab_colorNormal="@color/colorPrimary"
                 app:fab_colorPressed="@color/colorplateado"
-                app:fab_title="Guardar"
-                />
-
+                app:fab_title="Registrar" />
 
         </LinearLayout>
-
-
-
 
     </LinearLayout>
 
