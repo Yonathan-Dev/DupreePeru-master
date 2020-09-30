@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
     private static final String DATABASE_NAME = "distribucion.db";
 
     public MyDbHelper(Context context) {
@@ -103,6 +103,18 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 CanjesDevolucionesContract.CanjesDevolucionesEntry.COLUMN_CANT_MOVI +" TEXT)"
         );
 
+
+        db.execSQL("CREATE TABLE "+
+                canj_web_confContract.canj_web_confEntry.TABLE_NAME + "("+
+                canj_web_confContract.canj_web_confEntry.COLUMN_CONS_CANJ+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                canj_web_confContract.canj_web_confEntry.COLUMN_NUME_SERV +" TEXT,"+
+                canj_web_confContract.canj_web_confEntry.COLUMN_CODI_PROD +" TEXT,"+
+                canj_web_confContract.canj_web_confEntry.COLUMN_CANT_MOVI +" TEXT,"+
+                canj_web_confContract.canj_web_confEntry.COLUMN_OBSE_APRO +" TEXT,"+
+                canj_web_confContract.canj_web_confEntry.COLUMN_ACTI_HORA +" TEXT,"+
+                canj_web_confContract.canj_web_confEntry.COLUMN_NUME_IDEN +" TEXT)"
+        );
+
     }
 
     @Override
@@ -110,11 +122,12 @@ public class MyDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+ ClienteContract.ClienteEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS "+ CajaContract.CajaEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS "+ Fac_confContract.Fac_confEntry.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS "+Tab_empl_tempContract.Tab_empl_tempEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS "+ Tab_empl_tempContract.Tab_empl_tempEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS "+ Tab_prog_moviContract.Tab_prog_moviEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS "+ Moti_rech_distContract.Moti_rech_distEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS "+ Pedi_confContract.Pedi_confEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS "+ CanjesDevolucionesContract.CanjesDevolucionesEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS "+ canj_web_confContract.canj_web_confEntry.TABLE_NAME);
 
         onCreate(db);
     }

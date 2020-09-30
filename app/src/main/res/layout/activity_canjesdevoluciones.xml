@@ -180,7 +180,7 @@
                 android:padding="5dp"
                 android:inputType="textMultiLine"
                 android:maxLength="250"
-                android:digits="only_letter_and_numer_basic"
+                android:digits="@string/only_letter_and_numer_basic"
                 android:background="@drawable/borde_indi_vent"/>
 
         </LinearLayout>

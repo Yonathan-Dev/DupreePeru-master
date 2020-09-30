@@ -1,8 +1,14 @@
 package com.dupreincaperu.dupree.mh_fragments_distribucion;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,7 +41,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import static com.dupreincaperu.dupree.Constants.MY_DEFAULT_TIMEOUT;
 
@@ -67,7 +76,6 @@ public class Canjesdevoluciones extends AppCompatActivity {
         if(parametros !=null){
             nume_iden = parametros.getString("nume_iden");
             modo      = parametros.getBoolean("modo");
-            Toast.makeText(getBaseContext(),""+modo, Toast.LENGTH_SHORT).show();
         }
 
         request = Volley.newRequestQueue(getBaseContext());
@@ -158,7 +166,7 @@ public class Canjesdevoluciones extends AppCompatActivity {
         fab_regi_prod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registrarProductos(nume_serv, edt_codi_prod.getText().toString(), txt_cant_movi.getText().toString(), edt_obse_apro.getText().toString());
+                registrarProductos(nume_serv, edt_codi_prod.getText().toString(), txt_cant_movi.getText().toString(), edt_obse_apro.getText().toString(), nume_iden);
             }
         });
 
@@ -217,42 +225,96 @@ public class Canjesdevoluciones extends AppCompatActivity {
     }
 
 
-    private void registrarProductos(int nume_serv, String codi_prod, String cant_movi, String obse_apro){
+    private void registrarProductos(int nume_serv, String codi_prod, String cant_movi, String obse_apro, String nume_iden){
 
-        if (modo){
-            String url = getString(R.string.url_empr)+"distribucion/registrarProductos?nume_serv="+nume_serv+"&codi_prod="+codi_prod+"&cant_movi="+cant_movi+"&obse_apro="+obse_apro;
-            jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-                @Override
-                public void onResponse(JSONArray response) {
-                    limpiarControles();
-                    JSONObject regi_prod = null;
-                    try {
-                        regi_prod = response.getJSONObject(0);
-                        String mensaje =  regi_prod.getString("mensaje");
-                        Toast.makeText(getBaseContext(),mensaje, Toast.LENGTH_SHORT).show();
-                        //new dialogo_personal(getBaseContext(),mensaje);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
+        dialogo1.setTitle("Atención");
+        dialogo1.setMessage("¿ Esta seguro que desea realizar el registro ?");
+        dialogo1.setCancelable(false);
+        dialogo1.setPositiveButton("Aceptar",   new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+
+                if (modo){
+                    String url = getString(R.string.url_empr)+"distribucion/registrarProductos?nume_serv="+nume_serv+"&codi_prod="+codi_prod+"&cant_movi="+cant_movi+"&obse_apro="+obse_apro+"&nume_iden="+nume_iden;
+                    jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            limpiarControles();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.i(TAG, "REGIPROD: No se puede conectar con el  servidor."+error);
+                        }
+                    });
+
+                    jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                            MY_DEFAULT_TIMEOUT,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+                    request.add(jsonArrayRequest);
+
+                } else{
+
+                    MyDbHelper dbHelper = new MyDbHelper(getBaseContext());
+                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+                    String acti_hora = getDateTime();
+                    String codi_cons = "";
+                    String serv_cons = "";
+
+                    Cursor c = db.rawQuery("SELECT codi_prod, nume_serv FROM canj_web_conf WHERE codi_prod = '"+codi_prod+"' and nume_serv = '"+nume_serv+"' ", null);
+
+                    if (c.getCount()>0 && db!=null){
+                        if (c.moveToNext()){
+                            codi_cons = c.getString(0);
+                            serv_cons = c.getString(1);
+                        }
+                        db.execSQL("DELETE FROM canj_web_conf WHERE codi_prod = '"+codi_cons+"' and nume_serv = '"+serv_cons+"' ");
                     }
+
+                    if (db!=null){
+                        limpiarControles();
+                        db.execSQL("INSERT INTO canj_web_conf (nume_serv, codi_prod, cant_movi, obse_apro, acti_hora, nume_iden) VALUES ('"+nume_serv+"','"+codi_prod+"','"+cant_movi+"','"+obse_apro+"','"+acti_hora+"','"+nume_iden+"')");
+                    }
+                    c.close();
+                    db.close();
                 }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.i(TAG, "REGIPROD: No se puede conectar con el  servidor."+error);
-                }
-            });
+            }
+        });
+        dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                dialogo1.dismiss();
+                limpiarControles();
+            }
+        });
+        dialogo1.show();
 
-            jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
-                    MY_DEFAULT_TIMEOUT,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+    }
 
-            request.add(jsonArrayRequest);
+    private String getDateTime(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 
-        } else{
-            Toast.makeText(getBaseContext(),"El registro es OFFLINE", Toast.LENGTH_SHORT).show();
-        }
-
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
+        dialogo1.setTitle("Salir");
+        dialogo1.setMessage("¿ Esta seguro que desea cerrar el registro de canjes y/o devoluciones ?");
+        dialogo1.setCancelable(false);
+        dialogo1.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                finish();
+            }
+        });
+        dialogo1.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                dialogo1.dismiss();
+            }
+        });
+        dialogo1.show();
 
     }
 

@@ -719,7 +719,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                                             startActivity(t);
                                         }
                                         else{
-                                            //new dialogo_personal(getContext(),""+mensaje);
                                             alma_pedi_conf(nume_factura.getText().toString(), nomb_moti);
                                             descargarCanjes(dni_ases.getText().toString().trim());
                                         }
@@ -1010,7 +1009,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
                         if (acti_fech.equalsIgnoreCase(getDate())){
                             carg_clie_dato(acti_fech,nume_iden,nomb_terc,apel_terc,dire_terc,dire_refe,nume_factc,remi_sri, codi_camp, cons_terc, cy, cx, dist_zona, celu_ter1);
-                            carg_canj_devo(cons_terc, codi_camp);
+
                         } else {
                             cont = -1;
                             break;
@@ -1094,14 +1093,16 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                     + ClienteContract.ClienteEntry.COLUMN_DIST_ZONA+","
                     + ClienteContract.ClienteEntry.COLUMN_CELU_TER1+ ")" +
                     "VALUES ('"+acti_fech+"','"+nume_iden+"','"+nomb_terc+"','"+apel_terc+"','"+dire_terc+"','"+dire_refe+"','"+nume_factc+"','"+remi_sri+"','"+codi_camp+"','"+cons_terc+"','"+cy+"','"+cx+"','"+dist_zona+"','"+celu_ter1+"')");
+
+            carg_canj_devo(cons_terc);
         }
         c.close();
         db.close();
     }
 
-    private void carg_canj_devo(String cons_terc, String codi_camp){
+    private void carg_canj_devo(String cons_terc){
 
-        String url = getString(R.string.url_empr)+"distribucion/carg_canj_devo?cons_terc="+cons_terc+"&codi_camp="+codi_camp;
+        String url = getString(R.string.url_empr)+"distribucion/carg_canj_devo?cons_terc="+cons_terc;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -1365,6 +1366,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
                                 } else {
                                     sinc_fac_conf_imag_indi(resp, acti_hora_veri);
                                     borr_fac_conf_indi(resp);
+                                    sincronizarCanjes();
                                 }
                                 pds.dismiss();
                             } catch (JSONException e) {
@@ -1624,6 +1626,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             db.execSQL("DELETE FROM caja");
             db.execSQL("DELETE FROM pedi_conf");
             db.execSQL("DELETE FROM canjesdevoluciones");
+            db.execSQL("DELETE FROM canj_web_conf");
         }
         db.close();
     }
@@ -1870,59 +1873,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         db.close();
     }
 
-
-    public void mostrarCanjesDevoluciones(){
-
-        listItems = new String[listCanjes.size()];
-        listItems = listCanjes.toArray(listItems);
-        checkendItems  = new boolean[listItems.length];
-
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
-        mBuilder.setTitle("Canjes y/o devolución");
-
-        mBuilder.setMultiChoiceItems(listItems, checkendItems, new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int position, boolean isCheked) {
-                if (isCheked){
-                    if(!mUserItems.contains(position)){
-                        mUserItems.add(position);
-                    }
-                } else if(mUserItems.contains(position)){
-                    mUserItems.remove((Integer)position);
-                }
-            }
-        });
-
-        mBuilder.setCancelable(false);
-        mBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String item = "";
-                for (int i =0; i<mUserItems.size() ; i++){
-                    item = item + listItems[mUserItems.get(i)];
-                    if (i!=mUserItems.size()-1){
-                        item = item + ",";
-                    }
-                }
-                tvItemSelected.setText(item);
-            }
-        });
-
-        mBuilder.setNeutralButton("Limpiar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                for (int i=0;i<checkendItems.length;i++){
-                    checkendItems[i] = false;
-                    mUserItems.clear();
-                    tvItemSelected.setText("");
-                }
-            }
-        });
-
-        AlertDialog mDialog = mBuilder.create();
-        mDialog.show();
-    }
-
     private void descargarCanjes(String nume_iden) {
 
         MyDbHelper dbHelper = new MyDbHelper(getContext());
@@ -1941,27 +1891,64 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         db.close();
     }
 
-    /*
-    private void descargarCanjes(String nume_iden) {
-        listCanjes.clear();
-        tvItemSelected.setText("");
-        mUserItems.clear();
-
+    private void sincronizarCanjes() {
         MyDbHelper dbHelper = new MyDbHelper(getContext());
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT nomb_prod FROM canjesdevoluciones WHERE nume_iden = '"+nume_iden+"' ", null);
+        SQLiteDatabase db5 = dbHelper.getWritableDatabase();
+        Cursor c = db5.rawQuery("SELECT nume_serv, codi_prod, cant_movi, obse_apro, acti_hora, nume_iden FROM canj_web_conf WHERE 1 = 1 ", null);
 
-        if (c.getCount() > 0 && db != null) {
+        if (c.getCount() > 0 && db5 != null) {
             if (c.moveToFirst()) {
                 do {
-                    listCanjes.add(String.valueOf(c.getString(0)));
+                    String nume_serv    = String.valueOf(c.getString(0));
+                    String codi_prod    = String.valueOf(c.getString(1));
+                    String cant_movi    = String.valueOf(c.getString(2));
+                    String obse_apro    = String.valueOf(c.getString(3));
+                    String acti_hora    = String.valueOf(c.getString(4));
+                    String nume_iden    = String.valueOf(c.getString(5));
+
+                    String url = getString(R.string.url_empr)+"distribucion/registrarProductos?nume_serv="+nume_serv+"&codi_prod="+codi_prod+"&cant_movi="+cant_movi+"&obse_apro="+obse_apro+"&acti_hora="+acti_hora+"&nume_iden="+nume_iden;
+                    jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            eliminarCanjes(nume_serv, codi_prod);
+                            Log.e("SINC_CANJES","DATOS SINCRONIZADOS");
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("SINC_CANJES","SINC_CANJES: No se puede conectar con el servidor"+error);
+                        }
+                    });
+
+                    jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                            MY_DEFAULT_TIMEOUT,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+                    request.add(jsonArrayRequest);
+
                 } while (c.moveToNext());
             }
-            new dialogoCanjes(getContext(),Fragmento_proc_dist_conf_manu.this);
-            //mostrarCanjesDevoluciones();
+        }
+
+        c.close();
+        db5.close();
+
+    }
+
+    private void eliminarCanjes(String nume_serv, String codi_prod) {
+        MyDbHelper dbHelper = new MyDbHelper(getContext());
+        SQLiteDatabase db =  dbHelper.getReadableDatabase();
+
+        Cursor c = db.rawQuery("SELECT cons_canj FROM canj_web_conf WHERE nume_serv = '"+nume_serv+"' and codi_prod = '"+codi_prod+"' ", null);
+
+        if (c.getCount()>0 && db!=null){
+            db.execSQL("DELETE FROM canj_web_conf  WHERE nume_serv = '"+nume_serv+"' and codi_prod = '"+codi_prod+"' ");
         }
         c.close();
         db.close();
 
-    }*/
+    }
+
 }
