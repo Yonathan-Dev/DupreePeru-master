@@ -16,12 +16,13 @@
             android:layout_height="40dp"
             android:layout_width="match_parent"
             android:background="@color/colorPrimary"
-            android:text="CANJES Y/O DEVOLUCIONES"
+            android:text="Canjes y/o devoluciones"
             android:textStyle="bold"
             android:textSize="18dp"
             android:textColor="@color/black"
             android:layout_gravity="center"
-            android:gravity="center"/>
+            android:paddingLeft="20dp"
+            android:gravity="center|left"/>
 
 
         <SearchView
@@ -44,8 +45,6 @@
             android:layout_height="wrap_content">
         </ListView>
 
-
-
         <LinearLayout
             android:visibility="gone"
             android:id="@+id/lny_cuad_prod"
@@ -53,19 +52,52 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/borde_indi_vent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/borde_track"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_height="30dp"
+                    android:layout_width="100dp"
+                    android:text="Codigo :"
+                    android:textStyle="normal"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:gravity="left|center"/>
+
+                <EditText
+                    android:id="@+id/edt_codi_prod"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingLeft="5dp"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:enabled="false"
+                    android:background="@drawable/borde_track"/>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_height="30dp"
                 android:layout_width="match_parent"
-                android:text="Nombre del producto"
+                android:text="Descripción :"
                 android:textStyle="normal"
                 android:textSize="16dp"
                 android:inputType="textMultiLine"
                 android:textColor="@color/black"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -75,71 +107,48 @@
             <EditText
                 android:id="@+id/edt_nomb_prod"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="14dp"
+                android:textStyle="bold"
                 android:padding="5dp"
                 android:enabled="false"
-                android:background="@drawable/borde_indi_vent"/>
+                android:background="@drawable/borde_track"/>
 
-            <TextView
-                android:layout_height="30dp"
-                android:layout_width="match_parent"
-                android:text="Codigo de producto"
-                android:textStyle="normal"
-                android:textSize="16dp"
-                android:textColor="@color/black"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="center"
-                android:gravity="left|center"/>
 
-            <EditText
-                android:id="@+id/edt_codi_prod"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="20dp"
-                android:padding="5dp"
-                android:enabled="false"
-                android:background="@drawable/borde_indi_vent"/>
-
-            <TextView
-                android:layout_height="30dp"
-                android:layout_width="match_parent"
-                android:text="Cantidad"
-                android:textStyle="normal"
-                android:textSize="16dp"
-                android:textColor="@color/black"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_gravity="center"
-                android:gravity="left|center"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp">
 
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:text="Cantidad :"
+                    android:textStyle="normal"
+                    android:textSize="16dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:gravity="left|center"/>
+
                 <ImageButton
                     android:id="@+id/img_remo_cont"
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/white"
                     app:srcCompat="@drawable/ic_remove"/>
 
                 <TextView
                     android:id="@+id/txt_cant_movi"
-                    android:layout_width="70dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textStyle="bold"
@@ -150,9 +159,10 @@
 
                 <ImageButton
                     android:id="@+id/img_agre_cont"
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="@color/white"
                     app:srcCompat="@drawable/ic_add"/>
 
             </LinearLayout>
@@ -160,7 +170,7 @@
             <TextView
                 android:layout_height="30dp"
                 android:layout_width="match_parent"
-                android:text="Observación"
+                android:text="Observación :"
                 android:textStyle="normal"
                 android:textSize="16dp"
                 android:textColor="@color/black"
@@ -173,15 +183,16 @@
             <EditText
                 android:id="@+id/edt_obse_apro"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="20dp"
                 android:padding="5dp"
                 android:inputType="textMultiLine"
                 android:maxLength="250"
+                android:textSize="14dp"
                 android:digits="@string/only_letter_and_numer_basic"
-                android:background="@drawable/borde_indi_vent"/>
+                android:background="@drawable/borde_track"/>
 
         </LinearLayout>
 

@@ -547,7 +547,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@drawable/borde_amar_negr"
+            android:background="@drawable/fondoprimarycolor"
             android:text="Confirmar"
             android:textColor="@color/colortexto" />
 
@@ -558,7 +558,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/borde_amar_negr"
+            android:background="@drawable/fondoprimarycolor"
             android:text="Motivar"
             android:textColor="@color/colortexto" />
     </LinearLayout>
