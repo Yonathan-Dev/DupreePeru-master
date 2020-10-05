@@ -112,7 +112,9 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 canj_web_confContract.canj_web_confEntry.COLUMN_CANT_MOVI +" TEXT,"+
                 canj_web_confContract.canj_web_confEntry.COLUMN_OBSE_APRO +" TEXT,"+
                 canj_web_confContract.canj_web_confEntry.COLUMN_ACTI_HORA +" TEXT,"+
-                canj_web_confContract.canj_web_confEntry.COLUMN_NUME_IDEN +" TEXT)"
+                canj_web_confContract.canj_web_confEntry.COLUMN_NUME_IDEN +" TEXT,"+
+                canj_web_confContract.canj_web_confEntry.COLUMN_MODO_REGI +" TEXT,"+
+                canj_web_confContract.canj_web_confEntry.COLUMN_ESTA_SINC +" TEXT)"
         );
 
     }

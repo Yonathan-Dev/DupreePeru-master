@@ -240,6 +240,30 @@ public class Canjesdevoluciones extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONArray response) {
                             limpiarControles();
+
+                            MyDbHelper dbHelper = new MyDbHelper(getBaseContext());
+                            SQLiteDatabase db = dbHelper.getWritableDatabase();
+                            String acti_hora = getDateTime();
+                            String codi_cons = "";
+                            String serv_cons = "";
+
+                            Cursor c = db.rawQuery("SELECT codi_prod, nume_serv FROM canj_web_conf WHERE codi_prod = '"+codi_prod+"' and nume_serv = '"+nume_serv+"' ", null);
+
+                            if (c.getCount()>0 && db!=null){
+                                if (c.moveToNext()){
+                                    codi_cons = c.getString(0);
+                                    serv_cons = c.getString(1);
+                                }
+                                db.execSQL("DELETE FROM canj_web_conf WHERE codi_prod = '"+codi_cons+"' and nume_serv = '"+serv_cons+"' ");
+                            }
+
+                            if (db!=null){
+                                limpiarControles();
+                                db.execSQL("INSERT INTO canj_web_conf (nume_serv, codi_prod, cant_movi, obse_apro, acti_hora, nume_iden, modo_regi) VALUES ('"+nume_serv+"','"+codi_prod+"','"+cant_movi+"','"+obse_apro+"','"+acti_hora+"','"+nume_iden+"','ON')");
+                            }
+                            c.close();
+                            db.close();
+
                         }
                     }, new Response.ErrorListener() {
                         @Override
@@ -275,7 +299,7 @@ public class Canjesdevoluciones extends AppCompatActivity {
 
                     if (db!=null){
                         limpiarControles();
-                        db.execSQL("INSERT INTO canj_web_conf (nume_serv, codi_prod, cant_movi, obse_apro, acti_hora, nume_iden) VALUES ('"+nume_serv+"','"+codi_prod+"','"+cant_movi+"','"+obse_apro+"','"+acti_hora+"','"+nume_iden+"')");
+                        db.execSQL("INSERT INTO canj_web_conf (nume_serv, codi_prod, cant_movi, obse_apro, acti_hora, nume_iden, modo_regi) VALUES ('"+nume_serv+"','"+codi_prod+"','"+cant_movi+"','"+obse_apro+"','"+acti_hora+"','"+nume_iden+"','OFF')");
                     }
                     c.close();
                     db.close();

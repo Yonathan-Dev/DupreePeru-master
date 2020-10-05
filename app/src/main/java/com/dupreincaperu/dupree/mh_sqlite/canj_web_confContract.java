@@ -16,6 +16,8 @@ public final class canj_web_confContract {
         public static final String COLUMN_OBSE_APRO = "obse_apro";
         public static final String COLUMN_ACTI_HORA = "acti_hora";
         public static final String COLUMN_NUME_IDEN = "nume_iden";
+        public static final String COLUMN_MODO_REGI = "modo_regi";
+        public static final String COLUMN_ESTA_SINC = "esta_sinc";
     }
 
 }

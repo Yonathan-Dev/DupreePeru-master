@@ -22,8 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Canjes y/o devoluciones"
-            android:textAllCaps="true"
+            android:text="Track canjes y/o devoluciones"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />

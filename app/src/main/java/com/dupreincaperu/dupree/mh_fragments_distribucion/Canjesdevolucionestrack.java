@@ -61,7 +61,16 @@ public class Canjesdevolucionestrack extends AppCompatActivity {
         int i = 1;
 
         if(db!=null) {
-            Cursor c = db.rawQuery("SELECT canjesdevoluciones.nume_iden,canjesdevoluciones.codi_prod,canjesdevoluciones.nomb_prod,canjesdevoluciones.cant_movi,canj_web_conf.cant_movi as cant_reci FROM canjesdevoluciones LEFT JOIN canj_web_conf ON canjesdevoluciones.codi_prod=canj_web_conf.codi_prod and canjesdevoluciones.nume_iden=canj_web_conf.nume_iden ", null);
+            Cursor c = db.rawQuery("SELECT canjesdevoluciones.nume_iden," +
+                                        "canjesdevoluciones.codi_prod," +
+                                        "canjesdevoluciones.nomb_prod," +
+                                        "canjesdevoluciones.cant_movi," +
+                                        "canj_web_conf.cant_movi as cant_reci" +
+                                        " FROM " +
+                                        "canjesdevoluciones LEFT JOIN canj_web_conf" +
+                                        " ON canjesdevoluciones.codi_prod=canj_web_conf.codi_prod and" +
+                                        " canjesdevoluciones.nume_iden=canj_web_conf.nume_iden" +
+                                        " order by canjesdevoluciones.nume_iden ", null);
             int p = c.getCount();
 
             if (p>0){

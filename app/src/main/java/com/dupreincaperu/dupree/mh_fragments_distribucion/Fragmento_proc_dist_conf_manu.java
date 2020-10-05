@@ -1903,7 +1903,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     private void sincronizarCanjes() {
         MyDbHelper dbHelper = new MyDbHelper(getContext());
         SQLiteDatabase db5 = dbHelper.getWritableDatabase();
-        Cursor c = db5.rawQuery("SELECT nume_serv, codi_prod, cant_movi, obse_apro, acti_hora, nume_iden FROM canj_web_conf WHERE 1 = 1 ", null);
+        Cursor c = db5.rawQuery("SELECT nume_serv, codi_prod, cant_movi, obse_apro, acti_hora, nume_iden FROM canj_web_conf WHERE modo_regi = 'OFF' and esta_sinc is null ", null);
 
         if (c.getCount() > 0 && db5 != null) {
             if (c.moveToFirst()) {
@@ -1920,7 +1920,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
                         @Override
                         public void onResponse(JSONArray response) {
-                            eliminarCanjes(nume_serv, codi_prod);
+                            actualizarCanjes(nume_serv, codi_prod);
                             Log.e("SINC_CANJES","DATOS SINCRONIZADOS");
                         }
                     }, new Response.ErrorListener() {
@@ -1946,14 +1946,14 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
 
     }
 
-    private void eliminarCanjes(String nume_serv, String codi_prod) {
+    private void actualizarCanjes(String nume_serv, String codi_prod) {
         MyDbHelper dbHelper = new MyDbHelper(getContext());
         SQLiteDatabase db =  dbHelper.getReadableDatabase();
 
         Cursor c = db.rawQuery("SELECT cons_canj FROM canj_web_conf WHERE nume_serv = '"+nume_serv+"' and codi_prod = '"+codi_prod+"' ", null);
 
         if (c.getCount()>0 && db!=null){
-            db.execSQL("DELETE FROM canj_web_conf  WHERE nume_serv = '"+nume_serv+"' and codi_prod = '"+codi_prod+"' ");
+            db.execSQL("UPDATE canj_web_conf SET esta_sinc = 'SI' WHERE nume_serv = '"+nume_serv+"' and codi_prod = '"+codi_prod+"' ");
         }
         c.close();
         db.close();
