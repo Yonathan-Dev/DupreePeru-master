@@ -19,6 +19,7 @@
         <activity android:name=".mh_fragments_distribucion.toma_foto" />
         <activity android:name=".mh_fragments_ventas.ubic_ases" />
         <activity android:name=".mh_fragments_distribucion.pedido_track" />
+        <activity android:name=".mh_fragments_distribucion.Canjesdevolucionestrack" />
         <activity android:name=".mh_fragments_distribucion.pedido_registrado" /> <!-- FIREBASE -->
         <activity
             android:name=".MainActivity"

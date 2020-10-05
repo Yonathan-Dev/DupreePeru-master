@@ -676,6 +676,17 @@
             </com.getbase.floatingactionbutton.FloatingActionButton>
 
             <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_canj_devo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_colorNormal="@color/black"
+                app:fab_colorPressed="@color/colorPrimary"
+                app:fab_size="mini"
+                app:fab_icon="@mipmap/ic_devolver">
+
+            </com.getbase.floatingactionbutton.FloatingActionButton>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_segu_pedi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

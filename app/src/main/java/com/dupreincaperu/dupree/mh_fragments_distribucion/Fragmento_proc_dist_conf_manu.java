@@ -137,7 +137,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
     FloatingActionButton fab_ubic_ases, fab_edit_dire;
     com.getbase.floatingactionbutton.FloatingActionsMenu fab_menu;
     LinearLayout lny_cuad_dato, lny_boto_conf;
-    com.getbase.floatingactionbutton.FloatingActionButton fab_carg_pedi, fab_sinc_pedi, fab_segu_pedi;
+    com.getbase.floatingactionbutton.FloatingActionButton fab_carg_pedi, fab_sinc_pedi, fab_segu_pedi, fab_canj_devo;
 
     private long mLastClickTime = 0;
     int cont=0, cant_sinc = 0, dist = 0, distancia = 0;
@@ -207,6 +207,7 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         fab_carg_pedi           = vista.findViewById(R.id.fab_carg_pedi);
         fab_sinc_pedi           = vista.findViewById(R.id.fab_sinc_pedi);
         fab_segu_pedi           = vista.findViewById(R.id.fab_segu_pedi);
+        fab_canj_devo           = vista.findViewById(R.id.fab_canj_devo);
         fab_menu                = vista.findViewById(R.id.fab_menu);
 
         searchView_nume_fact.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -394,6 +395,14 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
             @Override
             public void onClick(View v) {
                 Intent t  = new Intent(getContext(), pedido_track.class);
+                startActivity(t);
+            }
+        });
+
+        fab_canj_devo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent t  = new Intent(getContext(), Canjesdevolucionestrack.class);
                 startActivity(t);
             }
         });

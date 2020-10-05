@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp">
+
+        <LinearLayout
+            android:layout_width="75dp"
+            android:layout_height="140dp"
+            android:background="@drawable/bordetextview"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView46"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:background="@drawable/bordefondotextview"
+                android:gravity="center"
+                android:text="N°"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nume"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="nume"
+                android:drawableBottom="@drawable/pendiente"
+                android:textColor="@color/black"
+                android:layout_marginBottom="5dp"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="27.5dp"
+                android:background="@drawable/bordetextview"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordefondotextview"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="Identificación"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_nume_iden"
+                    android:layout_width="400dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:text="Identificación"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/constraintLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="27.5dp"
+                android:background="@drawable/bordetextview"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/textView48"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordefondotextview"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="Codigo"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_codi_prod"
+                    android:layout_width="400dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:text="Codigo"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/constraintLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="27.5dp"
+                android:background="@drawable/bordetextview"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView49"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="5dp"
+                    android:background="@drawable/bordefondotextview"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:text="Descripción"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_nomb_prod"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:textSize="10dp"
+                    android:text="Descripcion"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="27.5dp"
+                android:background="@drawable/bordetextview"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/textView50"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordefondotextview"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="Cant. recoger"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_cant_movi"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:text="Recoger"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="27.5dp"
+                android:background="@drawable/bordetextview"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView51"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordefondotextview"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="Cant. recibido"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_cant_fina"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:text="Recibido"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
