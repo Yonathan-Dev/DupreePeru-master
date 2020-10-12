@@ -39,6 +39,7 @@ import com.dupreincaperu.dupree.mh_adapters.IncorporacionPagerAdapter;
 import com.dupreincaperu.dupree.mh_adapters.NuevasPagerAdapter;
 import com.dupreincaperu.dupree.mh_dialogs.SimpleDialog;
 import com.dupreincaperu.dupree.mh_fragments_asesora.Fragmento_repo_ases_deud;
+import com.dupreincaperu.dupree.mh_fragments_canjes.Fragment_canjes;
 import com.dupreincaperu.dupree.mh_fragments_cobranza.Fragmento_ubic_ases;
 import com.dupreincaperu.dupree.mh_fragments_distribucion.Fragmento_geoc_inve;
 import com.dupreincaperu.dupree.mh_fragments_distribucion.Fragmento_proc_dist_conf_manu;
@@ -163,6 +164,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
         navigationView.getMenu().findItem(R.id.repo_ases_deud).setVisible(false);
         navigationView.getMenu().findItem(R.id.indi_vent).setVisible(false);
         navigationView.getMenu().findItem(R.id.proc_dist_conf_manu).setVisible(false);
+        navigationView.getMenu().findItem(R.id.reco_canj_devo).setVisible(false);
         navigationView.getMenu().findItem(R.id.list_ases).setVisible(false);
         navigationView.getMenu().findItem(R.id.ubic_ases).setVisible(false);
         navigationView.getMenu().findItem(R.id.aula_virt).setVisible(false);
@@ -206,6 +208,9 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                         break;
                     case "PROC_DIST_CONF_MANU":
                         navigationView.getMenu().findItem(R.id.proc_dist_conf_manu).setVisible(true);
+                        break;
+                    case "RECO_CANJ_DEVO":
+                        navigationView.getMenu().findItem(R.id.reco_canj_devo).setVisible(true);
                         break;
                     case "LIST_ASES":
                         navigationView.getMenu().findItem(R.id.list_ases).setVisible(true);
@@ -568,6 +573,9 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
             case  R.id.proc_dist_conf_manu:
                 fragmentoGenerico = new Fragmento_proc_dist_conf_manu();
+                break;
+            case  R.id.reco_canj_devo:
+                fragmentoGenerico = new Fragment_canjes();
                 break;
             case  R.id.list_ases:
                 fragmentoGenerico = new Fragmento_list_ases();
@@ -988,6 +996,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
         navigationView.getMenu().findItem(R.id.menu_lat_share).setVisible(false);
         navigationView.getMenu().findItem(R.id.menu_lat_logout).setVisible(true);
         navigationView.getMenu().findItem(R.id.proc_dist_conf_manu).setVisible(true);
+        navigationView.getMenu().findItem(R.id.reco_canj_devo).setVisible(true);
         navigationView.getMenu().findItem(R.id.geoc_inve).setVisible(true);
         onNavigationItemSelected(navigationView.getMenu().findItem(R.id.proc_dist_conf_manu));
     }

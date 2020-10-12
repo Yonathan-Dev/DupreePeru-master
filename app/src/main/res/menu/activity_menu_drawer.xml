@@ -194,9 +194,15 @@
                     android:title="@string/confirmacion_manu" />
 
                 <item
+                    android:id="@+id/reco_canj_devo"
+                    android:icon="@drawable/recogecanjes"
+                    android:title="@string/reco_canje_devo" />
+
+                <item
                     android:id="@+id/geoc_inve"
                     android:icon="@drawable/geocodificacion"
                     android:title="@string/geocodificacion_inversa" />
+
             </menu>
         </item>
 
