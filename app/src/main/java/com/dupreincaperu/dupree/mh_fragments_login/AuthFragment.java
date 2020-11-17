@@ -122,7 +122,6 @@ public class AuthFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_auth, container, false);
 
-
         txtUsername   = (EditText) v.findViewById(R.id.txtUsername);
         txtPwd        = (EditText) v.findViewById(R.id.txtPwd);
         txt_vers_name = (TextView) v.findViewById(R.id.txt_vers_name);
@@ -134,7 +133,7 @@ public class AuthFragment extends Fragment {
         verifica_base();
 
         dato_gene URL = new dato_gene();
-        URL_EMPRESA = URL.getURL_EMPRESA();
+        //URL_EMPRESA = URL.getURL_EMPRESA();
 
 
         request = Volley.newRequestQueue(getContext());
@@ -311,7 +310,7 @@ public class AuthFragment extends Fragment {
 
     private void verificar_usuario() {
 
-        String url = URL_EMPRESA+"usuario/veri?codi_usua="+txtUsername.getText().toString().trim()+"&clav_usua="+txtPwd.getText().toString().trim();
+        String url = getString(R.string.url_empr)+"usuario/veri?codi_usua="+txtUsername.getText().toString().trim()+"&clav_usua="+txtPwd.getText().toString().trim();
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
 
@@ -361,7 +360,7 @@ public class AuthFragment extends Fragment {
     //Guardar datos y los programas que esta asignado al Usuario.
     private void logearse_usuario() {
 
-        String url = URL_EMPRESA+"usuario/usua?codi_usua="+txtUsername.getText().toString().trim()+"&clav_usua="+txtPwd.getText().toString().trim();
+        String url = getString(R.string.url_empr)+"usuario/usua?codi_usua="+txtUsername.getText().toString().trim()+"&clav_usua="+txtPwd.getText().toString().trim();
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -416,7 +415,7 @@ public class AuthFragment extends Fragment {
 
     private void logearse_cliente() {
 
-        String url = URL_EMPRESA+"usuario/clie?codi_usua="+txtUsername.getText().toString().trim()+"&clav_usua="+txtPwd.getText().toString().trim();
+        String url = getString(R.string.url_empr)+"usuario/clie?codi_usua="+txtUsername.getText().toString().trim()+"&clav_usua="+txtPwd.getText().toString().trim();
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

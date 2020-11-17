@@ -14,7 +14,7 @@ public class LiquidarProducto {
         this.cantidad = cantidad;
     }
 
-    public LiquidarProducto(String id, int cantidad,String valor) {
+    public LiquidarProducto(String id, int cantidad, String valor) {
         this.id = id;
         this.cantidad = cantidad;
         this.valor    = valor;

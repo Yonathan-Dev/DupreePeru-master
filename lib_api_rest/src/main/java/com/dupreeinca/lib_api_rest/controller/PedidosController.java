@@ -9,6 +9,7 @@ import com.dupreeinca.lib_api_rest.enums.EnumLiquidar;
 import com.dupreeinca.lib_api_rest.model.base.TTError;
 import com.dupreeinca.lib_api_rest.model.base.TTResultListener;
 import com.dupreeinca.lib_api_rest.model.dto.request.Identy;
+import com.dupreeinca.lib_api_rest.model.dto.request.LiquidarMensajeSend;
 import com.dupreeinca.lib_api_rest.model.dto.request.LiquidarSend;
 import com.dupreeinca.lib_api_rest.model.dto.request.PrePedidoSend;
 import com.dupreeinca.lib_api_rest.model.dto.request.RedimirPremios;
@@ -54,6 +55,38 @@ public class PedidosController extends TTGenericController {
             }
         });
     }
+
+
+    public void liquidarPedidoMensaje(LiquidarMensajeSend data, final TTResultListener<LiquidarDTO> listener){
+        if(!this.isNetworkingOnline(getContext())){
+            listener.error(TTError.errorFromMessage(context.getResources().getString(R.string.http_datos_no_disponibles)));
+            return;
+        }
+
+        PedidosDAO dao = new PedidosDAO(getContext());
+        dao.liquidarPedidoMensaje(data, new TTResultListener<LiquidarDTO>() {
+            @Override
+            public void success(LiquidarDTO result) {
+                //Errror de Backend
+                if(result.getCode() == 404 || result.getCode()==501){
+                    listener.error(TTError.errorFromMessage(result.getRaise().get(0).getField().concat(". ").concat(result.getRaise().get(0).getError())));
+                } else {
+                    listener.success(result);
+                }
+            }
+
+            @Override
+            public void error(TTError error) {
+                if(error.getStatusCode() == 404 && error.getCodigo().equals(EnumLiquidar.DEBAJO_MONTO.getKey())){
+                    //Rechazado porque no cumple con monto minimo
+                    listener.success(new LiquidarDTO(error.getMessage(), error.getTotal_pedido(), error.getCodigo()));
+                } else {
+                    listener.error(error);
+                }
+            }
+        });
+    }
+
 
     //Controller PrePedidos
     public void controllerPrePedido(PrePedidoSend data, final TTResultListener<LiquidarDTO> listener){

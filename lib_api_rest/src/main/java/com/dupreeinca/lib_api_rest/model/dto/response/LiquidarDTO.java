@@ -1,5 +1,7 @@
 package com.dupreeinca.lib_api_rest.model.dto.response;
 
+import com.google.gson.JsonArray;
+
 import java.util.List;
 
 /**
@@ -15,7 +17,11 @@ public class LiquidarDTO {
     private String codigo;
     private int code;
 
+    private String tota_pedi;
+    JsonArray mensajes = new JsonArray();
+
     private List<RaiseDTO> raise;
+
 
     public LiquidarDTO() {
     }
@@ -60,5 +66,13 @@ public class LiquidarDTO {
 
     public List<RaiseDTO> getRaise() {
         return raise;
+    }
+
+    public String getTota_pedi() {
+        return tota_pedi;
+    }
+
+    public JsonArray getMensajes() {
+        return mensajes;
     }
 }

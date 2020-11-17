@@ -1,14 +1,9 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.pedidos;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.ViewDataBinding;
 import android.graphics.Color;
-import android.net.Uri;
-import android.opengl.Visibility;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -43,6 +38,8 @@ import com.dupreeinca.lib_api_rest.enums.EnumLiquidar;
 import com.dupreeinca.lib_api_rest.model.base.TTError;
 import com.dupreeinca.lib_api_rest.model.base.TTResultListener;
 import com.dupreeinca.lib_api_rest.model.dto.request.Identy;
+import com.dupreeinca.lib_api_rest.model.dto.request.LiquidarMensajeProducto;
+import com.dupreeinca.lib_api_rest.model.dto.request.LiquidarMensajeSend;
 import com.dupreeinca.lib_api_rest.model.dto.request.LiquidarProducto;
 import com.dupreeinca.lib_api_rest.model.dto.request.LiquidarSend;
 import com.dupreeinca.lib_api_rest.model.dto.response.EstadoPedidoDTO;
@@ -54,15 +51,9 @@ import com.dupreeinca.lib_api_rest.model.dto.response.realm.Catalogo;
 import com.dupreeinca.lib_api_rest.model.dto.response.realm.ItemCarrito;
 import com.dupreeinca.lib_api_rest.model.view.Profile;
 import com.dupreeinca.lib_api_rest.util.models.ModelList;
-import com.dupreincaperu.dupree.FullscreenActivity;
-import com.dupreincaperu.dupree.MenuActivity;
 import com.dupreincaperu.dupree.R;
-import com.dupreincaperu.dupree.databinding.FragmentPanelAsesoraBinding;
-import com.dupreincaperu.dupree.databinding.FragmentPanelAsesoraBindingImpl;
 import com.dupreincaperu.dupree.databinding.FragmentPedidosHacerBinding;
 import com.dupreincaperu.dupree.mh_adapters.CatalogoListAdapter;
-import com.dupreincaperu.dupree.mh_adapters.IncorporacionPagerAdapter;
-import com.dupreincaperu.dupree.mh_adapters.NuevasPagerAdapter;
 import com.dupreincaperu.dupree.mh_adapters.PedidosPagerAdapter;
 import com.dupreincaperu.dupree.mh_adapters.base.TabViewPager.TabManagerFragment;
 import com.dupreincaperu.dupree.mh_dial_peru.dialogoMensaje;
@@ -147,6 +138,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     private BannerController bannerController;
     String campanaActual;
     String nume_iden;
+    String codi_camp;
+    String codi_usua;
 
     public HacerPedidoFragment() {
         // Required empty public constructor
@@ -257,8 +250,9 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         String campana =  getActivity().getIntent().getStringExtra("campanaActual");
         if (campana != null){
             campanaActual = campana;
-            msgToast(campanaActual);
+            //msgToast(campana);
         }
+
         bannerController =  new BannerController(getContext());
         cargarpreferencias();
 
@@ -374,7 +368,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             @Override
             public void result(boolean status) {
                 if(status)
-                    sendToServer();
+                    sendProductosMensajes();
+                    //sendToServer();
             }
         });
         simpleDialog.show(getActivity().getSupportFragmentManager(),"mDialog");
@@ -429,6 +424,32 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
     }
 
+
+    private void sendProductosMensajes(){
+        showProgress();
+
+        LiquidarMensajeSend send = obtainProductsMensajeLiquidate();
+        Log.e(TAG, "sendProductosMensajes() -> send: "+new Gson().toJson(send));
+        pedidosController.liquidarPedidoMensaje(send, new TTResultListener<LiquidarDTO>() {
+            @Override
+            public void success(LiquidarDTO result) {
+                msgToast("Tota_pedi: "+result.getTota_pedi()+" Mensajes"+result.getMensajes());
+                dismissProgress();
+            }
+
+            @Override
+            public void error(TTError error) {
+                dismissProgress();
+                checkSession(error);
+            }
+        });
+//        new Http(getActivity()).liquidarPedido(obtainProductsLiquidate(), TAG, BROACAST_LIQUIDATE_PRODUCTS);
+
+    }
+
+
+
+
     private double total_pedido = 0;
     public LiquidarSend obtainProductsLiquidate(){
         String id_pedido = resultEdoPedido!=null ? resultEdoPedido.getId_pedido() : "";
@@ -451,8 +472,26 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             }
 
         }
+
         return new LiquidarSend(id_pedido, paquetones, productos, ofertas);
 
+    }
+
+
+    public LiquidarMensajeSend obtainProductsMensajeLiquidate(){
+        List<LiquidarMensajeProducto> productos = new ArrayList<>();
+        total_pedido = 0;
+
+        List<ItemCarrito> itemCarritoList = pedidosPagerAdapter.getCarritoFragment().getListFilterCart();
+        for(ItemCarrito item : itemCarritoList) {
+            switch (item.getType()){
+                case ItemCarrito.TYPE_CATALOGO:
+                    productos.add(new LiquidarMensajeProducto(String.valueOf(item.getId()).trim(), item.getCantidad()));
+                    total_pedido = total_pedido + item.getCantidad() * Double.parseDouble(item.getValor());
+                    break;
+            }
+        }
+        return new LiquidarMensajeSend(nume_iden, codi_camp, codi_usua, productos);
     }
 
     private void checkEdoPedido(){
@@ -506,7 +545,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     private void updateView(){
         Log.e(TAG, "updateView()");
         obtainCatalogo();
-
+        codi_camp = resultEdoPedido.getCampana();
         if (!resultEdoPedido.getMensaje().equalsIgnoreCase("")){
             new dialogoPedido(getContext(), HacerPedidoFragment.this, resultEdoPedido.getMensaje().toUpperCase());
         } else {
@@ -1036,7 +1075,9 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     private void cargarpreferencias() {
         SharedPreferences preferences = this.getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         String nume_iden = preferences.getString("nume_iden","");
+        String codi_usua = preferences.getString("codi_usua","");
         this.nume_iden = nume_iden;
+        this.codi_usua = codi_usua;
     }
 
 }
