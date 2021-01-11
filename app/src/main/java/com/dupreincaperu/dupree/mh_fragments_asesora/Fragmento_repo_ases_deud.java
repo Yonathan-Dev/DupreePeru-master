@@ -62,14 +62,9 @@ public class Fragmento_repo_ases_deud extends Fragment {
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
 
-    String URL_EMPRESA="";
-
     Fragmento_repo_ases_deud contexto;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        dato_gene URL = new dato_gene();
-        URL_EMPRESA = URL.getURL_EMPRESA();
 
         contexto = this;
         vista = inflater.inflate(R.layout.fragment_repo_ases_deud, container, false);
@@ -138,7 +133,7 @@ public class Fragmento_repo_ases_deud extends Fragment {
     private void consulta_asesora(String dni) {
 
         nume_iden=dni;
-        String url = URL_EMPRESA+"asesora/ases?nume_iden="+nume_iden;
+        String url = getString(R.string.url_empr)+"asesora/ases?nume_iden="+nume_iden;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -190,7 +185,7 @@ public class Fragmento_repo_ases_deud extends Fragment {
     private void verifica_asesora(String dni) {
 
         final String nume_iden=dni;
-        String url = URL_EMPRESA+"asesora/veri?nume_iden="+nume_iden;
+        String url = getString(R.string.url_empr)+"asesora/veri?nume_iden="+nume_iden;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

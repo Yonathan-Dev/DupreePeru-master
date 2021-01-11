@@ -86,7 +86,6 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
 
-    String URL_EMPRESA="";
     Context contexto;
     String[][] list_ases;
 
@@ -123,9 +122,6 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
         Mapbox.getInstance(getApplicationContext(), getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_list_ases);
 
-        dato_gene URL = new dato_gene();
-        dato_gene SSL = new dato_gene();
-        URL_EMPRESA = URL.getURL_EMPRESA();
         contexto = this;
 
         request = Volley.newRequestQueue(getBaseContext());
@@ -608,7 +604,7 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
 
     private void listado_asesora_sami(String codi_camp, String codi_zona, String codi_sect, String codi_usua, String tipo_clie_cons, String tipo_clie_inco, String tipo_clie_peg21,String tipo_clie_peg42, String tipo_clie_peg63, String tipo_clie_posi_reincor, String tipo_clie_posi_reingre, String tipo_clie_reinco, String tipo_clie_reingr, String tipo_clie_ret_peg21, String tipo_clie_ret_peg42, String tipo_clie_ret_peg63, String tipo_clie_sin_pedi) {
 
-        String url = URL_EMPRESA+"gerentes/listsami?codi_camp="+codi_camp+"&codi_zona="+codi_zona+"&codi_sect="+codi_sect+"&codi_usua="+codi_usua+"&tipo_clie_cons="+tipo_clie_cons+"&tipo_clie_inco="+tipo_clie_inco+"&tipo_clie_peg21="+tipo_clie_peg21+"&tipo_clie_peg42="+tipo_clie_peg42+"&tipo_clie_peg63="+tipo_clie_peg63+"&tipo_clie_posi_reincor="+tipo_clie_posi_reincor+"&tipo_clie_posi_reingre="+tipo_clie_posi_reingre+"&tipo_clie_reinco="+tipo_clie_reinco+"&tipo_clie_reingr="+tipo_clie_reingr+"&tipo_clie_ret_peg21="+tipo_clie_ret_peg21+"&tipo_clie_ret_peg42="+tipo_clie_ret_peg42+"&tipo_clie_ret_peg63="+tipo_clie_ret_peg63+"&tipo_clie_sin_pedi="+tipo_clie_sin_pedi;
+        String url = getString(R.string.url_empr)+"gerentes/listsami?codi_camp="+codi_camp+"&codi_zona="+codi_zona+"&codi_sect="+codi_sect+"&codi_usua="+codi_usua+"&tipo_clie_cons="+tipo_clie_cons+"&tipo_clie_inco="+tipo_clie_inco+"&tipo_clie_peg21="+tipo_clie_peg21+"&tipo_clie_peg42="+tipo_clie_peg42+"&tipo_clie_peg63="+tipo_clie_peg63+"&tipo_clie_posi_reincor="+tipo_clie_posi_reincor+"&tipo_clie_posi_reingre="+tipo_clie_posi_reingre+"&tipo_clie_reinco="+tipo_clie_reinco+"&tipo_clie_reingr="+tipo_clie_reingr+"&tipo_clie_ret_peg21="+tipo_clie_ret_peg21+"&tipo_clie_ret_peg42="+tipo_clie_ret_peg42+"&tipo_clie_ret_peg63="+tipo_clie_ret_peg63+"&tipo_clie_sin_pedi="+tipo_clie_sin_pedi;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

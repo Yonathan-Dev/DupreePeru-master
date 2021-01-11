@@ -90,7 +90,6 @@ public class visita extends AppCompatActivity implements motivo_visita.FinalizoM
 
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
-    String URL_EMPRESA="";
     Context contexto;
 
     private ProgressDialog pdp = null;
@@ -100,12 +99,6 @@ public class visita extends AppCompatActivity implements motivo_visita.FinalizoM
         super.onCreate(savedInstanceState);
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_visita);
-
-        dato_gene URL = new dato_gene();
-        dato_gene SSL = new dato_gene();
-
-        URL_EMPRESA = URL.getURL_EMPRESA();
-        //URL_EMPRESA="https://servicioweb2per.azzorti.co:443/hmvc_movil/index.php/rest/";
 
         contexto = this;
 
@@ -726,7 +719,7 @@ public class visita extends AppCompatActivity implements motivo_visita.FinalizoM
                 Double cx =  locationComponent.getLastKnownLocation().getLongitude();
                 String desc_orig = "GZ";
 
-                String url = URL_EMPRESA+"georefere/visi?nume_iden="+nume_iden+"&codi_zona="+codi_zona+"&cx="+cx+"&cy="+cy+"&dire_terc="+dire_terc+"&dire_refe="+dire_refe+"&desc_orig="+desc_orig+"&acti_usua="+acti_usua+"&esta_visi="+esta_visi;
+                String url = getString(R.string.url_empr)+"georefere/visi?nume_iden="+nume_iden+"&codi_zona="+codi_zona+"&cx="+cx+"&cy="+cy+"&dire_terc="+dire_terc+"&dire_refe="+dire_refe+"&desc_orig="+desc_orig+"&acti_usua="+acti_usua+"&esta_visi="+esta_visi;
                 jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new com.android.volley.Response.Listener<JSONArray>() {
                     @SuppressLint("MissingPermission")
                     @Override

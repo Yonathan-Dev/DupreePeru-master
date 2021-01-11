@@ -40,7 +40,6 @@ public class Fragmento_indi_vent extends Fragment {
     Fragmento_indi_vent contexto;
     View vista;
 
-    String URL_EMPRESA="";
     String codi_camp, fech_inic, fech_fina;
     TextView txt_codi_camp, txt_fech_inic, txt_fech_fina;
     String porc_inco, cant_inco, obje_inco;
@@ -61,9 +60,6 @@ public class Fragmento_indi_vent extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        dato_gene URL = new dato_gene();
-        URL_EMPRESA = URL.getURL_EMPRESA();
 
         contexto = this;
         request= Volley.newRequestQueue(getContext());
@@ -100,7 +96,7 @@ public class Fragmento_indi_vent extends Fragment {
 
     private void camp_actu() {
 
-        String url = URL_EMPRESA+"indicadores/camp?";
+        String url = getString(R.string.url_empr)+"indicadores/camp?";
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -230,7 +226,7 @@ public class Fragmento_indi_vent extends Fragment {
 
     private void indi_vent(String codi_camp) {
 
-        String url = URL_EMPRESA+"indicadores/vent?nume_iden="+v_nume_iden+"&codi_usua="+v_codi_usua+"&codi_camp="+codi_camp;
+        String url = getString(R.string.url_empr)+"indicadores/vent?nume_iden="+v_nume_iden+"&codi_usua="+v_codi_usua+"&codi_camp="+codi_camp;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

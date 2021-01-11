@@ -66,7 +66,6 @@ public class Fragmento_geoc_inve extends Fragment {
 
     View vista;
     Fragmento_geoc_inve contexto;
-    String URL_EMPRESA="";
 
     private int dia, mes, ano;
     private ProgressDialog pdp = null;
@@ -81,11 +80,6 @@ public class Fragmento_geoc_inve extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        dato_gene URL = new dato_gene();
-        dato_gene SSL = new dato_gene();
-
-        URL_EMPRESA = URL.getURL_EMPRESA();
 
         request = Volley.newRequestQueue(getContext());
 
@@ -181,7 +175,7 @@ public class Fragmento_geoc_inve extends Fragment {
 
     private void obtener_coordenadas(final String acti_hora, String codi_zona) {
 
-        String url = URL_EMPRESA+"distribucion/geoc_inve?acti_hora="+acti_hora+"&codi_zona="+codi_zona;
+        String url = getString(R.string.url_empr)+"distribucion/geoc_inve?acti_hora="+acti_hora+"&codi_zona="+codi_zona;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -242,7 +236,7 @@ public class Fragmento_geoc_inve extends Fragment {
 
     private void geocodificacion_inversa(String cons_fac_conf, String fac_dire) {
 
-        String url = URL_EMPRESA+"distribucion/actu_dire?cons_fac_conf="+cons_fac_conf+"&fac_dire="+fac_dire;
+        String url = getString(R.string.url_empr)+"distribucion/actu_dire?cons_fac_conf="+cons_fac_conf+"&fac_dire="+fac_dire;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
 

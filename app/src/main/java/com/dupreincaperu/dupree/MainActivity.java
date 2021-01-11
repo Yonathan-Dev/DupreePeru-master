@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
      * METODOS DE RESPUESTAS HTTP
      */
     public void successfulAuth(DataAuth responseAuth){
-
+        Log.i("CACACACACAC",""+responseAuth.getPerfil().get(0));
         msgToast(responseAuth.getStatus());
         mPreferences.setJSON_TypePerfil(MainActivity.this, responseAuth.getPerfil().get(0));
         mPreferences.setLoggedIn(MainActivity.this, true);

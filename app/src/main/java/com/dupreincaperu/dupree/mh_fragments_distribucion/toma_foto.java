@@ -77,17 +77,12 @@ public class toma_foto extends AppCompatActivity {
     Context contexto;
     RequestQueue request;
 
-    String URL_EMPRESA="";
-
     private ProgressDialog pdp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toma_foto);
-
-        dato_gene URL = new dato_gene();
-        URL_EMPRESA = URL.getURL_EMPRESA();
 
         contexto = this;
         request= Volley.newRequestQueue(getBaseContext());
@@ -299,7 +294,7 @@ public class toma_foto extends AppCompatActivity {
 
             if (isNetDisponible() && modo==true) {
 
-                String url = URL_EMPRESA+"distribucion/imag?";
+                String url = getString(R.string.url_empr)+"distribucion/imag?";
 
                 StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>()

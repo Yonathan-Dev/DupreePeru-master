@@ -23,7 +23,7 @@ public class dialogoMensaje {
         dialogo.setContentView(R.layout.dialogomensaje);
 
         TextView mensaje = (TextView)dialogo.findViewById(R.id.txt_dial_pers);
-        mensaje.setText(msn.toUpperCase());
+        mensaje.setText(msn);
 
         Button cerrar = (Button)dialogo.findViewById(R.id.btn_cerr_dial_pers);
 

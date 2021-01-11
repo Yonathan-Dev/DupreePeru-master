@@ -169,8 +169,13 @@ public class PedidosDAO extends TTGenericDAO {
     private interface Rest {
 
         @FormUrlEncoded
-        @POST("pedidos/liquida")
+        @POST("pedidos/guarda_pedido")
         Call<LiquidarDTO> liquidarPedido(@Field("Params") String jsonLiquidate);
+
+        /* Se comenta el API inicial que es reemplazado por pedido/guarda_pedido
+        @FormUrlEncoded
+        @POST("pedidos/liquida")
+        Call<LiquidarDTO> liquidarPedido(@Field("Params") String jsonLiquidate);*/
 
         @FormUrlEncoded
         @POST("pedidos/liquida_pedido")

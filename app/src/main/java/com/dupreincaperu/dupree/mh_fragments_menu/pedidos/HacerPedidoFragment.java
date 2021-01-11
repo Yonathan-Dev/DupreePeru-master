@@ -1,6 +1,7 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.pedidos;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.databinding.ViewDataBinding;
 import android.graphics.Color;
@@ -8,12 +9,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.SearchView;
@@ -21,16 +20,12 @@ import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TabHost;
-import android.widget.Toast;
 
 import com.dupreeinca.lib_api_rest.controller.BannerController;
 import com.dupreeinca.lib_api_rest.controller.PedidosController;
@@ -58,34 +53,11 @@ import com.dupreincaperu.dupree.mh_adapters.PedidosPagerAdapter;
 import com.dupreincaperu.dupree.mh_adapters.base.TabViewPager.TabManagerFragment;
 import com.dupreincaperu.dupree.mh_dial_peru.dialogoMensaje;
 import com.dupreincaperu.dupree.mh_dial_peru.dialogoPedido;
+import com.dupreincaperu.dupree.mh_dial_peru.dialogoResumen;
 import com.dupreincaperu.dupree.mh_dialogs.InputDialog;
 import com.dupreincaperu.dupree.mh_dialogs.SimpleDialog;
-import com.dupreincaperu.dupree.mh_fragments_asesora.Fragmento_repo_ases_deud;
-import com.dupreincaperu.dupree.mh_fragments_cobranza.Fragmento_ubic_ases;
-import com.dupreincaperu.dupree.mh_fragments_distribucion.Fragmento_geoc_inve;
-import com.dupreincaperu.dupree.mh_fragments_distribucion.Fragmento_proc_dist_conf_manu;
-import com.dupreincaperu.dupree.mh_fragments_main.CatalogosAdvanceFragment;
-import com.dupreincaperu.dupree.mh_fragments_main.CatalogosFragment;
-import com.dupreincaperu.dupree.mh_fragments_main.ContactFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.BandejaEntradaFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.CatalogoPremiosFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.ConfigModPerfilFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.IncentivosConsultaPtosFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.IncentivosRedimirFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.IncentivosReferidoFragment;
 import com.dupreincaperu.dupree.mh_fragments_menu.PanelGerenteFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.PedidosEdoPedidoFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.PedidosFaltantesFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.ReporteRetenidosFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.Servicios_PagosOnLine_Fragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.UbicacionFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.Incorp_Nuevas_Fragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.Incorp_Todos_Fragment;
 import com.dupreincaperu.dupree.mh_fragments_menu.panel_asesoras.PanelAsesoraFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.pedidos.ofertas.OffersFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.reportes.ReportesFragment;
-import com.dupreincaperu.dupree.mh_fragments_ventas.Fragmento_indi_vent;
-import com.dupreincaperu.dupree.mh_fragments_ventas.Fragmento_list_ases;
 import com.dupreincaperu.dupree.mh_holders.CatalogoHolder;
 import com.dupreincaperu.dupree.mh_utilities.KeyBoard;
 import com.google.gson.Gson;
@@ -103,7 +75,7 @@ import io.realm.RealmResults;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HacerPedidoFragment extends TabManagerFragment implements dialogoPedido.cierroDialogo, BasePedido, CatalogoHolder.Events{
+public class HacerPedidoFragment extends TabManagerFragment implements dialogoPedido.cierroDialogo, BasePedido, CatalogoHolder.Events, dialogoResumen.resultadoResumen {
 
     public static final String TAG = HacerPedidoFragment.class.getName();
     public FragmentPedidosHacerBinding binding;
@@ -140,6 +112,24 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     String nume_iden;
     String codi_camp;
     String codi_usua;
+
+    ArrayList<Integer> numeProductos    = new ArrayList<Integer>();
+
+    ArrayList<String> codigoProductos   = new ArrayList<String>();
+    ArrayList<String> codigoOfertas     = new ArrayList<String>();
+
+    ArrayList<String> tipoProductos     = new ArrayList<String>();
+
+    ArrayList<String> nombreProductos   = new ArrayList<String>();
+    ArrayList<String> nombreOfertas     = new ArrayList<String>();
+
+    ArrayList<Integer> cantidadProductos = new ArrayList<Integer>();
+    ArrayList<Integer> cantidadOfertas   = new ArrayList<Integer>();
+
+    ArrayList<String> valorProductos    = new ArrayList<String>();
+    ArrayList<String> valorOfertas      = new ArrayList<String>();
+
+    private int nume_pedi = 1;
 
     public HacerPedidoFragment() {
         // Required empty public constructor
@@ -385,15 +375,18 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             public void success(LiquidarDTO result) {
                 dismissProgress();
                 if(result != null && result.getCodigo() != null){
+
                     if(result.getCodigo().equals(EnumLiquidar.OK.getKey())){
                         NumberFormat formatter = NumberFormat.getInstance(Locale.US);
 
-                        String  msg = "Total: "
-                                .concat("S/.".concat(formatter.format(Float.parseFloat(result.getTotal_pedido()))))
-                                .concat(". ")
-                                .concat(result.getMensaje());
+                        String  msg = ""
+                                .concat(result.getMensaje()+"\n")
+                                .concat(" Total: S/.".concat(formatter.format(Float.parseFloat(result.getTotal_pedido()))));
 
-                        showSnackBarDuration(msg,15000);
+
+                        new dialogoMensaje(getContext(),msg);
+
+                        //showSnackBarDuration(msg,15000);
 
                         pedidosPagerAdapter.getCarritoFragment().pedidoEndviadoexitosamente();
                         pedidosPagerAdapter.getOffersFragment().ofertaEndviadoexitosamente();
@@ -402,12 +395,14 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
                         clearAllData();
                     } else if(result.getCodigo().equals(EnumLiquidar.DEBAJO_MONTO.getKey())){
+                        msgToast("ACA 2");
+
                         NumberFormat formatter = NumberFormat.getInstance(Locale.US);
 
-                        String  msg = "Total: "
-                                .concat("S/.".concat(formatter.format(Float.parseFloat(result.getTotal_pedido()))))
-                                .concat(". ")
-                                .concat(result.getMensaje());
+                        String  msg = ""
+                                .concat(result.getMensaje()+"\n")
+                                .concat(" Total: S/.".concat(formatter.format(Float.parseFloat(result.getTotal_pedido()))));
+                                
 
                         showSnackBarDuration(msg,15000);
                     }
@@ -424,16 +419,119 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
     }
 
+    private void obtenerResumen(String tota_pedi){
+        showProgress();
+        nume_pedi = 1;
+
+        numeProductos.clear();
+
+        codigoProductos.clear();
+        codigoOfertas.clear();
+
+        tipoProductos.clear();
+
+        nombreProductos.clear();
+        nombreOfertas.clear();
+
+        cantidadProductos.clear();
+        cantidadOfertas.clear();
+
+        valorProductos.clear();
+        valorOfertas.clear();
+
+        List<ItemCarrito> itemCarritoList = pedidosPagerAdapter.getCarritoFragment().getListFilterCart();
+        for(ItemCarrito item : itemCarritoList) {
+            switch (item.getType()){
+                case ItemCarrito.TYPE_CATALOGO:
+                    numeProductos.add(nume_pedi);
+                    codigoProductos.add(item.getId());
+                    tipoProductos.add("Catálogo");
+                    nombreProductos.add(item.getName().toUpperCase().charAt(0) + item.getName().substring(1, item.getName().length()).toLowerCase());
+                    cantidadProductos.add(item.getCantidad());
+                    valorProductos.add(item.getValor());
+                    nume_pedi++;
+                    break;
+                case ItemCarrito.TYPE_OFFERTS:
+                    numeProductos.add(nume_pedi);
+                    codigoProductos.add(item.getId());
+                    tipoProductos.add("Oferta");
+                    nombreProductos.add(item.getName());
+                    cantidadProductos.add(item.getCantidad());
+                    valorProductos.add(item.getValor());
+
+                    codigoOfertas.add(item.getId());
+                    nombreOfertas.add(item.getName());
+                    cantidadOfertas.add(item.getCantidad());
+                    valorOfertas.add(item.getValor());
+                    nume_pedi++;
+                    break;
+            }
+        }
+
+        new dialogoResumen(getContext(), this, numeProductos, codigoProductos, tipoProductos, nombreProductos, cantidadProductos, valorProductos, codigoOfertas, nombreOfertas, cantidadOfertas, valorOfertas, tota_pedi);
+
+        dismissProgress();
+
+    }
+
 
     private void sendProductosMensajes(){
         showProgress();
 
         LiquidarMensajeSend send = obtainProductsMensajeLiquidate();
         Log.e(TAG, "sendProductosMensajes() -> send: "+new Gson().toJson(send));
+
         pedidosController.liquidarPedidoMensaje(send, new TTResultListener<LiquidarDTO>() {
             @Override
             public void success(LiquidarDTO result) {
-                msgToast("Tota_pedi: "+result.getTota_pedi()+" Mensajes"+result.getMensajes());
+
+                if (result.getMensajes().size()>0){
+
+                    ArrayList<String> list = new ArrayList<String>();
+                    if (result.getMensajes() != null) {
+                        int len = result.getMensajes().size();
+                        for (int i=0;i<len;i++){
+                            String[] parts = result.getMensajes().get(i).toString().split(":");
+                            list.add((i+1)+".- "+parts[1].replace("}","").replace("\"", "")+"\n");
+                        }
+                    }
+
+                    String[] miarray = new String[list.size()];
+                    miarray = list.toArray(miarray);
+                    final String[] finalMiarray = miarray;
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setCancelable(false);
+                    builder.setIcon(R.drawable.condiciones);
+
+                    builder.setTitle("Codicciones comerciales");
+                    builder.setItems(finalMiarray, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            sendProductosMensajes();
+                        }
+                    });
+
+                    builder.setNegativeButton("Agregar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            binding.pagerView.setCurrentItem(0);
+                        }
+                    });
+
+                    builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            obtenerResumen(result.getTota_pedi());
+                        }
+                    });
+
+                    builder.show();
+                } else{
+                    obtenerResumen(result.getTota_pedi());
+                }
+
                 dismissProgress();
             }
 
@@ -443,11 +541,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                 checkSession(error);
             }
         });
-//        new Http(getActivity()).liquidarPedido(obtainProductsLiquidate(), TAG, BROACAST_LIQUIDATE_PRODUCTS);
-
     }
-
-
 
 
     private double total_pedido = 0;
@@ -554,7 +648,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
             String mensaje = "Usted tiene un saldo de S/. "+arraySaldo[1];
             if (Double.parseDouble(arraySaldo[1])>0){
-                new dialogoMensaje(getContext(), mensaje.toUpperCase());
+                new dialogoMensaje(getContext(), mensaje);
             }
         }
 
@@ -1080,4 +1174,12 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         this.codi_usua = codi_usua;
     }
 
+    @Override
+    public void ResultadoResumen(String band) {
+        if (band.equalsIgnoreCase("0")){
+            binding.pagerView.setCurrentItem(0);
+        } else{
+            sendToServer();
+        }
+    }
 }

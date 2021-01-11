@@ -1640,7 +1640,6 @@ public class Fragmento_proc_dist_conf_manu extends Fragment implements cuadro_co
         db.close();
     }
 
-
     private boolean isNetDisponible() {
         ConnectivityManager connectivityManager = (ConnectivityManager)
                 getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);

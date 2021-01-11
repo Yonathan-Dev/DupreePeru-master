@@ -75,7 +75,6 @@ public class ubic_ases extends AppCompatActivity implements PermissionsListener 
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
 
-    String URL_EMPRESA="";
     Context contexto;
 
 
@@ -98,16 +97,8 @@ public class ubic_ases extends AppCompatActivity implements PermissionsListener 
         Mapbox.getInstance(getApplicationContext(), getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_ubic_ases);
 
-        dato_gene URL = new dato_gene();
-        dato_gene SSL = new dato_gene();
-        URL_EMPRESA = URL.getURL_EMPRESA();
         contexto = this;
-        /*
-        if (String.valueOf(SSL.getSSL_EMPRESA()).equalsIgnoreCase("PROD")){
-            request = Volley.newRequestQueue(getBaseContext(), new HurlStack(null, getSocketFactory()));
-        } else{
-            request = Volley.newRequestQueue(getBaseContext(), new HurlStack(null, getSocketFactory_test()));
-        } */
+
         request = Volley.newRequestQueue(getBaseContext());
 
         Bundle nume_iden_rete = this.getIntent().getExtras();
@@ -125,7 +116,7 @@ public class ubic_ases extends AppCompatActivity implements PermissionsListener 
 
     private void ubicacion_asesora(String nume_iden) {
 
-        String url = URL_EMPRESA+"asesora/ubic?nume_iden="+nume_iden;
+        String url = getString(R.string.url_empr)+"asesora/ubic?nume_iden="+nume_iden;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
 

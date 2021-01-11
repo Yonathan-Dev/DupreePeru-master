@@ -64,9 +64,6 @@ public class Fragmento_ubic_ases extends Fragment {
 
     private ProgressDialog pdp = null;
 
-    String URL_EMPRESA="";
-
-
     SearchView sv_nume_iden;
     SearchView sv_nume_iden_ruta;
 
@@ -78,16 +75,8 @@ public class Fragmento_ubic_ases extends Fragment {
         sv_nume_iden      = (SearchView) vista.findViewById(R.id.sv_nume_iden);
         sv_nume_iden_ruta = (SearchView) vista.findViewById(R.id.sv_nume_iden_ruta);
 
-        dato_gene URL = new dato_gene();
-        dato_gene SSL = new dato_gene();
-        URL_EMPRESA = URL.getURL_EMPRESA();
         contexto = this;
-        /*
-        if (String.valueOf(SSL.getSSL_EMPRESA()).equalsIgnoreCase("PROD")){
-            request = Volley.newRequestQueue(getContext(), new HurlStack(null, getSocketFactory()));
-        } else{
-            request = Volley.newRequestQueue(getContext(), new HurlStack(null, getSocketFactory_test()));
-        }*/
+
         request = Volley.newRequestQueue(getContext());
 
         sv_nume_iden.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -130,7 +119,7 @@ public class Fragmento_ubic_ases extends Fragment {
 
     private void validar_identidad(final String nume_iden, final String i) {
 
-        String url = URL_EMPRESA+"asesora/ubic?nume_iden="+nume_iden;
+        String url = getString(R.string.url_empr)+"asesora/ubic?nume_iden="+nume_iden;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
 

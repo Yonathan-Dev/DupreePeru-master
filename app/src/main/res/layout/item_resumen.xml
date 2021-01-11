@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="27.5dp"
+                android:background="@drawable/bordetextview"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordefondotextview"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="Número"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/nume"
+                    android:layout_width="400dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:text="numero"
+                    android:gravity="center|left"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/constraintLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="27.5dp"
+                android:background="@drawable/bordetextview"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView48"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordefondotextview"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="Código"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/codi"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:text="codigo"
+                    android:gravity="center|left"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tipo"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:hint="tipo"
+                    android:gravity="center|left"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/constraintLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bordetextview"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView49"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="5dp"
+                    android:background="@drawable/bordefondotextview"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:text="Nombre"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/nomb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center|left"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center"
+                    android:text="nombre"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="27.5dp"
+                android:background="@drawable/bordetextview"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/textView50"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordefondotextview"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="Cantidad"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/cant"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center"
+                    android:text="cant"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordefondotextview"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="Valor"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/valo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center|left"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center"
+                    android:text="valor"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="27.5dp"
+                android:background="@drawable/bordetextview"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bordefondotextview"
+                    android:gravity="center|left"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="VALOR"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center|left"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center"
+                    android:text="valor"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

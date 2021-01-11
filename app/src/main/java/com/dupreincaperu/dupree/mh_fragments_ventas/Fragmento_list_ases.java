@@ -54,7 +54,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
     JsonArrayRequest jsonArrayRequest;
     Fragmento_list_ases contexto;
     private ProgressDialog pdp = null;
-    String URL_EMPRESA="";
+
     String cedu_vend="", codi_usua="";
     int band=0;
     Button btn_gene_list_ases, btn_visu_mapa, btn_visi_ases;
@@ -75,10 +75,6 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
         contexto = this;
         cargarpreferencias();
         vista = inflater.inflate(R.layout.fragment_list_ases, container, false);
-
-        dato_gene URL = new dato_gene();
-        dato_gene SSL = new dato_gene();
-        URL_EMPRESA = URL.getURL_EMPRESA();
 
         request = Volley.newRequestQueue(getContext());
 
@@ -439,7 +435,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
     }
 
     private void cargarcamp() {
-        String url = URL_EMPRESA+"gerentes/camp?";
+        String url = getString(R.string.url_empr)+"gerentes/camp?";
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
 
@@ -488,7 +484,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
 
     private void cargarzona(String cedu_vend) {
 
-        String url = URL_EMPRESA+"gerentes/zona?cedu_vend="+cedu_vend;
+        String url = getString(R.string.url_empr)+"gerentes/zona?cedu_vend="+cedu_vend;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
 
@@ -530,7 +526,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
     }
 
     private void cargarsect(String codi_zona) {
-        String url = URL_EMPRESA+"gerentes/sect?codi_zona="+codi_zona;
+        String url = getString(R.string.url_empr)+"gerentes/sect?codi_zona="+codi_zona;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -563,7 +559,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
     }
 
     private void cargarclientes(String cedu_vend) {
-        String url = URL_EMPRESA+"gerentes/clie?cedu_vend="+cedu_vend;
+        String url = getString(R.string.url_empr)+"gerentes/clie?cedu_vend="+cedu_vend;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -607,7 +603,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
 
     private void listado_asesora_sami(String codi_camp, String codi_zona, String codi_sect, String nume_iden, String codi_usua, String tipo_clie_cons, String tipo_clie_inco, String tipo_clie_peg21,String tipo_clie_peg42, String tipo_clie_peg63, String tipo_clie_posi_reincor, String tipo_clie_posi_reingre, String tipo_clie_reinco, String tipo_clie_reingr, String tipo_clie_ret_peg21, String tipo_clie_ret_peg42, String tipo_clie_ret_peg63, String tipo_clie_sin_pedi) {
 
-        String url = URL_EMPRESA+"gerentes/listsami?codi_camp="+codi_camp+"&codi_zona="+codi_zona+"&codi_sect="+codi_sect+"&nume_iden="+nume_iden+"&codi_usua="+codi_usua+"&tipo_clie_cons="+tipo_clie_cons+"&tipo_clie_inco="+tipo_clie_inco+"&tipo_clie_peg21="+tipo_clie_peg21+"&tipo_clie_peg42="+tipo_clie_peg42+"&tipo_clie_peg63="+tipo_clie_peg63+"&tipo_clie_posi_reincor="+tipo_clie_posi_reincor+"&tipo_clie_posi_reingre="+tipo_clie_posi_reingre+"&tipo_clie_reinco="+tipo_clie_reinco+"&tipo_clie_reingr="+tipo_clie_reingr+"&tipo_clie_ret_peg21="+tipo_clie_ret_peg21+"&tipo_clie_ret_peg42="+tipo_clie_ret_peg42+"&tipo_clie_ret_peg63="+tipo_clie_ret_peg63+"&tipo_clie_sin_pedi="+tipo_clie_sin_pedi;
+        String url = getString(R.string.url_empr)+"gerentes/listsami?codi_camp="+codi_camp+"&codi_zona="+codi_zona+"&codi_sect="+codi_sect+"&nume_iden="+nume_iden+"&codi_usua="+codi_usua+"&tipo_clie_cons="+tipo_clie_cons+"&tipo_clie_inco="+tipo_clie_inco+"&tipo_clie_peg21="+tipo_clie_peg21+"&tipo_clie_peg42="+tipo_clie_peg42+"&tipo_clie_peg63="+tipo_clie_peg63+"&tipo_clie_posi_reincor="+tipo_clie_posi_reincor+"&tipo_clie_posi_reingre="+tipo_clie_posi_reingre+"&tipo_clie_reinco="+tipo_clie_reinco+"&tipo_clie_reingr="+tipo_clie_reingr+"&tipo_clie_ret_peg21="+tipo_clie_ret_peg21+"&tipo_clie_ret_peg42="+tipo_clie_ret_peg42+"&tipo_clie_ret_peg63="+tipo_clie_ret_peg63+"&tipo_clie_sin_pedi="+tipo_clie_sin_pedi;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
 

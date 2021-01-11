@@ -110,7 +110,6 @@ public class ruta extends AppCompatActivity implements OnMapReadyCallback, Mapbo
 
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
-    String URL_EMPRESA="";
     Context contexto;
 
     private ProgressDialog pdp = null;
@@ -121,18 +120,8 @@ public class ruta extends AppCompatActivity implements OnMapReadyCallback, Mapbo
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_ruta);
 
-        dato_gene URL = new dato_gene();
-        dato_gene SSL = new dato_gene();
-
-        URL_EMPRESA = URL.getURL_EMPRESA();
         contexto = this;
 
-        /*
-        if (String.valueOf(SSL.getSSL_EMPRESA()).equalsIgnoreCase("PROD")){
-            request = Volley.newRequestQueue(this, new HurlStack(null, getSocketFactory()));
-        } else{
-            request = Volley.newRequestQueue(this, new HurlStack(null, getSocketFactory_test()));
-        }*/
         request = Volley.newRequestQueue(this);
 
         Bundle para_ases = this.getIntent().getExtras();
@@ -377,7 +366,7 @@ public class ruta extends AppCompatActivity implements OnMapReadyCallback, Mapbo
                 Double cy  = locationComponent.getLastKnownLocation().getLatitude();
                 Double cx =  locationComponent.getLastKnownLocation().getLongitude();
 
-                String url = URL_EMPRESA+"georefere/regi?nume_iden="+nume_iden+"&cons_terc="+cons_terc+"&cy="+cy+"&cx="+cx+"&acti_usua="+acti_usua;
+                String url = getString(R.string.url_empr)+"georefere/regi?nume_iden="+nume_iden+"&cons_terc="+cons_terc+"&cy="+cy+"&cx="+cx+"&acti_usua="+acti_usua;
                 jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new com.android.volley.Response.Listener<JSONArray>() {
                     @SuppressLint("MissingPermission")
                     @Override
