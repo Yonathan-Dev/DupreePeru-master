@@ -123,11 +123,11 @@
         </item>
     </array>
 
-   <string name="url_empr">https://servicioweb.dupree.pe:443/hmvc/index.php/rest/</string>
-   <!--<string name="url_empr">https://servicioweb2per.azzorti.co:443/hmvc/index.php/rest/</string>-->
+   <!--<string name="url_empr">https://servicioweb.dupree.pe:443/hmvc/index.php/rest/</string>-->
+   <string name="url_empr">https://servicioweb2per.azzorti.co:443/hmvc/index.php/rest/</string>
 
-   <string name="api_url">https://alcor.dupree.pe/dupreeWS/</string>
-   <!--<string name="api_url">https://alcor2per.azzorti.co/dupreeWS/</string>-->
+   <!--<string name="api_url">https://alcor.dupree.pe/dupreeWS/</string>-->
+   <string name="api_url">https://alcor2per.azzorti.co/dupreeWS/</string>
 
     <string name="app_name">Dupree Azzorti</string>
     <string name="title_home">Home</string>

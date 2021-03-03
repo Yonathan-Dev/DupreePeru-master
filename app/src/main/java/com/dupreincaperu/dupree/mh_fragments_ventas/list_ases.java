@@ -548,7 +548,7 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
             @Override
             public void onStyleLoaded(@NonNull Style style) {
                 //Punto del GPS (ubicacion actual) se puede comentar para hacer pruebas
-                //enableLocationComponent(style);
+                enableLocationComponent(style);
 
                 if (!codi_camp.equalsIgnoreCase("")){
                     listado_asesora_sami(codi_camp, codi_zona, codi_sect, codi_usua, tipo_clie_cons, tipo_clie_inco, tipo_clie_peg21,tipo_clie_peg42, tipo_clie_peg63, tipo_clie_posi_reincor, tipo_clie_posi_reingre, tipo_clie_reinco, tipo_clie_reingr, tipo_clie_ret_peg21, tipo_clie_ret_peg42, tipo_clie_ret_peg63, tipo_clie_sin_pedi);
