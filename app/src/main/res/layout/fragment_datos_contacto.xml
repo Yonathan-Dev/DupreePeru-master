@@ -104,7 +104,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:weightSum="2.0">
+                    android:weightSum="2.4">
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -115,7 +115,7 @@
 
                         <LinearLayout
                             android:orientation="vertical"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_weight="0.5"
                             android:padding="5dp"
                             android:layout_height="match_parent">
@@ -136,6 +136,17 @@
                                 android:layout_height="128dp" />
 
                         </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:weightSum="1">
+
 
                         <LinearLayout
                             android:orientation="vertical"
@@ -161,7 +172,34 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:padding="5dp"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:text="@string/pagare_adverso2"/>
+
+                            <ImageView
+                                android:onClick="@{(v) -> callback.onClick(v)}"
+                                bind:picassoUrlFull="@{model.img_back2}"
+                                android:id="@+id/imgBack2"
+                                android:src="@drawable/ph_add_image2"
+                                android:scaleType="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="128dp" />
+
+                        </LinearLayout>
+
                     </LinearLayout>
+
+
+
 
                     <LinearLayout
                         android:orientation="horizontal"

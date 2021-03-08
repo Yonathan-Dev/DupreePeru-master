@@ -236,6 +236,8 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
                 sendImageMultiPart(model.getImg_terminos(), R.id.imgServicios);
             }else if(!model.containHttp(model.getImg_ruc())){
                 sendImageMultiPart(model.getImg_ruc(), R.id.imgRuc);
+            }else if(!model.containHttp(model.getImg_back2())){
+                sendImageMultiPart(model.getImg_back2(), R.id.imgBack2);
             }/*else if(!model.containHttp(model.getImg_central())){
                 sendImageMultiPart(model.getImg_central(), R.id.imgCentralRiesgo);
             }*/ else {
@@ -268,6 +270,8 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
                                 sendImageMultiPart(model.getImg_terminos(), R.id.imgServicios);
                             }else if(!model.containHttp(model.getImg_ruc())){
                                 sendImageMultiPart(model.getImg_ruc(), R.id.imgRuc);
+                            }else if(!model.containHttp(model.getImg_back2())){
+                                sendImageMultiPart(model.getImg_back2(), R.id.imgBack2);
                             }else if(!model.containHttp(model.getImg_central())){
                                 sendImageMultiPart(model.getImg_central(), R.id.imgCentralRiesgo);
                             }else {
@@ -287,6 +291,8 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
                             sendImageMultiPart(model.getImg_terminos(), R.id.imgServicios);
                         }else if(!model.containHttp(model.getImg_ruc())){
                             sendImageMultiPart(model.getImg_ruc(), R.id.imgRuc);
+                        }else if(!model.containHttp(model.getImg_back2())){
+                            sendImageMultiPart(model.getImg_back2(), R.id.imgBack2);
                         }else if(!model.containHttp(model.getImg_central())){
                             sendImageMultiPart(model.getImg_central(), R.id.imgCentralRiesgo);
                         } else {
@@ -344,6 +350,25 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
                             postInscipcion(obtainData());
                         }
                         break;
+
+                    case R.id.imgBack2:
+                        Log.i(TAG, "BROACAST_INSCRIP_TYPE_IMG_back2");
+                        model.setImg_back2(result.getResult());
+
+                        if(!model.isModeEdit() || !model.containHttp(model.getImg_back2())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
+                            // sendImageMultiPart(model.getPagare_adverso(), R.id.imgPagAdverso);
+
+                            if (!model.getImg_back2().equalsIgnoreCase("")){
+                                sendImageMultiPart(model.getImg_back2(), R.id.imgBack2);
+                            } else {
+                                postInscipcion(obtainData());
+                            }
+
+                        } else {
+                            postInscipcion(obtainData());
+                        }
+                        break;
+
                     case R.id.imgCentralRiesgo:
                         Log.i(TAG, "BROACAST_INSCRIP_TYPE_IMG_imgCentralRiesgo imgCentralRiesgo");
                         model.setImg_central(result.getResult());
@@ -384,6 +409,7 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
         model.setImg_terminos(model.getImg_terminos());
 
         model.setImg_ruc(model.getImg_ruc());
+        model.setImg_back2(model.getImg_back2());
         model.setImg_central(model.getImg_central());
 
         Log.e(TAG, "obtainData() -> model: "+new Gson().toJson(model));

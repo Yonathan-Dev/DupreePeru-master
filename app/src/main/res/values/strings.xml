@@ -271,8 +271,10 @@
     <string name="desea_guardar_cambios_server_pre">Desea enviar este prepedido para que sea procesado?</string>
     <string name="repeat_file">Archivo repetido</string>
     <string name="desea_sobreescribir_archivo">Ya existe un archivo con el mismo nombre, desea sobre-escribirlo?</string>
-    <string name="approve_preinscription">Aprobar/Rechazar pre-inscripción</string>
+    <string name="approve_preinscription">Aprobar/Rechazar preinscripción</string>
+    <string name="approve_inscription">Inscribir/Rechazar preinscripción</string>
     <string name="desea_aprobar_preinscription">Desea aprobar o rechazar la preinscripción de: </string>
+    <string name="desea_aprobar_inscription">Desea inscribir o rechazar la preinscripción de: </string>
     <string name="eliminar_preinscription">Eliminar preinscripción</string>
     <string name="desea_eliminar_preinscription">Esta seguro que desea eliminar la preinscripción de: </string>
 
@@ -338,6 +340,7 @@
     <string name="pedido_no_puede_modificarse_pre">Este prepedido no puede ser modificado</string>
     <string name="aprobar">APROBAR</string>
     <string name="rechazar">RECHAZAR</string>
+    <string name="inscribir">INSCRIBIR</string>
     <string name="dialog_descargar">DESCARGAR</string>
 
 
@@ -349,7 +352,8 @@
     <string name="cedula_frontal">DNI Frontal</string>
     <string name="cedula_adverso">DNI Adverso</string>
     <string name="pagare_frontal">Solicitud Frontal</string>
-    <string name="pagare_adverso">Solicitud Adverso</string>
+    <string name="pagare_adverso">Solicitud Adversa 1</string>
+    <string name="pagare_adverso2">Solicitud Adversa 2</string>
     <string name="bandeja_de_entrada">Bandeja de entrada</string>
     <string name="telefono_de_contacto">Telefono de contacto</string>
     <string name="catalogos_de_premios">Catálogos de premios</string>
@@ -486,7 +490,7 @@
     <string name="dni">DNI</string>
     <string name="ruc">RUC</string>
     <string name="central_riesgo">Central de Riesgo</string>
-    <string name="casa">Fachada de Casa</string>
+    <string name="casa">Otros</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>

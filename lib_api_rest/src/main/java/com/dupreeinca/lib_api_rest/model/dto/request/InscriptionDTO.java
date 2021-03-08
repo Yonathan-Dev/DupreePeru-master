@@ -112,6 +112,7 @@ public class InscriptionDTO extends BaseObservable implements Parcelable {
     //IMAGENES
     private transient String cedula_frontal = "";//
     private transient String cedula_adverso = "";//
+    private transient String cedula_adverso2 = "";//
     private transient String pagare_frontal = "";//
     private transient String pagare_adverso = "";//
     private List<String> img_cedula = new ArrayList<>();//
@@ -122,6 +123,9 @@ public class InscriptionDTO extends BaseObservable implements Parcelable {
 
     //img ruc
     private String img_ruc = "";
+
+    //img solicitu adversa 2
+    private String img_back2 = "";
 
     //img central de riesgo
     private String img_central = "";
@@ -218,6 +222,7 @@ public class InscriptionDTO extends BaseObservable implements Parcelable {
         //img terminos
         img_terminos = in.readString();
         img_ruc = in.readString();
+        img_back2 = in.readString();
         img_central = in.readString();
         //datos personales preinscripcion
         nomb_terc = in.readString();
@@ -286,6 +291,7 @@ public class InscriptionDTO extends BaseObservable implements Parcelable {
         //img terminos
         dest.writeString(img_terminos);
         dest.writeString(img_ruc);
+        dest.writeString(img_back2);
         dest.writeString(img_central);
         //datos personales preinscripcion
         dest.writeString(nomb_terc);
@@ -433,6 +439,7 @@ public class InscriptionDTO extends BaseObservable implements Parcelable {
         //img terminos
         setImg_terminos(data.getImg_terminos());
         setImg_ruc(data.getImg_ruc());
+        setImg_back2(data.getImg_back2());
         setImg_central(data.getImg_central());
         setNomb_terc(data.getNomb_terc());
         setApel_terc(data.getApel_terc());
@@ -549,6 +556,7 @@ public class InscriptionDTO extends BaseObservable implements Parcelable {
 
         setImg_terminos("");
         setImg_ruc("");
+        setImg_back2("");
         setImg_central("");
         setApel_terc("");
         setNomb_terc("");
@@ -1008,6 +1016,11 @@ public class InscriptionDTO extends BaseObservable implements Parcelable {
     }
 
     @Bindable
+    public String getImg_back2() {
+        return img_back2;
+    }
+
+    @Bindable
     public String getImg_central() {
         return img_central;
     }
@@ -1042,6 +1055,11 @@ public class InscriptionDTO extends BaseObservable implements Parcelable {
     public void setImg_ruc(String img_ruc) {
         this.img_ruc = img_ruc;
         notifyPropertyChanged(BR.img_ruc);
+    }
+
+    public void setImg_back2(String img_back2) {
+        this.img_back2 = img_back2;
+        notifyPropertyChanged(BR.img_back2);
     }
 
     public void setImg_central(String img_central) {

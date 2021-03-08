@@ -102,11 +102,18 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
         binding.imgRuc.setVisibility(View.VISIBLE);
         binding.linearImgServicios.setVisibility(View.VISIBLE);
 
+        binding.imgBack2.setClickable(true);
+        binding.imgBack2.setEnabled(true);
+        binding.imgBack2.setOnClickListener(null);
+        binding.imgBack2.setVisibility(View.VISIBLE);
+
         binding.imgCentralRiesgo.setClickable(true);
         binding.imgCentralRiesgo.setEnabled(true);
         binding.imgCentralRiesgo.setOnClickListener(null);
         binding.imgCentralRiesgo.setVisibility(View.VISIBLE);
         binding.linearImgCentralRiesgo.setVisibility(View.VISIBLE);
+
+
 
         binding.txtEmail.addTextChangedListener(new TextWatcher() {
             @Override
@@ -176,6 +183,10 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
                 imageSelected = IMG_RUC;
                 showMenuImage();
                 break;
+            case R.id.imgBack2:
+                imageSelected = IMG_BACK2;
+                showMenuImage();
+                break;
             case R.id.imgCentralRiesgo:
                 imageSelected = IMG_CENTRAL_RSG;
                 showMenuImage();
@@ -229,23 +240,32 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
     }
 
     private boolean validateImages(){
-        if(TextUtils.isEmpty(model.getCedula_frontal())){
-            msgToast("Adjunte frontal del DNI");
-            return false;
-        }
 
-        if(TextUtils.isEmpty(model.getCedula_adverso())){
-            msgToast("Adjunte adverso del DNI");
+
+        if(TextUtils.isEmpty(model.getCedula_frontal())){
+            msgToast("Adjunte DNI frontal");
             return false;
         }
 
         if(TextUtils.isEmpty(model.getPagare_frontal())){
-            msgToast("Adjunte frontal de la solicitud");
+            msgToast("Adjunte solicitud frontal");
             return false;
         }
 
         if(TextUtils.isEmpty(model.getPagare_adverso())){
-            msgToast("Adjunte adverso de la solicitud");
+            msgToast("Adjunte solicitud adverso 1");
+            return false;
+        }
+
+        if(TextUtils.isEmpty(model.getImg_back2())){
+            msgToast("Adjunte solicitud adversa 2");
+            return false;
+        }
+
+
+
+        if(TextUtils.isEmpty(model.getCedula_adverso())){
+            msgToast("Adjunte DNI adverso");
             return false;
         }
 
@@ -260,16 +280,16 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
             return true;
         }*/
 
-        if(TextUtils.isEmpty(model.getImg_ruc())){
+        /*if(TextUtils.isEmpty(model.getImg_ruc())){
             msgToast("Adjunte fachada de casa");
             return false;
-        }
+        }*/
 
 
         return true;
     }
 
-    private final int IMG_CED_FRT=0, IMG_CED_ADV=1, IMG_PAG_FRT=2, IMG_PAG_ADV=3,IMG_SERV_PUB=4,IMG_RUC=5,IMG_CENTRAL_RSG=6;
+    private final int IMG_CED_FRT=0, IMG_CED_ADV=1, IMG_PAG_FRT=2, IMG_PAG_ADV=3,IMG_SERV_PUB=4,IMG_RUC=5,IMG_CENTRAL_RSG=6, IMG_BACK2=7;
     private int imageSelected=-1;
     public void
     nextPage(){
@@ -373,6 +393,9 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
                 break;
             case IMG_RUC:
                 model.setImg_ruc(file.getAbsolutePath());
+                break;
+            case IMG_BACK2:
+                model.setImg_back2(file.getAbsolutePath());
                 break;
             case IMG_CENTRAL_RSG:
                 model.setImg_central(file.getAbsolutePath());

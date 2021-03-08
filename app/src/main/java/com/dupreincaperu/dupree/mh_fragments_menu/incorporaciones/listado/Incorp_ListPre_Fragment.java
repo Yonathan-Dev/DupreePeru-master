@@ -122,7 +122,8 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
                 identySelected = dataRow.getCedula();
                 formato_direccion = dataRow.getFormato_direccion();
 
-                testInscription(nameSelected,dataRow.getEstado());
+                //testInscription(nameSelected,dataRow.getEstado());
+                testInscription_II(nameSelected,dataRow.getEstado(),row);
                 //si es gerente de zona, el etado es pendiente y fue realizada por una LIDER, la Z debe aprobar.
             } else if(dataRow.getEstado().equals(EnumStatusPreInsc.PENDIENTE.getKey())
                     && perfil.getPerfil().equals(Profile.GERENTE_ZONA) && dataRow.getUsuario().equals(Profile.LIDER)){
@@ -150,6 +151,11 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
                 formato_direccion = dataRow.getFormato_direccion();
                 testReviInscription(nameSelected,dataRow.getEstado());
                 //testEditInscription(nameSelected,dataRow.getEstado());
+            } else if(dataRow.getEstado().equals(EnumStatusPreInsc.PENDIENTE.getKey())
+                    && perfil.getPerfil().equals(Profile.LIDER) && dataRow.getUsuario().equals(Profile.LIDER)){
+
+                identySelected = dataRow.getCedula();
+                testElimInscription(dataRow.getNombre() + " " + dataRow.getApellido(), row);
             }
 
 
@@ -226,6 +232,42 @@ public class Incorp_ListPre_Fragment extends BaseFragment implements ListPreHold
         });
         simpleDialog.show(getChildFragmentManager(),"mDialog");
     }
+
+    public void testInscription_II(String to, String estado, int row){
+        SimpleDialog3Button simpleDialog = new SimpleDialog3Button();
+        simpleDialog.loadData(getString(R.string.approve_inscription), getString(R.string.desea_aprobar_inscription)+" "+to+"?",getString(R.string.inscribir), getString(R.string.rechazar));
+        simpleDialog.setListener(new SimpleDialog3Button.ListenerResult() {
+            @Override
+            public void result(boolean status) {
+                if(status){
+                    gotoInscripcion(false,estado);
+                } else {
+                    showProgress();
+                    inscripcionController.aprobarPreinscripcion(new ApprovePreIns(identySelected, status ? ApprovePreIns.APROBAR : ApprovePreIns.RECHAZAR), new TTResultListener<GenericDTO>() {
+                        @Override
+                        public void success(GenericDTO result) {
+                            dismissProgress();
+
+                            String msg = result.getResult();
+
+                            if(msg != null){
+                                msgToast(msg);
+                                refreshList(msg, row);
+                            }
+                        }
+
+                        @Override
+                        public void error(TTError error) {
+                            dismissProgress();
+                            checkSession(error);
+                        }
+                    });
+                }
+            }
+        });
+        simpleDialog.show(getChildFragmentManager(),"mDialog");
+    }
+
 
     public void testEditInscription(String to, String estado){
         SimpleDialog simpleDialog = new SimpleDialog();
