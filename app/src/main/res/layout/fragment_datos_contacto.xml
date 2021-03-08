@@ -128,8 +128,8 @@
 
                             <ImageView
                                 android:onClick="@{(v) -> callback.onClick(v)}"
-                                bind:picassoUrlFull="@{model.cedula_frontal}"
-                                android:id="@+id/imgCedFrontal"
+                                bind:picassoUrlFull="@{model.pagare_frontal}"
+                                android:id="@+id/imgPagFrontal"
                                 android:src="@drawable/ph_add_image2"
                                 android:scaleType="center"
                                 android:layout_width="match_parent"
@@ -163,8 +163,8 @@
 
                             <ImageView
                                 android:onClick="@{(v) -> callback.onClick(v)}"
-                                bind:picassoUrlFull="@{model.cedula_adverso}"
-                                android:id="@+id/imgCedAdverso"
+                                bind:picassoUrlFull="@{model.pagare_adverso}"
+                                android:id="@+id/imgPagAdverso"
                                 android:src="@drawable/ph_add_image2"
                                 android:scaleType="center"
                                 android:layout_width="match_parent"
@@ -223,8 +223,8 @@
 
                         <ImageView
                             android:onClick="@{(v) -> callback.onClick(v)}"
-                            bind:picassoUrlFull="@{model.pagare_frontal}"
-                            android:id="@+id/imgPagFrontal"
+                            bind:picassoUrlFull="@{model.cedula_frontal}"
+                            android:id="@+id/imgCedFrontal"
                             android:src="@drawable/ph_add_image2"
                             android:scaleType="center"
                             android:layout_width="match_parent"
@@ -247,8 +247,8 @@
 
                         <ImageView
                             android:onClick="@{(v) -> callback.onClick(v)}"
-                            bind:picassoUrlFull="@{model.pagare_adverso}"
-                            android:id="@+id/imgPagAdverso"
+                            bind:picassoUrlFull="@{model.cedula_adverso}"
+                            android:id="@+id/imgCedAdverso"
                             android:src="@drawable/ph_add_image2"
                             android:scaleType="center"
                             android:layout_width="match_parent"

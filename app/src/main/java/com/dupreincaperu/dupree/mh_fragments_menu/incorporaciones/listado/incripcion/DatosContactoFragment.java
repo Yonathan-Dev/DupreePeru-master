@@ -242,18 +242,13 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
     private boolean validateImages(){
 
 
-        if(TextUtils.isEmpty(model.getCedula_frontal())){
-            msgToast("Adjunte DNI frontal");
-            return false;
-        }
-
         if(TextUtils.isEmpty(model.getPagare_frontal())){
             msgToast("Adjunte solicitud frontal");
             return false;
         }
 
         if(TextUtils.isEmpty(model.getPagare_adverso())){
-            msgToast("Adjunte solicitud adverso 1");
+            msgToast("Adjunte solicitud adversa 1");
             return false;
         }
 
@@ -262,7 +257,10 @@ public class DatosContactoFragment extends BaseFragment implements View.OnClickL
             return false;
         }
 
-
+        if(TextUtils.isEmpty(model.getCedula_frontal())){
+            msgToast("Adjunte DNI frontal");
+            return false;
+        }
 
         if(TextUtils.isEmpty(model.getCedula_adverso())){
             msgToast("Adjunte DNI adverso");

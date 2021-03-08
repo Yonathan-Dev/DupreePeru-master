@@ -243,6 +243,7 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
             }*/ else {
                 postInscipcion(obtainData());
             }
+
         } else {
             sendImageMultiPart(model.getCedula_frontal(), R.id.imgCedFrontal);
         }
@@ -302,7 +303,7 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
                     case R.id.imgPagFrontal:
                         Log.i(TAG, "BROACAST_INSCRIP_TYPE_IMG_PAG_FRONT_URL");
                         model.setPagare_frontal(result.getResult());
-
+                        
                         if(!model.isModeEdit() || !model.containHttp(model.getPagare_adverso())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
                             sendImageMultiPart(model.getPagare_adverso(), R.id.imgPagAdverso);
                         } else {
@@ -337,11 +338,11 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
                         Log.i(TAG, "BROACAST_INSCRIP_TYPE_IMG_ruc ruc_URL");
                         model.setImg_ruc(result.getResult());
 
-                        if(!model.isModeEdit() || !model.containHttp(model.getImg_central())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
+                        if(!model.isModeEdit() || !model.containHttp(model.getImg_back2())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
                             // sendImageMultiPart(model.getPagare_adverso(), R.id.imgPagAdverso);
 
-                            if (!model.getImg_central().equalsIgnoreCase("")){
-                                sendImageMultiPart(model.getImg_central(), R.id.imgCentralRiesgo);
+                            if (!model.getImg_back2().equalsIgnoreCase("")){
+                                sendImageMultiPart(model.getImg_back2(), R.id.imgBack2);
                             } else {
                                 postInscipcion(obtainData());
                             }
@@ -355,11 +356,11 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
                         Log.i(TAG, "BROACAST_INSCRIP_TYPE_IMG_back2");
                         model.setImg_back2(result.getResult());
 
-                        if(!model.isModeEdit() || !model.containHttp(model.getImg_back2())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
+                        if(!model.isModeEdit() || !model.containHttp(model.getImg_central())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
                             // sendImageMultiPart(model.getPagare_adverso(), R.id.imgPagAdverso);
 
-                            if (!model.getImg_back2().equalsIgnoreCase("")){
-                                sendImageMultiPart(model.getImg_back2(), R.id.imgBack2);
+                            if (!model.getImg_central().equalsIgnoreCase("")){
+                                sendImageMultiPart(model.getImg_central(), R.id.imgCentralRiesgo);
                             } else {
                                 postInscipcion(obtainData());
                             }
