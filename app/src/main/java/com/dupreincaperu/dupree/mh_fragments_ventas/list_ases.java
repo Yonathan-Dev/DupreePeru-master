@@ -173,7 +173,7 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
         this.mapboxMap = mapboxMap;
 
         //Estilo de mapa
-        String styleZona="mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+        String styleZona="mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
         switch (codi_zona){
             case "001":
                 styleZona = "mapbox://styles/dupreeazzorti/ck4y9mm7vgg1b1cp49kmkzyvr";
@@ -229,6 +229,9 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
             case "018":
                 styleZona = "mapbox://styles/dupreeazzorti/ck532q6wh0xfp1cro51zwfvax";
                 break;
+            case "019":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
             case "020":
                 styleZona = "mapbox://styles/dupreeazzorti/ck532y3130e941cmrj26vaa9z";
                 break;
@@ -258,6 +261,9 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
                 break;
             case "029":
                 styleZona = "mapbox://styles/dupreeazzorti/ck54238ba1au41cpe9nh6zpee";
+                break;
+            case "030":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
             case "031":
                 styleZona = "mapbox://styles/dupreeazzorti/ck542gck80kyn1cn41evgoprn";
@@ -298,8 +304,53 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
             case "044":
                 styleZona = "mapbox://styles/dupreeazzorti/ck548g0qk525m1cqgsqnlw32u";
                 break;
+            case "045":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "046":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "047":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "048":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "049":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "050":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
             case "051":
                 styleZona = "mapbox://styles/dupreeazzorti/ck6ht12wi0vwf1jl7xqbyqoue";
+                break;
+            case "052":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "053":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "054":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "055":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "056":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "057":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "058":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "059":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                break;
+            case "060":
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
             case "061":
                 styleZona = "mapbox://styles/dupreeazzorti/ck548ne3s0qx41ct1p12gti4e";
@@ -308,7 +359,7 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
                 styleZona = "mapbox://styles/dupreeazzorti/ck548w9dh0o4m1drobg5ndn6d";
                 break;
             case "063":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
             case "101":
                 styleZona = "mapbox://styles/dupreeazzorti/ck5dywfcw0uqc1ioafw3paopj";
@@ -341,10 +392,10 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
                 styleZona = "mapbox://styles/dupreeazzorti/ck5lo5shi0w2r1iovph8q96tm";
                 break;
             case "111":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/ck5mn1enj01kv1inpov43vg9b";
                 break;
             case "112":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/ck5mouw4s3asd1is1c14d4eyv";
                 break;
             case "113":
                 styleZona = "mapbox://styles/dupreeazzorti/ck5l99rgg0mgs1imzg8iwvedt";
@@ -365,7 +416,7 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
                 styleZona = "mapbox://styles/dupreeazzorti/ck5mllmgp1tnl1ilpvgklequz";
                 break;
             case "141":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/ck5mmfb3738iq1is1lp0ktvxy";
                 break;
             case "142":
                 styleZona = "mapbox://styles/dupreeazzorti/ck5l9t21v0lyf1itfliknj9r8";
@@ -374,16 +425,16 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
                 styleZona = "mapbox://styles/dupreeazzorti/ck5ejbm2e1dmk1illcl8rgmub";
                 break;
             case "144":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
             case "145":
                 styleZona = "mapbox://styles/dupreeazzorti/ck5lkqlij3x231iqtfp9w4lrc";
                 break;
             case "146":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
             case "147":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
             case "148":
                 styleZona = "mapbox://styles/dupreeazzorti/ck5efkr960m9p1iqmirrboccx";
@@ -392,19 +443,19 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
                 styleZona = "mapbox://styles/dupreeazzorti/ck5ljeyvw0u441ilp5foa11u9";
                 break;
             case "201":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/ck5mpq6b1042b1inpa0rxkwjq";
                 break;
             case "203":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/ck5mpzkeg1i6g1iptcafvgkwg";
                 break;
             case "205":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/ck5mqiz9x0q241ipl4d0vhgf6";
                 break;
             case "206":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/ck5mqqlyk0obi1jojpsprvn7m";
                 break;
             case "207":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/ck5mr03cz0ojz1jojbbcpqr6i";
                 break;
             case "208":
                 styleZona = "mapbox://styles/dupreeazzorti/ck5lb6z8i0jwx1ink7kkxzv7y";
@@ -470,7 +521,7 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
                 styleZona = "mapbox://styles/dupreeazzorti/ck5e4pmew104g1ini3d41q4sv";
                 break;
             case "229":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/ck5mp3au003uq1inx48ysb603";
                 break;
             case "230":
                 styleZona = "mapbox://styles/dupreeazzorti/ck5e6ok0u11xf1isig22nchvs";
@@ -527,19 +578,19 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
                 styleZona = "mapbox://styles/dupreeazzorti/ck6gz7ial04701iqlqq31tywf";
                 break;
             case "666":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
             case "760":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
             case "950":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
             case "951":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
             case "999":
-                styleZona = "mapbox://styles/dupreeazzorti/ck3kjau1l2uyn1cmz4brrwhoz";
+                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
         }
 
