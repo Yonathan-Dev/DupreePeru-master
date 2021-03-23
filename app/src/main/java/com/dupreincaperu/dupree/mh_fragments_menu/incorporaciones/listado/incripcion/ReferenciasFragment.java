@@ -224,21 +224,21 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
 
         showProgress();
         if(model.isModeEdit()) {
-            if(!model.containHttp(model.getCedula_frontal())){
-                sendImageMultiPart(model.getCedula_frontal(), R.id.imgCedFrontal);
-            } else if(!model.containHttp(model.getCedula_adverso())){
-                sendImageMultiPart(model.getCedula_adverso(), R.id.imgCedAdverso);
-            } else if(!model.containHttp(model.getPagare_frontal())){
+            if(!model.containHttp(model.getPagare_frontal())){
                 sendImageMultiPart(model.getPagare_frontal(), R.id.imgPagFrontal);
             } else if(!model.containHttp(model.getPagare_adverso())){
                 sendImageMultiPart(model.getPagare_adverso(), R.id.imgPagAdverso);
-            }else if(!model.containHttp(model.getImg_terminos())){
-                sendImageMultiPart(model.getImg_terminos(), R.id.imgServicios);
-            }else if(!model.containHttp(model.getImg_ruc())){
-                sendImageMultiPart(model.getImg_ruc(), R.id.imgRuc);
-            }else if(!model.containHttp(model.getImg_back2())){
+            } else if(!model.containHttp(model.getImg_back2())){
                 sendImageMultiPart(model.getImg_back2(), R.id.imgBack2);
-            }/*else if(!model.containHttp(model.getImg_central())){
+            } else if(!model.containHttp(model.getCedula_frontal())){
+                sendImageMultiPart(model.getCedula_frontal(), R.id.imgCedFrontal);
+            } else if(!model.containHttp(model.getCedula_adverso())){
+                sendImageMultiPart(model.getCedula_adverso(), R.id.imgCedAdverso);
+            } else if(!model.containHttp(model.getImg_terminos())){
+                sendImageMultiPart(model.getImg_terminos(), R.id.imgServicios);
+            /*} else if(!model.containHttp(model.getImg_ruc())){
+                sendImageMultiPart(model.getImg_ruc(), R.id.imgRuc);*/
+            } /*else if(!model.containHttp(model.getImg_central())){
                 sendImageMultiPart(model.getImg_central(), R.id.imgCentralRiesgo);
             }*/ else {
                 postInscipcion(obtainData());
@@ -322,21 +322,72 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
                         }
                        // postInscipcion(obtainData());
                         break;
+
+
                     case R.id.imgServicios:
                         Log.i(TAG, "BROACAST_INSCRIP_TYPE_IMG_SERV PUB_URL");
                         model.setImg_terminos(result.getResult());
 
-                        if(!model.isModeEdit() || !model.containHttp(model.getImg_ruc())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
+                        if(!model.isModeEdit() || !model.containHttp(model.getImg_back2())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
                             // sendImageMultiPart(model.getPagare_adverso(), R.id.imgPagAdverso);
-                            sendImageMultiPart(model.getImg_ruc(), R.id.imgRuc);
+                            sendImageMultiPart(model.getImg_back2(), R.id.imgBack2);
                         } else {
                             postInscipcion(obtainData());
                         }
 
                         break;
+
+                    case R.id.imgBack2:
+                        Log.i(TAG, "BROACAST_INSCRIP_TYPE_IMG_back2");
+                        model.setImg_back2(result.getResult());
+
+                        if(!model.isModeEdit() || !model.containHttp(model.getImg_central())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
+                            // sendImageMultiPart(model.getPagare_adverso(), R.id.imgPagAdverso);
+
+                            if (!model.getImg_central().equalsIgnoreCase("")){
+                                sendImageMultiPart(model.getImg_central(), R.id.imgCentralRiesgo);
+                            } else if(!model.getImg_ruc().equalsIgnoreCase("")){
+                                    sendImageMultiPart(model.getImg_ruc(), R.id.imgRuc);
+                            } else {
+                                postInscipcion(obtainData());
+                            }
+
+                        } else {
+                            postInscipcion(obtainData());
+                        }
+                        break;
+
+
+                    case R.id.imgCentralRiesgo:
+                        Log.i(TAG, "BROACAST_INSCRIP_TYPE_IMG_imgCentralRiesgo imgCentralRiesgo");
+
+                        model.setImg_central(result.getResult());
+
+                        if(!model.isModeEdit() || !model.containHttp(model.getImg_ruc())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
+                            // sendImageMultiPart(model.getPagare_adverso(), R.id.imgPagAdverso);
+
+                            if (!model.getImg_ruc().equalsIgnoreCase("")){
+                                sendImageMultiPart(model.getImg_ruc(), R.id.imgRuc);
+                            } else {
+                                postInscipcion(obtainData());
+                            }
+
+                        } else {
+                            postInscipcion(obtainData());
+                        }
+                        break;
+
                     case R.id.imgRuc:
                         Log.i(TAG, "BROACAST_INSCRIP_TYPE_IMG_ruc ruc_URL");
                         model.setImg_ruc(result.getResult());
+                        postInscipcion(obtainData());
+                        break;
+
+
+
+
+
+                        /*model.setImg_ruc(result.getResult());
 
                         if(!model.isModeEdit() || !model.containHttp(model.getImg_back2())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
                             // sendImageMultiPart(model.getPagare_adverso(), R.id.imgPagAdverso);
@@ -350,31 +401,8 @@ public class ReferenciasFragment extends BaseFragment implements View.OnClickLis
                         } else {
                             postInscipcion(obtainData());
                         }
-                        break;
+                        break;*/
 
-                    case R.id.imgBack2:
-                        Log.i(TAG, "BROACAST_INSCRIP_TYPE_IMG_back2");
-                        model.setImg_back2(result.getResult());
-
-                        if(!model.isModeEdit() || !model.containHttp(model.getImg_central())){//en modo edicion si file == null, no se ha modificado y se llama al sigueinet caso
-                            // sendImageMultiPart(model.getPagare_adverso(), R.id.imgPagAdverso);
-
-                            if (!model.getImg_central().equalsIgnoreCase("")){
-                                sendImageMultiPart(model.getImg_central(), R.id.imgCentralRiesgo);
-                            } else {
-                                postInscipcion(obtainData());
-                            }
-
-                        } else {
-                            postInscipcion(obtainData());
-                        }
-                        break;
-
-                    case R.id.imgCentralRiesgo:
-                        Log.i(TAG, "BROACAST_INSCRIP_TYPE_IMG_imgCentralRiesgo imgCentralRiesgo");
-                        model.setImg_central(result.getResult());
-                        postInscipcion(obtainData());
-                        break;
                 }
             }
 
