@@ -185,27 +185,6 @@
         <!--SOLO ASESORA//////////////////////////////////////////////-->
 
         <!--PERU//////////////////////////////////////////////-->
-        <item android:title="@string/Distribucion" android:id="@+id/distribucion">
-            <menu>
-
-                <item
-                    android:id="@+id/proc_dist_conf_manu"
-                    android:icon="@drawable/etrack"
-                    android:title="@string/confirmacion_manu" />
-
-                <item
-                    android:id="@+id/reco_canj_devo"
-                    android:icon="@drawable/recogecanjes"
-                    android:title="@string/reco_canje_devo" />
-
-                <item
-                    android:id="@+id/geoc_inve"
-                    android:icon="@drawable/geocodificacion"
-                    android:title="@string/geocodificacion_inversa" />
-
-            </menu>
-        </item>
-
 
         <item android:title="@string/Cobranza" android:id="@+id/cobranza">
             <menu>

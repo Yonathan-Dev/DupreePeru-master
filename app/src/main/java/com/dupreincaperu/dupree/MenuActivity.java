@@ -39,10 +39,7 @@ import com.dupreincaperu.dupree.mh_adapters.IncorporacionPagerAdapter;
 import com.dupreincaperu.dupree.mh_adapters.NuevasPagerAdapter;
 import com.dupreincaperu.dupree.mh_dialogs.SimpleDialog;
 import com.dupreincaperu.dupree.mh_fragments_asesora.Fragmento_repo_ases_deud;
-import com.dupreincaperu.dupree.mh_fragments_canjes.Fragment_canjes;
 import com.dupreincaperu.dupree.mh_fragments_cobranza.Fragmento_ubic_ases;
-import com.dupreincaperu.dupree.mh_fragments_distribucion.Fragmento_geoc_inve;
-import com.dupreincaperu.dupree.mh_fragments_distribucion.Fragmento_proc_dist_conf_manu;
 import com.dupreincaperu.dupree.mh_fragments_main.CatalogosAdvanceFragment;
 import com.dupreincaperu.dupree.mh_fragments_main.CatalogosFragment;
 import com.dupreincaperu.dupree.mh_fragments_main.ContactFragment;
@@ -142,13 +139,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
 
         //Para el uso de imagenes
         camera = new Camera(MenuActivity.this);
-        //showMenuByPerfil(binding.navView);
-
-        if (!tipo_vinc.equalsIgnoreCase("T")){
-            showMenuByPerfil(binding.navView);
-        } else{
-            habilitarModulos(binding.navView);
-        }
+        showMenuByPerfil(binding.navView);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         hview = navigationView.getHeaderView(0);
@@ -160,11 +151,8 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
         corr.setText(corr_empl);
 
         //MODULOS DESARROLLADOS EN PERU.
-        navigationView.getMenu().findItem(R.id.geoc_inve).setVisible(false);
         navigationView.getMenu().findItem(R.id.repo_ases_deud).setVisible(false);
         navigationView.getMenu().findItem(R.id.indi_vent).setVisible(false);
-        navigationView.getMenu().findItem(R.id.proc_dist_conf_manu).setVisible(false);
-        navigationView.getMenu().findItem(R.id.reco_canj_devo).setVisible(false);
         navigationView.getMenu().findItem(R.id.list_ases).setVisible(false);
         navigationView.getMenu().findItem(R.id.ubic_ases).setVisible(false);
         navigationView.getMenu().findItem(R.id.aula_virt).setVisible(false);
@@ -200,17 +188,8 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                     case "REPO_ASES_DEUD":
                         navigationView.getMenu().findItem(R.id.repo_ases_deud).setVisible(true);
                         break;
-                    case "GEOC_INVE":
-                        navigationView.getMenu().findItem(R.id.geoc_inve).setVisible(true);
-                        break;
                     case "INDI_VENT":
                         navigationView.getMenu().findItem(R.id.indi_vent).setVisible(true);
-                        break;
-                    case "PROC_DIST_CONF_MANU":
-                        navigationView.getMenu().findItem(R.id.proc_dist_conf_manu).setVisible(true);
-                        break;
-                    case "RECO_CANJ_DEVO":
-                        navigationView.getMenu().findItem(R.id.reco_canj_devo).setVisible(true);
                         break;
                     case "LIST_ASES":
                         navigationView.getMenu().findItem(R.id.list_ases).setVisible(true);
@@ -562,20 +541,11 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                 //break;
                 return;
             //Agregado por Perú
-            case  R.id.geoc_inve:
-                fragmentoGenerico = new Fragmento_geoc_inve();
-                break;
             case  R.id.repo_ases_deud:
                 fragmentoGenerico = new Fragmento_repo_ases_deud();
                 break;
             case  R.id.indi_vent:
                 fragmentoGenerico = new Fragmento_indi_vent();
-                break;
-            case  R.id.proc_dist_conf_manu:
-                fragmentoGenerico = new Fragmento_proc_dist_conf_manu();
-                break;
-            case  R.id.reco_canj_devo:
-                fragmentoGenerico = new Fragment_canjes();
                 break;
             case  R.id.list_ases:
                 fragmentoGenerico = new Fragmento_list_ases();
@@ -970,35 +940,6 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
         else
             this.corr_empl = corr_empl;
 
-    }
-
-    private void habilitarModulos(NavigationView navigationView){
-        navigationView.getMenu().findItem(R.id.menu_lat_home_asesoras).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_home_gerentes).setVisible(false);
-        navigationView.getMenu().findItem(R.id.posibles_asesoras).setVisible(false);
-        navigationView.getMenu().findItem(R.id.incorporaciones).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_pedidos_ret).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_edo_pedido).setVisible(false);
-        navigationView.getMenu().findItem(R.id.servicios).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_reporte_ubicacion).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_hacer_pedidos).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_hacer_prepedidos).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_catalogo).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_cat_premios).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_faltantes).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_consulta_puntos).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_incent_por_referido).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_reportes).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_pet_quej_rec_pqr).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_update).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_modif_perfil).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_bandeja_entrada).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_share).setVisible(false);
-        navigationView.getMenu().findItem(R.id.menu_lat_logout).setVisible(true);
-        navigationView.getMenu().findItem(R.id.proc_dist_conf_manu).setVisible(true);
-        navigationView.getMenu().findItem(R.id.reco_canj_devo).setVisible(true);
-        navigationView.getMenu().findItem(R.id.geoc_inve).setVisible(true);
-        onNavigationItemSelected(navigationView.getMenu().findItem(R.id.proc_dist_conf_manu));
     }
 
     protected void onDestroy() {

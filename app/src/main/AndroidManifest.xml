@@ -12,15 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".mh_fragments_distribucion.Canjesdevoluciones"></activity>
         <activity android:name=".mh_fragments_ventas.list_ases" />
         <activity android:name=".mh_fragments_ventas.visita" />
         <activity android:name=".mh_fragments_cobranza.ruta" />
-        <activity android:name=".mh_fragments_distribucion.toma_foto" />
         <activity android:name=".mh_fragments_ventas.ubic_ases" />
-        <activity android:name=".mh_fragments_distribucion.pedido_track" />
-        <activity android:name=".mh_fragments_distribucion.Canjesdevolucionestrack" />
-        <activity android:name=".mh_fragments_distribucion.pedido_registrado" /> <!-- FIREBASE -->
+        <!-- FIREBASE -->
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation"

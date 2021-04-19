@@ -22,7 +22,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.dupreincaperu.dupree.mh_dial_peru.estadoPreincripcion;
-import com.dupreincaperu.dupree.mh_pasa_prod.dato_gene;
 import com.imageperu.lib_image.util.PermissionCamera;
 import com.dupreeinca.lib_api_rest.controller.InscripcionController;
 import com.dupreeinca.lib_api_rest.controller.UploadFileController;

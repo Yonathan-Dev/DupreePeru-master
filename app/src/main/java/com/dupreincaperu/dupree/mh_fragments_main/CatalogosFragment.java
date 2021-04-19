@@ -32,7 +32,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.dupreincaperu.dupree.mh_pasa_prod.dato_gene;
 import com.imageperu.lib_image.MyProviderImage;
 import com.dupreeinca.lib_api_rest.controller.UploadFileController;
 import com.dupreeinca.lib_api_rest.model.dto.response.UrlCatalogoDTO;

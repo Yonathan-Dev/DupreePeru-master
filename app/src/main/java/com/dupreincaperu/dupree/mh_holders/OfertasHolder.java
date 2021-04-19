@@ -14,7 +14,6 @@ import com.dupreincaperu.dupree.BaseAPP;
 import com.dupreincaperu.dupree.ImageZoomActivity;
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.databinding.ItemOffersBinding;
-import com.dupreincaperu.dupree.mh_fragments_distribucion.Fragmento_proc_dist_conf_manu;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;

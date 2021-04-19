@@ -41,7 +41,6 @@ import com.dupreincaperu.dupree.BuildConfig;
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.mh_dialogs.MH_Dialogs_Login;
 import com.dupreincaperu.dupree.mh_http.Http;
-import com.dupreincaperu.dupree.mh_pasa_prod.dato_gene;
 import com.dupreincaperu.dupree.mh_required_api.RequiredAuth;
 import com.dupreincaperu.dupree.mh_sqlite.MyDbHelper;
 import com.dupreincaperu.dupree.mh_sqlite.Tab_prog_moviContract;
@@ -364,7 +363,11 @@ public class AuthFragment extends Fragment {
                         alma_tab_prog_movi(String.valueOf(acce_repo.getString("codi_prog")));
                     }
                     pdp.dismiss();
-                    httpAuth();
+                    if (!tipo_vinc.equalsIgnoreCase("T")){
+                        httpAuth();
+                    } else {
+                        Toast.makeText(getContext(),"Usuario tiene perfil temporal.", Toast.LENGTH_SHORT).show();
+                    }
 
 
                 } catch (JSONException e) {
