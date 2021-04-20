@@ -115,10 +115,12 @@
                 android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/txtPhone"
-                    android:inputType="phone"
+                    android:digits="@string/only_number_basic"
+                    android:inputType="number"
                     android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="9"
                     android:hint="@string/telefono_de_contacto"/>
             </android.support.design.widget.TextInputLayout>
 

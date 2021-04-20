@@ -29,7 +29,7 @@ public class dialogoPolitica {
 
     private final dialogoPolitica contexto;
 
-    public dialogoPolitica(final Context Contexto, AuthFragment actividad) {
+    public dialogoPolitica(final Context Contexto, cierroPolitico actividad) {
 
         interfaz = actividad;
         contexto = this;

@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
@@ -26,9 +27,11 @@ import com.dupreeinca.lib_api_rest.model.dto.response.CiudadDTO;
 import com.dupreeinca.lib_api_rest.model.dto.response.DepartamentoDTO;
 import com.dupreeinca.lib_api_rest.model.view.Profile;
 import com.dupreincaperu.dupree.R;
+import com.dupreincaperu.dupree.mh_dial_peru.dialogoPolitica;
 import com.dupreincaperu.dupree.mh_dialogs.ListCity;
 import com.dupreincaperu.dupree.mh_dialogs.ListDpto;
 import com.dupreincaperu.dupree.mh_dialogs.ListString;
+import com.dupreincaperu.dupree.mh_fragments_login.AuthFragment;
 import com.dupreincaperu.dupree.mh_http.Http;
 import com.dupreincaperu.dupree.mh_required_api.RequiredRegister_NEW_2018;
 import com.dupreincaperu.dupree.mh_utilities.Validate;
@@ -44,7 +47,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RegisterAsesoraFragment_NEW extends Fragment{
+public class RegisterAsesoraFragment_NEW extends Fragment implements dialogoPolitica.cierroPolitico{
 
     public static final String TAG = "RegisterAsesoraFragment";
     public static final String BROACAST_REG_ERROR="reg_type_error";
@@ -313,6 +316,7 @@ public class RegisterAsesoraFragment_NEW extends Fragment{
     private static long lastTime=0;
     private static String intentRepeat="";
     private BroadcastReceiver localBroadcastReceiver;
+
     private class LocalBroadcastReceiver extends BroadcastReceiver {
 
         @Override
@@ -360,7 +364,8 @@ public class RegisterAsesoraFragment_NEW extends Fragment{
      */
     public void register(){
         if(validateRegister()){
-            sendDataRegister();
+            new dialogoPolitica(getContext(), RegisterAsesoraFragment_NEW.this);
+            //sendDataRegister();
         }
     }
 
@@ -384,52 +389,36 @@ public class RegisterAsesoraFragment_NEW extends Fragment{
         });
     }
 
-    public Boolean validateRegister()
-    {
+    public Boolean validateRegister() {
         Validate valid=new Validate();
         //datos personales
-        if (txtName.getText().toString().isEmpty())
-        {
-            msgToast("Nombre invalido...");
+        if (txtName.getText().toString().isEmpty()){
             valid.setLoginError(getResources().getString(R.string.campo_requerido), txtName);
             return false;
-        }
-        else if (txtLastname.getText().toString().isEmpty())
-        {
-            msgToast("Apellido invalido...");
+        } else if (txtLastname.getText().toString().isEmpty()){
             valid.setLoginError(getResources().getString(R.string.campo_requerido), txtLastname);
             return false;
-        }
-
-        //departamento
-        else if (txtSpnDpto.getText().toString().isEmpty())
-        {
-            msgToast("Dir. Res. > Dpto... Verifique");
+        } else if (txtSpnDpto.getText().toString().isEmpty()){
+            msgToast("Ingrese departamento");
             valid.setLoginError(getResources().getString(R.string.campo_requerido), txtSpnDpto);
             return false;
-        }
-        else if (txtSpnCity.getText().toString().isEmpty())
-        {
-            msgToast("Dir. Res. > Ciudad... Verifique");
+        } else if (txtSpnCity.getText().toString().isEmpty()){
+            msgToast("Ingrese provincia");
             valid.setLoginError(getResources().getString(R.string.campo_requerido), txtSpnCity);
             return false;
-        }
-
-        //contacto
-        else if (txtPhone.getText().toString().isEmpty())
-        {
-            msgToast("Teléfono fijo... Verifique");
+        } else if (txtPhone.getText().toString().isEmpty()){
             valid.setLoginError(getResources().getString(R.string.campo_requerido), txtPhone);
             return false;
-        }
-        else if (!txtEmail.getText().toString().isEmpty() && valid.isValidEmail(txtEmail.getText().toString()))
-        {
-            msgToast("Formato de correo incorrecto... Verifique");
+        } else if (txtPhone.getText().toString().length()!=7 && txtPhone.getText().toString().length()!=9){
+            valid.setLoginError(getResources().getString(R.string.campo_telefono), txtPhone);
+            return false;
+        } else if (txtEmail.getText().toString().isEmpty()){
+            valid.setLoginError(getResources().getString(R.string.campo_requerido), txtEmail);
+            return false;
+        } else if (!txtEmail.getText().toString().isEmpty() && valid.isValidEmail(txtEmail.getText().toString())){
             valid.setLoginError(getResources().getString(R.string.formato_incorrecto), txtEmail);
             return false;
-        }else if (txtComentario.getText().toString().isEmpty())
-        {
-            msgToast("Debe agregar un comentario... Verifique");
+        } else if (txtComentario.getText().toString().isEmpty()){
             valid.setLoginError(getResources().getString(R.string.campo_requerido), txtComentario);
             return false;
         }
@@ -479,5 +468,22 @@ public class RegisterAsesoraFragment_NEW extends Fragment{
     private void toastMSG(String msg){
         Log.e(TAG, "toast, "+msg);
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void ResultadoPolitico(String peti) {
+
+        if (peti.equalsIgnoreCase("")){
+            sendDataRegister();
+        } else if(peti.equalsIgnoreCase("politica")){
+            Uri pdf2 = Uri.parse(getString(R.string.api_poli));
+            Intent i = new Intent(Intent.ACTION_VIEW, pdf2);
+            startActivity(i);
+        } else if(peti.equalsIgnoreCase("terminos")){
+            Uri pdf1 = Uri.parse(getString(R.string.api_term));
+            Intent j = new Intent(Intent.ACTION_VIEW, pdf1);
+            startActivity(j);
+        }
+
     }
 }

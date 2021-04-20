@@ -495,11 +495,11 @@ public class AuthFragment extends Fragment implements dialogoPolitica.cierroPoli
         if (peti.equalsIgnoreCase("")){
             httpAuth();
         } else if(peti.equalsIgnoreCase("politica")){
-            Uri pdf2 = Uri.parse("http://alcor2per.azzorti.co/imagenes/politicaprivacidad.pdf");
+            Uri pdf2 = Uri.parse(getString(R.string.api_poli));
             Intent i = new Intent(Intent.ACTION_VIEW, pdf2);
             startActivity(i);
         } else if(peti.equalsIgnoreCase("terminos")){
-            Uri pdf1 = Uri.parse("http://alcor2per.azzorti.co/imagenes/terminoscondiciones.pdf");
+            Uri pdf1 = Uri.parse(getString(R.string.api_term));
             Intent j = new Intent(Intent.ACTION_VIEW, pdf1);
             startActivity(j);
         }
