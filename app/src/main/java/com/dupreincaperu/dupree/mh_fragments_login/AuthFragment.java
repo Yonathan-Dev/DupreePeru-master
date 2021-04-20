@@ -3,6 +3,7 @@ package com.dupreincaperu.dupree.mh_fragments_login;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,6 +29,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +43,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.dupreincaperu.dupree.BuildConfig;
 import com.dupreincaperu.dupree.R;
+import com.dupreincaperu.dupree.mh_dial_peru.dialogoPolitica;
 import com.dupreincaperu.dupree.mh_dialogs.MH_Dialogs_Login;
 import com.dupreincaperu.dupree.mh_http.Http;
 import com.dupreincaperu.dupree.mh_required_api.RequiredAuth;
@@ -47,6 +52,7 @@ import com.dupreincaperu.dupree.mh_sqlite.Tab_prog_moviContract;
 import com.dupreincaperu.dupree.mh_utilities.Validate;
 import com.dupreincaperu.dupree.mh_utilities.mPreferences;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.nostra13.universalimageloader.utils.L;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +63,7 @@ import static com.dupreincaperu.dupree.Constants.MY_DEFAULT_TIMEOUT;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AuthFragment extends Fragment {
+public class AuthFragment extends Fragment implements dialogoPolitica.cierroPolitico{
     private final String TAG = "AuthFragment";
 
     private String tokenDevice=null;
@@ -79,7 +85,6 @@ public class AuthFragment extends Fragment {
     static final Integer PHONESTATS = 0x1;
     TextView txt_vers_name;
     CheckBox chk_reco_usua;
-    String  imei="";
 
     String nomb_empl = "";
     String apel_empl = "";
@@ -92,7 +97,6 @@ public class AuthFragment extends Fragment {
     RequestQueue request;
     JsonArrayRequest jsonArrayRequest;
     private ProgressDialog pdp = null;
-
 
 
     @Override
@@ -113,15 +117,6 @@ public class AuthFragment extends Fragment {
 
         request = Volley.newRequestQueue(getContext());
 
-        //txtUsername.setText("1015434512"); //asesora
-        //txtPwd.setText("1015434512");
-
-        //txtUsername.setText("ana_yanquen");
-        //txtPwd.setText("868Ac*4301");
-
-        //txtUsername.setText("1015434512"); //Asesora
-        //txtPwd.setText("1015434512");
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,10 +126,10 @@ public class AuthFragment extends Fragment {
                     guardarpreferencia();
                     txtUsername.requestFocus();
                     verificar_usuario();
-                    //httpAuth();
                 }
             }
         });
+
         tvForgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -303,7 +298,6 @@ public class AuthFragment extends Fragment {
                     } else{
                         Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
                         borr_tab_prog_movi();
-                        //httpAuth();
                         pdp.dismiss();
                     }
                 } catch (JSONException e) {
@@ -364,7 +358,7 @@ public class AuthFragment extends Fragment {
                     }
                     pdp.dismiss();
                     if (!tipo_vinc.equalsIgnoreCase("T")){
-                        httpAuth();
+                        new dialogoPolitica(getContext(), AuthFragment.this);
                     } else {
                         Toast.makeText(getContext(),"Usuario tiene perfil temporal.", Toast.LENGTH_SHORT).show();
                     }
@@ -420,7 +414,7 @@ public class AuthFragment extends Fragment {
                         alma_tab_prog_movi(String.valueOf(acce_repo.getString("codi_prog")));
                     }
                     pdp.dismiss();
-                    httpAuth();
+                    new dialogoPolitica(getContext(), AuthFragment.this);
 
                 } catch (JSONException e) {
                     pdp.dismiss();
@@ -494,5 +488,22 @@ public class AuthFragment extends Fragment {
         super.onResume();
     }
 
+
+    @Override
+    public void ResultadoPolitico(String peti) {
+
+        if (peti.equalsIgnoreCase("")){
+            httpAuth();
+        } else if(peti.equalsIgnoreCase("politica")){
+            Uri pdf2 = Uri.parse("http://alcor2per.azzorti.co/imagenes/politicaprivacidad.pdf");
+            Intent i = new Intent(Intent.ACTION_VIEW, pdf2);
+            startActivity(i);
+        } else if(peti.equalsIgnoreCase("terminos")){
+            Uri pdf1 = Uri.parse("http://alcor2per.azzorti.co/imagenes/terminoscondiciones.pdf");
+            Intent j = new Intent(Intent.ACTION_VIEW, pdf1);
+            startActivity(j);
+        }
+
+    }
 
 }
