@@ -42,7 +42,7 @@
                         android:textSize="18dp"
                         android:textColor="@color/black"
                         android:text="@string/direccion_de_residencia"
-                        android:drawableRight="@drawable/ubicanos_negro"
+                        android:drawableRight="@drawable/ic_localizar"
                         android:clickable="true"/>
 
                     <LinearLayout

@@ -1,11 +1,15 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.listado.incripcion;
 
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.dupreeinca.lib_api_rest.controller.InscripcionController;
 import com.dupreeinca.lib_api_rest.controller.ReportesController;
@@ -33,6 +37,8 @@ import com.dupreincaperu.dupree.mh_dialogs.ListDpto;
 import com.dupreincaperu.dupree.mh_dialogs.MH_Dialogs_Barrio;
 import com.dupreincaperu.dupree.mh_dialogs.SingleListDialog;
 import com.dupreincaperu.dupree.mh_fragments_menu.LocalizacionHelper;
+import com.dupreincaperu.dupree.mh_inscripcion_mapa.LocationPickerActivity;
+import com.dupreincaperu.dupree.mh_sqlite.MyDbHelper;
 import com.dupreincaperu.dupree.mh_utilities.Validate;
 import com.dupreincaperu.dupree.mh_utilities.mPreferences;
 import com.dupreincaperu.dupree.view.activity.BaseActivityListener;
@@ -56,7 +62,7 @@ public class DirFormato1Fragment extends BaseFragment implements View.OnClickLis
     private List<ModelList> listBis, listDirSend, listLetra, listPCardinal, listTipoVia;
     private LocalizacionHelper location;
     private UserController userController;
-    private String userName;
+    private String userName, latitud, longitud;
     private ReportesController reportesController;
 
     private InscripcionController inscripController;
@@ -102,8 +108,14 @@ public class DirFormato1Fragment extends BaseFragment implements View.OnClickLis
         binding.tvDireccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendLocation();
-//                permissionImage();
+
+                RequeridUbicacion obtenerDatosUbicacion = obtenerDatosUsuario();
+                if(obtenerDatosUbicacion != null){
+                    Intent i = new Intent(getContext(), LocationPickerActivity.class);
+                        i.putExtra("cedula",obtenerDatosUbicacion.getCedula());
+                    startActivity(i);
+                }
+                //sendLocation();
             }
         });
         binding.setModel(model);
@@ -213,12 +225,13 @@ public class DirFormato1Fragment extends BaseFragment implements View.OnClickLis
                 }
                 break;
                 //captura de coordenadas
-            case R.id.tvDireccion://
+            /*case R.id.tvDireccion:
                 sendLocation();
-                break;
+                break;*/
 
             case R.id.btnContinuar:
                 if(validate()) {
+                    obtenercoordenadas();
                     nextPage();
                 }
                 break;
@@ -656,6 +669,26 @@ public class DirFormato1Fragment extends BaseFragment implements View.OnClickLis
         }else{
             msgToast(getString(R.string.msg_ubicacion_no_ok));
         }
+    }
+
+
+    private void obtenercoordenadas(){
+
+        MyDbHelper dbHelper = new MyDbHelper(getContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Cursor c = db.rawQuery("SELECT cx, cy FROM geo_clie WHERE cedula = '"+model.getCedula()+"' ", null);
+        if (c.getCount()>0 && db!=null){
+            if (c.moveToNext()){
+                latitud  = c.getString(0);
+                longitud = c.getString(1);
+            }
+            sendLocation();
+        }
+        db.execSQL("DELETE FROM geo_clie WHERE 1 = 1 ");
+
+        c.close();
+        db.close();
 
     }
 
@@ -669,14 +702,24 @@ public class DirFormato1Fragment extends BaseFragment implements View.OnClickLis
             idUser.setError("Ingrese la cédula del asesor");
             return null;
         }*/
+
         return new RequeridUbicacion(
+                latitud,
+                longitud,
+                model.getNombre(),
+                dataStore.getTipoPerfil().getPerfil(),
+                model.getCedula(),
+                model.getCedula()
+        );
+
+        /*return new RequeridUbicacion(
                 String.valueOf(location.latitude),
                 String.valueOf(location.longitude),
                 model.getNombre(),
                 dataStore.getTipoPerfil().getPerfil(),
                 model.getCedula(),
                 model.getCedula()
-        );
+        );*/
 
     }
 

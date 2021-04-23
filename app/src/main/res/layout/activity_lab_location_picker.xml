@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        mapbox:mapbox_cameraZoom="15"/>
+
+    <!--
+    <Button
+        android:id="@+id/btn_sele_ubic"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="25dp"
+        android:background="@color/colorPrimary"
+        android:drawableRight="@drawable/ic_seleccionar"
+        android:text="@string/sele_ubic"
+        android:textColor="@android:color/black"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="bottom">
+
+        <ImageButton
+            android:id="@+id/img_sele_ubic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_seleccionar"
+            android:background="@drawable/borde_amar_negr"/>
+
+        <ImageButton
+            android:visibility="gone"
+            android:id="@+id/img_guar_ubic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:src="@drawable/guardar"
+            android:background="@drawable/borde_amar_negr"/>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.dupreincaperu.dupree">
-    <!-- "com.dupree2.Dupre" -->
+
     <application
         android:name=".BaseAPP"
         android:allowBackup="true"
@@ -12,11 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".mh_inscripcion_mapa.LocationPickerActivity"></activity>
         <activity android:name=".mh_fragments_ventas.list_ases" />
         <activity android:name=".mh_fragments_ventas.visita" />
         <activity android:name=".mh_fragments_cobranza.ruta" />
-        <activity android:name=".mh_fragments_ventas.ubic_ases" />
-        <!-- FIREBASE -->
+        <activity android:name=".mh_fragments_ventas.ubic_ases" /> <!-- FIREBASE -->
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation"
@@ -107,6 +107,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_image_paths" />
         </provider>
+
         <service android:name=".mh_firebase.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -119,6 +120,7 @@
         </service>
     </application>
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -134,7 +136,6 @@
     <uses-permission android:name="android.permission.FLAG_GRANT_READ_URI_PERMISSION" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
