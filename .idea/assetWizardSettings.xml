@@ -87,8 +87,9 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\yonathan.galindo\Downloads\anadir.png" />
-                                                <entry key="scalingPercent" value="101" />
+                                                <entry key="imagePath" value="C:\Users\yonathan.galindo\Desktop\ic_launcher.svg" />
+                                                <entry key="scalingPercent" value="87" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -121,7 +122,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="outputName" value="ic_anadir" />
+                                      <entry key="backgroundColor" value="000000" />
+                                      <entry key="legacyIconShape" value="CIRCLE" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -151,7 +153,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\yonathan.galindo\Desktop\icons8-devolución-de-compra-50.png" />
+                                                <entry key="imagePath" value="C:\Users\yonathan.galindo\Desktop\ic_launcher.svg" />
+                                                <entry key="paddingPercent" value="5" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -185,9 +188,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="backgroundColor" value="000000" />
-                                      <entry key="imageAsset" value="C:\Users\yonathan.galindo\Desktop\icons8-devolución-de-compra-50.png" />
-                                      <entry key="outputName" value="ic_devolver" />
+                                      <entry key="iconShape" value="CIRCLE" />
+                                      <entry key="imageAsset" value="C:\Users\yonathan.galindo\Desktop\ic_launcher.svg" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -312,11 +314,6 @@
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
                           </map>
                         </option>
                       </PersistentState>

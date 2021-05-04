@@ -1,5 +1,14 @@
 <resources>
 
+    <string name="url_empr">https://servicioweb.dupree.pe:443/hmvc/index.php/rest/</string>
+    <!--<string name="url_empr">https://servicioweb2per.azzorti.co:443/hmvc/index.php/rest/</string>-->
+
+    <string name="api_url">https://alcor.dupree.pe/dupreeWS/</string>
+    <!--<string name="api_url">https://alcor2per.azzorti.co/dupreeWS/</string>-->
+
+    <string name="api_poli">https://alcor.dupree.pe/imagenes/politicaprivacidad.pdf</string>
+    <string name="api_term">https://alcor.dupree.pe/imagenes/terminoscondiciones.pdf</string>
+
     <array name="array_parentesco">
         <item>
             <name>ABUELO</name>
@@ -123,16 +132,7 @@
         </item>
     </array>
 
-    <string name="url_empr">https://servicioweb.dupree.pe:443/hmvc/index.php/rest/</string>
-    <!--<string name="url_empr">https://servicioweb2per.azzorti.co:443/hmvc/index.php/rest/</string>-->
-
-    <string name="api_url">https://alcor.dupree.pe/dupreeWS/</string>
-    <!--<string name="api_url">https://alcor2per.azzorti.co/dupreeWS/</string>-->
-
-    <string name="api_poli">https://alcor.dupree.pe/imagenes/politicaprivacidad.pdf</string>
-    <string name="api_term">https://alcor.dupree.pe/imagenes/terminoscondiciones.pdf</string>
-
-    <string name="app_name">Dupree Azzorti</string>
+    <string name="app_name">Azzorti</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Inicio</string>
     <string name="title_notifications">Notifications</string>
@@ -142,7 +142,7 @@
     <string name="iniciar_sesion">Iniciar Sesion</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="dupree_cap">Dupree By Azzorti</string>
+    <string name="dupree_cap">Azzorti</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pre_inscripcion_may">(PRE-INSCRIPCIÓN)</string>
     <string name="datos_personales">Datos personales:</string>
@@ -242,7 +242,7 @@
 
     <!--AGREGADO PERU -->
     <string name="tipo_vias">Via(*)</string>
-    <string name="modificar_perfil">Modificar datos</string>
+    <string name="modificar_perfil">Mis datos</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="tracking">Tracking</string>
     <string name="campana">Campaña</string>
@@ -497,11 +497,11 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="title_activity_principal">Dupree Móvil</string>
+    <string name="title_activity_principal">Azzorti Móvil</string>
     <string name="title_activity_ubic_pedi">Pedidos</string>
     <string name="title_activity_pedido_registrado">pedido_registrado</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiZHVwcmVlYXp6b3J0aSIsImEiOiJjazFxZ2p1a3QwMTZ1M2hxZ3BuN2l4OTZrIn0.Loh1w0sgnR3g-O-3oXWZMA</string>
-    <string name="permiso_ubicacion">Dupree Azzorti necesita permisos de ubicación para mostrar su funcionalidad.</string>
+    <string name="permiso_ubicacion">Azzorti necesita permisos de ubicación para mostrar su funcionalidad.</string>
     <string name="permiso">No cuentas con permiso de ubicación.</string>
 
     <string-array name="charOption">

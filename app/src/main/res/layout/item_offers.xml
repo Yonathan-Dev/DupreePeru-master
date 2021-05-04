@@ -29,7 +29,7 @@
                     android:id="@+id/imagen"
                     android:layout_width="match_parent"
                     android:layout_height="128dp"
-                    android:src="@drawable/ic_flor_white_180x180"/>
+                    android:src="@drawable/azzorti"/>
 
                 <LinearLayout
                     android:id="@+id/ctnvalor"

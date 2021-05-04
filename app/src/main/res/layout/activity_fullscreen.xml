@@ -20,8 +20,8 @@
             android:src="@drawable/loading" />
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/dupree_init_bottom"/>
+            android:layout_height="100dp"
+            android:src="@drawable/azzorti"/>
 
 
     </LinearLayout>
