@@ -4,9 +4,7 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/968e21bd12721b9aa4faba6530c40c87/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/968e21bd12721b9aa4faba6530c40c87/res" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.realm/android-adapters/2.1.0/b509bac2e0dacacdfe26f4046389f407ef34aa4d/android-adapters-2.1.0-javadoc.jar!/" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.realm/android-adapters/2.1.0/3f9fd9b6e9ecf89633307b093d9666d38b7a34db/android-adapters-2.1.0-sources.jar!/" />
     </SOURCES>
