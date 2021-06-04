@@ -4,12 +4,12 @@ package com.dupreincaperu.dupree.mh_fragments_menu;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.SearchView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.appcompat.widget.SearchView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -173,7 +173,7 @@ public class ReporteRetenidosFragment extends BaseFragment implements RetenidosH
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setQueryHint(getString(R.string.cedula_asesora));
 
-        EditText txtSearch = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        EditText txtSearch = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
         txtSearch.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

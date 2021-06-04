@@ -1,26 +1,18 @@
 package com.dupreeinca.lib_api_rest.dao.base;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.util.Log;
+import androidx.annotation.NonNull;
 
 import com.dupreeinca.lib_api_rest.interceptors.AddCookiesInterceptor;
 import com.dupreeinca.lib_api_rest.interceptors.ConnectivityInterceptor;
 import com.dupreeinca.lib_api_rest.interceptors.ReceivedCookiesInterceptor;
 import com.dupreeinca.lib_api_rest.model.base.Api;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

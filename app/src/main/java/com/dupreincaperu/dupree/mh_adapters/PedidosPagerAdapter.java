@@ -1,12 +1,11 @@
 package com.dupreincaperu.dupree.mh_adapters;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import com.dupreincaperu.dupree.mh_fragments_menu.pedidos.Carrito.CarritoFragment;
-import com.dupreincaperu.dupree.mh_fragments_menu.pedidos.historial.FacturasFragment;
 import com.dupreincaperu.dupree.mh_fragments_menu.pedidos.ofertas.OffersFragment;
 
 /**

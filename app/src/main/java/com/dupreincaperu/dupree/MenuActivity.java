@@ -9,22 +9,24 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
+import androidx.annotation.NonNull;
+
+import com.dupreincaperu.dupree.mh_fragments_azzortimaps.Fragmento_list_ases;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.core.view.GravityCompat;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,7 +65,6 @@ import com.dupreincaperu.dupree.mh_fragments_menu.pedidos.HacerPedidoFragment;
 import com.dupreincaperu.dupree.mh_fragments_menu.pedidos.HacerPrePedidoFragment;
 import com.dupreincaperu.dupree.mh_fragments_menu.reportes.ReportesFragment;
 import com.dupreincaperu.dupree.mh_fragments_ventas.Fragmento_indi_vent;
-import com.dupreincaperu.dupree.mh_fragments_ventas.Fragmento_list_ases;
 import com.dupreincaperu.dupree.mh_hardware.Camera;
 import com.dupreincaperu.dupree.mh_http.Http;
 import com.dupreincaperu.dupree.mh_sqlite.MyDbHelper;
@@ -608,9 +609,9 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void showMessageGPSNoEnabled(String message) {
-        android.support.v7.app.AlertDialog alert = null;
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
-        new android.support.v7.app.AlertDialog.Builder(this)
+        androidx.appcompat.app.AlertDialog alert = null;
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+        new androidx.appcompat.app.AlertDialog.Builder(this)
                 .setTitle(getString(R.string.text_alert_tittle_gps_enable))
                 .setMessage(message)
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {

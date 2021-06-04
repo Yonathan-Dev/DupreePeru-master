@@ -1,10 +1,10 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.pedidos.Carrito;
 
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import android.util.Log;
 
 import com.dupreincaperu.dupree.R;

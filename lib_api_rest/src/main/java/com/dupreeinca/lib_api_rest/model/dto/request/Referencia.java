@@ -1,12 +1,10 @@
 package com.dupreeinca.lib_api_rest.model.dto.request;
 
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 
 import com.dupreeinca.lib_api_rest.BR;
-import com.dupreeinca.lib_api_rest.R;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**

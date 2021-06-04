@@ -11,7 +11,7 @@
         android:background="@color/gray_2"
         xmlns:tools="http://schemas.android.com/tools">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_margin="0dp"
             card_view:cardCornerRadius="6dp"
             card_view:cardElevation="2dp"
@@ -94,7 +94,7 @@
                 </LinearLayout>
 
             </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 </layout>

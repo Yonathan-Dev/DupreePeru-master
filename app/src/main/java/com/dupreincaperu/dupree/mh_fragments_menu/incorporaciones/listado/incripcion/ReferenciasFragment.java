@@ -5,12 +5,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.dupreeinca.lib_api_rest.controller.InscripcionController;
 import com.dupreeinca.lib_api_rest.controller.UploadFileController;

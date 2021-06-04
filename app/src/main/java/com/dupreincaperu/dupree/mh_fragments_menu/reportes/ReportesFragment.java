@@ -3,10 +3,10 @@ package com.dupreincaperu.dupree.mh_fragments_menu.reportes;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.ViewDataBinding;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.SearchView;
+import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.appcompat.widget.SearchView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -106,7 +106,7 @@ public class ReportesFragment extends BaseFragment implements ReportesHolder.Eve
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setQueryHint(getString(R.string.cedula_asesora));
 
-        EditText txtSearch = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        EditText txtSearch = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
         txtSearch.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

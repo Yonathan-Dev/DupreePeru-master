@@ -3,19 +3,19 @@ package com.dupreincaperu.dupree.mh_fragments_menu.pedidos;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.graphics.Color;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.SearchView;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.appcompat.widget.SearchView;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -262,11 +262,11 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
         searchView = (SearchView) searchItem.getActionView();
 
-        ImageView searchIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_button);
+        ImageView searchIcon = searchView.findViewById(androidx.appcompat.R.id.search_button);
         searchIcon.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.ic_black_search_24));
         searchView.setQueryHint(Html.fromHtml("<font color = #000000>" + getString(R.string.ingresar_codigo) + "</font>"));
 
-        EditText txtSearch = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        EditText txtSearch = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
         //txtSearch.setInputType(InputType.TYPE_CLASS_NUMBER);
         txtSearch.setInputType(InputType.TYPE_CLASS_TEXT);
 

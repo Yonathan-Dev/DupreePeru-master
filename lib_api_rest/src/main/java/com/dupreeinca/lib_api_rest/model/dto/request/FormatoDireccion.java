@@ -1,14 +1,12 @@
 package com.dupreeinca.lib_api_rest.model.dto.request;
 
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 
 import com.dupreeinca.lib_api_rest.BR;
 import com.dupreeinca.lib_api_rest.enums.EnumFormatDireccion;
-import com.dupreeinca.lib_api_rest.model.dto.response.RaiseDTO;
 import com.dupreeinca.lib_api_rest.util.models.ModelList;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 

@@ -7,7 +7,7 @@
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/cardViedfactura"
             card_view:cardBackgroundColor="@color/gray_3"
             android:layout_margin="0dp"
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:weightSum="1">
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:layout_margin="0.5dp"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardUseCompatPadding="false"
@@ -59,9 +59,9 @@
                             tools:text="201618"/>
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:layout_margin="0.5dp"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardUseCompatPadding="false"
@@ -94,9 +94,9 @@
                             tools:text="12/10/2016"/>
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:layout_margin="0.5dp"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardUseCompatPadding="false"
@@ -129,9 +129,9 @@
                             tools:text="9969010"/>
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:layout_margin="0.5dp"
                     card_view:cardCornerRadius="6dp"
                     card_view:cardUseCompatPadding="false"
@@ -155,11 +155,11 @@
                             android:src="@drawable/ic_remove_red_eye_white_24dp"/>
 
                     </LinearLayout>
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 </layout>

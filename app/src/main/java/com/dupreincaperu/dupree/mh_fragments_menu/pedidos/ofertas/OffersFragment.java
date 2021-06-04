@@ -2,10 +2,10 @@ package com.dupreincaperu.dupree.mh_fragments_menu.pedidos.ofertas;
 
 
 import android.content.Intent;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import android.util.Log;
 
 import com.dupreeinca.lib_api_rest.model.dto.response.realm.Oferta;
@@ -20,11 +20,6 @@ import com.dupreincaperu.dupree.mh_holders.OfertasHolder;
 import com.dupreincaperu.dupree.view.fragment.BaseFragment;
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

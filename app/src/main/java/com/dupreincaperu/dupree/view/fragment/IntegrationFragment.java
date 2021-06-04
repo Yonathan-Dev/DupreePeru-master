@@ -1,6 +1,6 @@
 package com.dupreincaperu.dupree.view.fragment;
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.util.Log;
 import android.widget.TextView;
 

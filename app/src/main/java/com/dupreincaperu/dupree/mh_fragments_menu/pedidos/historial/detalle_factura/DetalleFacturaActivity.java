@@ -1,9 +1,9 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.pedidos.historial.detalle_factura;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
+import androidx.appcompat.app.ActionBar;
 
 import com.dupreeinca.lib_api_rest.model.dto.response.ItemFacturaDTO;
 import com.dupreincaperu.dupree.R;

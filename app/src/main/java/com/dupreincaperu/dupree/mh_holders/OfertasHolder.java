@@ -1,17 +1,14 @@
 package com.dupreincaperu.dupree.mh_holders;
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
 import com.dupreeinca.lib_api_rest.model.dto.response.realm.Oferta;
 import com.dupreincaperu.dupree.BaseAPP;
-import com.dupreincaperu.dupree.ImageZoomActivity;
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.databinding.ItemOffersBinding;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;

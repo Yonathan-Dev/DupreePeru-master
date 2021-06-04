@@ -1,9 +1,9 @@
 package com.dupreincaperu.dupree.mh_fragments_menu;
 
 
-import android.databinding.ViewDataBinding;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.View;
 

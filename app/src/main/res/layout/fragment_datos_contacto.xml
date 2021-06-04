@@ -9,7 +9,7 @@
             name="model"
             type="com.dupreeinca.lib_api_rest.model.dto.request.InscriptionDTO"/>
     </data>
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -35,7 +35,7 @@
                     android:textColor="@color/black"
                     android:text="@string/contacto"/>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
@@ -51,9 +51,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/telefono_fijo"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
@@ -69,9 +69,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/telefono_movil"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
@@ -86,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/correo_electronico"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
                 <!--DOCUMENTOS ADJUNTOS-->
                 <TextView
                     android:layout_marginTop="24dp"
@@ -376,5 +376,5 @@
                     android:text="@string/continuar"/>
             </LinearLayout>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

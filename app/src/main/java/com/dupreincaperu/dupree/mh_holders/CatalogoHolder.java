@@ -2,11 +2,10 @@ package com.dupreincaperu.dupree.mh_holders;
 
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.dupreeinca.lib_api_rest.model.dto.response.realm.Catalogo;
 import com.dupreincaperu.dupree.BaseAPP;

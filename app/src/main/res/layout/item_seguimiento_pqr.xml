@@ -9,7 +9,7 @@
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/cardViewBackGround"
             card_view:cardBackgroundColor="@color/transp_azulDupree"
             android:layout_margin="0dp"
@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:weightSum="1">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_margin="0.5dp"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardUseCompatPadding="false"
@@ -65,9 +65,9 @@
                                 tools:text="16201732"/>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_margin="0.5dp"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardUseCompatPadding="false"
@@ -100,7 +100,7 @@
                                 tools:text="12/10/2016"/>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:weightSum="1">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_margin="0.5dp"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardUseCompatPadding="false"
@@ -144,9 +144,9 @@
                                 tools:text="GESTION ADICIONAL"/>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_margin="0.5dp"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardUseCompatPadding="false"
@@ -179,7 +179,7 @@
                                 tools:text="GESTION ADICIONAL"/>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
 
                 </LinearLayout>
@@ -190,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:weightSum="1">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_margin="0.5dp"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardUseCompatPadding="false"
@@ -227,7 +227,7 @@
                                 tools:text="Jacqueline Dominguez"/>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
@@ -238,7 +238,7 @@
                     android:layout_height="wrap_content"
                     android:weightSum="1">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_margin="0.5dp"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardUseCompatPadding="false"
@@ -273,14 +273,14 @@
                                 tools:text="hola como estas esto paso por tal y cual motivo y para resolverlo se decidio hacer estoy y lo otro a fin de garantizar un buen trabajo."/>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 </layout>

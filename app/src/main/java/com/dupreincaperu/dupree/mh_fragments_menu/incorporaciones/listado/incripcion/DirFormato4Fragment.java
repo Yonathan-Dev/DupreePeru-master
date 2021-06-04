@@ -2,9 +2,9 @@ package com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.listado.incri
 
 
 import android.content.Context;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.View;
 

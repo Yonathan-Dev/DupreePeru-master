@@ -1,11 +1,11 @@
 package com.dupreincaperu.dupree.mh_fragments_menu;
 
 import android.content.Intent;
-import android.databinding.ViewDataBinding;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.SimpleItemAnimator;
+import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 import android.util.Log;
 import android.view.View;
 

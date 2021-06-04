@@ -1,6 +1,6 @@
 package com.dupreeinca.lib_api_rest.dao.base;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.dupreeinca.lib_api_rest.model.base.TTError;
 import com.dupreeinca.lib_api_rest.model.base.TTResultListener;

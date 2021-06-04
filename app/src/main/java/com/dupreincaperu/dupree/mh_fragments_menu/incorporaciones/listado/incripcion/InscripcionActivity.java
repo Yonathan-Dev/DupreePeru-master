@@ -1,9 +1,9 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.listado.incripcion;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
+import androidx.appcompat.app.ActionBar;
 
 import com.dupreincaperu.dupree.R;
 import com.dupreincaperu.dupree.databinding.ActivityBaseBinding;

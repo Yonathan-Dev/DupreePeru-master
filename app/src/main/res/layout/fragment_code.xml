@@ -35,7 +35,7 @@
                 android:textColor="@color/black"
                 android:text="CÓDIGO RECIBIDO"/>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
@@ -52,9 +52,9 @@
                     android:inputType="text"
                     android:textAllCaps="true"
                     android:hint="Código"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:visibility="invisible"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
@@ -71,7 +71,7 @@
                     android:inputType="text"
                     android:textAllCaps="true"
                     android:hint="Cédula"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnCode"

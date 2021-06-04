@@ -1,8 +1,8 @@
 package com.dupreincaperu.dupree.mh_adapters;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.dupreeinca.lib_api_rest.model.view.Profile;
 import com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.listado.Incorp_ListNuevas_Fragment;

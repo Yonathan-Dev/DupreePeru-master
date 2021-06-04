@@ -1,10 +1,10 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.posibles;
 
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;

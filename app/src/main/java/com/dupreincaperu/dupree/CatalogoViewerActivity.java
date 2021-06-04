@@ -1,7 +1,7 @@
 package com.dupreincaperu.dupree;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebSettings;

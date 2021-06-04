@@ -13,11 +13,11 @@
 
             android:background="@color/gray_2">
 
-            <android.support.design.widget.AppBarLayout
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <android.support.design.widget.TabLayout
+                <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabsIncorp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -26,9 +26,9 @@
                     app:tabMode="fixed"
                     app:tabGravity="fill" />
 
-            </android.support.design.widget.AppBarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
 
-            <android.support.v4.widget.SwipeRefreshLayout
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:id="@+id/swipeIncorp"
                 android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                         android:gravity="bottom|center_horizontal"
                         android:orientation="horizontal"/>
                 </RelativeLayout>
-            </android.support.v4.widget.SwipeRefreshLayout>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         </LinearLayout>
 

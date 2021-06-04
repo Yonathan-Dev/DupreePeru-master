@@ -8,7 +8,7 @@
         xmlns:circle_progress_view="http://schemas.android.com/apk/res-auto"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             card_view:cardBackgroundColor="@color/gray_2"
             android:id="@+id/cardViewBackGround"
             android:layout_margin="0dp"
@@ -81,7 +81,7 @@
                 </LinearLayout>
 
             </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 </layout>

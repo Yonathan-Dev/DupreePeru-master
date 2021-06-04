@@ -1,15 +1,15 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.pedidos;
 
 import android.content.Context;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.SearchView;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.appcompat.widget.SearchView;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -195,7 +195,7 @@ public class HacerPrePedidoFragment extends TabManagerFragment implements BasePe
         searchView = (SearchView) searchItem.getActionView();
         searchView.setQueryHint(getString(R.string.ingresar_codigo));
 
-        EditText txtSearch = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        EditText txtSearch = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
         txtSearch.setInputType(InputType.TYPE_CLASS_TEXT);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

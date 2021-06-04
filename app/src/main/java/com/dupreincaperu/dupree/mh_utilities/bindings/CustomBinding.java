@@ -1,8 +1,8 @@
 package com.dupreincaperu.dupree.mh_utilities.bindings;
 
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;

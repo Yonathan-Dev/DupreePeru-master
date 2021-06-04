@@ -1,12 +1,12 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.incorporaciones.registradas;
 
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.appcompat.widget.SearchView;
 
 import com.dupreeinca.lib_api_rest.controller.InscripcionController;
 import com.dupreeinca.lib_api_rest.model.base.TTError;

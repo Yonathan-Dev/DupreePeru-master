@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/common_google_signin_btn_text_dark_default"
     android:orientation="vertical"
-    tools:context=".mh_fragments_ventas.Fragmento_list_ases">
+    tools:context=".mh_fragments_azzortimaps.Fragmento_list_ases">
 
     <LinearLayout
         android:id="@+id/lny_opci_boto"

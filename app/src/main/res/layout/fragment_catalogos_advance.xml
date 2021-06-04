@@ -35,7 +35,7 @@
                     android:layout_height="match_parent"
                     android:weightSum="1">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         card_view:cardBackgroundColor="@color/colorPrimaryDark"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardElevation="10dp"
@@ -63,9 +63,9 @@
                             android:textColor="@color/gray_2"
                             android:textSize="20sp"
                             android:textStyle="bold"/>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         card_view:cardBackgroundColor="@color/colorPrimaryDark"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardElevation="10dp"
@@ -82,7 +82,7 @@
                             android:textColor="@color/gray_2"
                             android:textSize="50sp"
                             android:textStyle="bold|italic"/>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
 
                 </LinearLayout>

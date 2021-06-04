@@ -2,15 +2,14 @@ package com.dupreincaperu.dupree.mh_fragments_menu.panel_asesoras;
 
 
 import android.content.Context;
-import android.databinding.ViewDataBinding;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.databinding.ViewDataBinding;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.dupreeinca.lib_api_rest.controller.ReportesController;
 import com.dupreeinca.lib_api_rest.model.base.TTError;

@@ -1,9 +1,9 @@
 package com.dupreincaperu.dupree.mh_fragments_menu;
 
 
-import android.databinding.ViewDataBinding;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.View;
 
 import com.dupreeinca.lib_api_rest.controller.ReportesController;

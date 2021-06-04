@@ -30,7 +30,7 @@
             android:textColor="@color/azulDupree"
             android:text="(RECUPERAR CLAVE)"/>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -46,9 +46,9 @@
                 android:layout_marginEnd="8dp"
                 android:inputType="number"
                 android:hint="Cédula"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:visibility="invisible"
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
@@ -64,7 +64,7 @@
                 android:layout_marginEnd="8dp"
                 android:inputType="number"
                 android:hint="Cédula"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnForgot"

@@ -2,8 +2,8 @@ package com.dupreincaperu.dupree.mh_holders;
 
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import com.dupreeinca.lib_api_rest.enums.EnumTracking;

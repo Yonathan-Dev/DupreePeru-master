@@ -9,7 +9,7 @@
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/cardViewBackGround"
             card_view:cardBackgroundColor="@color/colorPrimary"
             android:layout_margin="0dp"
@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:weightSum="1">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_margin="0.5dp"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardUseCompatPadding="false"
@@ -55,9 +55,9 @@
                                 android:src="@drawable/ic_account_balance_white_24dp"/>
 
                         </LinearLayout>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_margin="0.5dp"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardUseCompatPadding="false"
@@ -91,9 +91,9 @@
                                 tools:text="07/27/2017"/>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_margin="0.5dp"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardUseCompatPadding="false"
@@ -126,9 +126,9 @@
                                 tools:text="EFECTY"/>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:layout_margin="0.5dp"
                         card_view:cardCornerRadius="6dp"
                         card_view:cardUseCompatPadding="false"
@@ -161,13 +161,13 @@
                                 tools:text="$443,800"/>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 </layout>

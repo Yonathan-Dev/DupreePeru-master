@@ -1,4 +1,4 @@
-package com.dupreincaperu.dupree.mh_fragments_ventas;
+package com.dupreincaperu.dupree.mh_fragments_azzortimaps;
 
 
 import android.app.ProgressDialog;
@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
