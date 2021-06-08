@@ -386,9 +386,9 @@ public class FullscreenActivity extends AppCompatActivity  {
 
     ListProductCatalogoDTO listaProd_catalogo;
     public void responseCatalogo(ListProductCatalogoDTO listaProd_catalogo){
-        Log.e(TAG, "listaProd_catalogo.getOfertas(): "+new Gson().toJson(listaProd_catalogo.getOfertas()));
+        Log.e(TAG, "listaProd_catalogo.getOfertas():    "+new Gson().toJson(listaProd_catalogo.getOfertas()));
         Log.e(TAG, "listaProd_catalogo.getPaquetones(): "+new Gson().toJson(listaProd_catalogo.getPaquetones()));
-        Log.e(TAG, "listaProd_catalogo.getProductos(): "+new Gson().toJson(listaProd_catalogo.getProductos()));
+        Log.e(TAG, "listaProd_catalogo.getProductos():  "+new Gson().toJson(listaProd_catalogo.getProductos()));
         if(listaProd_catalogo.getProductos()!=null && listaProd_catalogo.getProductos().size()>0) {
             this.listaProd_catalogo = listaProd_catalogo;
             if(listaProd_catalogo.getOfertas()!=null && listaProd_catalogo.getOfertas().size()>0) {
@@ -402,7 +402,7 @@ public class FullscreenActivity extends AppCompatActivity  {
             } else {
                 writeCatalogo();
             }
-        } else{
+        } else {
             errorLoadInitData();
         }
     }
@@ -525,6 +525,7 @@ public class FullscreenActivity extends AppCompatActivity  {
     }
 
     public void writeCatalogo(){
+
         if(realm.isClosed())
             realm = Realm.getDefaultInstance();
 
@@ -542,6 +543,7 @@ public class FullscreenActivity extends AppCompatActivity  {
         }, new Realm.Transaction.OnSuccess() {
             @Override
             public void onSuccess() {
+                msgToast("writeCatalogo");
                 // Transaction was a success.
                 Log.v(TAG,"writeCatalogo... ---------------ok--------------");
                 Log.v(TAG, ": " + new Gson().toJson(listaProd_catalogo.getProductos()));

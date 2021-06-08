@@ -272,7 +272,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                     case "CLIE":
                         navigationView.getMenu().findItem(R.id.menu_lat_bandeja_entrada).setVisible(true);
                         //navigationView.getMenu().findItem(R.id.menu_lat_reporte_ubicacion).setVisible(true);
-                        //navigationView.getMenu().findItem(R.id.menu_lat_hacer_pedidos).setVisible(true);
+                        navigationView.getMenu().findItem(R.id.menu_lat_hacer_pedidos).setVisible(true);
                         //navigationView.getMenu().findItem(R.id.menu_lat_hacer_prepedidos).setVisible(true);
                         navigationView.getMenu().findItem(R.id.menu_lat_catalogo).setVisible(true);
                         //navigationView.getMenu().findItem(R.id.menu_lat_cat_premios).setVisible(true);
@@ -284,13 +284,13 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                         //navigationView.getMenu().findItem(R.id.menu_lat_pet_quej_rec_pqr).setVisible(true);
                         navigationView.getMenu().findItem(R.id.menu_lat_modif_perfil).setVisible(true);
                         if (perfil.getPerfil().equalsIgnoreCase("L")){
-                            /*navigationView.getMenu().findItem(R.id.menu_lat_pedidos_ret).setVisible(true);
-                            navigationView.getMenu().findItem(R.id.menu_lat_redimir_incentivos).setVisible(false);
-                            navigationView.getMenu().findItem(R.id.menu_lat_posi_ase).setVisible(true);
-                            navigationView.getMenu().findItem(R.id.menu_lat_list_posi_ase).setVisible(true);
-                            navigationView.getMenu().findItem(R.id.servicios).setVisible(true);
-                            navigationView.getMenu().findItem(R.id.aula_virt).setVisible(true);
-                            navigationView.getMenu().findItem(R.id.menu_lat_hacer_pedidos).setVisible(true);*/
+                            //navigationView.getMenu().findItem(R.id.menu_lat_pedidos_ret).setVisible(true);
+                            //navigationView.getMenu().findItem(R.id.menu_lat_redimir_incentivos).setVisible(false);
+                            //navigationView.getMenu().findItem(R.id.menu_lat_posi_ase).setVisible(true);
+                            //navigationView.getMenu().findItem(R.id.menu_lat_list_posi_ase).setVisible(true);
+                            //navigationView.getMenu().findItem(R.id.servicios).setVisible(true);
+                            //navigationView.getMenu().findItem(R.id.aula_virt).setVisible(true);
+                            //navigationView.getMenu().findItem(R.id.menu_lat_hacer_pedidos).setVisible(true);
                             navigationView.getMenu().findItem(R.id.menu_lat_register).setVisible(true);
                             navigationView.getMenu().findItem(R.id.menu_lat_list_pre).setVisible(true);
                         }
@@ -325,7 +325,6 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
 
 
     private void showMenuByPerfil(NavigationView navigationView){
-        //Toast.makeText(getBaseContext(), ""+perfil.getPerfil(), Toast.LENGTH_SHORT).show();
 
         switch (perfil.getPerfil()){
             case Profile.ADESORA:
@@ -334,32 +333,28 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                 navigationView.getMenu().findItem(R.id.posibles_asesoras).setVisible(false);
                 navigationView.getMenu().findItem(R.id.incorporaciones).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_redimir_incentivos).setVisible(true);
-//                navigationView.getMenu().findItem(R.id.menu_lat_cupo_saldo_conf).setVisible(false);
+              //navigationView.getMenu().findItem(R.id.menu_lat_cupo_saldo_conf).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_pedidos_ret).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_edo_pedido).setVisible(false);
-
                 navigationView.getMenu().findItem(R.id.servicios).setVisible(true);
-
                onNavigationItemSelected(navigationView.getMenu().findItem(R.id.menu_lat_home_asesoras));
-
                 break;
+
             case Profile.TRASNPORTISTA:
                 navigationView.getMenu().findItem(R.id.menu_lat_home_asesoras).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_home_gerentes).setVisible(false);
                 navigationView.getMenu().findItem(R.id.posibles_asesoras).setVisible(false);
                 navigationView.getMenu().findItem(R.id.incorporaciones).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_redimir_incentivos).setVisible(false);
-//              navigationView.getMenu().findItem(R.id.menu_lat_cupo_saldo_conf).setVisible(false);
+              //navigationView.getMenu().findItem(R.id.menu_lat_cupo_saldo_conf).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_pedidos_ret).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_edo_pedido).setVisible(false);
-
                 navigationView.getMenu().findItem(R.id.servicios).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_hacer_pedidos).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_hacer_prepedidos).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_catalogo).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_cat_premios).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_faltantes).setVisible(false);
-
                 navigationView.getMenu().findItem(R.id.menu_lat_consulta_puntos).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_redimir_incentivos).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_incent_por_referido).setVisible(false);
@@ -371,14 +366,11 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                 navigationView.getMenu().findItem(R.id.menu_lat_share).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_modif_perfil).setVisible(false);
                 navigationView.getMenu().findItem(R.id.menu_lat_bandeja_entrada).setVisible(false);
-
-
                 navigationView.getMenu().findItem(R.id.menu_lat_logout).setVisible(true);
                 navigationView.getMenu().findItem(R.id.menu_lat_reporte_ubicacion).setVisible(true);
-
-
                 onNavigationItemSelected(navigationView.getMenu().findItem(R.id.menu_lat_reporte_ubicacion));
                 break;
+
             case Profile.LIDER:
             case Profile.GERENTE_ZONA:
             case Profile.GERENTE_REGION:
@@ -386,13 +378,10 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                 navigationView.getMenu().findItem(R.id.menu_lat_home_gerentes).setVisible(true);
                 navigationView.getMenu().findItem(R.id.incorporaciones).setVisible(true);
                 navigationView.getMenu().findItem(R.id.menu_lat_redimir_incentivos).setVisible(false);
-//                navigationView.getMenu().findItem(R.id.menu_lat_cupo_saldo_conf).setVisible(true);
+              //navigationView.getMenu().findItem(R.id.menu_lat_cupo_saldo_conf).setVisible(true);
                 navigationView.getMenu().findItem(R.id.menu_lat_pedidos_ret).setVisible(true);
-
                 navigationView.getMenu().findItem(R.id.menu_lat_edo_pedido).setVisible(false);
-
                 navigationView.getMenu().findItem(R.id.servicios).setVisible(false);
-
                 onNavigationItemSelected(navigationView.getMenu().findItem(R.id.menu_lat_home_gerentes));
                 break;
 
@@ -508,16 +497,16 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
             //LISTO PARA PRUEBAS ( TODOS - GERENTE BUSCAR ASESORA )
             case R.id.menu_lat_reportes:
                 fragmentoGenerico = new ReportesFragment();
-//                ((ReportesFragment)fragmentoGenerico).loadData(perfil);
+              //((ReportesFragment)fragmentoGenerico).loadData(perfil);
                 break;
             case R.id.menu_lat_pedidos_ret:
                 //LISTO PARA PRUEBAS ( SOLO GERENTE )
-//                enableSearch(!perfil.getPerfil().equals(Profile.ADESORA),false,false,getString(R.string.cedula_asesora));
+              //enableSearch(!perfil.getPerfil().equals(Profile.ADESORA),false,false,getString(R.string.cedula_asesora));
                 fragmentoGenerico = new ReporteRetenidosFragment();
                 break;
             case R.id.menu_lat_pet_quej_rec_pqr:
                 //LISTO PARA PRUEBAS ( PAGINA )
-                //fragmentoGenerico = new Servicios_PetQueRec_Fragment();// es el mismo del menu ppal
+              //fragmentoGenerico = new Servicios_PetQueRec_Fragment();// es el mismo del menu ppal
                 fragmentoGenerico = new ContactFragment();
                 break;
             case R.id.menu_lat_pagos_linea:
@@ -567,8 +556,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                     .beginTransaction()
                     .replace(R.id.fragment, fragmentoGenerico, menuItem.getTitle().toString())// se reconoce al fragment por el String
                     .commit();
-
-//            binding.appBarMenu.toolbar.setTitle(menuItem.getItemId()==R.id.menu_lat_hacer_pedidos ? "Ingrese código ->" : menuItem.getTitle());
+            //binding.appBarMenu.toolbar.setTitle(menuItem.getItemId()==R.id.menu_lat_hacer_pedidos ? "Ingrese código ->" : menuItem.getTitle());
               binding.appBarMenu.toolbar.setTitle(menuItem.getTitle());
         }
     }
@@ -580,7 +568,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                     ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 // Se tiene permiso
                return;
-            }else{
+            } else {
                 ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_CODE_ASK_PERMISSIONS);
             }
         }
@@ -594,7 +582,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                     // El usuario acepto los permisos.
                     Toast.makeText(this, R.string.gps_permission_granted, Toast.LENGTH_SHORT).show();
                     showMessageGPSNoEnabled("Tu servicio de ubicación está desactivado, debes habilitarlo para poder recibir servicios, ¿Desea activarlo?");
-                }else{
+                } else {
                     // Permiso denegado.
                     Toast.makeText(this, R.string.no_gps_permissions, Toast.LENGTH_SHORT).show();
                 }
@@ -603,7 +591,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
         }
         try{
             camera.onRequestPermissionsResultHand(requestCode, permissions, grantResults);
-        }catch (Exception ex){
+        } catch (Exception ex){
 
         }
     }
@@ -619,7 +607,6 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                         startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
                 })
-
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
@@ -660,6 +647,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                     logout();
             }
         });
+
         simpleDialog.show(getSupportFragmentManager(),"mDialog");
     }
 
@@ -802,7 +790,6 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                 Log.e(TAG,"deleteOferta... ---------------error--------------");
                 Log.e(TAG,"deleteOferta... "+error.getMessage());
                 //realm.close();
-
             }
         });
     }
@@ -866,13 +853,9 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         Log.e(TAG, "onActivityResult() de MenuActivity");
-
         Log.e("requestCode:",Integer.toString(requestCode));
         Log.e("resultCode:",Integer.toString(resultCode));
-
-
         super.onActivityResult(requestCode, resultCode, data);
         //SE ATRAPA SOLO EL ULTIMO CASO DE IMAGEN LISTA
         Uri uri=null;
@@ -888,21 +871,18 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
             case Camera.CAMERA_CAPTURE:
                 uri = Camera.picUri;
-
                 Log.i(TAG,"Camera.CAMERA_CAPTURE: uri=: "+uri.toString());
                 Log.i(TAG,"Camera.CAMERA_CAPTURE: uri=: "+camera.getRealPathFromURI(MenuActivity.this, uri));
-
                 Log.i(TAG,"Camera.CAMERA_CAPTURE: getPath=: "+Camera.imageFile.getPath());
                 Log.i(TAG,"Camera.CAMERA_CAPTURE: getAbsolutePath=: "+Camera.imageFile.getAbsolutePath());
-
                 publishResult(camera.getTagFragment(), camera.getObjectFragment(), Camera.imageFile.getPath());
                 break;
+
             case Camera.PICK_IMAGE_REQUEST:
                 uri = data.getData();
                 Log.i(TAG,"Camera.PICK_IMAGE_REQUEST: uri=: "+uri.toString());
                 Log.i(TAG,"Camera.PICK_IMAGE_REQUEST: uri=: "+camera.getRealPathFromURI(MenuActivity.this, uri));
                 Log.i(TAG,"onActivityResult: data.getData().getPath()=: "+data.getData().getPath());
-
                 publishResult(camera.getTagFragment(), camera.getObjectFragment(), camera.getRealPathFromURI(MenuActivity.this, uri));
                 break;
         }
@@ -940,7 +920,6 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
             this.corr_empl = "";
         else
             this.corr_empl = corr_empl;
-
     }
 
     protected void onDestroy() {
@@ -969,5 +948,4 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
             location.mGoogleApiClient.connect();
         }
     }
-
 }
