@@ -10,8 +10,8 @@ import com.dupreeinca.lib_api_rest.R;
  */
 
 public interface Api {
-    String API_URL = "https://alcor.dupree.pe/dupreeWS/";
-    //String API_URL = "https://alcor2per.azzorti.co/dupreeWS/";
+    //String API_URL = "https://alcor.dupree.pe/dupreeWS/";
+    String API_URL = "https://alcor2per.azzorti.co/dupreeWS/";
 
 
     /**

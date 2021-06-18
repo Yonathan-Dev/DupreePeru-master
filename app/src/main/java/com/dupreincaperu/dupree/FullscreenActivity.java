@@ -1,9 +1,12 @@
 package com.dupreincaperu.dupree;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -113,6 +116,7 @@ public class FullscreenActivity extends AppCompatActivity  {
 
     private Realm realm;
     ImageView imgFlor;
+    String cargaCatalogo;
 
     boolean updateOnlyBannerAndPDF=false;
     private BannerController bannerController;
@@ -170,7 +174,7 @@ public class FullscreenActivity extends AppCompatActivity  {
         } else if(mPreferences.getIsNotNewAppOn(FullscreenActivity.this)){
             gotoMain();
         } else {
-           loadAllData();
+            loadAllData();
         }
         //hasta tanto todos se hayan suscrito, el lugar ieal de hacerlo es la primera vez que se instala
         Log.e(TAG, "FirebaseMessaging.getInstance().subscribeToTopic(\"all_devices\")");
@@ -374,6 +378,8 @@ public class FullscreenActivity extends AppCompatActivity  {
                         //errorLoadInitData();
                     }
                 } else {
+                    cargaCatalogo = "NO";
+                    guardarpreferencia();
                     terminatedProcess();
                 }
 
@@ -547,7 +553,8 @@ public class FullscreenActivity extends AppCompatActivity  {
                 // Transaction was a success.
                 Log.v(TAG,"writeCatalogo... ---------------ok--------------");
                 Log.v(TAG, ": " + new Gson().toJson(listaProd_catalogo.getProductos()));
-
+                cargaCatalogo = "SI";
+                guardarpreferencia();
                 terminatedProcess();
                 //realm.close();
             }
@@ -558,6 +565,7 @@ public class FullscreenActivity extends AppCompatActivity  {
                 Log.e(TAG,"writeCatalogo... ---------------error--------------");
                 Log.e(TAG,"writeCatalogo... "+error.getMessage());
                 //realm.close();
+                Log.e(TAG, ""+error);
                 errorLoadInitData();
             }
         });
@@ -580,6 +588,20 @@ public class FullscreenActivity extends AppCompatActivity  {
             gotoMain();
         }
     }
+
+
+
+    private void guardarpreferencia() {
+
+        SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+        String cargaCatalogo    = this.cargaCatalogo;
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("cargaCatalogo",  cargaCatalogo);
+
+        editor.commit();
+    }
+
 
     @Override
     protected void onDestroy() {

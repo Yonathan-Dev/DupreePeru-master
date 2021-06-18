@@ -9,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
  */
 
 public class Catalogo extends RealmObject{
-    @PrimaryKey
+    //@PrimaryKey
     private String id;//se usa en la db
     private String name;
     private String valor;

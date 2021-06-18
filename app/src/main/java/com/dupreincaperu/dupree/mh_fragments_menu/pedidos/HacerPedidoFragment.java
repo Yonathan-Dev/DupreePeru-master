@@ -2,9 +2,12 @@ package com.dupreincaperu.dupree.mh_fragments_menu.pedidos;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import androidx.databinding.ViewDataBinding;
 import android.graphics.Color;
+
+import com.dupreincaperu.dupree.FullscreenActivity;
 import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -112,6 +115,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     String nume_iden;
     String codi_camp;
     String codi_usua;
+    String cargaCatalogo;
 
     ArrayList<Integer> numeProductos    = new ArrayList<Integer>();
 
@@ -662,14 +666,14 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
         if(campanaActualLocal==null){
             dataStore.setCampanaActual(campanaActualServer);// se respalda la campañ actual
-        } else if(!campanaActualLocal.equals(campanaActualServer)){//si cambio la campaña
+        } else if(!campanaActualLocal.equals(campanaActualServer) || !cargaCatalogo.equalsIgnoreCase("SI")){//si cambio la campaña
             // se borrar e pedido actual (prductos y ofertas) de la DB
             dataStore.setCampanaActual(campanaActualServer);// se respalda la campañ actual
             dataStore.setChangeCampana(true);
 
-           /* startActivity(new Intent(getActivity(), FullscreenActivity.class));
+            startActivity(new Intent(getActivity(), FullscreenActivity.class));
+            getActivity().finish();
 
-            getActivity().finish();*/
             showProgress();
             return;
         }
@@ -1057,7 +1061,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
         NumberFormat formatter = NumberFormat.getInstance(Locale.US);
         //fabTitle("S/. ".concat(formatter.format(total_pedido)));
-        fabTitle("Siguiente");
+        fabTitle("Siguiente    ");
     }
 
     @Override
@@ -1170,8 +1174,10 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         SharedPreferences preferences = this.getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         String nume_iden = preferences.getString("nume_iden","");
         String codi_usua = preferences.getString("codi_usua","");
+        String cargaCatalogo = preferences.getString("cargaCatalogo","");
         this.nume_iden = nume_iden;
         this.codi_usua = codi_usua;
+        this.cargaCatalogo = cargaCatalogo;
     }
 
     @Override

@@ -102,9 +102,9 @@ public class Http {
         client.addInterceptor(new AddCookiesInterceptor(myContext));
         client.addInterceptor(new ReceivedCookiesInterceptor(myContext));
         client.addInterceptor(new ConnectivityInterceptor(myContext));
-        client.connectTimeout(60, TimeUnit.SECONDS);
-        client.readTimeout(60, TimeUnit.SECONDS);
-        client.writeTimeout(60, TimeUnit.SECONDS);
+        client.connectTimeout(5000, TimeUnit.SECONDS);
+        client.readTimeout(5000, TimeUnit.SECONDS);
+        client.writeTimeout(5000, TimeUnit.SECONDS);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(myContext.getResources().getString(R.string.api_url))

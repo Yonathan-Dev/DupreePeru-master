@@ -40,12 +40,12 @@ public class dialogoPedido {
         dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialogo.setContentView(R.layout.dialogopedido);
 
-        final Button    btn_cerr_dial = (Button)   dialogo.findViewById(R.id.btn_cerr_dial);
+        final ImageView img_cerr_dial = (ImageView)dialogo.findViewById(R.id.img_cerr_dial);
         final TextView  txt_parr_unos = (TextView) dialogo.findViewById(R.id.txt_parr_unos);
 
         txt_parr_unos.setText(mensaje);
 
-        btn_cerr_dial.setOnClickListener(new View.OnClickListener() {
+        img_cerr_dial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 interfaz.ResultadoDialogo();

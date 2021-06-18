@@ -1,17 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="320dp"
     android:layout_height="wrap_content"
     android:layout_marginLeft="40dp"
     android:layout_marginRight="40dp"
-    android:background="@drawable/borde_plomo_dos"
+    android:layout_gravity="center"
+    android:background="@drawable/bordemensaje"
     android:orientation="vertical"
-    android:padding="3dp"
-    >
+    android:padding="3dp">
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/img_cerr_dial"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/cerrar" />
+
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_gravity="center"
@@ -21,27 +29,14 @@
         android:id="@+id/txt_dial_pers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         android:gravity="center"
         android:text="-"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_cerr_dial_pers"
-        tools:layout_editor_absoluteX="6dp" />
-
-    <Button
-        android:id="@+id/btn_cerr_dial_pers"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp"
-        android:textAllCaps="false"
-        android:background="@drawable/fondoprimarycolor"
-        android:text="Cerrar"
-        android:textColor="#000000" />
+        android:textStyle="bold" />
 
 </LinearLayout>
