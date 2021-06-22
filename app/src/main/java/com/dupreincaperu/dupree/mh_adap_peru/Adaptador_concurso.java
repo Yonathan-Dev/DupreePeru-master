@@ -68,8 +68,8 @@ public class Adaptador_concurso extends RecyclerView.Adapter<Adaptador_concurso.
 
             Picasso.get()
                     .load(url)
-                    .placeholder(R.drawable.camara)
-                    .error(R.drawable.camara)
+                    .placeholder(R.drawable.no_image)
+                    .error(R.drawable.no_image)
                     .into(civ_imag_prem);
         }
 

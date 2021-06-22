@@ -1,4 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="320dp"
@@ -28,6 +29,17 @@
                 android:layout_marginRight="10dp"
                 android:src="@drawable/cerrar" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Concursos"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_conc_prem"
                 android:layout_width="match_parent"
@@ -47,7 +59,6 @@
                 app:floating_title="Siguiente"/>
 
         </LinearLayout>
-
 
     </ScrollView>
 

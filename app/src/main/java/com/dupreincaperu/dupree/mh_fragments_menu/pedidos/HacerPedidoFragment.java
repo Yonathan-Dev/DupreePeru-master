@@ -1286,6 +1286,9 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
     @Override
     public void ResultadoConcurso(String band) {
+        if (band.equalsIgnoreCase("1")){
+            sendProductosMensajes();
+        }
 
     }
 }
