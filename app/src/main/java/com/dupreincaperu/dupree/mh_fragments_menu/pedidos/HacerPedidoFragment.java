@@ -1,5 +1,6 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.pedidos;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,7 +8,15 @@ import android.content.SharedPreferences;
 import androidx.databinding.ViewDataBinding;
 import android.graphics.Color;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.dupreincaperu.dupree.FullscreenActivity;
+import com.dupreincaperu.dupree.mh_dial_peru.dialogoConcursos;
 import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,6 +28,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.appcompat.widget.SearchView;
+
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -66,19 +76,27 @@ import com.dupreincaperu.dupree.mh_utilities.KeyBoard;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
 
+import static com.dupreincaperu.dupree.Constants.MY_DEFAULT_TIMEOUT;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HacerPedidoFragment extends TabManagerFragment implements dialogoPedido.cierroDialogo, BasePedido, CatalogoHolder.Events, dialogoResumen.resultadoResumen {
+public class HacerPedidoFragment extends TabManagerFragment implements dialogoPedido.cierroDialogo, BasePedido, CatalogoHolder.Events, dialogoResumen.resultadoResumen, dialogoConcursos.resultadoConcurso {
 
     public static final String TAG = HacerPedidoFragment.class.getName();
     public FragmentPedidosHacerBinding binding;
@@ -132,6 +150,14 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
     ArrayList<String> valorProductos    = new ArrayList<String>();
     ArrayList<String> valorOfertas      = new ArrayList<String>();
+
+    ArrayList<String>  listDescripcion = new ArrayList<String>();
+    ArrayList<String>  listImagen      = new ArrayList<String>();
+    ArrayList<String>  listPuntos      = new ArrayList<String>();
+
+    RequestQueue request;
+    JsonObjectRequest jsonObjectRequest;
+    private ProgressDialog pdp = null;
 
     private int nume_pedi = 1;
 
@@ -231,6 +257,9 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
         binding.swipePedidos.setOnRefreshListener(mOnRefreshListener);
         binding.swipePedidos.setEnabled(false);
+
+        request = Volley.newRequestQueue(getContext());
+
     }
 
 
@@ -362,7 +391,9 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             @Override
             public void result(boolean status) {
                 if(status)
-                    sendProductosMensajes();
+                    peticionarConcurso();
+
+                    //sendProductosMensajes();
                     //sendToServer();
             }
         });
@@ -1170,6 +1201,70 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         //msgToast("No se pueden cargar datos iniciales");
     }
 
+
+   private void peticionarConcurso() {
+
+        showProgress();
+        LiquidarMensajeSend send = obtainProductsMensajeLiquidate();
+
+        String url = getString(R.string.api_url) + "pedidos/concursos?";
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                dismissProgress();
+
+                listDescripcion.clear();
+                listImagen.clear();
+                listPuntos.clear();
+
+
+                try {
+                    JSONObject dataObject = response.getJSONObject("result");
+                    JSONArray dataArray = dataObject.getJSONArray("concursos");
+
+                    for (int i = 0; i < dataArray.length(); i++) {
+                        JSONObject respuesta = dataArray.getJSONObject(i);
+                        listDescripcion.add(respuesta.getString("descripcion"));
+                        listImagen.add(respuesta.getString("imagen_premio"));
+                        listPuntos.add(respuesta.getString("puntos"));
+                    }
+
+                    new dialogoConcursos(getContext(), HacerPedidoFragment.this, listDescripcion, listImagen, listPuntos);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.i("CATCH",""+e.getMessage());
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                dismissProgress();
+                Log.i("ERRORVOLLEY",error.getMessage());
+                new dialogoMensaje(getContext(),"Error intente nuevamente");
+            }
+        }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> Params = new HashMap<String, String>();
+                Params.put("Params", new Gson().toJson(send));
+
+                return Params;
+            }
+
+        };
+
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        request.add(jsonObjectRequest);
+
+    }
+
     private void cargarpreferencias() {
         SharedPreferences preferences = this.getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         String nume_iden = preferences.getString("nume_iden","");
@@ -1187,5 +1282,10 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         } else{
             sendToServer();
         }
+    }
+
+    @Override
+    public void ResultadoConcurso(String band) {
+
     }
 }
