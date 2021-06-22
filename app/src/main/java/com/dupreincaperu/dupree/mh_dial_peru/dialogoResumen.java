@@ -2,8 +2,11 @@ package com.dupreincaperu.dupree.mh_dial_peru;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
@@ -30,7 +33,7 @@ public class dialogoResumen {
 
     private final dialogoResumen contexto;
 
-    public dialogoResumen(final Context Contexto, resultadoResumen actividad, ArrayList numeProductos,  ArrayList codigoProductos, ArrayList tipoProductos, ArrayList nombreProductos, ArrayList cantidadProductos, ArrayList valorProductos, ArrayList codigoOfertas, ArrayList nombreOfertas, ArrayList cantidadOfertas, ArrayList valorOfertas, String tota_pedi) {
+    public dialogoResumen(final Context Contexto, resultadoResumen actividad, ArrayList numeProductos,  ArrayList codigoProductos, ArrayList tipoProductos, ArrayList nombreProductos, ArrayList cantidadProductos, ArrayList valorProductos, String tota_pedi) {
 
         interfaz = actividad;
         contexto = this;
@@ -58,15 +61,47 @@ public class dialogoResumen {
         ftb_grab_pedi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogo.dismiss();
-                interfaz.ResultadoResumen("1");
+
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(Contexto);
+                dialogo1.setTitle("Atención");
+                dialogo1.setIcon(R.drawable.ic_atencion);
+                dialogo1.setMessage("¿ Esta seguro que desea grabar el pedido ?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Aceptar",   new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        dialogo.dismiss();
+                        interfaz.ResultadoResumen("1");
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        dialogo1.dismiss();
+                    }
+                });
+                dialogo1.show();
             }
         });
         ftb_agre_pedi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogo.dismiss();
-                interfaz.ResultadoResumen("0");
+
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(Contexto);
+                dialogo1.setTitle("Atención");
+                dialogo1.setIcon(R.drawable.ic_atencion);
+                dialogo1.setMessage("¿ Esta seguro que desea agregar pedidos ?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("Aceptar",   new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        dialogo.dismiss();
+                        interfaz.ResultadoResumen("0");
+                    }
+                });
+                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        dialogo1.dismiss();
+                    }
+                });
+                dialogo1.show();
             }
         });
 

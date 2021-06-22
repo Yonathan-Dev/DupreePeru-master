@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import androidx.databinding.ViewDataBinding;
+
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -13,6 +16,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.dupreincaperu.dupree.FullscreenActivity;
@@ -29,6 +33,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.appcompat.widget.SearchView;
 
+import android.graphics.drawable.ColorDrawable;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -136,20 +141,11 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     String cargaCatalogo;
 
     ArrayList<Integer> numeProductos    = new ArrayList<Integer>();
-
     ArrayList<String> codigoProductos   = new ArrayList<String>();
-    ArrayList<String> codigoOfertas     = new ArrayList<String>();
-
     ArrayList<String> tipoProductos     = new ArrayList<String>();
-
     ArrayList<String> nombreProductos   = new ArrayList<String>();
-    ArrayList<String> nombreOfertas     = new ArrayList<String>();
-
     ArrayList<Integer> cantidadProductos = new ArrayList<Integer>();
-    ArrayList<Integer> cantidadOfertas   = new ArrayList<Integer>();
-
     ArrayList<String> valorProductos    = new ArrayList<String>();
-    ArrayList<String> valorOfertas      = new ArrayList<String>();
 
     ArrayList<String>  listDescripcion = new ArrayList<String>();
     ArrayList<String>  listImagen      = new ArrayList<String>();
@@ -392,7 +388,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             public void result(boolean status) {
                 if(status)
                     peticionarConcurso();
-
                     //sendProductosMensajes();
                     //sendToServer();
             }
@@ -417,7 +412,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                         String  msg = ""
                                 .concat(result.getMensaje()+"\n")
                                 .concat(" Total: S/.".concat(formatter.format(Float.parseFloat(result.getTotal_pedido()))));
-
 
                         new dialogoMensaje(getContext(),msg);
 
@@ -459,20 +453,11 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         nume_pedi = 1;
 
         numeProductos.clear();
-
         codigoProductos.clear();
-        codigoOfertas.clear();
-
         tipoProductos.clear();
-
         nombreProductos.clear();
-        nombreOfertas.clear();
-
         cantidadProductos.clear();
-        cantidadOfertas.clear();
-
         valorProductos.clear();
-        valorOfertas.clear();
 
         List<ItemCarrito> itemCarritoList = pedidosPagerAdapter.getCarritoFragment().getListFilterCart();
         for(ItemCarrito item : itemCarritoList) {
@@ -490,20 +475,16 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                     numeProductos.add(nume_pedi);
                     codigoProductos.add(item.getId());
                     tipoProductos.add("Oferta");
-                    nombreProductos.add(item.getName());
+                    nombreProductos.add(item.getName().toUpperCase().charAt(0) + item.getName().substring(1, item.getName().length()).toLowerCase());
                     cantidadProductos.add(item.getCantidad());
                     valorProductos.add(item.getValor());
 
-                    codigoOfertas.add(item.getId());
-                    nombreOfertas.add(item.getName());
-                    cantidadOfertas.add(item.getCantidad());
-                    valorOfertas.add(item.getValor());
                     nume_pedi++;
                     break;
             }
         }
 
-        new dialogoResumen(getContext(), this, numeProductos, codigoProductos, tipoProductos, nombreProductos, cantidadProductos, valorProductos, codigoOfertas, nombreOfertas, cantidadOfertas, valorOfertas, tota_pedi);
+        new dialogoResumen(getContext(), this, numeProductos, codigoProductos, tipoProductos, nombreProductos, cantidadProductos, valorProductos, tota_pedi);
 
         dismissProgress();
 
@@ -519,6 +500,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         pedidosController.liquidarPedidoMensaje(send, new TTResultListener<LiquidarDTO>() {
             @Override
             public void success(LiquidarDTO result) {
+
+                Log.e(TAG, "sendresult() -> send: "+result.getRaise());
 
                 if (result.getMensajes().size()>0){
 
