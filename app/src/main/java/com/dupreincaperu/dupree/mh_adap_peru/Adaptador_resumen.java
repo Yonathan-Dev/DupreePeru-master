@@ -84,6 +84,16 @@ public class Adaptador_resumen extends RecyclerView.Adapter<Adaptador_resumen.Vi
 
         public void asignardatos_tipo(String tipop) {
             tipo.setText(tipop);
+
+            switch (tipop){
+                case "Oferta":
+                    tipo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_oferta,0,0,0);
+                    break;
+                case "Catálogo":
+                    tipo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_catalogo,0,0,0);
+                    break;
+            }
+
         }
 
         public void asignardatos_nomb(String nombre) {

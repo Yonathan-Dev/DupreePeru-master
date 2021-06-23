@@ -430,7 +430,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             @Override
             public void error(TTError error) {
                 dismissProgress();
-                checkSession(error);
+                new dialogoMensaje(getContext(),error.getMessage());
+                //checkSession(error);
             }
         });
 //        new Http(getActivity()).liquidarPedido(obtainProductsLiquidate(), TAG, BROACAST_LIQUIDATE_PRODUCTS);
