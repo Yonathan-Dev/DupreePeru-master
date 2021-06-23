@@ -9,7 +9,9 @@ import androidx.appcompat.app.AlertDialog;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.dupreincaperu.dupree.R;
@@ -64,6 +66,7 @@ public class InputDialog extends DialogFragment {
         //input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         input.setTextSize(22);
+
         input.setHint(placeHolder);
         builder.setView(input);
 
@@ -73,6 +76,7 @@ public class InputDialog extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 m_Text = input.getText().toString();
+
                 if(ValidateImput()){
                     if(listener != null){
                         listener.result(m_Text);

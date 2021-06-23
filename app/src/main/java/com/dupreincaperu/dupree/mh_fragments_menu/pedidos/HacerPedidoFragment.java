@@ -1,14 +1,10 @@
 package com.dupreincaperu.dupree.mh_fragments_menu.pedidos;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import androidx.databinding.ViewDataBinding;
-
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -16,11 +12,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.dupreincaperu.dupree.FullscreenActivity;
 import com.dupreincaperu.dupree.mh_dial_peru.dialogoConcursos;
+import com.dupreincaperu.dupree.mh_dial_peru.dialogoIdentificacion;
 import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -33,7 +29,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.appcompat.widget.SearchView;
 
-import android.graphics.drawable.ColorDrawable;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -101,30 +96,30 @@ import static com.dupreincaperu.dupree.Constants.MY_DEFAULT_TIMEOUT;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HacerPedidoFragment extends TabManagerFragment implements dialogoPedido.cierroDialogo, BasePedido, CatalogoHolder.Events, dialogoResumen.resultadoResumen, dialogoConcursos.resultadoConcurso {
+public class HacerPedidoFragment extends TabManagerFragment implements dialogoPedido.cierroDialogo, BasePedido, CatalogoHolder.Events, dialogoResumen.resultadoResumen, dialogoConcursos.resultadoConcurso, dialogoIdentificacion.IdentificaionCuadroDialogo {
 
     public static final String TAG = HacerPedidoFragment.class.getName();
     public FragmentPedidosHacerBinding binding;
     private PedidosController pedidosController;
 
-    public final static String PEDIDO_FACTURADO = "2";
-    public final static String PEDIDO_NUEVO = "0";
+    public final static String PEDIDO_NUEVO     = "0";
     public final static String PEDIDO_MODIFICAR = "1";
-    public static final String BROACAST_DATA="broacast_data";
+    public final static String PEDIDO_FACTURADO = "2";
+    public static final String BROACAST_DATA    = "broacast_data";
 
     private ResultEdoPedido resultEdoPedido;
     private boolean enable = true;
 
     private PedidosPagerAdapter pedidosPagerAdapter;
-//    private BaseViewPagerAdapter pagerAdapter;
+  //private BaseViewPagerAdapter pagerAdapter;
 
     //FILTRO CONTROL
     RealmResults<Catalogo> querycat;
-    private List<Catalogo> listFilter;//, listSelected;
+    private List<Catalogo> listFilter; //listSelected;
     private CatalogoListAdapter adapter_catalogo;
     private Realm realm;
-    //FILTRO CONTROL
 
+    //FILTRO CONTROL
     private Profile perfil;
     public void loadData(Profile perfil){
         this.perfil=perfil;
@@ -140,20 +135,19 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     String codi_usua;
     String cargaCatalogo;
 
-    ArrayList<Integer> numeProductos    = new ArrayList<Integer>();
-    ArrayList<String> codigoProductos   = new ArrayList<String>();
-    ArrayList<String> tipoProductos     = new ArrayList<String>();
-    ArrayList<String> nombreProductos   = new ArrayList<String>();
+    ArrayList<Integer> numeProductos     = new ArrayList<Integer>();
+    ArrayList<String>  codigoProductos   = new ArrayList<String>();
+    ArrayList<String>  tipoProductos     = new ArrayList<String>();
+    ArrayList<String>  nombreProductos   = new ArrayList<String>();
     ArrayList<Integer> cantidadProductos = new ArrayList<Integer>();
-    ArrayList<String> valorProductos    = new ArrayList<String>();
+    ArrayList<String>  valorProductos    = new ArrayList<String>();
 
-    ArrayList<String>  listDescripcion = new ArrayList<String>();
-    ArrayList<String>  listImagen      = new ArrayList<String>();
-    ArrayList<String>  listPuntos      = new ArrayList<String>();
+    ArrayList<String>  listDescripcion   = new ArrayList<String>();
+    ArrayList<String>  listImagen        = new ArrayList<String>();
+    ArrayList<String>  listPuntos        = new ArrayList<String>();
 
     RequestQueue request;
     JsonObjectRequest jsonObjectRequest;
-    private ProgressDialog pdp = null;
 
     private int nume_pedi = 1;
 
@@ -212,7 +206,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             @Override
             public void onClick(View view) {
                 if(!isEnable()) {
-                    //msgToast(getString(R.string.pedido_no_puede_modificarse));
                     new dialogoMensaje(getContext(), getString(R.string.pedido_no_puede_modificarse));
                     return;
                 }
@@ -225,7 +218,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                     }
                 } else {
                     new dialogoMensaje(getContext(),getString(R.string.no_se_detectaron_cambios));
-                    //msgToast(getString(R.string.no_se_detectaron_cambios));
                 }
             }
         });
@@ -255,9 +247,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         binding.swipePedidos.setEnabled(false);
 
         request = Volley.newRequestQueue(getContext());
-
     }
-
 
 
     @Override
@@ -320,9 +310,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
         searchView.setIconified(true);//inicialmente oculto
 
-
         if(dataStore.getTipoPerfil()!=null) {
-            boolean isAsesora = dataStore.getTipoPerfil().getPerfil().equals(Profile.ADESORA);
+            boolean isAsesora = dataStore.getTipoPerfil().getPerfil().equals(Profile.ADESORA) || dataStore.getTipoPerfil().getPerfil().equals(Profile.LIDER) ;
             searchAsesora.setVisible(!isAsesora);
         } else {
             new dialogoMensaje(getContext(),getString(R.string.handled_501_se_cerro_sesion));
@@ -471,6 +460,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                     valorProductos.add(item.getValor());
                     nume_pedi++;
                     break;
+
                 case ItemCarrito.TYPE_OFFERTS:
                     numeProductos.add(nume_pedi);
                     codigoProductos.add(item.getId());
@@ -478,14 +468,12 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                     nombreProductos.add(item.getName().toUpperCase().charAt(0) + item.getName().substring(1, item.getName().length()).toLowerCase());
                     cantidadProductos.add(item.getCantidad());
                     valorProductos.add(item.getValor());
-
                     nume_pedi++;
                     break;
             }
         }
 
         new dialogoResumen(getContext(), this, numeProductos, codigoProductos, tipoProductos, nombreProductos, cantidadProductos, valorProductos, tota_pedi);
-
         dismissProgress();
 
     }
@@ -546,7 +534,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                     });
 
                     builder.show();
-                } else{
+                } else {
                     obtenerResumen(result.getTota_pedi());
                 }
 
@@ -610,9 +598,8 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         Log.e(TAG,"checkEdoPedido(A)");
         if(perfil != null){
             Log.e(TAG,"checkEdoPedido(B)");
-            if(perfil.getPerfil().equals(Profile.ADESORA)){
+            if(perfil.getPerfil().equals(Profile.ADESORA) || perfil.getPerfil().equals(Profile.LIDER)){
                 Log.e(TAG,"checkEdoPedido(C)");
-
                 searchIdenty("");
             } else {
                 enableEdit(false);
@@ -625,7 +612,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         //habilita tabs
 
         setTabIcons(PedidosPagerAdapter.PAGE_CARRITO, isVisible);
-        setTabIcons(PedidosPagerAdapter.PAGE_OFFERS, isVisible);
+        setTabIcons(PedidosPagerAdapter.PAGE_OFFERS,  isVisible);
 
         binding.tvNombreAsesora.setText(text);
         binding.ctxNameAsesora.setVisibility(isVisible && !TextUtils.isEmpty(text) ? View.VISIBLE : View.GONE);
@@ -851,6 +838,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         //EN ESTE CASO SE ESTA MODO GERENTE, SE LIMPIA TODITO EL PEDIDO AL CAMBIAR DE ASESORA
         pedidosPagerAdapter.getOffersFragment().deleteOferta();
         //pedidosPagerAdapter.getOffersFragment().filterOffersDB("");
+
         pedidosPagerAdapter.getCarritoFragment().clearCartDB();
         pedidosPagerAdapter.getCarritoFragment().updateCarrito();
 
@@ -876,20 +864,18 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                 resultEdoPedido = result.getResult();
 
                 updateView();
-
                 //dataFacturas();
             }
 
             @Override
             public void error(TTError error) {
                 //setPageCurrent(PedidosPagerAdapter.PAGE_HISTORICAL);
-
                 dismissProgress();
-                checkSession(error);
-
+                new dialogoMensaje(getContext(),error.getMessage());
+                /*checkSession(error);
                 if(error.getStatusCode() != 404 || error.getStatusCode() != 501) {
                     //dataFacturas();
-                }
+                }*/
             }
         });
 
@@ -916,7 +902,9 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     }
 
     public void obtainIdentyAsesora(){
-        hideSearchView();
+        new dialogoIdentificacion(getContext(),HacerPedidoFragment.this);
+
+        /*hideSearchView();
         InputDialog d = new InputDialog();
         d.loadData(getString(R.string.cedula_asesora), getString(R.string.cedula_asesora), new InputDialog.ResponseListener() {
             @Override
@@ -925,7 +913,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                 searchIdenty(inputText);
             }
         });
-        d.show(getActivity().getSupportFragmentManager(),"mDialog");
+        d.show(getActivity().getSupportFragmentManager(),"mDialog");*/
     }
 
     private void increaseCart(int position){
@@ -1273,5 +1261,12 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             sendProductosMensajes();
         }
 
+    }
+
+    @Override
+    public void ResultadoNumeroIdentificacion(String nume_iden) {
+        hideSearchView();
+        clearAllData();
+        searchIdenty(nume_iden);
     }
 }

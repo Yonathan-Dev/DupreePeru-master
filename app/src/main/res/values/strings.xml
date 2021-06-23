@@ -315,7 +315,7 @@
     <string name="desea_remover_premio">Desea remover premio?</string>
     <string name="desea_remover_mensajes">Desea eliminar estos mensajes?</string>
 
-    <string name="cedula_asesora">Cédula de asesora</string>
+    <string name="cedula_asesora">Identificación de asesora</string>
     <string name="codigo_catalogo">Código catálogo</string>
     <string name="pick_image_intent_text">pick_image_intent_text</string>
     <string name="eliminar">Eliminar</string>
@@ -386,7 +386,7 @@
     <string name="buscar_por_cedula">Buscar por identificación</string>
     <string name="ultima">-- útima --</string>
     <string name="no_se_detectaron_cambios">No se detectaron cambios</string>
-    <string name="ingresar_cedula_valida">Debe ingresar una cédula valida…</string>
+    <string name="ingresar_cedula_valida">Debe ingresar una identificación valida…</string>
     <string name="anadir">añadir</string>
     <string name="ingresar_codigo">Ingresar código</string>
     <string name="debe_ser_cedula_nombre">El dato ingresadotipo_de_documento debe ser una cédula o un nombre</string>
@@ -481,6 +481,7 @@
     <string name="mapbox_access_token">pk.eyJ1IjoiZHVwcmVlYXp6b3J0aSIsImEiOiJjazFxZ2p1a3QwMTZ1M2hxZ3BuN2l4OTZrIn0.Loh1w0sgnR3g-O-3oXWZMA</string>
     <string name="permiso_ubicacion">Azzorti necesita permisos de ubicación para mostrar su funcionalidad.</string>
     <string name="permiso">No cuentas con permiso de ubicación.</string>
+
 
     <string-array name="charOption">
         <item>-Limpiar-</item>

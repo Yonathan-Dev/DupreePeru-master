@@ -270,7 +270,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                         break;
 
                     case "CLIE":
-                        navigationView.getMenu().findItem(R.id.menu_lat_bandeja_entrada).setVisible(true);
+                        //navigationView.getMenu().findItem(R.id.menu_lat_bandeja_entrada).setVisible(true);
                         //navigationView.getMenu().findItem(R.id.menu_lat_reporte_ubicacion).setVisible(true);
                         navigationView.getMenu().findItem(R.id.menu_lat_hacer_pedidos).setVisible(true);
                         //navigationView.getMenu().findItem(R.id.menu_lat_hacer_prepedidos).setVisible(true);
@@ -284,6 +284,7 @@ public class MenuActivity extends BaseActivity implements NavigationView.OnNavig
                         //navigationView.getMenu().findItem(R.id.menu_lat_pet_quej_rec_pqr).setVisible(true);
                         navigationView.getMenu().findItem(R.id.menu_lat_modif_perfil).setVisible(true);
                         if (perfil.getPerfil().equalsIgnoreCase("L")){
+                            navigationView.getMenu().findItem(R.id.menu_lat_bandeja_entrada).setVisible(true);
                             //navigationView.getMenu().findItem(R.id.menu_lat_pedidos_ret).setVisible(true);
                             //navigationView.getMenu().findItem(R.id.menu_lat_redimir_incentivos).setVisible(false);
                             //navigationView.getMenu().findItem(R.id.menu_lat_posi_ase).setVisible(true);
