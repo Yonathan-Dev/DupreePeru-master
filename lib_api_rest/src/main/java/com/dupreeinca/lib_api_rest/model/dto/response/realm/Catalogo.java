@@ -19,8 +19,8 @@ public class Catalogo extends RealmObject{
 
     private int cantidad=0;
 
-    //para control de ediciones de lo que local
-    //esta en base de datos y lo que esta en server
+    //Para control de ediciones de lo que local
+    //Esta en base de datos y lo que esta en server
     private int cantidadServer=0;//indica cuanto se envio al server
     private long time=0;//para control de fecha de item, agregado (o usar incremento)
 
