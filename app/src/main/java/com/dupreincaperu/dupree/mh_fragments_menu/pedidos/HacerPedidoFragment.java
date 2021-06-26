@@ -67,7 +67,6 @@ import com.dupreincaperu.dupree.mh_adapters.base.TabViewPager.TabManagerFragment
 import com.dupreincaperu.dupree.mh_dial_peru.dialogoMensaje;
 import com.dupreincaperu.dupree.mh_dial_peru.dialogoPedido;
 import com.dupreincaperu.dupree.mh_dial_peru.dialogoResumen;
-import com.dupreincaperu.dupree.mh_dialogs.InputDialog;
 import com.dupreincaperu.dupree.mh_dialogs.SimpleDialog;
 import com.dupreincaperu.dupree.mh_fragments_menu.PanelGerenteFragment;
 import com.dupreincaperu.dupree.mh_fragments_menu.panel_asesoras.PanelAsesoraFragment;
@@ -180,7 +179,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         List<ModelList> items = new ArrayList<>();
         items.add(new ModelList(R.drawable.ic_shopping_cart_white_24dp, getString(R.string.carrito)));
         items.add(new ModelList(R.drawable.ic_list_white_24dp, getString(R.string.ofertas)));
-        //items.add(new ModelList(R.drawable.baseline_assignment_white_24, getString(R.string.historical)));
+        items.add(new ModelList(R.drawable.baseline_assignment_white_24, getString(R.string.historical)));
         return items;
     }
 
@@ -231,7 +230,14 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             }
         });
 
-        //CONTROL DE FILTROS Y CATALOGO
+        binding.fabVisuHist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.pagerView.setCurrentItem(2);
+            }
+        });
+
+                //CONTROL DE FILTROS Y CATALOGO
         realm = Realm.getDefaultInstance();
 
         binding.ctcRcvFilter.setVisibility(View.GONE);
@@ -332,7 +338,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
     private void searchMyQuery(String query){
         Log.e(TAG, "searchQuery() -> query: " + query);
-
     }
 
     //MARK CatalogoHolder.Events
@@ -413,7 +418,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
                         clearAllData();
                     } else if(result.getCodigo().equals(EnumLiquidar.DEBAJO_MONTO.getKey())){
-                        msgToast("ACA 2");
 
                         NumberFormat formatter = NumberFormat.getInstance(Locale.US);
 
@@ -614,6 +618,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
 
         setTabIcons(PedidosPagerAdapter.PAGE_CARRITO, isVisible);
         setTabIcons(PedidosPagerAdapter.PAGE_OFFERS,  isVisible);
+        setTabIcons(PedidosPagerAdapter.PAGE_HISTORICAL,  isVisible);
 
         binding.tvNombreAsesora.setText(text);
         binding.ctxNameAsesora.setVisibility(isVisible && !TextUtils.isEmpty(text) ? View.VISIBLE : View.GONE);
@@ -625,7 +630,6 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
             fabShow(false);
         }
 
-
     }
 
     private void fabTitle(String title){
@@ -635,11 +639,13 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
     private void fabShow(boolean isVisible){
         binding.fabSendPedido.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
         binding.fabbackPedido.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
+        binding.fabVisuHist.setVisibility(isVisible ? View.VISIBLE : View.INVISIBLE);
     }
 
     private void setBackGroungColor(int color){
         binding.fabSendPedido.setBackgroundColor(color);
         binding.fabbackPedido.setBackgroundColor(color);
+        binding.fabVisuHist.setBackgroundColor(color);
     }
 
     private void updateView(){
@@ -788,11 +794,11 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                     pedidosPagerAdapter.getOffersFragment().setEnable(isEnable());
                     pedidosPagerAdapter.getOffersFragment().filterOffersDB("");
                     break;
-                /*case PedidosPagerAdapter.PAGE_HISTORICAL:
+                case PedidosPagerAdapter.PAGE_HISTORICAL:
                     enableSearch(false);
                     fabShow(false);
                     pedidosPagerAdapter.getHistorialFragment().setIdentyFacturas(cedula);
-                    break;*/
+                    break;
             }
 
             hideSearchView();
@@ -843,7 +849,7 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
         pedidosPagerAdapter.getCarritoFragment().clearCartDB();
         pedidosPagerAdapter.getCarritoFragment().updateCarrito();
 
-        //pedidosPagerAdapter.getHistorialFragment().updateView(null);
+        pedidosPagerAdapter.getHistorialFragment().updateView(null);
     }
 
     String cedula = "";
@@ -865,27 +871,27 @@ public class HacerPedidoFragment extends TabManagerFragment implements dialogoPe
                 resultEdoPedido = result.getResult();
 
                 updateView();
-                //dataFacturas();
+                dataFacturas();
             }
 
             @Override
             public void error(TTError error) {
-                //setPageCurrent(PedidosPagerAdapter.PAGE_HISTORICAL);
+                setPageCurrent(PedidosPagerAdapter.PAGE_HISTORICAL);
                 dismissProgress();
                 new dialogoMensaje(getContext(),error.getMessage());
-                /*checkSession(error);
+                //checkSession(error);
                 if(error.getStatusCode() != 404 || error.getStatusCode() != 501) {
-                    //dataFacturas();
-                }*/
+                    dataFacturas();
+                }
             }
         });
 
     }
 
     private void dataFacturas(){
-        /*if (getPageCurrent() == PedidosPagerAdapter.PAGE_HISTORICAL) {
+        if (getPageCurrent() == PedidosPagerAdapter.PAGE_HISTORICAL) {
             pedidosPagerAdapter.getHistorialFragment().searchIdenty(cedula);
-        }*/
+        }
     }
     ///////////CONTROL DEL FILTRO DE PEDIDOS////////////
 
