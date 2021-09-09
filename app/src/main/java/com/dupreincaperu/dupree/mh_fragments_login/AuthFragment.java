@@ -352,10 +352,12 @@ public class AuthFragment extends Fragment implements dialogoPolitica.cierroPoli
                         reporte[i]=String.valueOf(acce_repo.getString("codi_prog"));
                         alma_tab_prog_movi(String.valueOf(acce_repo.getString("codi_prog")));
                     }
-                    pdp.dismiss();
+                    //pdp.dismiss();
                     if (!tipo_vinc.equalsIgnoreCase("T")){
-                        new dialogoPolitica(getContext(), AuthFragment.this);
+                        validarpolitica(txtUsername.getText().toString().trim());
+                        //new dialogoPolitica(getContext(), AuthFragment.this);
                     } else {
+                        pdp.dismiss();
                         Toast.makeText(getContext(),"Usuario tiene perfil temporal.", Toast.LENGTH_SHORT).show();
                     }
 
@@ -409,8 +411,9 @@ public class AuthFragment extends Fragment implements dialogoPolitica.cierroPoli
                         reporte[i]=String.valueOf(acce_repo.getString("codi_prog"));
                         alma_tab_prog_movi(String.valueOf(acce_repo.getString("codi_prog")));
                     }
-                    pdp.dismiss();
-                    new dialogoPolitica(getContext(), AuthFragment.this);
+                    //pdp.dismiss();
+                    validarpolitica(txtUsername.getText().toString().trim());
+                    //new dialogoPolitica(getContext(), AuthFragment.this);
 
                 } catch (JSONException e) {
                     pdp.dismiss();
@@ -477,6 +480,80 @@ public class AuthFragment extends Fragment implements dialogoPolitica.cierroPoli
         return true;
     }
 
+    private void validarpolitica(String codi_usua) {
+
+        String url = getString(R.string.url_empr)+"usuario/validarpolitica?codi_usua="+codi_usua;
+        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                try {
+                    JSONObject politica = response.getJSONObject(0);
+                    pdp.dismiss();
+                    if(politica.getString("mensaje").trim().equalsIgnoreCase("")){
+                        new dialogoPolitica(getContext(), AuthFragment.this);
+                    } else {
+                        httpAuth();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    pdp.dismiss();
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pdp.dismiss();
+                Log.i("validarpolitica","No se puede conectar con el servidor"+error);
+            }
+        });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        request.add(jsonArrayRequest);
+    }
+
+    private void registrarpolitica(String codi_usua) {
+
+        String url = getString(R.string.url_empr)+"usuario/registrarpolitica?codi_usua="+codi_usua;
+        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                try {
+                    JSONObject politica = response.getJSONObject(0);
+                    pdp.dismiss();
+                    if(politica.getString("mensaje").trim().equalsIgnoreCase("OK")){
+                        httpAuth();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    pdp.dismiss();
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pdp.dismiss();
+                Log.i("registrarpolitica","No se puede conectar con el servidor"+error);
+            }
+        });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        request.add(jsonArrayRequest);
+    }
+
     @Override
     public void onResume() {
         cargarpreferencias();
@@ -489,7 +566,8 @@ public class AuthFragment extends Fragment implements dialogoPolitica.cierroPoli
     public void ResultadoPolitico(String peti) {
 
         if (peti.equalsIgnoreCase("")){
-            httpAuth();
+            registrarpolitica(txtUsername.getText().toString().trim());
+            //httpAuth();
         } else if(peti.equalsIgnoreCase("politica")){
             Uri pdf2 = Uri.parse(getString(R.string.api_poli));
             Intent i = new Intent(Intent.ACTION_VIEW, pdf2);
