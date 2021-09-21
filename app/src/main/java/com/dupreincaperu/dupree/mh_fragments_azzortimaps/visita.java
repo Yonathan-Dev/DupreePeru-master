@@ -334,7 +334,7 @@ public class visita extends AppCompatActivity implements motivo_visita.FinalizoM
                 styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
                 break;
             case "060":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
+                styleZona = "mapbox://styles/dupreeazzorti/ckpvycl8w41hl18qtry71syqn";
                 break;
             case "061":
                 styleZona = "mapbox://styles/dupreeazzorti/ck548ne3s0qx41ct1p12gti4e";
