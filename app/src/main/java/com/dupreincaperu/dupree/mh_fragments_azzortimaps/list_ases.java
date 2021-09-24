@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import androidx.annotation.NonNull;
+
+import com.dupreincaperu.dupree.mh_dial_peru.dialogoMensaje;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
@@ -28,7 +30,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.dupreincaperu.dupree.R;
-import com.dupreincaperu.dupree.mh_dial_peru.dialogo_personal;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
@@ -102,7 +103,7 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
     private static final String TAG = "DirectionsActivity";
     private NavigationMapRoute navigationMapRoute;
 
-    String codi_zona="", codi_camp="", codi_sect="", codi_usua="";
+    String codi_zona="", codi_camp="", codi_sect="", codi_usua="", styleZona="";
     String tipo_clie_cons, tipo_clie_inco, tipo_clie_peg21, tipo_clie_peg42, tipo_clie_peg63, tipo_clie_posi_reincor, tipo_clie_posi_reingre;
     String tipo_clie_reinco, tipo_clie_reingr, tipo_clie_ret_peg21, tipo_clie_ret_peg42, tipo_clie_ret_peg63, tipo_clie_sin_pedi;
     Double LatOri = 0.0;
@@ -144,6 +145,7 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
             tipo_clie_ret_peg42    = list_ases.getString("tipo_clie_ret_peg42");
             tipo_clie_ret_peg63    = list_ases.getString("tipo_clie_ret_peg63");
             tipo_clie_sin_pedi     = list_ases.getString("tipo_clie_sin_pedi");
+            styleZona              = list_ases.getString("styleZona");
         }
 
         pdp = new ProgressDialog(this);
@@ -170,428 +172,6 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
 
         this.mapboxMap = mapboxMap;
-
-        //Estilo de mapa
-        String styleZona="mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-        switch (codi_zona){
-            case "001":
-                styleZona = "mapbox://styles/dupreeazzorti/ck4y9mm7vgg1b1cp49kmkzyvr";
-                break;
-            case "002":
-                styleZona = "mapbox://styles/dupreeazzorti/ck4yl58oyhxtl1co4rt7z7m4l";
-                break;
-            case "003":
-                styleZona = "mapbox://styles/dupreeazzorti/ck52ufwfm1xnk1cmn9lo9hjbg";
-                break;
-            case "004":
-                styleZona = "mapbox://styles/dupreeazzorti/ck52w0ir90a8w1cpaj005r4yy";
-                break;
-            case "005":
-                styleZona = "mapbox://styles/dupreeazzorti/ck52wjeu508b61cp1ilp87vlw";
-                break;
-            case "006":
-                styleZona = "mapbox://styles/dupreeazzorti/ck52xi03409821cn63c45ty4d";
-                break;
-            case "007":
-                styleZona = "mapbox://styles/dupreeazzorti/ck52y3lw93vca1dlkztjqat13";
-                break;
-            case "008":
-                styleZona = "mapbox://styles/dupreeazzorti/ck52yj68i0a6u1cn6tv5nfpzl";
-                break;
-            case "009":
-                styleZona = "mapbox://styles/dupreeazzorti/ck52z70h60d831cpa0fcvd4ii";
-                break;
-            case "010":
-                styleZona = "mapbox://styles/dupreeazzorti/ck52znk31j3ha1cmuwy31116o";
-                break;
-            case "011":
-                styleZona = "mapbox://styles/dupreeazzorti/ck53008o10ap91cslkd9a1g8g";
-                break;
-            case "012":
-                styleZona = "mapbox://styles/dupreeazzorti/ck530eh450bro1cperdllg73x";
-                break;
-            case "013":
-                styleZona = "mapbox://styles/dupreeazzorti/ck530prcl0c9u1cs60i603jgp";
-                break;
-            case "014":
-                styleZona = "mapbox://styles/dupreeazzorti/ck531ekf40cwk1cs68cc5bkyp";
-                break;
-            case "015":
-                styleZona = "mapbox://styles/dupreeazzorti/ck531yca424o71cmnjp2cbgea";
-                break;
-            case "016":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5328qr40crw1cslihtfru8k";
-                break;
-            case "017":
-                styleZona = "mapbox://styles/dupreeazzorti/ck532hksf0du51cmret8ja4dw";
-                break;
-            case "018":
-                styleZona = "mapbox://styles/dupreeazzorti/ck532q6wh0xfp1cro51zwfvax";
-                break;
-            case "019":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "020":
-                styleZona = "mapbox://styles/dupreeazzorti/ck532y3130e941cmrj26vaa9z";
-                break;
-            case "021":
-                styleZona = "mapbox://styles/dupreeazzorti/ck533aab10h2v1cpaw84wuhq2";
-                break;
-            case "022":
-                styleZona = "mapbox://styles/dupreeazzorti/ck533iptl0et21cp10l5tw08h";
-                break;
-            case "023":
-                styleZona = "mapbox://styles/dupreeazzorti/ck53vy6zv0f321ct1zqz5r6dd";
-                break;
-            case "024":
-                styleZona = "mapbox://styles/dupreeazzorti/ck53wbtz81rli1dllqab1buus";
-                break;
-            case "025":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5401nil0gy71co6iu701j5o";
-                break;
-            case "026":
-                styleZona = "mapbox://styles/dupreeazzorti/ck540b4gx0nzb1co9wzo50sq4";
-                break;
-            case "027":
-                styleZona = "mapbox://styles/dupreeazzorti/ck540mx640ggk1dro6nvhrrya";
-                break;
-            case "028":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5412we10i2a1cmkxrr94bak";
-                break;
-            case "029":
-                styleZona = "mapbox://styles/dupreeazzorti/ck54238ba1au41cpe9nh6zpee";
-                break;
-            case "030":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "031":
-                styleZona = "mapbox://styles/dupreeazzorti/ck542gck80kyn1cn41evgoprn";
-                break;
-            case "032":
-                styleZona = "mapbox://styles/dupreeazzorti/ck543sbhx1cnf1cs6btkbltwc";
-                break;
-            case "033":
-                styleZona = "mapbox://styles/dupreeazzorti/ck544243blw3l1cp4y4r4btd3";
-                break;
-            case "034":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5449qrq0jue1drop6gpg4ng";
-                break;
-            case "035":
-                styleZona = "mapbox://styles/dupreeazzorti/ck544hz74lwio1cp45w0j0xyn";
-                break;
-            case "036":
-                styleZona = "mapbox://styles/dupreeazzorti/ck546sait1fcm1cp1t1xb1n1f";
-                break;
-            case "037":
-                styleZona = "mapbox://styles/dupreeazzorti/ck546zioi33dj1ckv01h4lfzz";
-                break;
-            case "038":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5476mxwk87b1cmu1i9776ny";
-                break;
-            case "039":
-                styleZona = "mapbox://styles/dupreeazzorti/ck547f480k8eu1cmuusmqpjvd";
-                break;
-            case "041":
-                styleZona = "mapbox://styles/dupreeazzorti/ck547n49n21g01ck5f3lp9r29";
-                break;
-            case "042":
-                styleZona = "mapbox://styles/dupreeazzorti/ck547vmgf0v121co9mfewnc39";
-                break;
-            case "043":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5482k2b0qd71ct1129gn46f";
-                break;
-            case "044":
-                styleZona = "mapbox://styles/dupreeazzorti/ck548g0qk525m1cqgsqnlw32u";
-                break;
-            case "045":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "046":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "047":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "048":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "049":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "050":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "051":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6ht12wi0vwf1jl7xqbyqoue";
-                break;
-            case "052":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "053":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "054":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "055":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "056":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "057":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "058":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "059":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "060":
-                styleZona = "mapbox://styles/dupreeazzorti/ckpvycl8w41hl18qtry71syqn";
-                break;
-            case "061":
-                styleZona = "mapbox://styles/dupreeazzorti/ck548ne3s0qx41ct1p12gti4e";
-                break;
-            case "062":
-                styleZona = "mapbox://styles/dupreeazzorti/ck548w9dh0o4m1drobg5ndn6d";
-                break;
-            case "063":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "101":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5dywfcw0uqc1ioafw3paopj";
-                break;
-            case "102":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5e0tbo90t9o1ile7yukdg8p";
-                break;
-            case "103":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5ft7zaf0xxc1ioa5eip7948";
-                break;
-            case "104":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5e1psu80xbq1ill1rbcl32l";
-                break;
-            case "105":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5e27jqy0xrx1illsbiq5rtp";
-                break;
-            case "106":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5e2ltva0y4y1illmzewm5yx";
-                break;
-            case "107":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5fu9wvj005o1io5cjxrsc4o";
-                break;
-            case "108":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5e2zryf0ly01jo66vetc1nr";
-                break;
-            case "109":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lnw6kl2el71ip5rr6uzrvv";
-                break;
-            case "110":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lo5shi0w2r1iovph8q96tm";
-                break;
-            case "111":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5mn1enj01kv1inpov43vg9b";
-                break;
-            case "112":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5mouw4s3asd1is1c14d4eyv";
-                break;
-            case "113":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5l99rgg0mgs1imzg8iwvedt";
-                break;
-            case "114":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lkjgpx202c1iokz0l7b5ky";
-                break;
-            case "130":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6heskyx0iqq1imu8c09tq2q";
-                break;
-            case "131":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5fueh1j00ar1irodq7hphvm";
-                break;
-            case "132":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lk5d2a0x941io3ddxqivdi";
-                break;
-            case "140":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5mllmgp1tnl1ilpvgklequz";
-                break;
-            case "141":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5mmfb3738iq1is1lp0ktvxy";
-                break;
-            case "142":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5l9t21v0lyf1itfliknj9r8";
-                break;
-            case "143":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5ejbm2e1dmk1illcl8rgmub";
-                break;
-            case "144":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "145":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lkqlij3x231iqtfp9w4lrc";
-                break;
-            case "146":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "147":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "148":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5efkr960m9p1iqmirrboccx";
-                break;
-            case "149":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5ljeyvw0u441ilp5foa11u9";
-                break;
-            case "201":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5mpq6b1042b1inpa0rxkwjq";
-                break;
-            case "203":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5mpzkeg1i6g1iptcafvgkwg";
-                break;
-            case "205":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5mqiz9x0q241ipl4d0vhgf6";
-                break;
-            case "206":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5mqqlyk0obi1jojpsprvn7m";
-                break;
-            case "207":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5mr03cz0ojz1jojbbcpqr6i";
-                break;
-            case "208":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lb6z8i0jwx1ink7kkxzv7y";
-                break;
-            case "209":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lbqiqp0kem1inkqsg6rs46";
-                break;
-            case "210":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gwagyf01g01imx8mpb1lr9";
-                break;
-            case "211":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gwtyr801ya1io8fkj619z8";
-                break;
-            case "212":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gwz2rl023n1io8lerr6lpi";
-                break;
-            case "213":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gx4m2y02961io8waum0ccy";
-                break;
-            case "214":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gx5b7b027h1jl7h3unkfiz";
-                break;
-            case "215":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gxc5e002f31jt3ubz01l2v";
-                break;
-            case "216":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gxkrnp02m51imzc3adnc7z";
-                break;
-            case "217":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gxlgss02ms1imz5wwqru5i";
-                break;
-            case "218":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gxwz9k02yv1io8ppacxg6t";
-                break;
-            case "219":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gxxmyq030p1imush79yptc";
-                break;
-            case "220":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lkt9q81myk1ir3ba3uu7i4";
-                break;
-            case "221":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lkwbov20er1iok02xne13e";
-                break;
-            case "222":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5efqot30mey1iqmuvv5c7hd";
-                break;
-            case "223":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gy5vwy035n1imzc6hen8r7";
-                break;
-            case "224":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gy6pmz037j1iqz34mcn0ma";
-                break;
-            case "225":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lkxzfg236l1ilg6hdwqrub";
-                break;
-            case "226":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lkzpza1lmn1ipri4hwbzpr";
-                break;
-            case "227":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5e3f9yj0yuc1ip9m83h1oz4";
-                break;
-            case "228":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5e4pmew104g1ini3d41q4sv";
-                break;
-            case "229":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5mp3au003uq1inx48ysb603";
-                break;
-            case "230":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5e6ok0u11xf1isig22nchvs";
-                break;
-            case "231":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gyf8si03gh1in5byku1kys";
-                break;
-            case "232":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gyg09103gl1iqlhkrv3d9u";
-                break;
-            case "233":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5e77vwn06rg1ipbvf4f19eh";
-                break;
-            case "234":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5ee2kcg0ttw1io7gbxx390l";
-                break;
-            case "235":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5eecdmv197o1in59oiyshb4";
-                break;
-            case "236":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gyidck03hl1io8m6zczjfv";
-                break;
-            case "237":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gymowb03p41iqyp4nvihsk";
-                break;
-            case "238":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gysh3803su1ir12317h6hg";
-                break;
-            case "239":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5eg4le0061n1il3gsbarqix";
-                break;
-            case "240":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gyvuoj03ts1imz9nvvd3k2";
-                break;
-            case "241":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gz018n03z51ilnyawtrxen";
-                break;
-            case "242":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gz6toa046a1in57q609dw2";
-                break;
-            case "243":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5eg7oln1ap01ilf0kflt6y8";
-                break;
-            case "244":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5efecys0ec21ipbeat78dln";
-                break;
-            case "245":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lifrve29hc1ip5orm1r2fl";
-                break;
-            case "250":
-                styleZona = "mapbox://styles/dupreeazzorti/ck5lj2jn40r6w1ink71zntbui";
-                break;
-            case "300":
-                styleZona = "mapbox://styles/dupreeazzorti/ck6gz7ial04701iqlqq31tywf";
-                break;
-            case "666":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "760":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "950":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "951":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-            case "999":
-                styleZona = "mapbox://styles/dupreeazzorti/cklr3s54g04u317o0w6cf02nh";
-                break;
-        }
 
         mapboxMap.setStyle(new Style.Builder().fromUri(styleZona), new Style.OnStyleLoaded() {
 
@@ -729,9 +309,9 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
         final Double longitud = Double.parseDouble(list_ases[0][7]);
 
         if (fila>1){
-            new dialogo_personal(contexto,"Se ubicarón a "+fila+" asesoras");
+            new dialogoMensaje(contexto,"Se ubicarón a "+fila+" asesoras");
         } else {
-            new dialogo_personal(contexto,"Se ubicó a "+fila+" asesora");
+            new dialogoMensaje(contexto,"Se ubicó a "+fila+" asesora");
         }
 
         //Camara del mapa en referencia a un punto y el zoom

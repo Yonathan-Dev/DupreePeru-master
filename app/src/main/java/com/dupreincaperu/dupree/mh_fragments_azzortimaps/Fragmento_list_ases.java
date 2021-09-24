@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -32,7 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.dupreincaperu.dupree.R;
-import com.dupreincaperu.dupree.mh_dial_peru.dialogo_personal;
+import com.dupreincaperu.dupree.mh_dial_peru.dialogoMensaje;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,7 +55,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
     Fragmento_list_ases contexto;
     private ProgressDialog pdp = null;
 
-    String cedu_vend="", codi_usua="";
+    String cedu_vend="", codi_usua="", styleZona="";
     int band=0;
     Button btn_gene_list_ases, btn_visu_mapa, btn_visi_ases;
     ImageButton img_visi_efec, img_visu_mapa, img_visi_ases;
@@ -124,6 +125,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
         chk_ret_peg63.setOnClickListener(this);
         chk_sin_pedi.setOnClickListener(this);
 
+        //Visita efectiva
         btn_gene_list_ases.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,13 +138,13 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                 }
 
                 if (codi_camp.equalsIgnoreCase("Campaña")){
-                    new dialogo_personal(getContext(),"Error ingrese campaña");
+                    new dialogoMensaje(getContext(),"Error ingrese campaña");
                 } else if(codi_zona.equalsIgnoreCase("Zona")){
-                    new dialogo_personal(getContext(),"Error ingrese Zona");
+                    new dialogoMensaje(getContext(),"Error ingrese Zona");
                 } else if (band==0){
-                    new dialogo_personal(getContext(),"Error ingrese Status");
+                    new dialogoMensaje(getContext(),"Error ingrese Status");
                 } else if (band>3){
-                    new dialogo_personal(getContext(),"Error solo puede seleccionar 3 Status");
+                    new dialogoMensaje(getContext(),"Error solo puede seleccionar 3 Status");
                 } else {
                     Intent t = new Intent(getContext(), list_ases.class);
                     t.putExtra("codi_camp",             codi_camp);
@@ -162,11 +164,13 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                     t.putExtra("tipo_clie_ret_peg42",   tipo_clie_ret_peg42);
                     t.putExtra("tipo_clie_ret_peg63",   tipo_clie_ret_peg63);
                     t.putExtra("tipo_clie_sin_pedi",    tipo_clie_sin_pedi);
+                    t.putExtra("styleZona",             styleZona);
                     startActivity(t);
                 }
             }
         });
 
+        //Visualizar zona
         btn_visu_mapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,31 +180,33 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                 String codi_sect = "";
 
                 if(codi_zona.equalsIgnoreCase("Zona")){
-                    new dialogo_personal(getContext(),"Error ingrese Zona");
+                    new dialogoMensaje(getContext(),"Error ingrese Zona");
                 }  else {
                     Intent t = new Intent(getContext(), list_ases.class);
-                    t.putExtra("codi_camp", codi_camp);
-                    t.putExtra("codi_zona", codi_zona);
-                    t.putExtra("codi_sect", codi_sect);
-                    t.putExtra("codi_usua", codi_usua);
-                    t.putExtra("tipo_clie_cons",         tipo_clie_cons);
-                    t.putExtra("tipo_clie_inco",         tipo_clie_inco);
-                    t.putExtra("tipo_clie_peg21",        tipo_clie_peg21);
-                    t.putExtra("tipo_clie_peg42",        tipo_clie_peg42);
-                    t.putExtra("tipo_clie_peg63",        tipo_clie_peg63);
-                    t.putExtra("tipo_clie_posi_reincor", tipo_clie_posi_reincor);
-                    t.putExtra("tipo_clie_posi_reingre", tipo_clie_posi_reingre);
-                    t.putExtra("tipo_clie_reinco",       tipo_clie_reinco);
-                    t.putExtra("tipo_clie_reingr",       tipo_clie_reingr);
-                    t.putExtra("tipo_clie_ret_peg21",    tipo_clie_ret_peg21);
-                    t.putExtra("tipo_clie_ret_peg42",    tipo_clie_ret_peg42);
-                    t.putExtra("tipo_clie_ret_peg63",    tipo_clie_ret_peg63);
-                    t.putExtra("tipo_clie_sin_pedi",     tipo_clie_sin_pedi);
+                        t.putExtra("codi_camp", codi_camp);
+                        t.putExtra("codi_zona", codi_zona);
+                        t.putExtra("codi_sect", codi_sect);
+                        t.putExtra("codi_usua", codi_usua);
+                        t.putExtra("tipo_clie_cons",         tipo_clie_cons);
+                        t.putExtra("tipo_clie_inco",         tipo_clie_inco);
+                        t.putExtra("tipo_clie_peg21",        tipo_clie_peg21);
+                        t.putExtra("tipo_clie_peg42",        tipo_clie_peg42);
+                        t.putExtra("tipo_clie_peg63",        tipo_clie_peg63);
+                        t.putExtra("tipo_clie_posi_reincor", tipo_clie_posi_reincor);
+                        t.putExtra("tipo_clie_posi_reingre", tipo_clie_posi_reingre);
+                        t.putExtra("tipo_clie_reinco",       tipo_clie_reinco);
+                        t.putExtra("tipo_clie_reingr",       tipo_clie_reingr);
+                        t.putExtra("tipo_clie_ret_peg21",    tipo_clie_ret_peg21);
+                        t.putExtra("tipo_clie_ret_peg42",    tipo_clie_ret_peg42);
+                        t.putExtra("tipo_clie_ret_peg63",    tipo_clie_ret_peg63);
+                        t.putExtra("tipo_clie_sin_pedi",     tipo_clie_sin_pedi);
+                        t.putExtra("styleZona",              styleZona);
                     startActivity(t);
                 }
             }
         });
 
+        //Visita asesora
         btn_visi_ases.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -209,11 +215,11 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                 String[] arrOfStr = dato_clie.split("\\|");
 
                 if (codi_camp.equalsIgnoreCase("Campaña")){
-                    new dialogo_personal(getContext(),"Error ingrese campaña");
+                    new dialogoMensaje(getContext(),"Error ingrese campaña");
                 } else if (dato_clie.equalsIgnoreCase("")){
-                    new dialogo_personal(getContext(),"Error ingrese datos asesora");
+                    new dialogoMensaje(getContext(),"Error ingrese datos asesora");
                 } else if (arrOfStr[0].trim().length()!=8 && arrOfStr[0].trim().length()!=11){
-                    new dialogo_personal(getContext(),"Error longitud de dato incorrecto");
+                    new dialogoMensaje(getContext(),"Error longitud de dato incorrecto");
                 } else {
                     tipo_clie_cons = "CONSECUTIVA";
                     tipo_clie_inco = "INCORPORACION";
@@ -231,6 +237,8 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                     String nume_iden = arrOfStr[0].trim();
                     String codi_zona = arrOfStr[2].trim();
 
+                    generarMapa(codi_zona);
+
                     listado_asesora_sami(codi_camp, codi_zona, "", nume_iden, codi_usua, tipo_clie_cons, tipo_clie_inco, tipo_clie_peg21,tipo_clie_peg42, tipo_clie_peg63,tipo_clie_posi_reincor, tipo_clie_posi_reingre, tipo_clie_reinco, tipo_clie_reingr, tipo_clie_ret_peg21, tipo_clie_ret_peg42, tipo_clie_ret_peg63, tipo_clie_sin_pedi);
 
                 }
@@ -244,12 +252,14 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                 if (!parent.getItemAtPosition(position).toString().equalsIgnoreCase("Zona")){
                     String codi_zona = parent.getItemAtPosition(position).toString();
                     cargarsect(codi_zona);
+                    generarMapa(codi_zona);
                 } else{
                     ArrayList<String> sectores = new ArrayList<String>();
                     sectores.add("Sector");
                     ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getContext(),android.R.layout.select_dialog_item, sectores);
                     spn_codi_sect.setAdapter(adapter);
                 }
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -461,7 +471,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
             @Override
             public void onErrorResponse(VolleyError error) {
                 pdp.dismiss();
-                new dialogo_personal(getContext(), "No se puede conectar con el servidor");
+                new dialogoMensaje(getContext(), "No se puede conectar con el servidor");
             }
         });
 
@@ -610,7 +620,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                 try {
                     JSONObject mensaje = response.getJSONObject(0);
                     if(mensaje.getString("mensaje").trim().equalsIgnoreCase("ERROR")){
-                        new dialogo_personal(getContext(),"LISTA VACIA");
+                        new dialogoMensaje(getContext(),"LISTA VACIA");
                     } else {
                         JSONObject geo_clie = response.getJSONObject(0);
 
@@ -658,6 +668,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                             i.putExtra("tele_ter2", tele_ter2);
                             i.putExtra("codi_camp_1", codi_camp_1);
                             i.putExtra("esta_visi", esta_visi);
+                            i.putExtra("styleZona", styleZona);
                         startActivity(i);
 
                     }
@@ -700,7 +711,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
         cargarpreferenciaserrores();
 
         if (!error.equalsIgnoreCase("")){
-            new dialogo_personal(getContext(),error);
+            new dialogoMensaje(getContext(),error);
             guardarpreferenciaerrores("");
         }
 
@@ -733,6 +744,33 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
         editor.commit();
     }
 
+    private void generarMapa(String codi_zona) {
+
+        String url = getString(R.string.url_empr)+"gerentes/generarMapa?nomb_apli=AZZORTI&codi_zona="+codi_zona;
+        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    JSONObject ruta = response.getJSONObject(0);
+                    styleZona = ruta.getString("ruta_styl").trim();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                Log.e("generarMapa","No tiene conexion"+e.getMessage());
+            }
+        });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        request.add(jsonArrayRequest);
+    }
 
     private void limpiar(){
         chk_cons.setChecked(false);
