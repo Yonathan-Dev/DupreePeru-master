@@ -76,38 +76,38 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
 
         request = Volley.newRequestQueue(getContext());
 
-        btn_gene_list_ases = (Button)   vista.findViewById(R.id.btn_gene_list_ases);
-        btn_visu_mapa      = (Button)   vista.findViewById(R.id.btn_visu_mapa);
-        btn_visi_ases      = (Button)   vista.findViewById(R.id.btn_visi_ases);
-        img_visi_efec      = (ImageButton)   vista.findViewById(R.id.img_visi_efec);
-        img_visu_mapa      = (ImageButton)   vista.findViewById(R.id.img_visu_mapa);
-        img_visi_ases      = (ImageButton)   vista.findViewById(R.id.img_visi_ases);
-        spn_codi_zona      = (Spinner)  vista.findViewById(R.id.spn_codi_zona);
-        spn_codi_camp      = (Spinner)  vista.findViewById(R.id.spn_codi_camp);
-        spn_codi_sect      = (Spinner)  vista.findViewById(R.id.spn_codi_sect);
-        chk_cons           = (CheckBox) vista.findViewById(R.id.chk_cons);
-        chk_inco           = (CheckBox) vista.findViewById(R.id.chk_inco);
-        chk_peg21          = (CheckBox) vista.findViewById(R.id.chk_peg21);
-        chk_peg42          = (CheckBox) vista.findViewById(R.id.chk_peg42);
-        chk_peg63          = (CheckBox) vista.findViewById(R.id.chk_peg63);
-        chk_posi_reincor   = (CheckBox) vista.findViewById(R.id.chk_posi_reincor);
-        chk_posi_reingre   = (CheckBox) vista.findViewById(R.id.chk_posi_reingre);
-        chk_reinco         = (CheckBox) vista.findViewById(R.id.chk_reinco);
-        chk_reingr         = (CheckBox) vista.findViewById(R.id.chk_reingr);
-        chk_ret_peg21      = (CheckBox) vista.findViewById(R.id.chk_ret_peg21);
-        chk_ret_peg42      = (CheckBox) vista.findViewById(R.id.chk_ret_peg42);
-        chk_ret_peg63      = (CheckBox) vista.findViewById(R.id.chk_ret_peg63);
-        chk_sin_pedi       = (CheckBox) vista.findViewById(R.id.chk_sin_pedi);
-        lny_visi_efec      = (LinearLayout) vista.findViewById(R.id.lny_visi_efec);
-        lny_codi_camp      = (LinearLayout) vista.findViewById(R.id.lny_codi_camp);
-        lny_codi_zona      = (LinearLayout) vista.findViewById(R.id.lny_codi_zona);
-        lny_codi_sect      = (LinearLayout) vista.findViewById(R.id.lny_codi_sect);
-        lny_gene_mapa      = (LinearLayout) vista.findViewById(R.id.lny_gene_mapa);
-        lny_opci_boto      = (LinearLayout) vista.findViewById(R.id.lny_opci_boto);
-        lny_gene_ases      = (LinearLayout) vista.findViewById(R.id.lny_gene_ases);
-        txt_status         = (TextView) vista.findViewById(R.id.txt_status);
-        sv_status          = (ScrollView) vista.findViewById(R.id.sv_status);
-        actv_iden_nomb     = (AutoCompleteTextView) vista.findViewById(R.id.actv_iden_nomb);
+        btn_gene_list_ases = vista.findViewById(R.id.btn_gene_list_ases);
+        btn_visu_mapa      = vista.findViewById(R.id.btn_visu_mapa);
+        btn_visi_ases      = vista.findViewById(R.id.btn_visi_ases);
+        img_visi_efec      = vista.findViewById(R.id.img_visi_efec);
+        img_visu_mapa      = vista.findViewById(R.id.img_visu_mapa);
+        img_visi_ases      = vista.findViewById(R.id.img_visi_ases);
+        spn_codi_zona      = vista.findViewById(R.id.spn_codi_zona);
+        spn_codi_camp      = vista.findViewById(R.id.spn_codi_camp);
+        spn_codi_sect      = vista.findViewById(R.id.spn_codi_sect);
+        chk_cons           = vista.findViewById(R.id.chk_cons);
+        chk_inco           = vista.findViewById(R.id.chk_inco);
+        chk_peg21          = vista.findViewById(R.id.chk_peg21);
+        chk_peg42          = vista.findViewById(R.id.chk_peg42);
+        chk_peg63          = vista.findViewById(R.id.chk_peg63);
+        chk_posi_reincor   = vista.findViewById(R.id.chk_posi_reincor);
+        chk_posi_reingre   = vista.findViewById(R.id.chk_posi_reingre);
+        chk_reinco         = vista.findViewById(R.id.chk_reinco);
+        chk_reingr         = vista.findViewById(R.id.chk_reingr);
+        chk_ret_peg21      = vista.findViewById(R.id.chk_ret_peg21);
+        chk_ret_peg42      = vista.findViewById(R.id.chk_ret_peg42);
+        chk_ret_peg63      = vista.findViewById(R.id.chk_ret_peg63);
+        chk_sin_pedi       = vista.findViewById(R.id.chk_sin_pedi);
+        lny_visi_efec      = vista.findViewById(R.id.lny_visi_efec);
+        lny_codi_camp      = vista.findViewById(R.id.lny_codi_camp);
+        lny_codi_zona      = vista.findViewById(R.id.lny_codi_zona);
+        lny_codi_sect      = vista.findViewById(R.id.lny_codi_sect);
+        lny_gene_mapa      = vista.findViewById(R.id.lny_gene_mapa);
+        lny_opci_boto      = vista.findViewById(R.id.lny_opci_boto);
+        lny_gene_ases      = vista.findViewById(R.id.lny_gene_ases);
+        txt_status         = vista.findViewById(R.id.txt_status);
+        sv_status          = vista.findViewById(R.id.sv_status);
+        actv_iden_nomb     = vista.findViewById(R.id.actv_iden_nomb);
 
         chk_cons.setOnClickListener(this);
         chk_inco.setOnClickListener(this);
@@ -743,7 +743,6 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
     }
 
     private void generarMapa(String codi_zona) {
-
         String url = getString(R.string.url_empr)+"gerentes/generarMapa?nomb_apli=AZZORTI&codi_zona="+codi_zona;
         jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
