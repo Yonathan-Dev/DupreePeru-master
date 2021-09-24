@@ -669,7 +669,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                 try {
                     JSONObject mensaje = response.getJSONObject(0);
                     if(mensaje.getString("mensaje").trim().equalsIgnoreCase("ERROR")){
-                        new dialogoMensaje(getContext(),"LISTA VACIA");
+                        new dialogoMensaje(getContext(),"Lista vacia");
                     } else {
                         JSONObject geo_clie = response.getJSONObject(0);
 
