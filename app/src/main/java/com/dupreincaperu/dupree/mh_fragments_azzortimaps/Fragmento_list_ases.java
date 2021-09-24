@@ -3,25 +3,28 @@ package com.dupreincaperu.dupree.mh_fragments_azzortimaps;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -57,7 +60,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
     int band=0;
     Button btn_gene_list_ases, btn_visu_mapa, btn_visi_ases;
     ImageButton img_visi_efec, img_visu_mapa, img_visi_ases;
-    Spinner spn_codi_zona, spn_codi_camp, spn_codi_sect;
+    EditText edt_codi_camp, edt_codi_zona, edt_codi_sect;
     CheckBox chk_cons, chk_inco, chk_peg21, chk_peg42, chk_peg63, chk_posi_reincor, chk_posi_reingre, chk_reinco, chk_reingr;
     CheckBox chk_ret_peg21, chk_ret_peg42, chk_ret_peg63, chk_sin_pedi;
     String error = "";
@@ -67,6 +70,10 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
     TextView txt_status;
     ScrollView sv_status;
     AutoCompleteTextView actv_iden_nomb;
+
+    ArrayList<String> campanas = new ArrayList<String>();
+    ArrayList<String> zonas = new ArrayList<String>();
+    ArrayList<String> sectores = new ArrayList<String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,9 +89,9 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
         img_visi_efec      = vista.findViewById(R.id.img_visi_efec);
         img_visu_mapa      = vista.findViewById(R.id.img_visu_mapa);
         img_visi_ases      = vista.findViewById(R.id.img_visi_ases);
-        spn_codi_zona      = vista.findViewById(R.id.spn_codi_zona);
-        spn_codi_camp      = vista.findViewById(R.id.spn_codi_camp);
-        spn_codi_sect      = vista.findViewById(R.id.spn_codi_sect);
+        edt_codi_camp      = vista.findViewById(R.id.edt_codi_camp);
+        edt_codi_zona      = vista.findViewById(R.id.edt_codi_zona);
+        edt_codi_sect      = vista.findViewById(R.id.edt_codi_sect);
         chk_cons           = vista.findViewById(R.id.chk_cons);
         chk_inco           = vista.findViewById(R.id.chk_inco);
         chk_peg21          = vista.findViewById(R.id.chk_peg21);
@@ -128,9 +135,10 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
             @Override
             public void onClick(View v) {
 
-                String codi_camp = spn_codi_camp.getSelectedItem().toString();
-                String codi_zona = spn_codi_zona.getSelectedItem().toString();
-                String codi_sect = spn_codi_sect.getSelectedItem().toString();
+                String codi_camp = edt_codi_camp.getText().toString().trim();
+                String codi_zona = edt_codi_zona.getText().toString().trim();
+                String codi_sect = edt_codi_sect.getText().toString().trim();
+
                 if (codi_sect.equalsIgnoreCase("Sector")){
                     codi_sect = "";
                 }
@@ -174,7 +182,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
             public void onClick(View v) {
 
                 String codi_camp = "";
-                String codi_zona = spn_codi_zona.getSelectedItem().toString();
+                String codi_zona = edt_codi_zona.getText().toString().trim();
                 String codi_sect = "";
 
                 if(codi_zona.equalsIgnoreCase("Zona")){
@@ -208,7 +216,8 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
         btn_visi_ases.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String codi_camp = spn_codi_camp.getSelectedItem().toString();
+                String codi_camp = edt_codi_camp.getText().toString().trim();
+
                 String dato_clie = actv_iden_nomb.getText().toString();
                 String[] arrOfStr = dato_clie.split("\\|");
 
@@ -244,24 +253,78 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
             }
         });
 
-        spn_codi_zona.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        edt_codi_camp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!parent.getItemAtPosition(position).toString().equalsIgnoreCase("Zona")){
-                    String codi_zona = parent.getItemAtPosition(position).toString();
-                    cargarsect(codi_zona);
-                    generarMapa(codi_zona);
-                } else{
-                    ArrayList<String> sectores = new ArrayList<String>();
-                    sectores.add("Sector");
-                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getContext(),android.R.layout.select_dialog_item, sectores);
-                    spn_codi_sect.setAdapter(adapter);
-                }
+            public void onClick(View v) {
+                String[] miarray = new String[campanas.size()];
+                miarray = campanas.toArray(miarray);
+                final String[] finalMiarray = miarray;
 
+                InputMethodManager imm = (InputMethodManager)  getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setCancelable(true);
+                builder.setIcon(R.drawable.ic_check);
+
+                builder.setTitle("Seleccionar campaña")
+                        .setItems(miarray, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                edt_codi_camp.setText(finalMiarray[which]);
+                            }
+                        });
+                builder.show();
             }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+        });
 
+        edt_codi_zona.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] miarray = new String[zonas.size()];
+                miarray = zonas.toArray(miarray);
+                final String[] finalMiarray = miarray;
+
+                InputMethodManager imm = (InputMethodManager)  getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setCancelable(true);
+                builder.setIcon(R.drawable.ic_check);
+
+                builder.setTitle("Seleccionar zona")
+                        .setItems(miarray, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                edt_codi_zona.setText(finalMiarray[which]);
+                                edt_codi_sect.setText("");
+                                cargarsect(edt_codi_zona.getText().toString().trim());
+                                generarMapa(edt_codi_zona.getText().toString().trim());
+                            }
+                        });
+                builder.show();
+            }
+        });
+
+        edt_codi_sect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] miarray = new String[sectores.size()];
+                miarray = sectores.toArray(miarray);
+                final String[] finalMiarray = miarray;
+
+                InputMethodManager imm = (InputMethodManager)  getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setCancelable(true);
+                builder.setIcon(R.drawable.ic_check);
+
+                builder.setTitle("Seleccionar sectores")
+                        .setItems(miarray, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                edt_codi_sect.setText(finalMiarray[which]);
+                            }
+                        });
+                builder.show();
             }
         });
 
@@ -448,18 +511,12 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
 
             public void onResponse(JSONArray response) {
                 try {
-                    ArrayList<String> campanas = new ArrayList<String>();
-                    campanas.add("Campaña");
-
+                    campanas.clear();
                     for (int i=0; i<response.length(); i++){
                         JSONObject camp = response.getJSONObject(i);
                         String codi_camp  = camp.getString("codi_camp").trim();
                         campanas.add(codi_camp);
                     }
-
-                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getContext(),android.R.layout.select_dialog_item, campanas);
-                    spn_codi_camp.setAdapter(adapter);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -497,16 +554,12 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
 
             public void onResponse(JSONArray response) {
                 try {
-                    ArrayList<String> zonas = new ArrayList<String>();
-                    zonas.add("Zona");
+                    zonas.clear();
                     for (int i=0; i<response.length(); i++){
                         JSONObject zona = response.getJSONObject(i);
                         String codi_zona  = zona.getString("codi_zona").trim();
                         zonas.add(codi_zona);
                     }
-
-                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getContext(),android.R.layout.select_dialog_item, zonas);
-                    spn_codi_zona.setAdapter(adapter);
 
                     pdp.dismiss();
 
@@ -538,15 +591,13 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
             @Override
             public void onResponse(JSONArray response) {
                 try {
-                    ArrayList<String> sectores = new ArrayList<String>();
-                    sectores.add("Sector");
+                    sectores.clear();
                     for (int i=0; i<response.length(); i++){
                         JSONObject sector = response.getJSONObject(i);
                         String codi_sect  = sector.getString("codi_sect").trim();
                         sectores.add(codi_sect);
                     }
-                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getContext(),android.R.layout.select_dialog_item, sectores);
-                    spn_codi_sect.setAdapter(adapter);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -801,6 +852,10 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
         error="";
 
         actv_iden_nomb.setText("");
+
+        edt_codi_camp.setText("");
+        edt_codi_zona.setText("");
+        edt_codi_sect.setText("");
     }
 
 }

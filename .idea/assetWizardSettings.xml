@@ -339,7 +339,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/local_offer/baseline_local_offer_24.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/check_circle/baseline_check_circle_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -350,7 +350,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="fbe256" />
-                            <entry key="outputName" value="ic_oferta" />
+                            <entry key="outputName" value="ic_check" />
                             <entry key="sourceFile" value="C:\Users\yonathan.galindo\Desktop\Unidad\DupreePeru-master" />
                           </map>
                         </option>

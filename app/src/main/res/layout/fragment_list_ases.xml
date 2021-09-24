@@ -107,52 +107,96 @@
         <LinearLayout
             android:id="@+id/lny_codi_camp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/borde_indi_vent"
             android:visibility="gone"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/spn_codi_camp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edt_codi_camp"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:digits="@string/only_usua"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:focusableInTouchMode="false"
+                    android:hint="Ingresar campaña"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lny_codi_zona"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/borde_indi_vent"
             android:visibility="gone"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/spn_codi_zona"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edt_codi_zona"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:digits="@string/only_usua"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:focusableInTouchMode="false"
+                    android:hint="Ingresar zona"/>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lny_codi_sect"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/borde_indi_vent"
             android:visibility="gone"
             android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/spn_codi_sect"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/edt_codi_sect"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:digits="@string/only_usua"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:focusableInTouchMode="false"
+                    android:hint="Ingresar sector"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
         </LinearLayout>
 
         <TextView
