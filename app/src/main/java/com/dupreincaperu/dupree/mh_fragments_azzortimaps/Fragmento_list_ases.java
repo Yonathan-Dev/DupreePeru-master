@@ -23,7 +23,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -47,7 +46,6 @@ import static com.dupreincaperu.dupree.Constants.MY_DEFAULT_TIMEOUT;
  * A simple {@link Fragment} subclass.
  */
 public class Fragmento_list_ases extends Fragment implements View.OnClickListener {
-
 
     View vista;
     RequestQueue request;
@@ -147,24 +145,24 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                     new dialogoMensaje(getContext(),"Error solo puede seleccionar 3 Status");
                 } else {
                     Intent t = new Intent(getContext(), list_ases.class);
-                    t.putExtra("codi_camp",             codi_camp);
-                    t.putExtra("codi_zona",             codi_zona);
-                    t.putExtra("codi_sect",             codi_sect);
-                    t.putExtra("codi_usua",             codi_usua);
-                    t.putExtra("tipo_clie_cons",        tipo_clie_cons);
-                    t.putExtra("tipo_clie_inco",        tipo_clie_inco);
-                    t.putExtra("tipo_clie_peg21",       tipo_clie_peg21);
-                    t.putExtra("tipo_clie_peg42",       tipo_clie_peg42);
-                    t.putExtra("tipo_clie_peg63",       tipo_clie_peg63);
-                    t.putExtra("tipo_clie_posi_reincor",tipo_clie_posi_reincor);
-                    t.putExtra("tipo_clie_posi_reingre",tipo_clie_posi_reingre);
-                    t.putExtra("tipo_clie_reinco",      tipo_clie_reinco);
-                    t.putExtra("tipo_clie_reingr",      tipo_clie_reingr);
-                    t.putExtra("tipo_clie_ret_peg21",   tipo_clie_ret_peg21);
-                    t.putExtra("tipo_clie_ret_peg42",   tipo_clie_ret_peg42);
-                    t.putExtra("tipo_clie_ret_peg63",   tipo_clie_ret_peg63);
-                    t.putExtra("tipo_clie_sin_pedi",    tipo_clie_sin_pedi);
-                    t.putExtra("styleZona",             styleZona);
+                        t.putExtra("codi_camp",             codi_camp);
+                        t.putExtra("codi_zona",             codi_zona);
+                        t.putExtra("codi_sect",             codi_sect);
+                        t.putExtra("codi_usua",             codi_usua);
+                        t.putExtra("tipo_clie_cons",        tipo_clie_cons);
+                        t.putExtra("tipo_clie_inco",        tipo_clie_inco);
+                        t.putExtra("tipo_clie_peg21",       tipo_clie_peg21);
+                        t.putExtra("tipo_clie_peg42",       tipo_clie_peg42);
+                        t.putExtra("tipo_clie_peg63",       tipo_clie_peg63);
+                        t.putExtra("tipo_clie_posi_reincor",tipo_clie_posi_reincor);
+                        t.putExtra("tipo_clie_posi_reingre",tipo_clie_posi_reingre);
+                        t.putExtra("tipo_clie_reinco",      tipo_clie_reinco);
+                        t.putExtra("tipo_clie_reingr",      tipo_clie_reingr);
+                        t.putExtra("tipo_clie_ret_peg21",   tipo_clie_ret_peg21);
+                        t.putExtra("tipo_clie_ret_peg42",   tipo_clie_ret_peg42);
+                        t.putExtra("tipo_clie_ret_peg63",   tipo_clie_ret_peg63);
+                        t.putExtra("tipo_clie_sin_pedi",    tipo_clie_sin_pedi);
+                        t.putExtra("styleZona",             styleZona);
                     startActivity(t);
                 }
             }

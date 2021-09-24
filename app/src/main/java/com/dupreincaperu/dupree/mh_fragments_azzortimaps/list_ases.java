@@ -241,7 +241,7 @@ public class list_ases extends AppCompatActivity implements OnMapReadyCallback, 
                 try {
                     JSONObject mensaje = response.getJSONObject(0);
                     if(mensaje.getString("mensaje").trim().equalsIgnoreCase("ERROR")){
-                        guardarpreferenciaerrores("LISTA VACIA");
+                        guardarpreferenciaerrores("Lista vacia");
                         finish();
                     } else {
                         int fila  = response.length();
