@@ -224,9 +224,9 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                 if (codi_camp.equalsIgnoreCase("Campaña")){
                     new dialogoMensaje(getContext(),"Error ingrese campaña");
                 } else if (dato_clie.equalsIgnoreCase("")){
-                    new dialogoMensaje(getContext(),"Error ingrese datos asesora");
-                } else if (arrOfStr[0].trim().length()!=8 && arrOfStr[0].trim().length()!=11){
-                    new dialogoMensaje(getContext(),"Error longitud de dato incorrecto");
+                    new dialogoMensaje(getContext(),"Error ingrese asesora");
+                } else if (arrOfStr.length!=3){
+                    new dialogoMensaje(getContext(),"Error seleccionar asesora");
                 } else {
                     tipo_clie_cons = "CONSECUTIVA";
                     tipo_clie_inco = "INCORPORACION";
@@ -360,16 +360,6 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
         img_visi_ases.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lny_visi_efec.setVisibility(View.VISIBLE);
-                lny_codi_camp.setVisibility(View.VISIBLE);
-                lny_codi_zona.setVisibility(View.GONE);
-                lny_codi_sect.setVisibility(View.GONE);
-                lny_gene_mapa.setVisibility(View.GONE);
-                txt_status.setVisibility(View.GONE);
-                sv_status.setVisibility(View.GONE);
-                lny_opci_boto.setVisibility(View.GONE);
-                lny_gene_ases.setVisibility(View.VISIBLE);
-
                 cargarclientes(cedu_vend);
             }
         });
@@ -622,16 +612,32 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
             @Override
             public void onResponse(JSONArray response) {
                 try {
-                    ArrayList<String> clientes= new ArrayList<String>();
-                    for (int i=0; i<response.length(); i++){
-                        JSONObject clie = response.getJSONObject(i);
-                        String dato_clie  = clie.getString("nume_iden").trim()+" | "+clie.getString("nomb_clie").trim()+" | "+clie.getString("codi_zona");
-                        clientes.add(dato_clie);
-                    }
+                    JSONObject mensaje = response.getJSONObject(0);
+                    if (mensaje.getString("mensaje").equalsIgnoreCase("")){
+                        lny_visi_efec.setVisibility(View.VISIBLE);
+                        lny_codi_camp.setVisibility(View.VISIBLE);
+                        lny_codi_zona.setVisibility(View.GONE);
+                        lny_codi_sect.setVisibility(View.GONE);
+                        lny_gene_mapa.setVisibility(View.GONE);
+                        txt_status.setVisibility(View.GONE);
+                        sv_status.setVisibility(View.GONE);
+                        lny_opci_boto.setVisibility(View.GONE);
+                        lny_gene_ases.setVisibility(View.VISIBLE);
 
-                    ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getContext(),android.R.layout.select_dialog_item, clientes);
-                    actv_iden_nomb.setAdapter(adapter);
+                        ArrayList<String> clientes= new ArrayList<String>();
+                        for (int i=0; i<response.length(); i++){
+                            JSONObject clie = response.getJSONObject(i);
+                            String dato_clie  = clie.getString("nume_iden").trim()+" | "+clie.getString("nomb_clie").trim()+" | "+clie.getString("codi_zona");
+                            clientes.add(dato_clie);
+                        }
+                        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getContext(),android.R.layout.select_dialog_item, clientes);
+                        actv_iden_nomb.setAdapter(adapter);
+
+                    } else {
+                        new dialogoMensaje(getContext(),mensaje.getString("mensaje"));
+                    }
                     pdp.dismiss();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     pdp.dismiss();
@@ -641,7 +647,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
             @Override
             public void onErrorResponse(VolleyError error) {
                 pdp.dismiss();
-                Log.i("SECTOR", "No se puede conectar con el servidor");
+                Log.i("cargarclientes", "No se puede conectar con el servidor");
             }
         });
 
