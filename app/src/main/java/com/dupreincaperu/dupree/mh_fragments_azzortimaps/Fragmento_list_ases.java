@@ -318,7 +318,7 @@ public class Fragmento_list_ases extends Fragment implements View.OnClickListene
                 builder.setCancelable(true);
                 builder.setIcon(R.drawable.ic_check);
 
-                builder.setTitle("Seleccionar sectores")
+                builder.setTitle("Seleccionar sector")
                         .setItems(miarray, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 edt_codi_sect.setText(finalMiarray[which]);
