@@ -130,6 +130,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:text=""
+                            android:maxLength="11"
                             android:digits="@string/only_number_basic"
                             android:hint="@string/cedula"/>
                     </com.google.android.material.textfield.TextInputLayout>

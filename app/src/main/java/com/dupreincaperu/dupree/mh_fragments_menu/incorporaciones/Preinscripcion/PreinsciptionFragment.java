@@ -186,8 +186,8 @@ public class PreinsciptionFragment extends BaseFragment implements PermissionCam
                                         cifin(new Identy(binding.txtIdenty.getText().toString()));
                                     }
                                 } else if(binding.txtSpnTypeId.getText().toString().equalsIgnoreCase("Doc. Extranjería")) {
-                                    if (binding.txtIdenty.getText().toString().length() <= 6){
-                                        validate.setLoginError("Carnet debe ser mayor a 6 digitos", binding.txtIdenty);
+                                    if (binding.txtIdenty.getText().toString().length() != 9){
+                                        validate.setLoginError("El Doc. Extranjería debe tener 9 digitos", binding.txtIdenty);
                                     } else if(!binding.txtIdenty.getText().toString().isEmpty()) {
                                         cifin(new Identy(binding.txtIdenty.getText().toString()));
                                     }
