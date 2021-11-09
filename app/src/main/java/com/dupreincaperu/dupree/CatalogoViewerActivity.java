@@ -36,10 +36,16 @@ public class CatalogoViewerActivity extends AppCompatActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 //progDailog.show();
-                Log.e(TAG,"Loading");
-                view.loadUrl(url);
+                if( url.startsWith("http:") || url.startsWith("https:") ) {
+                    return false;
+                }
 
-                return false;
+                //Agregar validación para email y telefono.
+                if( url.startsWith("tel:") || url.startsWith("mailto:") ) {
+                    Log.e(TAG,"Loading");
+                    view.loadUrl(url);
+                }
+                return true;
             }
             @Override
             public void onPageFinished(WebView view, final String url) {
