@@ -23,8 +23,8 @@ android {
         applicationId "com.dupreincaperu.dupree"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 24
-        versionName "2.3.0"
+        versionCode 25
+        versionName "2.3.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true

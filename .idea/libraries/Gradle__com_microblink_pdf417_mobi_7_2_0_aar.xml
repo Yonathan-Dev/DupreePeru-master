@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.microblink:pdf417.mobi:7.2.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9ce218e2e80ea6d5370507f4a9c9b4f4/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9ce218e2e80ea6d5370507f4a9c9b4f4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d95c92cb0d9f54b874931206f559aaa5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d95c92cb0d9f54b874931206f559aaa5/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.microblink/pdf417.mobi/7.2.0/eecd7ba7289c1847e05de45683c176293fab5c8e/pdf417.mobi-7.2.0-javadoc.jar!/" />
