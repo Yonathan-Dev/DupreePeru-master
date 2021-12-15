@@ -14,7 +14,8 @@
             android:id="@+id/AppBarL_FragMain"
             layout="@layout/mh_toolbar_activity" />
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/pageMainBack"
             android:layout_width="match_parent"
