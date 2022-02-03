@@ -229,7 +229,6 @@ public class MainFragment extends Fragment {
 
         }
 
-
     }
 
     private void cargarBanner(){

@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.navigator:mapbox-navigation-native:6.2.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/403c401379e8b76ba62b7ea6ee535040/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/403c401379e8b76ba62b7ea6ee535040/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bc48e8199310f29ab1f074101649b8a7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bc48e8199310f29ab1f074101649b8a7/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
